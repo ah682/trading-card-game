@@ -9,7 +9,7 @@
 
 using namespace std;
 
-vector<string> readPlayerFile(string filename);
+vector<string> readPlayerFile(string filename, int startChar, int endChar);
 
 time_t readSeedFile(string filename);
 
@@ -40,7 +40,7 @@ int main()
 {
     // Initialises Random Number for seed
     time_t seed = readSeedFile("seed.txt");
-    srand(seed);
+    srand(102000);
 
     // Welcomes message
     cout << "Welcome to U-Can't. Let the winnowing begin...' " << endl << endl;
@@ -78,20 +78,39 @@ int Random(int max)
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
 
-vector<string> readPlayerFile(string filename, int startLine, int endLine) {
+vector<string> readPlayerFile(string filename, int startChar, int endChar) {
     vector<string> file_contents;
 
     // Read from the file
     ifstream file_stream(filename);
     if (file_stream.is_open()) {
-        string line;
-        int currentLine = 1;
-        while (getline(file_stream, line)) {
-            if (currentLine >= startLine && currentLine <= endLine) {
-                file_contents.push_back(line);
+        // Set the starting point in the file
+        file_stream.seekg(startChar, ios::beg);
+
+        // Read the characters within the specified range
+        int charCount = endChar - startChar + 1;
+        char* buffer = new char[charCount];
+        file_stream.read(buffer, charCount);
+
+        // Iterate to the end of the line
+        char c;
+        while (file_stream.get(c) && c != '\n') {}
+
+        // Convert the character buffer to a string
+        string file_contents_str(buffer, charCount);
+        file_contents.push_back(file_contents_str);
+
+        delete[] buffer;
+
+        // Read the remaining lines in the file
+        while (file_stream.good()) {
+            string line;
+            getline(file_stream, line);
+            if (line.size() >= charCount) {
+                file_contents.push_back(line.substr(0, charCount));
             }
-            currentLine++;
         }
+
         file_stream.close();
     }
     else {
@@ -100,6 +119,8 @@ vector<string> readPlayerFile(string filename, int startLine, int endLine) {
 
     return file_contents;
 }
+
+
 
 time_t readSeedFile(string filename) {
     time_t seed_value = 0;
