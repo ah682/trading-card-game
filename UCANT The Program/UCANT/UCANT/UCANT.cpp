@@ -1,5 +1,4 @@
 // UCANT.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 #include <cstdlib>
@@ -10,20 +9,24 @@
 
 using namespace std;
 
-class CCard {
-
-};
-
 vector<string> readPlayerFile(string filename);
 
 time_t readSeedFile(string filename);
 
 int Random(int max);
 
-void drawCard(string player, vector <string> file_contents);
+string drawCard(string player, vector <string> file_contents);
+
+class CCard {
+
+    public: 
+    string cards;
+};
 
 int main()
 {
+    
+    // Create a card list
     // Initialises Random Number
     time_t seed = readSeedFile("seed.txt");
     srand(seed);
@@ -37,7 +40,21 @@ int main()
     // Read files for player 2
     vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt");
 
-    drawCard("Player 1", player2_file_contents);
+    //drawCard("Player 1", player2_file_contents);
+    const int deckSize = 49;
+    // Array of CCard Objects
+    CCard cardsplayer1[deckSize];
+    CCard cardsplayer2[deckSize];
+
+     // Draw cards for player 1
+    for (int i = 0; i < deckSize; i++) {
+        cardsplayer1[i].cards = drawCard("Player 1", player1_file_contents);
+    }
+
+    // Draw cards for player 2
+    for (int i = 0; i < deckSize; i++) {
+        cardsplayer2[i].cards = drawCard("Player 2", player2_file_contents);
+    }
 }
 
 
@@ -85,14 +102,14 @@ time_t readSeedFile(string filename) {
     return seed_value;
 }
 
-void drawCard(string player, vector <string> file_contents) {
+string drawCard(string player, vector <string> file_contents) {
     // Chooses random number
     int randomCard = Random(file_contents.size());
 
     // Check if the vector has enough elements
     if (randomCard >= file_contents.size()) {
         cout << "Error: " << player << " has no cards to draw." << endl;
-        return;
+        return "";
     }
 
     // Chooses random card
@@ -100,15 +117,5 @@ void drawCard(string player, vector <string> file_contents) {
 
     // Announces which player has drawn a card and which card
     cout << player << " has drawn:" << endl << file_contents_random << endl;
+    return file_contents_random;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
