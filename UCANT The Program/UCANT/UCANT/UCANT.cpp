@@ -27,8 +27,9 @@ class CCard {
 
     public: 
     string cards;
-    int power;
-    int type;
+    string power;
+    string resilence;
+    string type;
 };
 
 struct SProfessor {
@@ -46,10 +47,10 @@ int main()
     cout << "Welcome to U-Can't. Let the winnowing begin...' " << endl << endl;
 
     // Reads file which holds deck for player 1 named plagiarist
-    vector <string> player1_file_contents = readPlayerFile("plagiarist.txt", 0, 1);
+    vector <string> player1_file_contents = readPlayerFile("plagiarist.txt", 1, 1);
 
     // Read files which holds deck for player 2 named piffle-paper
-    vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt", 0, 1);
+    vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt", 1, 1);
 
     //drawCard("Player 1", player2_file_contents);
     const int deckSize = 49;
@@ -59,12 +60,12 @@ int main()
 
      // Draw cards for player 1
     for (int i = 0; i < deckSize; i++) {
-        cardsplayer1[i].cards = drawCard("Player 1", player1_file_contents);
+        cardsplayer1[i].type = drawCard("Player 1", player1_file_contents);
     }
 
     // Draw cards for player 2
     for (int i = 0; i < deckSize; i++) {
-        cardsplayer2[i].cards = drawCard("Player 2", player2_file_contents);
+        cardsplayer2[i].type = drawCard("Player 2", player2_file_contents);
     }
 
     // Deallocate Memory
@@ -154,9 +155,13 @@ string drawCard(string player, vector <string> file_contents) {
     // Chooses random card
     string file_contents_random = file_contents[randomCard];
 
-    // Announces which player has drawn a card and which card
-    cout << player << " has drawn:" << endl << file_contents_random << endl;
-    return file_contents_random;
+    if (file_contents_random == "1") {
+        // Announces which player has drawn a card and which card
+        cout << player << " has drawn:" << endl << file_contents_random << endl;
+        return file_contents_random;
+    }
+    // Return an empty string if card type is not 1
+    return "";
 }
 
 void gameOver()
