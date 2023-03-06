@@ -17,6 +17,10 @@ int Random(int max);
 
 string drawCard(string player, vector <string> file_contents);
 
+void startRound(int round);
+
+void graveYard();
+
 class CCard {
 
     public: 
