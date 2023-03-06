@@ -21,6 +21,8 @@ void startRound(int round);
 
 void graveYard();
 
+void gameOver();
+
 class CCard {
 
     public: 
@@ -44,10 +46,10 @@ int main()
     cout << "Welcome to U-Can't. Let the winnowing begin...' " << endl << endl;
 
     // Reads file which holds deck for player 1 named plagiarist
-    vector <string> player1_file_contents = readPlayerFile("plagiarist.txt");
+    vector <string> player1_file_contents = readPlayerFile("plagiarist.txt", 0, 1);
 
     // Read files which holds deck for player 2 named piffle-paper
-    vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt");
+    vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt", 0, 1);
 
     //drawCard("Player 1", player2_file_contents);
     const int deckSize = 49;
@@ -76,16 +78,19 @@ int Random(int max)
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
 
-vector <string> readPlayerFile(string filename) {
+vector<string> readPlayerFile(string filename, int startLine, int endLine) {
     vector<string> file_contents;
 
-    
     // Read from the file
     ifstream file_stream(filename);
     if (file_stream.is_open()) {
         string line;
+        int currentLine = 1;
         while (getline(file_stream, line)) {
-            file_contents.push_back(line);
+            if (currentLine >= startLine && currentLine <= endLine) {
+                file_contents.push_back(line);
+            }
+            currentLine++;
         }
         file_stream.close();
     }
@@ -131,4 +136,9 @@ string drawCard(string player, vector <string> file_contents) {
     // Announces which player has drawn a card and which card
     cout << player << " has drawn:" << endl << file_contents_random << endl;
     return file_contents_random;
+}
+
+void gameOver()
+{
+    cout << "Game Over!" << endl;
 }
