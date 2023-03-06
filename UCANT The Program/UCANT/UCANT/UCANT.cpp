@@ -21,30 +21,35 @@ class CCard {
 
     public: 
     string cards;
+    int power;
+    int type;
+};
+
+struct SProfessor {
+    string name;
+    int prestige;
 };
 
 int main()
 {
-    
-    // Create a card list
-    // Initialises Random Number
+    // Initialises Random Number for seed
     time_t seed = readSeedFile("seed.txt");
     srand(seed);
 
     // Welcomes message
     cout << "Welcome to U-Can't. Let the winnowing begin...' " << endl << endl;
 
-    // Read files for player 1
+    // Reads file which holds deck for player 1 named plagiarist
     vector <string> player1_file_contents = readPlayerFile("plagiarist.txt");
 
-    // Read files for player 2
+    // Read files which holds deck for player 2 named piffle-paper
     vector <string> player2_file_contents = readPlayerFile("piffle-paper.txt");
 
     //drawCard("Player 1", player2_file_contents);
     const int deckSize = 49;
     // Array of CCard Objects
-    CCard cardsplayer1[deckSize];
-    CCard cardsplayer2[deckSize];
+    CCard* cardsplayer1 = new CCard[deckSize];
+    CCard* cardsplayer2 = new CCard[deckSize];
 
      // Draw cards for player 1
     for (int i = 0; i < deckSize; i++) {
@@ -55,6 +60,10 @@ int main()
     for (int i = 0; i < deckSize; i++) {
         cardsplayer2[i].cards = drawCard("Player 2", player2_file_contents);
     }
+
+    // Deallocate Memory
+    delete[] cardsplayer1;
+    delete[] cardsplayer2;
 }
 
 
