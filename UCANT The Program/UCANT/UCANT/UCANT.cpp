@@ -6,12 +6,15 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <sstream>
 
 using namespace std;
 
 vector<string> readCardType(string filename, int startChar, int endChar);
 
 vector<string> readCardName(string filename);
+
+vector<string> readCardPower(string filename);
 
 time_t readSeedFile(string filename);
 
@@ -21,6 +24,8 @@ string drawCard(string player, vector <string> file_contents);
 
 string drawName(string player, vector <string> file_contents);
 
+string drawPower(string player, vector<string> powers);
+
 void startRound(int round);
 
 void graveYard();
@@ -28,60 +33,46 @@ void graveYard();
 void gameOver();
 
 class CCard {
-
-    public: 
-    string cards;
-    string power;
-    string resilence;
-    string type;
-    string name;
+public:
+    std::string type;
+    std::string name;
+    int power;
+    int resilience;
+    int boost;
 };
 
-struct SProfessor {
-    string name;
-    int prestige;
-};
+int main() {
+    std::ifstream file("plagiarist.txt");
+    int num_cards = 0;
+    std::string line;
 
-int main()
-{
-    // Initialises Random Number for seed
-    time_t seed = readSeedFile("seed.txt");
-    srand(102000);
-
-    // Welcomes message
-    cout << "Welcome to U-Can't. Let the winnowing begin...' " << endl << endl;
-
-    // Reads file which holds deck for player 1 named plagiarist card types
-    vector <string> player1_file_contents_type = readCardType("plagiarist.txt", 1, 1);
-
-    // Reads file which holds deck for player 1 named plagiarist card names
-    vector <string> player1_file_contents_name = readCardName("plagiarist.txt");
-
-    // Read files which holds deck for player 2 named piffle-paper type
-    vector <string> player2_file_contents_type = readCardType("piffle-paper.txt", 1, 1);
-
-    //drawCard("Player 1", player2_file_contents);
-    const int deckSize = 49;
-    // Array of CCard Objects
-    CCard* cardsplayer1 = new CCard[deckSize];
-    CCard* cardsplayer2 = new CCard[deckSize];
-
-     // Draw cards for player 1
-    for (int i = 0; i < deckSize; i++) {
-        cardsplayer1[i].type = drawCard("Player 1", player1_file_contents_type);
-        cardsplayer1[i].name = drawName("Player 1", player1_file_contents_name);
+    // Count the number of cards in the file
+    while (std::getline(file, line)) {
+        num_cards++;
     }
 
-    // Draw cards for player 2
-    for (int i = 0; i < deckSize; i++) {
-        cardsplayer2[i].type = drawCard("Player 2", player2_file_contents_type);
+    // Allocate memory for the cards
+    CCard* cards = new CCard[num_cards];
+
+    // Read in the card data
+    file.clear();
+    file.seekg(0);
+    for (int i = 0; i < num_cards; i++) {
+        std::getline(file, line);
+        std::stringstream ss(line);
+        ss >> cards[i].type >> cards[i].name >> cards[i].power >> cards[i].resilience >> cards[i].boost;
     }
 
-    // Deallocate Memory
-    delete[] cardsplayer1;
-    delete[] cardsplayer2;
+    // Example usage: print out the data
+    for (int i = 0; i < num_cards; i++) {
+        std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << std::endl;
+    }
+
+    // Free the memory
+    delete[] cards;
+
+    return 0;
 }
-
 
 int Random(int max)
 {
@@ -138,15 +129,16 @@ vector<string> readCardName(string filename) {
     if (file_stream.is_open()) {
         string line;
         while (getline(file_stream, line)) {
-            // Find the positions of the first and second whitespace characters
-            size_t pos1 = line.find_first_of(" \t");
-            size_t pos2 = line.find_first_of(" \t", pos1 + 1);
+            // Create a stringstream from the line
+            stringstream ss(line);
 
-            // If two whitespace characters are found, extract the card name
-            if (pos2 != string::npos) {
-                string name = line.substr(pos2 + 1);
-                file_contents.push_back(name);
-            }
+            // Extract the second and third words separated by whitespace
+            string word1, word2, word3;
+            ss >> word1 >> word2 >> word3;
+
+            // Combine the two words into one string and add it to the vector
+            string name = word2 + " " + word3;
+            file_contents.push_back(name);
         }
 
         file_stream.close();
@@ -201,6 +193,33 @@ string drawCard(string player, vector <string> file_contents) {
     return "";
 }
 
+vector<string> readCardPower(string filename) {
+    vector<string> file_contents;
+
+    // Read from the file
+    ifstream file_stream(filename);
+    if (file_stream.is_open()) {
+        string line;
+        while (getline(file_stream, line)) {
+            // Create a stringstream from the line
+            stringstream ss(line);
+
+            // Extract the fourth word separated by whitespace
+            string word1, word2, word3, power;
+            ss >> word1 >> word2 >> word3 >> power;
+
+            file_contents.push_back(power);
+        }
+
+        file_stream.close();
+    }
+    else {
+        std::cout << "Unable to open file " << filename << '\n';
+    }
+
+    return file_contents;
+}
+
 string drawName(string player, vector <string> file_contents) {
     // Chooses random number
     int randomCard = Random(file_contents.size());
@@ -219,6 +238,26 @@ string drawName(string player, vector <string> file_contents) {
     return file_contents_random;
 }
 
+string drawPower(string player, vector<string> powers) {
+    // Check if the vector is empty
+    if (powers.empty()) {
+        cout << "Error: " << player << " has no powers to draw." << endl;
+        return "";
+    }
+
+    // Chooses random number
+    int randomPower = Random(powers.size());
+
+    // Chooses random power
+    string power = powers[randomPower];
+
+    // Remove the power from the vector
+    powers.erase(powers.begin() + randomPower);
+
+    // Announces which player has drawn a power and which power
+    cout << player << " has drawn the power: " << power << endl;
+    return power;
+}
 void gameOver()
 {
     cout << "Game Over!" << endl << " " << "wins";
