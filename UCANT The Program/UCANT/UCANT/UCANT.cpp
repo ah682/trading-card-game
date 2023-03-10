@@ -1,5 +1,9 @@
 // UCANT.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
+// Memory Leak Detection
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -70,6 +74,8 @@ int main() {
 
     // Free the memory
     delete[] cards;
+
+    _CrtDumpMemoryLeaks(); // Memory Leak Detection
 
     return 0;
 }
