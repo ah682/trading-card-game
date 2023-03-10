@@ -14,21 +14,9 @@
 
 using namespace std;
 
-vector<string> readCardType(string filename, int startChar, int endChar);
-
-vector<string> readCardName(string filename);
-
-vector<string> readCardPower(string filename);
-
 time_t readSeedFile(string filename);
 
 int Random(int max);
-
-string drawCard(string player, vector <string> file_contents);
-
-string drawName(string player, vector <string> file_contents);
-
-string drawPower(string player, vector<string> powers);
 
 void startRound(int round);
 
@@ -36,44 +24,91 @@ void graveYard();
 
 void gameOver();
 
+void readCardData();
+
+class CPlayer {
+    public:
+        string name;
+
+};
+
 class CCard {
 public:
-    std::string type;
-    std::string name;
-    int power;
-    int resilience;
-    int boost;
+    string type;
+    string name;
+    string power;
+    string resilience;
+    string boost;
+    string player;
 };
 
 int main() {
-    std::ifstream file("plagiarist.txt");
-    int num_cards = 0;
-    std::string line;
+    // Genereates seed for Nick WORKS
+    int seed = readSeedFile("seed.txt");
+    srand(seed);
+    cout << seed << endl;
 
-    // Count the number of cards in the file
-    while (std::getline(file, line)) {
-        num_cards++;
+    // Generates random number for me WORKS
+    int testrand = Random(49);
+    cout << testrand << endl;
+
+    ifstream filePlagiarist("plagiarist.txt");
+    int num_cardsPlagiarist = 0;
+    string linePlagiarist;
+
+    // Count the number of cards in the plagiarist file file
+    while (getline(filePlagiarist, linePlagiarist)) {
+        num_cardsPlagiarist++;
     }
 
     // Allocate memory for the cards
-    CCard* cards = new CCard[num_cards];
+    CCard* cardsPlagiarist = new CCard[num_cardsPlagiarist];
 
-    // Read in the card data
-    file.clear();
-    file.seekg(0);
-    for (int i = 0; i < num_cards; i++) {
-        std::getline(file, line);
-        std::stringstream ss(line);
-        ss >> cards[i].type >> cards[i].name >> cards[i].power >> cards[i].resilience >> cards[i].boost;
+    // Read in the card data for plagiaraist
+    filePlagiarist.clear();
+    filePlagiarist.seekg(0);
+    for (int i = 0; i < num_cardsPlagiarist; i++) {
+        getline(filePlagiarist, linePlagiarist);
+        stringstream ssPlag(linePlagiarist);
+        ssPlag >> cardsPlagiarist[i].type >> cardsPlagiarist[i].name >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
     }
 
-    // Example usage: print out the data
-    for (int i = 0; i < num_cards; i++) {
-        std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << std::endl;
+    // Example usage: print out the data of plagiarist
+    for (int i = 0; i < num_cardsPlagiarist; i++) {
+        cout << cardsPlagiarist[i].type << " " << cardsPlagiarist[i].name << " " << cardsPlagiarist[i].power << " " << cardsPlagiarist[i].resilience << " " << cardsPlagiarist[i].boost << endl;
     }
 
-    // Free the memory
-    delete[] cards;
+    ifstream filePiffle("piffle-paper.txt");
+    int num_cardsPiffle = 0;
+    string linePiffle;
+
+    // Count the number of cards in the plagiarist file file
+    while (getline(filePiffle, linePiffle)) {
+        num_cardsPiffle++;
+    }
+
+    cout << endl << endl << endl << endl << endl << endl;
+    // Allocate memory for the cards
+    CCard* cardsPiffle = new CCard[num_cardsPiffle];
+
+    // Read in the card data for plagiaraist
+    filePiffle.clear();
+    filePiffle.seekg(0);
+    for (int i = 0; i < num_cardsPiffle; i++) {
+        getline(filePiffle, linePiffle);
+        stringstream ssPif(linePiffle);
+        ssPif >> cardsPiffle[i].type >> cardsPiffle[i].name >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
+    }
+
+    // Example usage: print out the data of plagiarist
+    for (int i = 0; i < num_cardsPiffle; i++) {
+        cout << cardsPiffle[i].type << " " << cardsPiffle[i].name << " " << cardsPiffle[i].power << " " << cardsPiffle[i].resilience << " " << cardsPiffle[i].boost << endl;
+    }
+
+    // Free the memory even though its pointless right now
+    delete[] cardsPlagiarist;
+    // Free the memory even though its pointless right now
+    delete[] cardsPiffle;
 
     _CrtDumpMemoryLeaks(); // Memory Leak Detection
 
@@ -83,77 +118,6 @@ int main() {
 int Random(int max)
 {
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
-}
-
-vector<string> readCardType(string filename, int startChar, int endChar) {
-    vector<string> file_contents;
-
-    // Read from the file
-    ifstream file_stream(filename);
-    if (file_stream.is_open()) {
-        // Set the starting point in the file
-        file_stream.seekg(startChar, ios::beg);
-
-        // Read the characters within the specified range
-        int charCount = endChar - startChar + 1;
-        char* buffer = new char[charCount];
-        file_stream.read(buffer, charCount);
-
-        // Iterate to the end of the line
-        char c;
-        while (file_stream.get(c) && c != '\n') {}
-
-        // Convert the character buffer to a string
-        string file_contents_str(buffer, charCount);
-        file_contents.push_back(file_contents_str);
-
-        delete[] buffer;
-
-        // Read the remaining lines in the file
-        while (file_stream.good()) {
-            string line;
-            getline(file_stream, line);
-            if (line.size() >= charCount) {
-                file_contents.push_back(line.substr(0, charCount));
-            }
-        }
-
-        file_stream.close();
-    }
-    else {
-        std::cout << "Unable to open file " << filename << '\n';
-    }
-
-    return file_contents;
-}
-
-vector<string> readCardName(string filename) {
-    vector<string> file_contents;
-
-    // Read from the file
-    ifstream file_stream(filename);
-    if (file_stream.is_open()) {
-        string line;
-        while (getline(file_stream, line)) {
-            // Create a stringstream from the line
-            stringstream ss(line);
-
-            // Extract the second and third words separated by whitespace
-            string word1, word2, word3;
-            ss >> word1 >> word2 >> word3;
-
-            // Combine the two words into one string and add it to the vector
-            string name = word2 + " " + word3;
-            file_contents.push_back(name);
-        }
-
-        file_stream.close();
-    }
-    else {
-        std::cout << "Unable to open file " << filename << '\n';
-    }
-
-    return file_contents;
 }
 
 
@@ -176,95 +140,24 @@ time_t readSeedFile(string filename) {
 
     return seed_value;
 }
-
-string drawCard(string player, vector <string> file_contents) {
-    // Chooses random number
-    int randomCard = Random(file_contents.size());
-
-    // Check if the vector has enough elements
-    if (randomCard >= file_contents.size()) {
-        cout << "Error: " << player << " has no cards to draw." << endl;
-        return "";
-    }
-
-    // Chooses random card
-    string file_contents_random = file_contents[randomCard];
-
-    if (file_contents_random == "1") {
-        // Announces which player has drawn a card and which card
-        cout << player << " has drawn:" << endl << file_contents_random << endl;
-        return file_contents_random;
-    }
-    // Return an empty string if card type is not 1
-    return "";
-}
-
-vector<string> readCardPower(string filename) {
-    vector<string> file_contents;
-
-    // Read from the file
-    ifstream file_stream(filename);
-    if (file_stream.is_open()) {
-        string line;
-        while (getline(file_stream, line)) {
-            // Create a stringstream from the line
-            stringstream ss(line);
-
-            // Extract the fourth word separated by whitespace
-            string word1, word2, word3, power;
-            ss >> word1 >> word2 >> word3 >> power;
-
-            file_contents.push_back(power);
-        }
-
-        file_stream.close();
-    }
-    else {
-        std::cout << "Unable to open file " << filename << '\n';
-    }
-
-    return file_contents;
-}
-
-string drawName(string player, vector <string> file_contents) {
-    // Chooses random number
-    int randomCard = Random(file_contents.size());
-
-    // Check if the vector has enough elements
-    if (randomCard >= file_contents.size()) {
-        cout << "Error: " << player << " has no cards to draw." << endl;
-        return "";
-    }
-
-    // Chooses random card
-    string file_contents_random = file_contents[randomCard];
-
-    // Announces which player has drawn a card and which card
-    cout << player << " has drawn:" << endl << file_contents_random << endl;
-    return file_contents_random;
-}
-
-string drawPower(string player, vector<string> powers) {
-    // Check if the vector is empty
-    if (powers.empty()) {
-        cout << "Error: " << player << " has no powers to draw." << endl;
-        return "";
-    }
-
-    // Chooses random number
-    int randomPower = Random(powers.size());
-
-    // Chooses random power
-    string power = powers[randomPower];
-
-    // Remove the power from the vector
-    powers.erase(powers.begin() + randomPower);
-
-    // Announces which player has drawn a power and which power
-    cout << player << " has drawn the power: " << power << endl;
-    return power;
-}
 void gameOver()
 {
-    cout << "Game Over!" << endl << " " << "wins";
+    cout << "Game Over!" << endl << "player " << " " << "wins";
+}
+
+void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FOR LATER
+{
+    // Read in the card data
+    file.clear();
+    file.seekg(0);
+    for (int i = 0; i < num_cards; i++) {
+        getline(file, line);
+        stringstream ss(line);
+        ss >> cards[i].type >> cards[i].name >> cards[i].power >> cards[i].resilience >> cards[i].boost;
+    }
+
+    // Example usage: print out the data
+    for (int i = 0; i < num_cards; i++) {
+        std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
+    }
 }
