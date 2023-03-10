@@ -26,10 +26,10 @@ void gameOver();
 
 void readCardData();
 
-class CPlayer {
-    public:
-        string name;
-
+struct SProfessor
+{
+    string profName;
+    int profPresrtige = 30;
 };
 
 class CCard {
@@ -39,24 +39,23 @@ public:
     string power;
     string resilience;
     string boost;
-    string player;
 };
 
 int main() {
     // Genereates seed for Nick WORKS
     int seed = readSeedFile("seed.txt");
     srand(seed);
-    cout << seed << endl;
+    cout << "Seed Number: " << seed << endl;
 
     // Generates random number for me WORKS
     int testrand = Random(49);
-    cout << testrand << endl;
+    cout << "Random Number Spawned with Random Function " << testrand << endl;
 
     ifstream filePlagiarist("plagiarist.txt");
     int num_cardsPlagiarist = 0;
     string linePlagiarist;
 
-    // Count the number of cards in the plagiarist file file
+    // Count the number of cards in the plagiarist file
     while (getline(filePlagiarist, linePlagiarist)) {
         num_cardsPlagiarist++;
     }
@@ -64,7 +63,7 @@ int main() {
     // Allocate memory for the cards
     CCard* cardsPlagiarist = new CCard[num_cardsPlagiarist];
 
-    // Read in the card data for plagiaraist
+    // Read in the card data into object for plagiaraist
     filePlagiarist.clear();
     filePlagiarist.seekg(0);
     for (int i = 0; i < num_cardsPlagiarist; i++) {
@@ -73,10 +72,18 @@ int main() {
         ssPlag >> cardsPlagiarist[i].type >> cardsPlagiarist[i].name >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
     }
 
-    // Example usage: print out the data of plagiarist
+    // Example usage: print out random cards of plagiarist
+    bool usedCardsPlagiarist[48] = {false};
     for (int i = 0; i < num_cardsPlagiarist; i++) {
-        cout << cardsPlagiarist[i].type << " " << cardsPlagiarist[i].name << " " << cardsPlagiarist[i].power << " " << cardsPlagiarist[i].resilience << " " << cardsPlagiarist[i].boost << endl;
-    }
+        int randomCardPlagiarist = Random(48);
+        do
+        {
+            randomCardPlagiarist = Random(48);
+        } while (usedCardsPlagiarist[randomCardPlagiarist] == true);
+        cout << cardsPlagiarist[randomCardPlagiarist].type << " " << cardsPlagiarist[randomCardPlagiarist].name << " " << cardsPlagiarist[randomCardPlagiarist].power << " " << cardsPlagiarist[randomCardPlagiarist].resilience << " " << cardsPlagiarist[randomCardPlagiarist].boost << endl;
+        usedCardsPlagiarist[randomCardPlagiarist] = true;
+    } 
+
 
     ifstream filePiffle("piffle-paper.txt");
     int num_cardsPiffle = 0;
@@ -100,10 +107,20 @@ int main() {
         ssPif >> cardsPiffle[i].type >> cardsPiffle[i].name >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
     }
 
-    // Example usage: print out the data of plagiarist
+    // Example usage: print out random cards of piffle paper
+    bool usedCardsPiffle[48] = { false };
     for (int i = 0; i < num_cardsPiffle; i++) {
-        cout << cardsPiffle[i].type << " " << cardsPiffle[i].name << " " << cardsPiffle[i].power << " " << cardsPiffle[i].resilience << " " << cardsPiffle[i].boost << endl;
+        int randomCardPiffle = Random(48);
+        do
+        {
+            randomCardPiffle = Random(48);
+        } while (usedCardsPiffle[randomCardPiffle] == true);
+        cout << cardsPiffle[randomCardPiffle].type << " " << cardsPiffle[randomCardPiffle].name << " " << cardsPiffle[randomCardPiffle].power << " " << cardsPiffle[randomCardPiffle].resilience << " " << cardsPiffle[randomCardPiffle].boost << endl;
+        usedCardsPiffle[randomCardPiffle] = true;
     }
+
+    //Play Game
+    
 
     // Free the memory even though its pointless right now
     delete[] cardsPlagiarist;
@@ -111,6 +128,9 @@ int main() {
     delete[] cardsPiffle;
 
     _CrtDumpMemoryLeaks(); // Memory Leak Detection
+
+    // Game Finished
+    gameOver();
 
     return 0;
 }
