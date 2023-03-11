@@ -18,11 +18,7 @@ time_t readSeedFile(string filename);
 
 int Random(int max);
 
-void startRound(int round);
-
 void graveYard();
-
-void gameOver();
 
 void readCardData();
 
@@ -41,6 +37,18 @@ public:
     string boost;
 };
 
+class Round {
+    void startRound(int round);
+};
+
+class GameStart {
+    void gameStart();
+};
+
+class GameOver {
+    void gameOver();
+};
+
 int main() {
     // Genereates seed for Nick WORKS
     int seed = readSeedFile("seed.txt");
@@ -50,6 +58,8 @@ int main() {
     // Generates random number for me WORKS
     int testrand = Random(48);
     cout << "Random Number Spawned with Random Function " << testrand << endl;
+
+    GameStart();
 
     ifstream filePlagiarist("plagiarist.txt");
     int num_cardsPlagiarist = 0;
@@ -78,7 +88,6 @@ int main() {
             cardsPlagiarist[i].type = "";
         }
     }
- 
 
     // Example usage: print out random cards of plagiarist
     bool usedCardsPlagiarist[48] = {false};
@@ -195,4 +204,14 @@ void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FO
     for (int i = 0; i < num_cards; i++) {
         std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
     }
+}
+
+void startRound(int round)
+{
+    
+};
+
+void GameStart()
+{
+    cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
