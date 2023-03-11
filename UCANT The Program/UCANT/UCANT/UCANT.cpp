@@ -48,7 +48,7 @@ int main() {
     cout << "Seed Number: " << seed << endl;
 
     // Generates random number for me WORKS
-    int testrand = Random(49);
+    int testrand = Random(48);
     cout << "Random Number Spawned with Random Function " << testrand << endl;
 
     ifstream filePlagiarist("plagiarist.txt");
@@ -61,7 +61,7 @@ int main() {
     }
 
     // Allocate memory for the cards
-    CCard* cardsPlagiarist = new CCard[num_cardsPlagiarist];
+    vector<CCard> cardsPlagiarist(num_cardsPlagiarist);
 
     // Read in the card data into object for plagiaraist
     filePlagiarist.clear();
@@ -69,8 +69,16 @@ int main() {
     for (int i = 0; i < num_cardsPlagiarist; i++) {
         getline(filePlagiarist, linePlagiarist);
         stringstream ssPlag(linePlagiarist);
-        ssPlag >> cardsPlagiarist[i].type >> cardsPlagiarist[i].name >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
+        ssPlag >> cardsPlagiarist[i].type;
+        if (cardsPlagiarist[i].type == "1") {
+            ssPlag >> cardsPlagiarist[i].name >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
+        }
+        else
+        {
+            cardsPlagiarist[i].type = "";
+        }
     }
+ 
 
     // Example usage: print out random cards of plagiarist
     bool usedCardsPlagiarist[48] = {false};
@@ -96,7 +104,7 @@ int main() {
 
     cout << endl << endl << endl << endl << endl << endl;
     // Allocate memory for the cards
-    CCard* cardsPiffle = new CCard[num_cardsPiffle];
+    vector<CCard> cardsPiffle(num_cardsPiffle);
 
     // Read in the card data for plagiaraist
     filePiffle.clear();
@@ -104,8 +112,16 @@ int main() {
     for (int i = 0; i < num_cardsPiffle; i++) {
         getline(filePiffle, linePiffle);
         stringstream ssPif(linePiffle);
-        ssPif >> cardsPiffle[i].type >> cardsPiffle[i].name >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
+        ssPif >> cardsPiffle[i].type;
+        if (cardsPiffle[i].type == "1") {
+           ssPif >> cardsPiffle[i].name >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
+        }
+        else {
+            cardsPiffle[i].type = "";
+        }
     }
+
+    
 
     // Example usage: print out random cards of piffle paper
     bool usedCardsPiffle[48] = { false };
@@ -123,9 +139,8 @@ int main() {
     
 
     // Free the memory even though its pointless right now
-    delete[] cardsPlagiarist;
     // Free the memory even though its pointless right now
-    delete[] cardsPiffle;
+    
 
     _CrtDumpMemoryLeaks(); // Memory Leak Detection
 
