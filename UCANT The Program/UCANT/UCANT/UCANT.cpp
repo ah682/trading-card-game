@@ -38,21 +38,41 @@ public:
 };
 
 class Round {
+public:
     void startRound(int round);
 };
 
 class GameStart {
+public:
     void gameStart();
 };
 
+
 class GameOver {
+public:
     void gameOver();
 };
+
+void GameStart::gameStart() {
+    cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
+}
+
+void GameOver::gameOver() {
+    cout << "Game Over!" << endl << "player " << " " << "wins";
+}
+
+void startRound(int round)
+{
+    void drawCard();
+    cout << "Round: " << round << endl;
+}
+
+void drawCard();
 
 int main() {
     // Genereates seed for Nick WORKS
     int seed = readSeedFile("seed.txt");
-    srand(seed);
+    srand(2334823854999);
     cout << "Seed Number: " << seed << endl;
 
     // Generates random number for me WORKS
@@ -144,8 +164,68 @@ int main() {
         usedCardsPiffle[randomCardPiffle] = true;
     }
 
-    //Play Game
-    
+
+    // Draws random card for piffle and checks if works with cout
+    cout << endl << endl << endl << endl << endl;
+    cout << "DRAWN CARDS Piffle" << endl << endl << endl << endl << endl;
+    vector<CCard> cardsPiffleDrawn;
+    bool usedCardsPiffleDrawn[48] = { false };
+    for (int i = 0; i < 2; i++) {
+        int randomCardPiffle = Random(48);
+        do
+        {
+            randomCardPiffle = Random(48);
+        } while (usedCardsPiffleDrawn[randomCardPiffle] == true);
+
+        cardsPiffleDrawn.push_back(cardsPiffle[randomCardPiffle]);
+        // Checks if works
+        cout << cardsPiffleDrawn[i].type << " " << cardsPiffleDrawn[i].name << " " << cardsPiffleDrawn[i].power << " " << cardsPiffleDrawn[i].resilience << " " << cardsPiffleDrawn[i].boost << endl;
+        usedCardsPiffleDrawn[randomCardPiffle] = true;
+    }
+
+
+    // Draws random card for plagarist and checks if works with cout
+    cout << endl << endl << endl << endl << endl;
+    cout << "DRAWN CARDS Plagiarist" << endl << endl << endl << endl << endl;
+    vector<CCard> cardsPlagiaristDrawn;
+    bool usedCardsPlagiaristDrawn[48] = { false };
+    for (int i = 0; i < 2; i++) {
+        int randomCardPlagiarist = Random(48);
+        do
+        {
+            randomCardPlagiarist = Random(48);
+        } while (usedCardsPlagiaristDrawn[randomCardPlagiarist] == true);
+
+        cardsPlagiaristDrawn.push_back(cardsPlagiarist[randomCardPlagiarist]);
+        // Checks if works
+        cout << "Player has drawn " << cardsPlagiaristDrawn[i].type << " " << cardsPlagiaristDrawn[i].name << " " << cardsPlagiaristDrawn[i].power << " " << cardsPlagiaristDrawn[i].resilience << " " << cardsPlagiaristDrawn[i].boost << endl;
+        usedCardsPlagiaristDrawn[randomCardPlagiarist] = true;
+    }
+
+    // Piffle Chooses a card card
+    int randomCardPiffle = Random(2);
+    cout << " Player chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].name << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << endl;
+    usedCardsPiffleDrawn[randomCardPiffle] = true;
+
+    // Plagiarist Chooses a card card
+    int randomCardPlagiarist = Random(2);
+    cout << " Player chooses " << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].name << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << endl;
+    usedCardsPlagiaristDrawn[randomCardPlagiarist] = true;
+
+    //Convert card stats to integers for use
+    //int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
+
+    // Make cards duel
+    //Create players
+    SProfessor Piffle;
+    Piffle.profName = "Piffle";
+    Piffle.profPresrtige -= 2;
+
+    cout << Piffle.profName << Piffle.profPresrtige << endl;
+
+
+
+
 
     // Free the memory even though its pointless right now
     // Free the memory even though its pointless right now
@@ -154,7 +234,8 @@ int main() {
     _CrtDumpMemoryLeaks(); // Memory Leak Detection
 
     // Game Finished
-    gameOver();
+    GameOver* message = new GameOver;
+    message->gameOver();
 
     return 0;
 }
@@ -184,10 +265,6 @@ time_t readSeedFile(string filename) {
 
     return seed_value;
 }
-void gameOver()
-{
-    cout << "Game Over!" << endl << "player " << " " << "wins";
-}
 
 void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FOR LATER
 {
@@ -204,14 +281,4 @@ void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FO
     for (int i = 0; i < num_cards; i++) {
         std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
     }
-}
-
-void startRound(int round)
-{
-    
-};
-
-void GameStart()
-{
-    cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
