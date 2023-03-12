@@ -1,5 +1,5 @@
 ﻿  UCANT.cpp
-F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(74,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(75,24): warning C4305: 'argument': truncation from '__int64' to 'unsigned int'
-F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(75,11): warning C4309: 'argument': truncation of constant value
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(75,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(76,24): warning C4305: 'argument': truncation from '__int64' to 'unsigned int'
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(76,11): warning C4309: 'argument': truncation of constant value
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\x64\Debug\UCANT.exe

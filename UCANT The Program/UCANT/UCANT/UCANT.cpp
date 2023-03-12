@@ -31,7 +31,8 @@ struct SProfessor
 class CCard {
 public:
     string type;
-    string name;
+    string firstname;
+    string lastname;
     string power;
     string resilience;
     string boost;
@@ -96,28 +97,43 @@ int main() {
     // Read in the card data into object for plagiaraist
     filePlagiarist.clear();
     filePlagiarist.seekg(0);
-    for (int i = 0; i < num_cardsPlagiarist; i++) {
+    for (int i = 0; i < cardsPlagiarist.size(); i++) {
         getline(filePlagiarist, linePlagiarist);
         stringstream ssPlag(linePlagiarist);
         ssPlag >> cardsPlagiarist[i].type;
         if (cardsPlagiarist[i].type == "1") {
-            ssPlag >> cardsPlagiarist[i].name >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
+            ssPlag >> cardsPlagiarist[i].firstname >> cardsPlagiarist[i].lastname >> cardsPlagiarist[i].power >> cardsPlagiarist[i].resilience >> cardsPlagiarist[i].boost;
         }
-        else
-        {
+        else {
             cardsPlagiarist[i].type = "";
+            cardsPlagiarist[i].firstname = "";
+            cardsPlagiarist[i].lastname = "";
+            cardsPlagiarist[i].power = "";
+            cardsPlagiarist[i].resilience = "";
+            cardsPlagiarist[i].boost = "";
         }
     }
 
+    // Create a new vector for non-empty cards
+    vector<CCard> nonEmptyCardsPlagiarist;
+    for (int i = 0; i < cardsPlagiarist.size(); i++) {
+        if (cardsPlagiarist[i].type != "") {
+            nonEmptyCardsPlagiarist.push_back(cardsPlagiarist[i]);
+        }
+    }
+
+    // Replace the original vector with the non-empty vector
+    cardsPlagiarist = nonEmptyCardsPlagiarist;
+
     // Example usage: print out random cards of plagiarist
     bool usedCardsPlagiarist[48] = {false};
-    for (int i = 0; i < num_cardsPlagiarist; i++) {
+    for (int i = 0; i < cardsPlagiarist.size(); i++) {
         int randomCardPlagiarist = Random(48);
         do
         {
             randomCardPlagiarist = Random(48);
         } while (usedCardsPlagiarist[randomCardPlagiarist] == true);
-        cout << cardsPlagiarist[randomCardPlagiarist].type << " " << cardsPlagiarist[randomCardPlagiarist].name << " " << cardsPlagiarist[randomCardPlagiarist].power << " " << cardsPlagiarist[randomCardPlagiarist].resilience << " " << cardsPlagiarist[randomCardPlagiarist].boost << endl;
+        cout << cardsPlagiarist[randomCardPlagiarist].type << " " << cardsPlagiarist[randomCardPlagiarist].firstname << " " << cardsPlagiarist[randomCardPlagiarist].lastname << " " << cardsPlagiarist[randomCardPlagiarist].power << " " << cardsPlagiarist[randomCardPlagiarist].resilience << " " << cardsPlagiarist[randomCardPlagiarist].boost << endl;
         usedCardsPlagiarist[randomCardPlagiarist] = true;
     } 
 
@@ -131,6 +147,8 @@ int main() {
         num_cardsPiffle++;
     }
 
+    cout << "NUM CARDS PIFFLE" << num_cardsPiffle << endl;
+
     cout << endl << endl << endl << endl << endl << endl;
     // Allocate memory for the cards
     vector<CCard> cardsPiffle(num_cardsPiffle);
@@ -138,15 +156,20 @@ int main() {
     // Read in the card data for plagiaraist
     filePiffle.clear();
     filePiffle.seekg(0);
-    for (int i = 0; i < num_cardsPiffle; i++) {
+    for (int i = 0; i < cardsPiffle.size(); i++) {
         getline(filePiffle, linePiffle);
         stringstream ssPif(linePiffle);
         ssPif >> cardsPiffle[i].type;
         if (cardsPiffle[i].type == "1") {
-           ssPif >> cardsPiffle[i].name >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
+           ssPif >> cardsPiffle[i].firstname >> cardsPiffle[i].lastname >> cardsPiffle[i].power >> cardsPiffle[i].resilience >> cardsPiffle[i].boost;
         }
         else {
             cardsPiffle[i].type = "";
+            cardsPiffle[i].firstname = "";
+            cardsPiffle[i].lastname = "";
+            cardsPiffle[i].power = "";
+            cardsPiffle[i].resilience = "";
+            cardsPiffle[i].boost = "";
         }
     }
 
@@ -154,13 +177,13 @@ int main() {
 
     // Example usage: print out random cards of piffle paper
     bool usedCardsPiffle[48] = { false };
-    for (int i = 0; i < num_cardsPiffle; i++) {
+    for (int i = 0; i < cardsPiffle.size(); i++) {
         int randomCardPiffle = Random(48);
         do
         {
             randomCardPiffle = Random(48);
         } while (usedCardsPiffle[randomCardPiffle] == true);
-        cout << cardsPiffle[randomCardPiffle].type << " " << cardsPiffle[randomCardPiffle].name << " " << cardsPiffle[randomCardPiffle].power << " " << cardsPiffle[randomCardPiffle].resilience << " " << cardsPiffle[randomCardPiffle].boost << endl;
+        cout << cardsPiffle[randomCardPiffle].type << " " << cardsPiffle[randomCardPiffle].firstname << " " << cardsPiffle[randomCardPiffle].lastname << " " << cardsPiffle[randomCardPiffle].power << " " << cardsPiffle[randomCardPiffle].resilience << " " << cardsPiffle[randomCardPiffle].boost << endl;
         usedCardsPiffle[randomCardPiffle] = true;
     }
 
@@ -179,7 +202,7 @@ int main() {
 
         cardsPiffleDrawn.push_back(cardsPiffle[randomCardPiffle]);
         // Checks if works
-        cout << cardsPiffleDrawn[i].type << " " << cardsPiffleDrawn[i].name << " " << cardsPiffleDrawn[i].power << " " << cardsPiffleDrawn[i].resilience << " " << cardsPiffleDrawn[i].boost << endl;
+        cout << cardsPiffleDrawn[i].type << " " << cardsPiffleDrawn[i].firstname << " " << cardsPiffleDrawn[i].power << " " << cardsPiffleDrawn[i].resilience << " " << cardsPiffleDrawn[i].boost << endl;
         usedCardsPiffleDrawn[randomCardPiffle] = true;
     }
 
@@ -198,30 +221,41 @@ int main() {
 
         cardsPlagiaristDrawn.push_back(cardsPlagiarist[randomCardPlagiarist]);
         // Checks if works
-        cout << "Player has drawn " << cardsPlagiaristDrawn[i].type << " " << cardsPlagiaristDrawn[i].name << " " << cardsPlagiaristDrawn[i].power << " " << cardsPlagiaristDrawn[i].resilience << " " << cardsPlagiaristDrawn[i].boost << endl;
+        cout << "Player has drawn " << cardsPlagiaristDrawn[i].type << " " << cardsPlagiaristDrawn[i].firstname << " " << cardsPlagiaristDrawn[i].lastname << " " << cardsPlagiaristDrawn[i].power << " " << cardsPlagiaristDrawn[i].resilience << " " << cardsPlagiaristDrawn[i].boost << endl;
         usedCardsPlagiaristDrawn[randomCardPlagiarist] = true;
     }
 
     // Piffle Chooses a card card
     int randomCardPiffle = Random(2);
-    cout << " Player chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].name << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << endl;
+    cout << " Player chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].firstname << " " << cardsPiffleDrawn[randomCardPiffle].lastname << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << endl;
     usedCardsPiffleDrawn[randomCardPiffle] = true;
 
     // Plagiarist Chooses a card card
     int randomCardPlagiarist = Random(2);
-    cout << " Player chooses " << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].name << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << endl;
+    cout << " Player chooses " << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << endl;
     usedCardsPlagiaristDrawn[randomCardPlagiarist] = true;
 
     //Convert card stats to integers for use
-    //int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
+    int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
 
     // Make cards duel
-    //Create players
+    //Create Piffle Player
     SProfessor Piffle;
     Piffle.profName = "Piffle";
-    Piffle.profPresrtige -= 2;
+    Piffle.profPresrtige -= piffleintpower;
 
     cout << Piffle.profName << Piffle.profPresrtige << endl;
+
+    //Convert card stats to integers for use
+    int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist].power);
+
+    // Make cards duel
+    //Create Plagiarist Player
+    SProfessor Plagiarist;
+    Plagiarist.profName = "Plagiarist";
+    Plagiarist.profPresrtige -= plagiaristintpower;
+
+    cout << Plagiarist.profName << Plagiarist.profPresrtige << endl;
 
 
 
@@ -274,11 +308,11 @@ void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FO
     for (int i = 0; i < num_cards; i++) {
         getline(file, line);
         stringstream ss(line);
-        ss >> cards[i].type >> cards[i].name >> cards[i].power >> cards[i].resilience >> cards[i].boost;
+        ss >> cards[i].type >> cards[i].firstname >> cards[i].lastname >> cards[i].power >> cards[i].resilience >> cards[i].boost;
     }
 
     // Example usage: print out the data
     for (int i = 0; i < num_cards; i++) {
-        std::cout << cards[i].type << " " << cards[i].name << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
+        std::cout << cards[i].type << " " << cards[i].firstname << " " << cards[i].lastname << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
     }
 }
