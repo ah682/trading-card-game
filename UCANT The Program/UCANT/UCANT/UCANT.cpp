@@ -15,6 +15,7 @@ using namespace std;
 
 time_t readSeedFile(string filename);
 int Random(int max);
+int randomRange(int min, int max);
 void graveYard();
 void readCardData();
 
@@ -24,7 +25,8 @@ struct SProfessor
     int profPrestige = 30;
 };
 
-class CCard {
+class CCard
+{
 public:
     string type;
     string firstname;
@@ -34,22 +36,27 @@ public:
     string boost;
 };
 
-class GameState {
+class GameState
+{
 public:
     void startRound(int round);
     void gameStart();
     void gameOver(SProfessor winner, SProfessor loser);
     void cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard> cardDrawn, int randomCard);
-    void fillDeck(ifstream& inFile, vector<CCard>& cards);
-    void drawCard(vector<CCard>& cards, vector<CCard>& drawnCards, int &deckCounter, int &i, SProfessor name);
+    void fillDeck(ifstream &inFile, vector<CCard> &cards);
+    void drawCard(vector<CCard> &cards, vector<CCard> &drawnCards, int &deckCounter, int &i, SProfessor name, vector<bool>& usedCards);
 };
 
-void GameState::gameStart() {
+void GameState::gameStart()
+{
     cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
 
-void GameState::gameOver(SProfessor winner, SProfessor loser) {
-    cout << "Game Over" << endl << winner.profName << " prestige is " << winner.profPrestige << " " << loser.profName << " prestige is " << loser.profPrestige << endl << winner.profName << " wins";
+void GameState::gameOver(SProfessor winner, SProfessor loser)
+{
+    cout << "Game Over" << endl
+         << winner.profName << " prestige is " << winner.profPrestige << " " << loser.profName << " prestige is " << loser.profPrestige << endl
+         << winner.profName << " wins";
 }
 
 void GameState::startRound(int round)
@@ -57,27 +64,41 @@ void GameState::startRound(int round)
     cout << "Round: " << round << endl;
 }
 
-void GameState::fillDeck(ifstream& inFile, vector<CCard>& cards) {
+void GameState::fillDeck(ifstream &inFile, vector<CCard> &cards)
+{
     inFile.clear();
     inFile.seekg(0);
 
     string line;
-    for (int i = 0; i < cards.size(); i++) {
+    for (int i = 0; i < cards.size(); i++)
+    {
         getline(inFile, line);
         stringstream ss(line);
         ss >> cards[i].type;
-        if (cards[i].type == "1") {
+        if (cards[i].type == "1")
+        {
             ss >> cards[i].firstname >> cards[i].lastname >> cards[i].power >> cards[i].resilience >> cards[i].boost;
         }
     }
 }
 
-void GameState::drawCard(vector<CCard>& cards, vector<CCard>& drawnCards, int &deckCounter, int &i, SProfessor name)
+void GameState::drawCard(vector<CCard> &cards, vector<CCard> &drawnCards, int &deckCounter, int &i, SProfessor name, vector<bool>& usedCards)
 {
-    for (int j = i; j < deckCounter; j++) {
-        if (cards[j].type == "1") {
+    int awesomeCounter = 0;
+    for (int j = i; j < deckCounter; j++)
+    {
+        if (cards[j].type == "1" && usedCards[j] == false)
+        {
             drawnCards.push_back(cards[j]);
-            cout << "Player" <<  name.profName << " has drawn " << drawnCards.back().type << " " << drawnCards.back().firstname << " " << drawnCards.back().lastname << " " << drawnCards.back().power << " " << drawnCards.back().resilience << " " << drawnCards.back().boost << endl;
+            usedCards[j] = true;
+            cout << "Player " << name.profName << " has drawn " << drawnCards.back().type << " " << drawnCards.back().firstname << " " << drawnCards.back().lastname << " " << drawnCards.back().power << " " << drawnCards.back().resilience << " " << drawnCards.back().boost << endl;
+            
+        }
+        else
+        {
+            i++;
+            deckCounter++;
+            usedCards[j] = true;
         }
     }
 }
@@ -91,7 +112,8 @@ void GameState::cardsDuel(SProfessor &professor, string name, int cardPower, vec
     cout << professor.profName << " Prestige is now " << professor.profPrestige << endl;
 }
 
-int main() {
+int main()
+{
     // Genereates seed from read file
     int seed = readSeedFile("seed.txt");
     srand(seed);
@@ -114,12 +136,14 @@ int main() {
     SProfessor Piffle;
 
     // Count the number of cards in the plagiarist file
-    while (getline(filePlagiarist, linePlagiarist)) {
+    while (getline(filePlagiarist, linePlagiarist))
+    {
         num_cardsPlagiarist++;
     }
 
     // Count the number of cards in the piffle file
-    while (getline(filePiffle, linePiffle)) {
+    while (getline(filePiffle, linePiffle))
+    {
         num_cardsPiffle++;
     }
 
@@ -135,58 +159,63 @@ int main() {
     vector<CCard> cardsPlagiaristDrawn;
     vector<CCard> cardsPiffleDrawn;
 
-    //Allocate
+    // Allocate
     int deckCounter = 2;
     int i = 0;
+
+    // Allocate
+    vector<bool> checkUsedCardPlagiarist(48, false);
+    vector<bool> checkUsedCardPiffle(48, false);
+
     // MAKE LOOP UNTIL PRESTIGE HITS 0
     do
     {
-        cardsPlagiaristDrawn.clear();
-        cardsPiffleDrawn.clear();
         // Allocate memory for the cards
         cout << "DRAWN CARDS Plagiarist" << endl;
         // Draws random card for plagarist and checks if works with cout
-        message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist);
-        cout << endl << endl;
+        message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
+        cout << endl
+             << endl;
 
         cout << "DRAWN CARDS Piffle" << endl;
-        message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle);
-        cout << endl << endl;
-
-        
+        message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle, checkUsedCardPiffle);
+        cout << endl
+             << endl;
 
         // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPiffle = Random(2+deckCounter);
-        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle ].firstname << " " << cardsPiffleDrawn[randomCardPiffle ].lastname << " " << cardsPiffleDrawn[randomCardPiffle ].power << " " << cardsPiffleDrawn[randomCardPiffle ].resilience << " " << cardsPiffleDrawn[randomCardPiffle ].boost << endl;
-        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPlagiarist = Random(2+deckCounter);
-        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist ].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].boost << endl;
+        int randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
+        cout << randomCardPiffle << endl;
 
-        deckCounter += 2;
-        i += 2;
-        cout << endl << endl;
- 
-        //Convert card stats to integers to attack professor
+        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].firstname << " " << cardsPiffleDrawn[randomCardPiffle].lastname << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << endl;
+        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+        int randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
+        cout << randomCardPlagiarist << endl;
+        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << endl;
+
+        // Convert card stats to integers to attack professor
         int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
 
         // Make cards duel
-        //Create Piffle Player
+        // Create Piffle Player
         message.cardsDuel(Piffle, "Piffle", piffleintpower, cardsPlagiaristDrawn, randomCardPlagiarist);
-        cout << endl << endl;
+        cout << endl
+             << endl;
 
-        //Convert card stats to integers for use
-        int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist ].power);
+        // Convert card stats to integers for use
+        int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist].power);
 
         // Make cards duel
-        //Create Plagiarist Player
+        // Create Plagiarist Player
         message.cardsDuel(Plagiarist, "Plagiarist", plagiaristintpower, cardsPiffleDrawn, randomCardPiffle);
-        cout << endl << endl;
-    } while (Plagiarist.profPrestige > 0 || Piffle.profPrestige > 0);
-    
+        cout << endl
+             << endl;
+    } while (Plagiarist.profPrestige > 0 && Piffle.profPrestige > 0);
 
-    cout << endl << endl;
+    cout << endl
+         << endl;
 
-    //Checks who is winner
+
+    // Checks who is winner
     if (Plagiarist.profPrestige > Piffle.profPrestige)
     {
         message.gameOver(Plagiarist, Piffle);
@@ -195,7 +224,7 @@ int main() {
     {
         message.gameOver(Piffle, Plagiarist);
     }
-   
+
     // Memory Leak Detection
     _CrtDumpMemoryLeaks();
 
@@ -207,45 +236,49 @@ int Random(int max)
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
 
-int Randomrange(int max)
+int randomRange(int min, int max)
 {
-    return int(float(rand()) / (RAND_MAX + 1) * float(max));
+    return min + int(float(rand()) / (RAND_MAX + 1) * float(max - min + 1));
 }
 
-
-
-time_t readSeedFile(string filename) {
+time_t readSeedFile(string filename)
+{
     time_t seed_value = 0;
 
     // Read from the file
     ifstream file_stream(filename);
-    if (file_stream.is_open()) {
+    if (file_stream.is_open())
+    {
         string line;
-        if (getline(file_stream, line)) {
+        if (getline(file_stream, line))
+        {
             seed_value = stoi(line);
         }
         file_stream.close();
     }
-    else {
+    else
+    {
         std::cout << "Unable to open file " << filename << '\n';
     }
 
     return seed_value;
 }
 
-void readCardData(ifstream file, int num_cards, CCard* cards, string line) // FOR LATER
+void readCardData(ifstream file, int num_cards, CCard *cards, string line) // FOR LATER
 {
     // Read in the card data
     file.clear();
     file.seekg(0);
-    for (int i = 0; i < num_cards; i++) {
+    for (int i = 0; i < num_cards; i++)
+    {
         getline(file, line);
         stringstream ss(line);
         ss >> cards[i].type >> cards[i].firstname >> cards[i].lastname >> cards[i].power >> cards[i].resilience >> cards[i].boost;
     }
 
     // Example usage: print out the data
-    for (int i = 0; i < num_cards; i++) {
+    for (int i = 0; i < num_cards; i++)
+    {
         std::cout << cards[i].type << " " << cards[i].firstname << " " << cards[i].lastname << " " << cards[i].power << " " << cards[i].resilience << " " << cards[i].boost << endl;
     }
 }
