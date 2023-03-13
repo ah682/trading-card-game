@@ -38,18 +38,18 @@ class GameState {
 public:
     void startRound(int round);
     void gameStart();
-    void gameOver();
-    void cardsDuel();
+    void gameOver(SProfessor winner, SProfessor loser);
+    void cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard> cardDrawn, int randomCard);
     void fillDeck(ifstream& inFile, vector<CCard>& cards);
-    void drawCard(vector<CCard>& cards, vector<CCard>& drawnCards);
+    void drawCard(vector<CCard>& cards, vector<CCard>& drawnCards, int &deckCounter, int &i, SProfessor name);
 };
 
 void GameState::gameStart() {
     cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
 
-void GameState::gameOver() {
-    cout << "Game Over!" << endl << "player " << " " << "wins";
+void GameState::gameOver(SProfessor winner, SProfessor loser) {
+    cout << "Game Over" << endl << winner.profName << " prestige is " << winner.profPrestige << " " << loser.profName << " prestige is " << loser.profPrestige << endl << winner.profName << " wins";
 }
 
 void GameState::startRound(int round)
@@ -72,35 +72,32 @@ void GameState::fillDeck(ifstream& inFile, vector<CCard>& cards) {
     }
 }
 
-void GameState::drawCard(vector<CCard>& cards, vector<CCard>& drawnCards)
+void GameState::drawCard(vector<CCard>& cards, vector<CCard>& drawnCards, int &deckCounter, int &i, SProfessor name)
 {
-    bool usedCards[48] = { false };
-    int deckCounter = 2;
-    for (int i = 0; i < 2; i++) {
-        if (cards[i].type == "1") {
-            drawnCards.push_back(cards[i]);
-            // Checks if works
-            cout << "Player has drawn " << drawnCards.back().type << " " << drawnCards.back().firstname << " " << drawnCards.back().lastname << " " << drawnCards.back().power << " " << drawnCards.back().resilience << " " << drawnCards.back().boost << endl;
-            usedCards[i] = true;
+    for (int j = i; j < deckCounter; j++) {
+        if (cards[j].type == "1") {
+            drawnCards.push_back(cards[j]);
+            cout << "Player" <<  name.profName << " has drawn " << drawnCards.back().type << " " << drawnCards.back().firstname << " " << drawnCards.back().lastname << " " << drawnCards.back().power << " " << drawnCards.back().resilience << " " << drawnCards.back().boost << endl;
         }
     }
-    deckCounter += 2;
 }
 
-void GameState::cardsDuel()
+void GameState::cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard> cardDrawn, int randomCard)
 {
+    professor.profName = name;
+    professor.profPrestige -= cardPower;
 
+    cout << cardDrawn[randomCard].type << " " << cardDrawn[randomCard].firstname << " " << cardDrawn[randomCard].lastname << " " << cardDrawn[randomCard].power << " " << cardDrawn[randomCard].resilience << " " << cardDrawn[randomCard].boost << " attacks ";
+    cout << professor.profName << " Prestige is now " << professor.profPrestige << endl;
 }
 
 int main() {
-    // Genereates seed for Nick WORKS
+    // Genereates seed from read file
     int seed = readSeedFile("seed.txt");
     srand(seed);
     cout << "Seed Number: " << seed << endl;
 
-    // Generates random number for me WORKS
-    int testrand = Random(48);
-    cout << "Random Number Spawned with Random Function " << testrand << endl;
+    // Initialize data before commencing U-Can't
 
     GameState message;
     message.gameStart();
@@ -109,79 +106,84 @@ int main() {
     int num_cardsPlagiarist = 0;
     string linePlagiarist;
 
+    ifstream filePiffle("piffle-paper.txt");
+    int num_cardsPiffle = 0;
+    string linePiffle;
+
+    SProfessor Plagiarist;
+    SProfessor Piffle;
+
     // Count the number of cards in the plagiarist file
     while (getline(filePlagiarist, linePlagiarist)) {
         num_cardsPlagiarist++;
+    }
+
+    // Count the number of cards in the piffle file
+    while (getline(filePiffle, linePiffle)) {
+        num_cardsPiffle++;
     }
 
     // Allocate memory for the cards
     vector<CCard> cardsPlagiarist(num_cardsPlagiarist);
     message.fillDeck(filePlagiarist, cardsPlagiarist);
 
-    ifstream filePiffle("piffle-paper.txt");
-    int num_cardsPiffle = 0;
-    string linePiffle;
-
-    // Count the number of cards in the plagiarist file
-    while (getline(filePiffle, linePiffle)) {
-        num_cardsPiffle++;
-    }
-
-    cout << "NUM CARDS PIFFLE" << num_cardsPiffle << endl;
-
-    cout << endl << endl << endl << endl << endl << endl;
     // Allocate memory for the cards
     vector<CCard> cardsPiffle(num_cardsPiffle);
     message.fillDeck(filePiffle, cardsPiffle);
 
-    
-    // Draws random card for piffle and checks if works with cout
-    cout << endl << endl << endl << endl << endl;
-    cout << "DRAWN CARDS Piffle" << endl << endl << endl << endl << endl;
-    vector<CCard> cardsPiffleDrawn;
-    message.drawCard(cardsPiffle, cardsPiffleDrawn);
-
-    // Draws random card for plagarist and checks if works with cout
-    cout << endl << endl << endl << endl << endl;
-    cout << "DRAWN CARDS Plagiarist" << endl << endl << endl << endl << endl;
+    // Allocate memory for the cards
     vector<CCard> cardsPlagiaristDrawn;
-    message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn);
+    vector<CCard> cardsPiffleDrawn;
 
-    // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-    int randomCardPiffle = Random(2);
-    cout << " Piffle chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].firstname << " " << cardsPiffleDrawn[randomCardPiffle].lastname << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << endl;
+    //Allocate
+    int deckCounter = 2;
+    int i = 0;
+    // MAKE LOOP UNTIL PRESTIGE HITS 0
+    do
+    {
+        // Allocate memory for the cards
+        cout << "DRAWN CARDS Plagiarist" << endl;
+        // Draws random card for plagarist and checks if works with cout
+        message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist);
 
-    // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-    int randomCardPlagiarist = Random(2);
-    cout << "Plagiarist draws " << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << endl;
+        cout << "DRAWN CARDS Piffle" << endl;
+        message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle);
 
-    //Convert card stats to integers to attack professor
-    int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
+        deckCounter += 2;
+        i += 2;
 
-    // Make cards duel
-    //Create Piffle Player
-    SProfessor Piffle;
-    Piffle.profName = "Piffle";
-    Piffle.profPrestige -= piffleintpower;
+        // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+        int randomCardPiffle = Random(cardsPiffleDrawn.size());
+        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle ].type << " " << cardsPiffleDrawn[randomCardPiffle ].firstname << " " << cardsPiffleDrawn[randomCardPiffle ].lastname << " " << cardsPiffleDrawn[randomCardPiffle ].power << " " << cardsPiffleDrawn[randomCardPiffle ].resilience << " " << cardsPiffleDrawn[randomCardPiffle ].boost << endl;
+        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+        int randomCardPlagiarist = Random(cardsPlagiaristDrawn.size());
+        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist ].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].boost << endl;
+ 
+        //Convert card stats to integers to attack professor
+        int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
 
-    cout << cardsPlagiaristDrawn[randomCardPlagiarist].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist].boost << " attacks ";
-    cout << Piffle.profName << " Prestige is now " << Piffle.profPrestige << endl;
+        // Make cards duel
+        //Create Piffle Player
+        message.cardsDuel(Piffle, "Piffle", piffleintpower, cardsPlagiaristDrawn, randomCardPlagiarist);
 
-    //Convert card stats to integers for use
-    int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist].power);
+        //Convert card stats to integers for use
+        int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist ].power);
 
-    // Make cards duel
-    //Create Plagiarist Player
-    SProfessor Plagiarist;
-    Plagiarist.profName = "Plagiarist";
-    Plagiarist.profPrestige -= plagiaristintpower;
+        // Make cards duel
+        //Create Plagiarist Player
+        message.cardsDuel(Plagiarist, "Plagiarist", plagiaristintpower, cardsPiffleDrawn, randomCardPiffle);
+    } while (Plagiarist.profPrestige > 0 || Piffle.profPrestige > 0);
     
-    cout << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle].firstname << " " << cardsPiffleDrawn[randomCardPiffle].lastname << " " << cardsPiffleDrawn[randomCardPiffle].power << " " << cardsPiffleDrawn[randomCardPiffle].resilience << " " << cardsPiffleDrawn[randomCardPiffle].boost << " attacks ";
-    cout << Plagiarist.profName << " Prestige is now " << Plagiarist.profPrestige << endl;
-
-    // Game Finished
-    message.gameOver();
-
+    //Checks who is winner
+    if (Plagiarist.profPrestige > Piffle.profPrestige)
+    {
+        message.gameOver(Plagiarist, Piffle);
+    }
+    else if (Piffle.profPrestige > Plagiarist.profPrestige)
+    {
+        message.gameOver(Piffle, Plagiarist);
+    }
+   
     // Memory Leak Detection
     _CrtDumpMemoryLeaks();
 
