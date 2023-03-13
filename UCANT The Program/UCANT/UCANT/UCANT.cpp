@@ -141,23 +141,30 @@ int main() {
     // MAKE LOOP UNTIL PRESTIGE HITS 0
     do
     {
+        cardsPlagiaristDrawn.clear();
+        cardsPiffleDrawn.clear();
         // Allocate memory for the cards
         cout << "DRAWN CARDS Plagiarist" << endl;
         // Draws random card for plagarist and checks if works with cout
         message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist);
+        cout << endl << endl;
 
         cout << "DRAWN CARDS Piffle" << endl;
         message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle);
+        cout << endl << endl;
+
+        
+
+        // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+        int randomCardPiffle = Random(2+deckCounter);
+        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle].type << " " << cardsPiffleDrawn[randomCardPiffle ].firstname << " " << cardsPiffleDrawn[randomCardPiffle ].lastname << " " << cardsPiffleDrawn[randomCardPiffle ].power << " " << cardsPiffleDrawn[randomCardPiffle ].resilience << " " << cardsPiffleDrawn[randomCardPiffle ].boost << endl;
+        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+        int randomCardPlagiarist = Random(2+deckCounter);
+        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist ].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].boost << endl;
 
         deckCounter += 2;
         i += 2;
-
-        // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPiffle = Random(cardsPiffleDrawn.size());
-        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle ].type << " " << cardsPiffleDrawn[randomCardPiffle ].firstname << " " << cardsPiffleDrawn[randomCardPiffle ].lastname << " " << cardsPiffleDrawn[randomCardPiffle ].power << " " << cardsPiffleDrawn[randomCardPiffle ].resilience << " " << cardsPiffleDrawn[randomCardPiffle ].boost << endl;
-        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPlagiarist = Random(cardsPlagiaristDrawn.size());
-        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist ].type << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].power << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist ].boost << endl;
+        cout << endl << endl;
  
         //Convert card stats to integers to attack professor
         int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle].power);
@@ -165,6 +172,7 @@ int main() {
         // Make cards duel
         //Create Piffle Player
         message.cardsDuel(Piffle, "Piffle", piffleintpower, cardsPlagiaristDrawn, randomCardPlagiarist);
+        cout << endl << endl;
 
         //Convert card stats to integers for use
         int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist ].power);
@@ -172,8 +180,12 @@ int main() {
         // Make cards duel
         //Create Plagiarist Player
         message.cardsDuel(Plagiarist, "Plagiarist", plagiaristintpower, cardsPiffleDrawn, randomCardPiffle);
+        cout << endl << endl;
     } while (Plagiarist.profPrestige > 0 || Piffle.profPrestige > 0);
     
+
+    cout << endl << endl;
+
     //Checks who is winner
     if (Plagiarist.profPrestige > Piffle.profPrestige)
     {
@@ -191,6 +203,11 @@ int main() {
 }
 
 int Random(int max)
+{
+    return int(float(rand()) / (RAND_MAX + 1) * float(max));
+}
+
+int Randomrange(int max)
 {
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
