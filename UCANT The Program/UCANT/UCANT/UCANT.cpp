@@ -1,4 +1,4 @@
-// UCANT.cpp : This file contains the 'main' function. Program execution begins and ends there.
+// UCANT.cpp
 
 // Memory Leak Detection
 #define _CRTDBG_MAP_ALLOC
@@ -34,6 +34,12 @@ public:
     string boost;
 };
 
+class CStudent : public CCard
+{
+public:
+
+};
+
 class GameState
 {
 public:
@@ -41,9 +47,10 @@ public:
     void gameStart();
     void gameOver(SProfessor winner, SProfessor loser);
     void cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard*> cardDrawn, int randomCard);
-    void fillDeck(ifstream &inFile, vector<CCard*> &cards);
+    void fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStudent*> &cardsStudent);
     void drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int &deckCounter, int &i, SProfessor name, vector<bool*>& usedCards);
 };
+
 
 void GameState::gameStart()
 {
@@ -79,7 +86,7 @@ void GameState::startRound(int round)
     cout << "Round: " << round << endl;
 }
 
-void GameState::fillDeck(ifstream &inFile, vector<CCard*> &cards)
+void GameState::fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStudent*> &cardsStudent)
 {
     inFile.clear();
     inFile.seekg(0);
@@ -88,17 +95,14 @@ void GameState::fillDeck(ifstream &inFile, vector<CCard*> &cards)
     for (int i = 0; i < cards.size(); i++)
     {
         if (getline(inFile, line)) {
-        stringstream ss(line);
-        ss >> cards[i]->type;
-        if (cards[i]->type == "1")
-        {
-            ss >> cards[i]->firstname >> cards[i]->lastname >> cards[i]->power >> cards[i]->resilience >> cards[i]->boost;
+            stringstream ss(line);
+            ss >> cards[i]->type >> cards[i]->firstname >> cards[i]->lastname >> cards[i]->power >> cards[i]->resilience >> cards[i]->boost;
+            if (cardsStudent[i]->type == "1")
+            {
+                ss >> cardsStudent[i]->type >> cardsStudent[i]->firstname >> cardsStudent[i]->lastname >> cardsStudent[i]->power >> cardsStudent[i]->resilience >> cardsStudent[i]->boost;
+            }
         }
-        }
-        else
-        {
-            cout << "ERRORORIOROROROR" << endl;
-        }
+        
     }
 }
 
@@ -107,7 +111,7 @@ void GameState::drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int 
     int awesomeCounter = 0;
     for (int j = i; j < deckCounter; j++)
     {
-        if (cards[j]->type == "1" && *usedCards[j] == false)
+        if (*usedCards[j] == false)
         {
             drawnCards.push_back(cards[j]);
             *usedCards[j] = true;
@@ -125,8 +129,11 @@ void GameState::drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int 
 
 void GameState::cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard*> cardDrawn, int randomCard)
 {
+
     professor.profName = name;
-    professor.profPrestige -= cardPower;
+    if (cardDrawn[randomCard]->type == "1") {
+        professor.profPrestige -= cardPower;
+    }
 
     cout << cardDrawn[randomCard]->type << " " << cardDrawn[randomCard]->firstname << " " << cardDrawn[randomCard]->lastname << " " << cardDrawn[randomCard]->power << " " << cardDrawn[randomCard]->resilience << " " << cardDrawn[randomCard]->boost << " attacks ";
     cout << professor.profName << " Prestige is now " << professor.profPrestige << endl;
@@ -180,18 +187,37 @@ int main()
     // Allocate memory for the cards
     vector<CCard*> cardsPlagiarist(num_cardsPlagiarist, nullptr);
 
-    for (int i = 0; i < num_cardsPiffle; i++) {
+    for (int i = 0; i < num_cardsPlagiarist; i++) {
         CCard* cardTest2 = new CCard(); // Allocate memory for the card object
         cardsPlagiarist[i] = cardTest2; // Assign the pointer to point to the newly allocated memory
+    }
+
+    // Allocate memory for the cards
+    vector<CStudent*> cardsPlagiaristStudents(num_cardsPlagiarist, nullptr);
+
+    for (int i = 0; i < num_cardsPlagiarist; i++) {
+        CStudent* cardTest6 = new CStudent(); // Allocate memory for the card object
+        cardsPlagiaristStudents[i] = cardTest6; // Assign the pointer to point to the newly allocated memory
+    }
+
+    // Allocate memory for the cards
+    vector<CStudent*> cardsPiffleStudents(num_cardsPiffle, nullptr);
+
+    for (int i = 0; i < num_cardsPiffle; i++) {
+        CStudent* cardTest7 = new CStudent(); // Allocate memory for the card object
+        cardsPiffleStudents[i] = cardTest7; // Assign the pointer to point to the newly allocated memory
     }
 
     // Allocate memory for the cards
     vector<CCard*> cardsPlagiaristDrawn;
     vector<CCard*> cardsPiffleDrawn;
 
+    vector<CStudent*> cardsPlagiaristStudentsDrawn;
+    vector<CStudent*> cardsPiffleStudentsDrawn;
 
-    message.fillDeck(filePlagiarist, cardsPlagiarist);
-    message.fillDeck(filePiffle, cardsPiffle);
+
+    message.fillDeck(filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
+    message.fillDeck(filePiffle, cardsPiffle, cardsPiffleStudents);
 
     // Allocate
     int deckCounter = 2;
