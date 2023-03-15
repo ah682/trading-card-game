@@ -1,5 +1,7 @@
 ﻿  UCANT.cpp
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(147,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(255,100): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(258,112): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  UCANT.vcxproj -> C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT The Program\UCANT\x64\Debug\UCANT.exe
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(153,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(267,100): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(270,112): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(287,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\UCANT\UCANT.cpp(296,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT The Program\UCANT\x64\Debug\UCANT.exe

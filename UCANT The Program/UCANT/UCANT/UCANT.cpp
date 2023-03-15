@@ -40,6 +40,12 @@ public:
 
 };
 
+class Table : public CCard
+{
+public:
+
+};
+
 class GameState
 {
 public:
@@ -63,11 +69,11 @@ void GameState::gameOver(SProfessor piffle, SProfessor plagiarist)
         
     if (piffle.profPrestige > plagiarist.profPrestige)
     {
-            cout << "Game Over" << endl;
-            if (plagiarist.profPrestige < 0)
-            {
-                plagiarist.profPrestige = 0;
-            }
+          cout << "Game Over" << endl;
+          if (plagiarist.profPrestige < 0)
+          {
+               plagiarist.profPrestige = 0;
+          }
            cout << plagiarist.profName << " prestige is " << plagiarist.profPrestige << " " << piffle.profName << " prestige is " << piffle.profPrestige << endl
             << piffle.profName << " wins";
     }
@@ -130,6 +136,18 @@ void GameState::drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int 
 }
 
 void GameState::cardsDuel(SProfessor &professor, string name, int cardPower, vector<CCard*> cardDrawn, int randomCard)
+{
+
+    professor.profName = name;
+    if (cardDrawn[randomCard]->type == "1") {
+        professor.profPrestige -= cardPower;
+    }
+
+    cout << cardDrawn[randomCard]->type << " " << cardDrawn[randomCard]->firstname << " " << cardDrawn[randomCard]->lastname << " " << cardDrawn[randomCard]->power << " " << cardDrawn[randomCard]->resilience << " " << cardDrawn[randomCard]->boost << " attacks ";
+    cout << professor.profName << " Prestige is now " << professor.profPrestige << endl;
+}
+
+void GameState::cardsDuel(SProfessor& professor, string name, int cardPower, vector<CCard*> cardDrawn, int randomCard)
 {
 
     professor.profName = name;
@@ -217,6 +235,12 @@ int main()
     vector<CStudent*> cardsPlagiaristStudentsDrawn;
     vector<CStudent*> cardsPiffleStudentsDrawn;
 
+    // Allocate memory for table
+    vector<CCard*> tablePlagiarist;
+    vector<CCard*> tablePiffle;
+
+
+
 
     message.fillDeck(filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(filePiffle, cardsPiffle, cardsPiffleStudents);
@@ -257,8 +281,38 @@ int main()
         // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
         int randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
 
-        cout << "Piffle: Cards on Table " << cardsPiffleDrawn[randomCardPiffle]->type << " " << cardsPiffleDrawn[randomCardPiffle]->firstname << " " << cardsPiffleDrawn[randomCardPiffle]->lastname << " " << cardsPiffleDrawn[randomCardPiffle]->power << " " << cardsPiffleDrawn[randomCardPiffle]->resilience << " " << cardsPiffleDrawn[randomCardPiffle]->boost;
-        cout << " Plagiarist: Cards on Table " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+        cout << "Piffle: Chooses " << cardsPiffleDrawn[randomCardPiffle]->type << " " << cardsPiffleDrawn[randomCardPiffle]->firstname << " " << cardsPiffleDrawn[randomCardPiffle]->lastname << " " << cardsPiffleDrawn[randomCardPiffle]->power << " " << cardsPiffleDrawn[randomCardPiffle]->resilience << " " << cardsPiffleDrawn[randomCardPiffle]->boost;
+        cout << " Plagiarist: Chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+
+        if (cardsPiffleDrawn[randomCardPiffle]->type == "1")
+        {
+            tablePlagiarist.push_back(cardsPiffleDrawn[randomCardPiffle]);
+        }
+
+        if (cardsPlagiaristDrawn[randomCardPlagiarist]->type == "1")
+        {
+            tablePlagiarist.push_back(cardsPlagiaristDrawn[randomCardPlagiarist]);
+        }
+
+
+        cout << "Cards on table" << endl;
+        for (int i = tablePiffle.size() - 1; i < tablePiffle.size(); i++) {
+            cout << tablePiffle[i]->type << " " << tablePiffle[i]->firstname << " " << tablePiffle[i]->lastname << " " << tablePiffle[i]->power << " " << tablePiffle[i]->power << " " << tablePiffle[i]->resilience << tablePiffle[i]->boost << endl;
+            if (i > tablePiffle.size() - tablePiffle.size() + 1)
+            {
+                break;
+            }
+        }
+
+        cout << "Cards on table" << endl;
+        for (int i = tablePlagiarist.size(); i < tablePlagiarist.size(); i++) {
+            cout << tablePlagiarist[i]->type << " " << tablePlagiarist [i] ->firstname << " " << tablePlagiarist[i]->lastname << " " << tablePlagiarist[i]->power << " " << tablePlagiarist[i]->power << " " << tablePlagiarist[i]->resilience << tablePlagiarist[i]->boost << endl;
+            if (i > tablePlagiarist.size() - tablePlagiarist.size() + 1)
+            {
+                break;
+            }
+        }
+        
 
         // Convert card stats to integers to attack professor
         int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle]->power);
