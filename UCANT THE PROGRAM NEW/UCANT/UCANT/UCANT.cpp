@@ -46,7 +46,7 @@ public:
     void startRound(int round);
     void gameStart();
     void gameOver(SProfessor winner, SProfessor loser);
-    void cardsDuel(vector<CCard*>& table, vector<CCard*>& tableAttacker, SProfessor &professor, string name, vector<CCard*> cardDrawn, int randomCard);
+    void cardsDuel(vector<CCard*>& table, vector<CCard*>& tableAttacker, SProfessor &professorAttacked, SProfessor& professorAttacker, string name, string nametwo, vector<CCard*> cardDrawn, int randomCard);
     void cardsDuelCards();
     void fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStudent*> &cardsStudent);
     void drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int &deckCounter, int &i, SProfessor name, vector<bool*>& usedCards);
@@ -131,8 +131,12 @@ void GameState::fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStuden
 void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int& deckCounter, int& i, SProfessor name, vector<bool*>& usedCards)
 {
     int awesomeCounter = 0;
-    for (int j = i; j < cards.size(); j++)
+    for (int j = i; j < deckCounter; j++)
     {
+        if (i == 48)
+        {
+            break;
+        }
         if (*usedCards[j] == false)
         {
             drawnCards.push_back(cards[j]);
@@ -149,9 +153,11 @@ void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int&
 }
 
 //Prof name is the one getting attacked
-void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAttacker, SProfessor& professor, string name, vector<CCard*> cardDrawn, int randomCard)
+void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAttacker, SProfessor& professorAttacked, SProfessor& professorAttacker, string name, string nametwo, vector<CCard*> cardDrawn, int randomCard)
 {
-    professor.profName = name;
+    professorAttacked.profName = name;
+    professorAttacker.profName = nametwo;
+
     int cardPower = 0;
     int cardResilience = 0;
     int j = tableAttacker.size() - 1;
@@ -172,17 +178,17 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
                 tableAttacked[i]->resilience = cardResilienceString;
             }
             if (cardResilience <= 0) {
-                cout << "CARD KILLED Name:" << tableAttacked[i]->firstname << " by player x" << endl;
+                cout << "CARD KILLED Name:" << tableAttacked[i]->firstname << " by player " << professorAttacker.profName << endl;
                 tableAttacked.erase(tableAttacked.begin() + i);
             }
         }
         if (tableAttacked.size() <= 0) {
-            professor.profPrestige -= cardPower;
+            professorAttacked.profPrestige -= cardPower;
         }
         j--;
     }
 
-    cout << professor.profName << " Prestige is now " << professor.profPrestige << endl;
+    cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
 }
 
 void GameState::cardsDuelCards()
@@ -297,21 +303,29 @@ int main()
     // MAKE LOOP UNTIL PRESTIGE HITS 0
     do
     {
+        int randomCardPiffle = 0;
+        int randomCardPlagiarist = 0;
         // Allocate memory for the cards
-        cout << "DRAWN CARDS Plagiarist" << endl;
+        
         // Draws random card for plagiarist and checks if works with cout
-        message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
+        if (i < 48)
+        {
+            cout << "DRAWN CARDS Plagiarist" << endl;
+            message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
 
-        cout << "DRAWN CARDS Piffle" << endl;
-        message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle, checkUsedCardPiffle);
+            cout << "DRAWN CARDS Piffle" << endl;
 
-        // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
+            message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle, checkUsedCardPiffle);
 
-        cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle]->type << " " << cardsPiffleDrawn[randomCardPiffle]->firstname << " " << cardsPiffleDrawn[randomCardPiffle]->lastname << " " << cardsPiffleDrawn[randomCardPiffle]->power << " " << cardsPiffleDrawn[randomCardPiffle]->resilience << " " << cardsPiffleDrawn[randomCardPiffle]->boost << endl;
-        // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-        int randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
-        cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+
+            // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+            randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
+
+            cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle]->type << " " << cardsPiffleDrawn[randomCardPiffle]->firstname << " " << cardsPiffleDrawn[randomCardPiffle]->lastname << " " << cardsPiffleDrawn[randomCardPiffle]->power << " " << cardsPiffleDrawn[randomCardPiffle]->resilience << " " << cardsPiffleDrawn[randomCardPiffle]->boost << endl;
+            // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
+            randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
+            cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+        }
 
         //Prints table on cards for specific player
         message.tableCard(tablePiffle, cardsPiffleDrawn, Piffle, "Piffle", randomCardPiffle);
@@ -334,7 +348,7 @@ int main()
 
         // Make cards duel
         // Create Piffle Player piffle gets attacked
-        message.cardsDuel(tablePiffle, tablePlagiarist, Piffle, "Piffle", cardsPlagiaristDrawn, randomCardPlagiarist);
+        message.cardsDuel(tablePiffle, tablePlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, randomCardPlagiarist);
 
         if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
@@ -343,7 +357,7 @@ int main()
 
         // Make cards duel
         // Create Plagiarist Player plagiarist gets attacked
-        message.cardsDuel(tablePlagiarist, tablePiffle, Plagiarist, "Plagiarist", cardsPiffleDrawn, randomCardPiffle);
+        message.cardsDuel(tablePlagiarist, tablePiffle, Plagiarist, Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, randomCardPiffle);
 
         if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
