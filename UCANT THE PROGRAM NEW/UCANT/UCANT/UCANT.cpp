@@ -51,17 +51,105 @@ public:
     void fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStudent*> &cardsStudent);
     void drawCard(vector<CCard*> &cards, vector<CCard*> &drawnCards, int &deckCounter, int &i, SProfessor name, vector<bool*>& usedCards);
     void tableCard(vector <CCard*> &table, vector<CCard*> &cardsDrawn, SProfessor name, string professor, int randomCard);
+    void plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &plagiarism, vector<CCard*>& tableAttacked, int randomCard, SProfessor& professorAttacked, SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice);
+    void courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>& accreditation, vector<CCard*>& tableAttacked, int randomCard, SProfessor& professorAttacked, SProfessor& professorAttacker, string attackedName, string attackerName);
 };
 
+void GameState::plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &plagiarism, vector<CCard*>& tableAttacked, int randomCard, SProfessor& professorAttacked, SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
+{
+    if (cardsDrawn[randomCard]->type == "2" && cardsDrawn[randomCard]->resilience != "-99")
+    {
+        plagiarism.push_back(cardsDrawn[randomCard]);
+    }
+
+    professorAttacked.profName = attackedName;
+    professorAttacker.profName = attackerName;
+    
+    int cardPower = 3;
+    int cardResilience = 0;
+
+    for (int i = 0; i < plagiarism.size(); i++)
+    {
+        if (!tableAttacked.empty()) {
+            CCard* elementneeded = tableAttacked[tableAttacked.size() - 1];
+            if (!elementneeded->resilience.empty()) {
+                cardResilience = stoi(elementneeded->resilience);
+            }
+
+            if (randomChoice == 1)
+            {
+                if (cardResilience > 0) {
+                    cardResilience -= cardPower;
+                    string cardResilienceString = to_string(cardResilience);
+                    tableAttacked[tableAttacked.size() - 1]->resilience = cardResilienceString;
+                }
+                if (cardResilience <= 0) {
+                    cout << "CARD KILLED Name:" << elementneeded->firstname << " by player " << professorAttacker.profName << endl;
+                    elementneeded->resilience = "-99";
+                    tableAttacked.erase(tableAttacked.end() - 1);
+                }
+            }
+            
+            if (randomChoice == 2) {
+                professorAttacked.profPrestige -= cardPower;
+            }
+            if (professorAttacked.profPrestige < 0)
+            {
+                professorAttacked.profPrestige = 0;
+            }
+            cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+        }
+    }
+}
+
+void GameState::courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>& accreditation, vector<CCard*>& tableAttacked, int randomCard, SProfessor& professorAttacked, SProfessor& professorAttacker, string attackedName, string attackerName)
+{
+    int cardPower = 1;
+    int cardResilience = 0;
+
+    if (cardsDrawn[randomCard]->type == "3" && cardsDrawn[randomCard]->resilience != "-99")
+    {
+        accreditation.push_back(cardsDrawn[randomCard]);
+    }
+
+    professorAttacked.profName = attackedName;
+    professorAttacker.profName = attackerName;
+
+    for (int i = 0; i < accreditation.size(); i++)
+    {
+        for (int j = 0; j < tableAttacked.size() - 1; j++)
+        {
+           cardResilience = stoi(tableAttacked[j]->resilience);
+           cardResilience -= cardPower;
+           string cardResilienceString = to_string(cardResilience);
+           tableAttacked[j]->resilience = cardResilienceString;
+
+           if (cardResilience <= 0) {
+               cout << "CARD KILLED Name:" << tableAttacked[j]->firstname << " by player " << professorAttacker.profName << endl;
+               tableAttacked[j]->resilience = "-99";
+               tableAttacked.erase(tableAttacked.begin() + j);
+           }
+        }
+
+        professorAttacked.profPrestige -= cardPower;
+
+        if (professorAttacked.profPrestige < 0)
+        {
+          professorAttacked.profPrestige = 0;
+        }
+        cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+        
+    }
+}
 
 void GameState::tableCard(vector<CCard*> &table, vector<CCard*> &cardsDrawn, SProfessor name, string professor, int randomCard)
 {
     name.profName = professor;
-    if (cardsDrawn[randomCard]->type == "1")
+    if (cardsDrawn[randomCard]->type == "1" && cardsDrawn[randomCard]->resilience != "-99")
     {
         table.push_back(cardsDrawn[randomCard]);
     }
-
+    
     // Shows cards placed on table
     cout << name.profName << " cards on table " << endl;
     for (int i = 0; i < table.size(); i++) {
@@ -160,6 +248,13 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
 
     int cardPower = 0;
     int cardResilience = 0;
+    int minuses = 0;
+
+    if (cardResilience < 0)
+    {
+        minuses = cardResilience;
+    }
+
     int j = tableAttacker.size() - 1;
 
     for (int i = tableAttacked.size() - 1; i >= 0 && j >= 0; i--)
@@ -179,6 +274,7 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
             }
             if (cardResilience <= 0) {
                 cout << "CARD KILLED Name:" << tableAttacked[i]->firstname << " by player " << professorAttacker.profName << endl;
+                tableAttacked[i]->resilience = "-99";
                 tableAttacked.erase(tableAttacked.begin() + i);
             }
         }
@@ -188,6 +284,10 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
         j--;
     }
 
+    if (professorAttacked.profPrestige < 0)
+    {
+        professorAttacked.profPrestige = 0;
+    }
     cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
 }
 
@@ -278,6 +378,12 @@ int main()
     vector<CCard*> graveyardPlagiarist; //USE LATER
     vector<CCard*> graveyardPiffle; //USE LATER
 
+    vector<CCard*> plagiarismHearingPlagiarist; //USE LATER
+    vector<CCard*> plagiarismHearingPiffle; //USE LATER
+
+    vector<CCard*> courseAccreditationPlagiarist; //USE LATER
+    vector<CCard*> courseAccreditationPiffle; //USE LATER
+
     message.fillDeck(filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(filePiffle, cardsPiffle, cardsPiffleStudents);
 
@@ -331,24 +437,16 @@ int main()
         message.tableCard(tablePiffle, cardsPiffleDrawn, Piffle, "Piffle", randomCardPiffle);
         message.tableCard(tablePlagiarist, cardsPlagiaristDrawn, Plagiarist, "Plagiarist", randomCardPlagiarist);
 
-        // Convert card stats to integers to attack professor
-     //   int piffleintpower = stoi(cardsPiffleDrawn[randomCardPiffle]->power);
-
-       // int piffleintresilience = 0;
-       // if (cardsPiffleDrawn[randomCardPiffle]->resilience != "") {
-       //     piffleintresilience = stoi(cardsPiffleDrawn[randomCardPiffle]->resilience);
-       // }
-        // Convert card stats to integers for use
-        //int plagiaristintpower = stoi(cardsPlagiaristDrawn[randomCardPlagiarist]->power);
-        // Convert card stats to integers for use
-        //int plagiaristintresilience = 0;
-        //if (cardsPlagiaristDrawn[randomCardPlagiarist]->resilience != "") {
-        //    plagiaristintresilience = stoi(cardsPlagiaristDrawn[randomCardPlagiarist]->resilience);
-        //}
-
         // Make cards duel
         // Create Piffle Player piffle gets attacked
         message.cardsDuel(tablePiffle, tablePlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, randomCardPlagiarist);
+
+
+        int randomRangeOneorTwo = randomRange(1, 2);
+        //Piffle Gets Attacked
+        message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePiffle, randomCardPlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist", randomRangeOneorTwo);
+        message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePiffle, randomCardPlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist");
+
 
         if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
@@ -358,6 +456,11 @@ int main()
         // Make cards duel
         // Create Plagiarist Player plagiarist gets attacked
         message.cardsDuel(tablePlagiarist, tablePiffle, Plagiarist, Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, randomCardPiffle);
+
+        randomRangeOneorTwo = randomRange(1, 2);    
+        //Plagiarist Gets Attacked
+        message.plagiarismHearing(cardsPiffleDrawn, plagiarismHearingPiffle, tablePlagiarist, randomCardPiffle, Plagiarist, Piffle, "Plagiarist", "Piffle", randomRangeOneorTwo);
+        message.courseAccreditation(cardsPiffleDrawn, courseAccreditationPiffle, tablePlagiarist, randomCardPiffle, Plagiarist, Piffle, "Plagiarist", "Piffle");
 
         if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
