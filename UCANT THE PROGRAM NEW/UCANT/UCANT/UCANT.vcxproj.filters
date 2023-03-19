@@ -18,5 +18,49 @@
     <ClCompile Include="UCANT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CStudent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlagiarismHearing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CCourseAccreditation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CStudent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlagiarismHearing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCourseAccreditation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
