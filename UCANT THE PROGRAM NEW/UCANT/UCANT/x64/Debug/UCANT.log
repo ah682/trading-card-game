@@ -1,9 +1,7 @@
-﻿  CTable.cpp
-  UCANT.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(31,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(55,31): warning C4552: '+': result of expression not used
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(61,27): warning C4552: '+': result of expression not used
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(157,100): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(161,112): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  UCANT.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(33,33): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(54,40): warning C4552: '+': result of expression not used
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(60,36): warning C4552: '+': result of expression not used
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(151,109): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(155,121): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe

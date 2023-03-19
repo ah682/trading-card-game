@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CCard.cpp" />
+    <ClCompile Include="CCounter.cpp" />
     <ClCompile Include="CCourseAccreditation.cpp" />
     <ClCompile Include="CGameState.cpp" />
     <ClCompile Include="CPlagiarismHearing.cpp" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCard.h" />
+    <ClInclude Include="CCounter.h" />
     <ClInclude Include="CCourseAccreditation.h" />
     <ClInclude Include="CGameState.h" />
     <ClInclude Include="CPlagiarismHearing.h" />

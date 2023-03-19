@@ -164,7 +164,6 @@ void GameState::fillDeck(ifstream& inFile, vector<CCard*>& cards, vector<CStuden
 
 void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor name, vector<bool*>& usedCards)
 {
-    int awesomeCounter = 0;
     for (int j = i; j < deckCounter; j++)
     {
         if (i == 48)

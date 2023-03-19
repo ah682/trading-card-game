@@ -13,6 +13,7 @@
 #include "CPlayers.h"
 #include "CStudent.h"
 #include "CTable.h"
+#include "CCounter.h"
 
 class GameState
 {

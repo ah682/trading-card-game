@@ -17,6 +17,7 @@
 #include "CTable.h"
 #include "CCourseAccreditation.h"
 #include "CPlagiarismHearing.h"
+#include "CCounter.h"
 
 using namespace std;
 
@@ -27,70 +28,67 @@ int randomRange(int min, int max);
 
 int main()
 {
+    CCounter* Counter = new CCounter();
     // Genereates seed from read file
-    int seed = readSeedFile("seed.txt");
-    srand(seed);
-    cout << "Seed Number: " << seed << endl;
+    Counter->seed = readSeedFile("seed.txt");
+    srand(Counter->seed);
+    cout << "Seed Number: " << Counter->seed << endl;
 
     // Initialize data before commencing U-Can't
 
     GameState message;
     message.gameStart();
 
-    int num_cardsPlagiarist = 0;
-    int num_cardsPiffle = 0;
     const int deckSize = 48;
 
-    ifstream filePlagiarist("plagiarist.txt");
-    string linePlagiarist;
+    Counter->filePlagiarist.open("plagiarist.txt");
 
-    ifstream filePiffle("piffle-paper.txt");
-    string linePiffle;
+    Counter->filePiffle.open("piffle-paper.txt");
 
-    CPlayers::SProfessor Plagiarist;
-    CPlayers::SProfessor Piffle;
+    CPlayers::SProfessor* Plagiarist = new CPlayers::SProfessor;
+    CPlayers::SProfessor* Piffle = new CPlayers::SProfessor;
 
     // Count the number of cards in the plagiarist file
-    while (getline(filePlagiarist, linePlagiarist))
+    while (getline(Counter->filePlagiarist, Counter->linePlagiarist))
     {
-        num_cardsPlagiarist++ + 200;
+        Counter->num_cardsPlagiarist++ + deckSize;
     }
 
     // Count the number of cards in the piffle file
-    while (getline(filePiffle, linePiffle))
+    while (getline(Counter->filePiffle, Counter->linePiffle))
     {
-        num_cardsPiffle++ + 200;
+        Counter->num_cardsPiffle++ + deckSize;
     }
 
 
     // Allocate memory for the cards
-    vector<CCard*> cardsPiffle(num_cardsPiffle, nullptr);
+    vector<CCard*> cardsPiffle(Counter->num_cardsPiffle, nullptr);
 
-    for (int i = 0; i < num_cardsPiffle; i++) {
+    for (int i = 0; i < Counter->num_cardsPiffle; i++) {
         CCard* cardTest1 = new CCard(); // Allocate memory for the card object
         cardsPiffle[i] = cardTest1; // Assign the pointer to point to the newly allocated memory
     }
 
     // Allocate memory for the cards
-    vector<CCard*> cardsPlagiarist(num_cardsPlagiarist, nullptr);
+    vector<CCard*> cardsPlagiarist(Counter->num_cardsPlagiarist, nullptr);
 
-    for (int i = 0; i < num_cardsPlagiarist; i++) {
+    for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
         CCard* cardTest2 = new CCard(); // Allocate memory for the card object
         cardsPlagiarist[i] = cardTest2; // Assign the pointer to point to the newly allocated memory
     }
 
     // Allocate memory for the cards
-    vector<CStudent*> cardsPlagiaristStudents(num_cardsPlagiarist, nullptr);
+    vector<CStudent*> cardsPlagiaristStudents(Counter->num_cardsPlagiarist, nullptr);
 
-    for (int i = 0; i < num_cardsPlagiarist; i++) {
+    for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
         CStudent* cardTest6 = new CStudent(); // Allocate memory for the card object
         cardsPlagiaristStudents[i] = cardTest6; // Assign the pointer to point to the newly allocated memory
     }
 
     // Allocate memory for the cards
-    vector<CStudent*> cardsPiffleStudents(num_cardsPiffle, nullptr);
+    vector<CStudent*> cardsPiffleStudents(Counter->num_cardsPiffle, nullptr);
 
-    for (int i = 0; i < num_cardsPiffle; i++) {
+    for (int i = 0; i < Counter->num_cardsPiffle; i++) {
         CStudent* cardTest7 = new CStudent(); // Allocate memory for the card object
         cardsPiffleStudents[i] = cardTest7; // Assign the pointer to point to the newly allocated memory
     }
@@ -108,18 +106,15 @@ int main()
     vector<CCard*> graveyardPlagiarist; //USE LATER
     vector<CCard*> graveyardPiffle; //USE LATER
 
-    vector<CCard*> plagiarismHearingPlagiarist; //USE LATER
-    vector<CCard*> plagiarismHearingPiffle; //USE LATER
+    vector<CCard*> plagiarismHearingPlagiarist; 
+    vector<CCard*> plagiarismHearingPiffle; 
 
-    vector<CCard*> courseAccreditationPlagiarist; //USE LATER
-    vector<CCard*> courseAccreditationPiffle; //USE LATER
+    vector<CCard*> courseAccreditationPlagiarist; 
+    vector<CCard*> courseAccreditationPiffle; 
 
-    message.fillDeck(filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
-    message.fillDeck(filePiffle, cardsPiffle, cardsPiffleStudents);
-
-    // Allocate
-    int deckCounter = 2;
-    int i = 0;
+    message.fillDeck(Counter->filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
+    message.fillDeck(Counter->filePiffle, cardsPiffle, cardsPiffleStudents);
+    
 
     // Allocate
     vector<bool*> checkUsedCardPlagiarist(deckSize, nullptr);
@@ -139,75 +134,73 @@ int main()
     // MAKE LOOP UNTIL PRESTIGE HITS 0
     do
     {
-        int randomCardPiffle = 0;
-        int randomCardPlagiarist = 0;
         // Allocate memory for the cards
         
         // Draws random card for plagiarist and checks if works with cout
-        if (i < deckSize)
+        if (Counter->i < deckSize)
         {
             cout << "DRAWN CARDS Plagiarist" << endl;
-            message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
+            message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, Counter->deckCounter, Counter->i, *Plagiarist, checkUsedCardPlagiarist);
 
             cout << "DRAWN CARDS Piffle" << endl;
 
-            message.drawCard(cardsPiffle, cardsPiffleDrawn, deckCounter, i, Piffle, checkUsedCardPiffle);
+            message.drawCard(cardsPiffle, cardsPiffleDrawn, Counter->deckCounter, Counter->i, *Piffle, checkUsedCardPiffle);
 
 
             // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-            randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
+            Counter->randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
 
-            cout << "Piffle chooses " << cardsPiffleDrawn[randomCardPiffle]->type << " " << cardsPiffleDrawn[randomCardPiffle]->firstname << " " << cardsPiffleDrawn[randomCardPiffle]->lastname << " " << cardsPiffleDrawn[randomCardPiffle]->power << " " << cardsPiffleDrawn[randomCardPiffle]->resilience << " " << cardsPiffleDrawn[randomCardPiffle]->boost << endl;
+            cout << "Piffle chooses " << cardsPiffleDrawn[Counter->randomCardPiffle]->type << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->firstname << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->lastname << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->power << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->resilience << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->boost << endl;
             // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-            randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
-            cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+            Counter->randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
+            cout << "Plagiarist chooses " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->boost << endl;
         }
 
         //Prints table on cards for specific player
-        message.tableCard(tablePiffle, cardsPiffleDrawn, Piffle, "Piffle", randomCardPiffle);
-        message.tableCard(tablePlagiarist, cardsPlagiaristDrawn, Plagiarist, "Plagiarist", randomCardPlagiarist);
+        message.tableCard(tablePiffle, cardsPiffleDrawn, *Piffle, "Piffle", Counter->randomCardPiffle);
+        message.tableCard(tablePlagiarist, cardsPlagiaristDrawn, *Plagiarist, "Plagiarist", Counter->randomCardPlagiarist);
 
         // Make cards duel
         // Create Piffle Player piffle gets attacked
-        message.cardsDuel(tablePiffle, tablePlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, randomCardPlagiarist);
+        message.cardsDuel(tablePiffle, tablePlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, Counter->randomCardPlagiarist);
 
 
         int randomRangeOneorTwo = randomRange(1, 2);
         //Piffle Gets Attacked
-        message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePiffle, randomCardPlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist", randomRangeOneorTwo);
-        message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePiffle, randomCardPlagiarist, Piffle, Plagiarist, "Piffle", "Plagiarist");
+        message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", randomRangeOneorTwo);
+        message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist");
 
 
-        if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
+        if (Plagiarist->profPrestige <= 0 || Piffle->profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
             break;
         }
 
         // Make cards duel
         // Create Plagiarist Player plagiarist gets attacked
-        message.cardsDuel(tablePlagiarist, tablePiffle, Plagiarist, Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, randomCardPiffle);
+        message.cardsDuel(tablePlagiarist, tablePiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, Counter->randomCardPiffle);
 
         randomRangeOneorTwo = randomRange(1, 2);    
         //Plagiarist Gets Attacked
-        message.plagiarismHearing(cardsPiffleDrawn, plagiarismHearingPiffle, tablePlagiarist, randomCardPiffle, Plagiarist, Piffle, "Plagiarist", "Piffle", randomRangeOneorTwo);
-        message.courseAccreditation(cardsPiffleDrawn, courseAccreditationPiffle, tablePlagiarist, randomCardPiffle, Plagiarist, Piffle, "Plagiarist", "Piffle");
+        message.plagiarismHearing(cardsPiffleDrawn, plagiarismHearingPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", randomRangeOneorTwo);
+        message.courseAccreditation(cardsPiffleDrawn, courseAccreditationPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle");
 
-        if (Plagiarist.profPrestige <= 0 || Piffle.profPrestige <= 0) {
+        if (Plagiarist->profPrestige <= 0 || Piffle->profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige
             break;
         }
 
-    } while (Plagiarist.profPrestige > 0 && Piffle.profPrestige > 0);
+    } while (Plagiarist->profPrestige > 0 && Piffle->profPrestige > 0);
 
     // Checks who is winner
-    message.gameOver(Piffle, Plagiarist);
+    message.gameOver(*Piffle, *Plagiarist);
 
     // Close files
-    filePlagiarist.close();
-    filePiffle.close();
+    Counter->filePlagiarist.close();
+    Counter->filePiffle.close();
 
     // De-allocate memory
-    
+    delete Counter;
     // Memory Leak Detection
     _CrtDumpMemoryLeaks();
 

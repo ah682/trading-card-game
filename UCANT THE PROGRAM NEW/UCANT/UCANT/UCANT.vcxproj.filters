@@ -39,6 +39,9 @@
     <ClCompile Include="CCourseAccreditation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CCounter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CGameState.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CCourseAccreditation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
