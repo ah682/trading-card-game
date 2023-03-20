@@ -130,7 +130,7 @@
     <ClCompile Include="CCard.cpp" />
     <ClCompile Include="CCounter.cpp" />
     <ClCompile Include="CCourseAccreditation.cpp" />
-    <ClCompile Include="CGameState.cpp" />
+    <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CPlagiarismHearing.cpp" />
     <ClCompile Include="CPlayers.cpp" />
     <ClCompile Include="CStudent.cpp" />
@@ -141,7 +141,7 @@
     <ClInclude Include="CCard.h" />
     <ClInclude Include="CCounter.h" />
     <ClInclude Include="CCourseAccreditation.h" />
-    <ClInclude Include="CGameState.h" />
+    <ClInclude Include="CManager.h" />
     <ClInclude Include="CPlagiarismHearing.h" />
     <ClInclude Include="CPlayers.h" />
     <ClInclude Include="CStudent.h" />

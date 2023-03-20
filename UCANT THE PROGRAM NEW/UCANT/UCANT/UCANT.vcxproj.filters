@@ -18,7 +18,7 @@
     <ClCompile Include="UCANT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CGameState.cpp">
+    <ClCompile Include="CManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CCard.cpp">
@@ -44,7 +44,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CGameState.h">
+    <ClInclude Include="CManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CCard.h">

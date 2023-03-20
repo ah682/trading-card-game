@@ -1,6 +1,5 @@
 #pragma once
 #include "CCard.h"
-#include "CCard.h"
 #include <crtdbg.h>
 #include <iostream>
 #include <cstdlib>

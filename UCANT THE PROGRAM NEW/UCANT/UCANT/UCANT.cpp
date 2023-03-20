@@ -10,8 +10,9 @@
 #include <vector>
 #include <ctime>
 #include <sstream>
+#include <memory>
 
-#include "CGameState.h"
+#include "CManager.h"
 #include "CCard.h"
 #include "CStudent.h"
 #include "CTable.h"
@@ -28,7 +29,9 @@ int randomRange(int min, int max);
 
 int main()
 {
-    CCounter* Counter = new CCounter();
+    typedef std::shared_ptr<CCounter> CCounterPtr;
+    auto Counter = std::make_unique<CCounter>();
+
     // Genereates seed from read file
     Counter->seed = readSeedFile("seed.txt");
     srand(Counter->seed);
@@ -36,7 +39,7 @@ int main()
 
     // Initialize data before commencing U-Can't
 
-    GameState message;
+    CManager message;
     message.gameStart();
 
     const int deckSize = 48;
@@ -45,8 +48,8 @@ int main()
 
     Counter->filePiffle.open("piffle-paper.txt");
 
-    CPlayers::SProfessor* Plagiarist = new CPlayers::SProfessor;
-    CPlayers::SProfessor* Piffle = new CPlayers::SProfessor;
+    auto Plagiarist = std::make_shared<CPlayers::SProfessor>();
+    auto Piffle = std::make_shared<CPlayers::SProfessor>();
 
     // Count the number of cards in the plagiarist file
     while (getline(Counter->filePlagiarist, Counter->linePlagiarist))
@@ -62,76 +65,75 @@ int main()
 
 
     // Allocate memory for the cards
-    vector<CCard*> cardsPiffle(Counter->num_cardsPiffle, nullptr);
+    auto cardsPiffle = std::vector<std::shared_ptr<CCard>>(Counter->num_cardsPiffle);
 
     for (int i = 0; i < Counter->num_cardsPiffle; i++) {
-        CCard* cardTest1 = new CCard(); // Allocate memory for the card object
-        cardsPiffle[i] = cardTest1; // Assign the pointer to point to the newly allocated memory
+        cardsPiffle[i] = std::make_shared<CCard>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    vector<CCard*> cardsPlagiarist(Counter->num_cardsPlagiarist, nullptr);
+    auto cardsPlagiarist = std::vector<std::shared_ptr<CCard>>(Counter->num_cardsPlagiarist);
 
     for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
-        CCard* cardTest2 = new CCard(); // Allocate memory for the card object
-        cardsPlagiarist[i] = cardTest2; // Assign the pointer to point to the newly allocated memory
+        cardsPlagiarist[i] = std::make_shared<CCard>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    vector<CStudent*> cardsPlagiaristStudents(Counter->num_cardsPlagiarist, nullptr);
+    auto cardsPlagiaristStudents = std::vector<std::shared_ptr<CStudent>>(Counter->num_cardsPlagiarist);
 
     for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
-        CStudent* cardTest6 = new CStudent(); // Allocate memory for the card object
-        cardsPlagiaristStudents[i] = cardTest6; // Assign the pointer to point to the newly allocated memory
+        cardsPlagiaristStudents[i] = std::make_shared<CStudent>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    vector<CStudent*> cardsPiffleStudents(Counter->num_cardsPiffle, nullptr);
+    auto cardsPiffleStudents = std::vector<std::shared_ptr<CStudent>>(Counter->num_cardsPiffle);
 
     for (int i = 0; i < Counter->num_cardsPiffle; i++) {
-        CStudent* cardTest7 = new CStudent(); // Allocate memory for the card object
-        cardsPiffleStudents[i] = cardTest7; // Assign the pointer to point to the newly allocated memory
+        cardsPiffleStudents[i] = std::make_shared<CStudent>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    vector<CCard*> cardsPlagiaristDrawn;
-    vector<CCard*> cardsPiffleDrawn;
+    typedef vector <shared_ptr<CCard>> cardsDrawn;
+    auto cardsPlagiaristDrawn = cardsDrawn{};
+    auto cardsPiffleDrawn = cardsDrawn{};
 
-    vector<CStudent*> cardsPlagiaristStudentsDrawn;
-    vector<CStudent*> cardsPiffleStudentsDrawn;
+    typedef vector <shared_ptr<CStudent>> cardsStudentDrawn;
+    auto cardsPlagiaristStudentsDrawn = cardsStudentDrawn{};
+    auto cardsPiffleStudentsDrawn = cardsStudentDrawn{};
 
-    vector<CCard*> tablePlagiarist;
-    vector<CCard*> tablePiffle;
+    auto tablePlagiarist = cardsDrawn{};
+    auto tablePiffle = cardsDrawn{};
 
-    vector<CCard*> graveyardPlagiarist; //USE LATER
-    vector<CCard*> graveyardPiffle; //USE LATER
+    auto graveyardPlagiarist = cardsDrawn{}; //USE LATER
+    auto graveyardPiffle = cardsDrawn{}; //USE LATER
 
-    vector<CCard*> plagiarismHearingPlagiarist; 
-    vector<CCard*> plagiarismHearingPiffle; 
+    auto plagiarismHearingPlagiarist = cardsDrawn{};
+    auto plagiarismHearingPiffle = cardsDrawn{};
 
-    vector<CCard*> courseAccreditationPlagiarist; 
-    vector<CCard*> courseAccreditationPiffle; 
+    auto courseAccreditationPlagiarist = cardsDrawn{};
+    auto courseAccreditationPiffle = cardsDrawn{};
     
-    vector<CCard*> feedbackForumPlagiarist;
-    vector<CCard*> feedbackForumPiffle;
+    auto feedbackForumPlagiarist = cardsDrawn{};
+    auto feedbackForumPiffle = cardsDrawn{};
 
     message.fillDeck(Counter->filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(Counter->filePiffle, cardsPiffle, cardsPiffleStudents);
     
 
     // Allocate
-    vector<bool*> checkUsedCardPlagiarist(deckSize, nullptr);
+    // Allocate
+    typedef vector<shared_ptr<bool>> checkUsedCard;
+
+    auto checkUsedCardPlagiarist = checkUsedCard(deckSize);
 
     for (int i = 0; i < deckSize; i++) {
-        bool* cardTest3 = new bool(false); // Allocate memory for the card object
-        checkUsedCardPlagiarist[i] = cardTest3; // Assign the pointer to point to the newly allocated memory
+        checkUsedCardPlagiarist[i] = make_unique<bool>(false);
     }
 
-    vector<bool*> checkUsedCardPiffle(deckSize, nullptr);
+    auto checkUsedCardPiffle = checkUsedCard(deckSize);
 
     for (int i = 0; i < deckSize; i++) {
-        bool* cardTest4 = new bool(false); // Allocate memory for the card object
-        checkUsedCardPiffle[i] = cardTest4; // Assign the pointer to point to the newly allocated memory
+        checkUsedCardPiffle[i] = make_unique<bool>(false);
     }
 
     // MAKE LOOP UNTIL PRESTIGE HITS 0
@@ -205,7 +207,7 @@ int main()
     Counter->filePiffle.close();
 
     // De-allocate memory
-    delete Counter;
+    
     // Memory Leak Detection
     _CrtDumpMemoryLeaks();
 
