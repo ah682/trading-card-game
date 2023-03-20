@@ -111,6 +111,9 @@ int main()
 
     vector<CCard*> courseAccreditationPlagiarist; 
     vector<CCard*> courseAccreditationPiffle; 
+    
+    vector<CCard*> feedbackForumPlagiarist;
+    vector<CCard*> feedbackForumPiffle;
 
     message.fillDeck(Counter->filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(Counter->filePiffle, cardsPiffle, cardsPiffleStudents);
@@ -162,13 +165,14 @@ int main()
 
         // Make cards duel
         // Create Piffle Player piffle gets attacked
-        message.cardsDuel(tablePiffle, tablePlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, Counter->randomCardPlagiarist);
+        message.cardsDuel(tablePiffle, tablePlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", cardsPlagiaristDrawn, Counter->randomCardPlagiarist, Counter->resilienceIncreasePlagiarist);
 
 
         int randomRangeOneorTwo = randomRange(1, 2);
         //Piffle Gets Attacked
         message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", randomRangeOneorTwo);
         message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist");
+        message.feedbackForum(cardsPlagiaristDrawn, feedbackForumPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle", "Plagiarist", randomRangeOneorTwo, tablePlagiarist);
 
 
         if (Plagiarist->profPrestige <= 0 || Piffle->profPrestige <= 0) {
@@ -178,12 +182,13 @@ int main()
 
         // Make cards duel
         // Create Plagiarist Player plagiarist gets attacked
-        message.cardsDuel(tablePlagiarist, tablePiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, Counter->randomCardPiffle);
+        message.cardsDuel(tablePlagiarist, tablePiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", cardsPiffleDrawn, Counter->randomCardPiffle, Counter->resilienceIncreasePiffle);
 
         randomRangeOneorTwo = randomRange(1, 2);    
         //Plagiarist Gets Attacked
         message.plagiarismHearing(cardsPiffleDrawn, plagiarismHearingPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", randomRangeOneorTwo);
         message.courseAccreditation(cardsPiffleDrawn, courseAccreditationPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle");
+        message.feedbackForum(cardsPiffleDrawn, feedbackForumPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle", randomRangeOneorTwo, tablePiffle);
 
         if (Plagiarist->profPrestige <= 0 || Piffle->profPrestige <= 0) {
             // Exit the loop when one of the players loses all their prestige

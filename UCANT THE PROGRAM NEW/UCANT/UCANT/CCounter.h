@@ -20,6 +20,8 @@ public:
 	int randomCardPiffle = 0;
 	int randomCardPlagiarist = 0;
 	int seed = 0;
+	int resilienceIncreasePiffle = 0;
+	int resilienceIncreasePlagiarist = 0;
 	string linePiffle = "";
 	string linePlagiarist = "";
 	ifstream filePlagiarist;

@@ -91,7 +91,7 @@ void GameState::courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>&
 void GameState::tableCard(vector<CCard*>& table, vector<CCard*>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
 {
     name.profName = professor;
-    if (cardsDrawn[randomCard]->type == "1" && cardsDrawn[randomCard]->resilience != "-99")
+    if ((cardsDrawn[randomCard]->type == "1" || cardsDrawn[randomCard]->type == "5") && cardsDrawn[randomCard]->resilience != "-99")
     {
         table.push_back(cardsDrawn[randomCard]);
     }
@@ -99,7 +99,7 @@ void GameState::tableCard(vector<CCard*>& table, vector<CCard*>& cardsDrawn, CPl
     // Shows cards placed on table
     cout << name.profName << " cards on table " << endl;
     for (int i = 0; i < table.size(); i++) {
-        cout << table[i]->type << " " << table[i]->firstname << " " << table[i]->lastname << " " << table[i]->power << " " << table[i]->power << " " << table[i]->resilience << table[i]->boost << endl;
+        cout << table[i]->type << " " << table[i]->firstname << " " << table[i]->lastname << " " << table[i]->power << " " << table[i]->resilience << " " << table[i]->boost << endl;
         if (i > table.size() - table.size() + 1)
         {
             break;
@@ -186,13 +186,14 @@ void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int&
 }
 
 //Prof name is the one getting attacked
-void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<CCard*> cardDrawn, int randomCard)
+void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<CCard*> cardDrawn, int randomCard, int &typeFiveCounter)
 {
     professorAttacked.profName = name;
     professorAttacker.profName = nametwo;
 
     int cardPower = 0;
     int cardResilience = 0;
+    int attackerCardResilience = 0;
     int minuses = 0;
 
     if (cardResilience < 0)
@@ -205,15 +206,27 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
     for (int i = tableAttacked.size() - 1; i >= 0 && j >= 0; i--)
     {
         cardPower = stoi(tableAttacker[j]->power);
+        
 
         if (tableAttacked[i]->resilience != "") {
             cardResilience = stoi(tableAttacked[i]->resilience);
+        }
+        if (tableAttacker[j]->type == "5")
+        {
+            attackerCardResilience = stoi(tableAttacker[j]->resilience);
+            attackerCardResilience += typeFiveCounter;
+            string attackerCardResilienceString = to_string(attackerCardResilience);
+            tableAttacker[j]->resilience = attackerCardResilienceString;
         }
 
         if (tableAttacked.size() > 0)
         {
             if (cardResilience > 0) {
                 cardResilience -= cardPower;
+                if (tableAttacker[j]->type == "5")
+                {
+                    typeFiveCounter++;
+                }
                 string cardResilienceString = to_string(cardResilience);
                 tableAttacked[i]->resilience = cardResilienceString;
             }
@@ -227,6 +240,7 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
             professorAttacked.profPrestige -= cardPower;
         }
         j--;
+        
     }
 
     if (professorAttacked.profPrestige < 0)
@@ -239,4 +253,66 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
 void GameState::cardsDuelCards()
 {
 
+}
+
+void GameState::feedbackForum(vector<CCard*>& cardsDrawn, vector <CCard*>& feedbackforum, vector<CCard*>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<CCard*>& tableAttacker)
+{
+    if (cardsDrawn[randomCard]->type == "4" && cardsDrawn[randomCard]->resilience != "-99")
+    {
+        feedbackforum.push_back(cardsDrawn[randomCard]);
+    }
+
+    professorAttacked.profName = attackedName;
+    professorAttacker.profName = attackerName;
+
+    int cardPower = 2;
+    int cardResilience = 0;
+
+    for (int i = 0; i < feedbackforum.size(); i++)
+    {
+        if (randomChoice == 1)
+        {
+        if (!tableAttacked.empty()) {
+            CCard* elementneeded = tableAttacked[tableAttacked.size() - 1];
+            if (!elementneeded->resilience.empty()) {
+                cardResilience = stoi(elementneeded->resilience);
+            }
+
+            
+                if (cardResilience > 0) {
+                    cardResilience -= cardPower;
+                    string cardResilienceString = to_string(cardResilience);
+                    tableAttacked[tableAttacked.size() - 1]->resilience = cardResilienceString;
+                }
+                if (cardResilience <= 0) {
+                    cout << "CARD KILLED Name:" << elementneeded->firstname << " by player " << professorAttacker.profName << endl;
+                    elementneeded->resilience = "-99";
+                    tableAttacked.erase(tableAttacked.end() - 1);
+                }
+                professorAttacked.profPrestige -= cardPower;
+        }
+
+        if (randomChoice == 2) {
+
+                if (!tableAttacker.empty()) {
+                    CCard* elementneeded = tableAttacker[tableAttacker.size() - 1];
+                    if (!elementneeded->resilience.empty()) {
+                        cardResilience = stoi(elementneeded->resilience);
+                    }
+                }
+                cardResilience += cardPower;
+                string cardResilienceString = to_string(cardResilience);
+                tableAttacker[tableAttacker.size() - 1]->resilience = cardResilienceString;
+
+                professorAttacker.profPrestige += cardPower;
+        }
+            
+            
+            if (professorAttacked.profPrestige < 0)
+            {
+                professorAttacked.profPrestige = 0;
+            }
+            cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+        }
+    }
 }
