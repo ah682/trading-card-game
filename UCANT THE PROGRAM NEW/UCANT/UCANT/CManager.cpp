@@ -1,8 +1,13 @@
 #include "CManager.h"
 #include "CPlayers.h"
 #include "CTable.h"
+#include "CCounter.h"
 #include "CCourseAccreditation.h"
 #include "CPlagiarismHearing.h"
+#include "CFeedbackForum.h"
+
+CCounter counter;
+
 void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector < shared_ptr <CTable>> &tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
     if (cardsDrawn[randomCard]->type == "2" && cardsDrawn[randomCard]->resilience != "-99")
@@ -274,15 +279,15 @@ void CManager::cardsDuelCards()
 
 }
 
-void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CCard>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
+void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
     if (cardsDrawn[randomCard]->type == "4" && cardsDrawn[randomCard]->resilience != "-99")
     {
         // Convert the shared_ptr<CCard> to a shared_ptr<CCourseAccreditation>
-        shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
+        shared_ptr<CFeedbackForum> feedbackElement = static_pointer_cast<CFeedbackForum>(cardsDrawn[randomCard]);
 
         // Add the converted element to the accreditation vector
-        feedbackforum.push_back(tableElement);
+        feedbackforum.push_back(feedbackElement);
     
     }
 
@@ -294,10 +299,11 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
     for (int i = 0; i < feedbackforum.size(); i++)
     {
-        if (randomChoice == 1)
-        {
+        if (randomChoice == 1)  {
+            int randomIndex = counter.Random(tableAttacked.size() - 1);
+
         if (!tableAttacked.empty()) {
-            shared_ptr<CCard> elementneeded = tableAttacked.back();
+            shared_ptr<CCard> elementneeded = tableAttacked[randomIndex];
             if (!elementneeded->resilience.empty()) {
                 cardResilience = stoi(elementneeded->resilience);
             }
@@ -306,7 +312,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
                 if (cardResilience > 0) {
                     cardResilience -= cardPower;
                     string cardResilienceString = to_string(cardResilience);
-                    tableAttacked[tableAttacked.size() - 1]->resilience = cardResilienceString;
+                    tableAttacked[randomIndex]->resilience = cardResilienceString;
                 }
                 if (cardResilience <= 0) {
                     elementneeded->resilience = "0";
@@ -319,15 +325,16 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
         if (randomChoice == 2) {
 
+            int randomIndex = counter.Random(tableAttacker.size() - 1);
                 if (!tableAttacker.empty()) {
-                    shared_ptr<CCard> elementneeded = tableAttacker.back();
+                    shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
                     if (!elementneeded->resilience.empty()) {
                         cardResilience = stoi(elementneeded->resilience);
                     }
                 }
                 cardResilience += cardPower;
                 string cardResilienceString = to_string(cardResilience);
-                tableAttacker[tableAttacker.size() - 1]->resilience = cardResilienceString;
+                tableAttacker[randomIndex]->resilience = cardResilienceString;
 
                 professorAttacker.profPrestige += cardPower;
 

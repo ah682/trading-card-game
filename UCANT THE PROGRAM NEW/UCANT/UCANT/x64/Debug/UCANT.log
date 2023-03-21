@@ -1,1 +1,6 @@
-﻿  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
+﻿  CManager.cpp
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(227,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(229,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(303,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(328,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  UCANT.vcxproj -> C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe

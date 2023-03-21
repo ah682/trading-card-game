@@ -19,12 +19,11 @@
 #include "CCourseAccreditation.h"
 #include "CPlagiarismHearing.h"
 #include "CCounter.h"
+#include "CFeedbackForum.h"
 
 using namespace std;
 
 const time_t readSeedFile(string filename);
-int Random(int max);
-int randomRange(int min, int max);
 
 
 int main()
@@ -113,8 +112,9 @@ int main()
     auto courseAccreditationPlagiarist = courseAccreditationCards{};
     auto courseAccreditationPiffle = courseAccreditationCards{};
     
-    auto feedbackForumPlagiarist = cardsDrawn{};
-    auto feedbackForumPiffle = cardsDrawn{};
+    typedef vector <shared_ptr<CFeedbackForum>> feedbackForumCards;
+    auto feedbackForumPlagiarist = feedbackForumCards{};
+    auto feedbackForumPiffle = feedbackForumCards{};
 
     message.fillDeck(Counter->filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(Counter->filePiffle, cardsPiffle, cardsPiffleStudents);
@@ -152,11 +152,11 @@ int main()
 
 
             // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-            Counter->randomCardPiffle = randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
+            Counter->randomCardPiffle = Counter->randomRange(cardsPiffleDrawn.size() - 2, cardsPiffleDrawn.size() - 1);
 
             cout << "Piffle-Papaer chooses card: " << cardsPiffleDrawn[Counter->randomCardPiffle]->type << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->firstname << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->lastname << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->power << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->resilience << " " << cardsPiffleDrawn[Counter->randomCardPiffle]->boost << endl;
             // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
-            Counter->randomCardPlagiarist = randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
+            Counter->randomCardPlagiarist = Counter->randomRange(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
             cout << "Plagiarist chooses: " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[Counter->randomCardPlagiarist]->boost << endl;
         }
 
@@ -169,7 +169,7 @@ int main()
         message.cardsDuel(tablePiffle, tablePlagiarist, *Piffle, *Plagiarist, "Piffle-Paper", "Plagiarist", cardsPlagiaristDrawn, Counter->randomCardPlagiarist, Counter->resilienceIncreasePlagiarist);
 
 
-        int randomRangeOneorTwo = randomRange(1, 2);
+        int randomRangeOneorTwo = Counter->randomRange(1, 2);
         //Piffle Gets Attacked
         message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
         message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePiffle, Counter->randomCardPlagiarist, *Piffle, *Plagiarist, "Piffle-Paper", "Plagiarist");
@@ -185,7 +185,7 @@ int main()
         // Create Plagiarist Player plagiarist gets attacked
         message.cardsDuel(tablePlagiarist, tablePiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle-Paper", cardsPiffleDrawn, Counter->randomCardPiffle, Counter->resilienceIncreasePiffle);
 
-        randomRangeOneorTwo = randomRange(1, 2);    
+        randomRangeOneorTwo = Counter->randomRange(1, 2);    
         //Plagiarist Gets Attacked
         message.plagiarismHearing(cardsPiffleDrawn, plagiarismHearingPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
         message.courseAccreditation(cardsPiffleDrawn, courseAccreditationPiffle, tablePlagiarist, Counter->randomCardPiffle, *Plagiarist, *Piffle, "Plagiarist", "Piffle-Paper");
@@ -211,16 +211,6 @@ int main()
     _CrtDumpMemoryLeaks();
 
     return 0;
-}
-
-int Random(int max)
-{
-    return int(float(rand()) / (RAND_MAX + 1) * float(max));
-}
-
-int randomRange(int min, int max)
-{
-    return min + int(float(rand()) / (RAND_MAX + 1) * float(max - min + 1));
 }
 
 const time_t readSeedFile(string filename)

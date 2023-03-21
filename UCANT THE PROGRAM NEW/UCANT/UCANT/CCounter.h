@@ -26,5 +26,7 @@ public:
 	string linePlagiarist = "";
 	ifstream filePlagiarist;
 	ifstream filePiffle;
+	int Random(int max);
+	int randomRange(int min, int max);
 };
 
