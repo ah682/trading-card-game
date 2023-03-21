@@ -15,25 +15,25 @@ class CCounter
 {
 public:
 	int i = 0;
-	int deckCounter = 2;
-	int num_cardsPlagiarist = 0;
-	int num_cardsPiffle = 0;
-	int randomCardPiffle = 0;
-	int randomCardPlagiarist = 0;
-	int seed = 0;
-	int resilienceIncreasePiffle = 0;
-	int resilienceIncreasePlagiarist = 0;
-	string linePiffle = "";
-	string linePlagiarist = "";
-	ifstream filePlagiarist;
-	ifstream filePiffle;
-	ifstream file;
+	int mDeckCounter = 2;
+	int mNum_cardsPlagiarist = 0;
+	int mNum_cardsPiffle = 0;
+	int mRandomCardPiffle = 0;
+	int mRandomCardPlagiarist = 0;
+	int mSeed = 0;
+	int mResilienceIncreasePiffle = 0;
+	int mResilienceIncreasePlagiarist = 0;
+	string mLinePiffle = "";
+	string mLinePlagiarist = "";
+	ifstream mFilePlagiarist;
+	ifstream mFilePiffle;
+	ifstream mFile;
 	int Random(int max);
 	int randomRange(int min, int max);
 
 	~CCounter() {
-		if (file.is_open()) {
-			file.close();
+		if (mFile.is_open()) {
+			mFile.close();
 			cout << "File closed" << endl;
 		}
 	}

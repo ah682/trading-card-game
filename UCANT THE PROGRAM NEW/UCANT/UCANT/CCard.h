@@ -14,12 +14,12 @@ using namespace std;
 class CCard
 {
 public:
-	string type;
-	string firstname;
-	string lastname;
-	string power;
-	string resilience;
-	string boost;
+	string mType;
+	string mFirstname;
+	string mLastname;
+	string mPower;
+	string mResilience;
+	string mBoost;
 	virtual ~CCard() {}
 };
 
