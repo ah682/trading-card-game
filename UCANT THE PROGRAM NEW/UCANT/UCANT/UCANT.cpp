@@ -101,17 +101,17 @@ int main()
     auto cardsPlagiaristStudentsDrawn = cardsStudentDrawn{};
     auto cardsPiffleStudentsDrawn = cardsStudentDrawn{};
 
-    auto tablePlagiarist = cardsDrawn{};
-    auto tablePiffle = cardsDrawn{};
+    typedef vector <shared_ptr<CTable>> Table;
+    auto tablePlagiarist = Table{};
+    auto tablePiffle = Table{};
 
-    auto graveyardPlagiarist = cardsDrawn{}; //USE LATER
-    auto graveyardPiffle = cardsDrawn{}; //USE LATER
+    typedef vector <shared_ptr<CPlagiarismHearing>> plagiarismHearingCards;
+    auto plagiarismHearingPlagiarist = plagiarismHearingCards{};
+    auto plagiarismHearingPiffle = plagiarismHearingCards{};
 
-    auto plagiarismHearingPlagiarist = cardsDrawn{};
-    auto plagiarismHearingPiffle = cardsDrawn{};
-
-    auto courseAccreditationPlagiarist = cardsDrawn{};
-    auto courseAccreditationPiffle = cardsDrawn{};
+    typedef vector <shared_ptr<CCourseAccreditation>> courseAccreditationCards;
+    auto courseAccreditationPlagiarist = courseAccreditationCards{};
+    auto courseAccreditationPiffle = courseAccreditationCards{};
     
     auto feedbackForumPlagiarist = cardsDrawn{};
     auto feedbackForumPiffle = cardsDrawn{};

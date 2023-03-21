@@ -1,11 +1,17 @@
 #include "CManager.h"
 #include "CPlayers.h"
 #include "CTable.h"
-void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCard>>& plagiarism, vector<shared_ptr<CCard>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
+#include "CCourseAccreditation.h"
+#include "CPlagiarismHearing.h"
+void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector < shared_ptr <CTable>> &tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
     if (cardsDrawn[randomCard]->type == "2" && cardsDrawn[randomCard]->resilience != "-99")
     {
-        plagiarism.push_back(cardsDrawn[randomCard]);
+        // Convert the shared_ptr<CCard> to a shared_ptr<CCourseAccreditation>
+        shared_ptr<CPlagiarismHearing> plagiarismElement = static_pointer_cast<CPlagiarismHearing>(cardsDrawn[randomCard]);
+
+        // Add the converted element to the accreditation vector
+        plagiarism.push_back(plagiarismElement);
     }
 
     professorAttacked.profName = attackedName;
@@ -49,14 +55,18 @@ void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <
     }
 }
 
-void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCard>>& accreditation, vector<shared_ptr<CCard>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName)
+void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName)
 {
     int cardPower = 1;
     int cardResilience = 0;
 
     if (cardsDrawn[randomCard]->type == "3" && cardsDrawn[randomCard]->resilience != "-99")
     {
-        accreditation.push_back(cardsDrawn[randomCard]);
+         // Convert the shared_ptr<CCard> to a shared_ptr<CCourseAccreditation>
+        shared_ptr<CCourseAccreditation> accreditationElement = static_pointer_cast<CCourseAccreditation>(cardsDrawn[randomCard]);
+
+        // Add the converted element to the accreditation vector
+        accreditation.push_back(accreditationElement);
     }
 
     professorAttacked.profName = attackedName;
@@ -90,12 +100,16 @@ void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector
     }
 }
 
-void CManager::tableCard(vector<shared_ptr<CCard>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
+void CManager::tableCard(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
 {
     name.profName = professor;
     if ((cardsDrawn[randomCard]->type == "1" || cardsDrawn[randomCard]->type == "5") && cardsDrawn[randomCard]->resilience != "-99")
     {
-        table.push_back(cardsDrawn[randomCard]);
+        // Convert the shared_ptr<CCard> to a shared_ptr<CCourseAccreditation>
+        shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
+
+        // Add the converted element to the accreditation vector
+        table.push_back(tableElement);
     }
 
     // Shows cards placed on table
@@ -190,7 +204,7 @@ void CManager::drawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 }
 
 //Prof name is the one getting attacked
-void CManager::cardsDuel(vector<shared_ptr<CCard>>& tableAttacked, vector<shared_ptr<CCard>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardDrawn, int randomCard, int& typeFiveCounter)
+void CManager::cardsDuel(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardDrawn, int randomCard, int& typeFiveCounter)
 {
     professorAttacked.profName = name;
     professorAttacker.profName = nametwo;
@@ -260,11 +274,16 @@ void CManager::cardsDuelCards()
 
 }
 
-void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CCard>>& feedbackforum, vector<shared_ptr<CCard>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CCard>>& tableAttacker)
+void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CCard>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
     if (cardsDrawn[randomCard]->type == "4" && cardsDrawn[randomCard]->resilience != "-99")
     {
-        feedbackforum.push_back(cardsDrawn[randomCard]);
+        // Convert the shared_ptr<CCard> to a shared_ptr<CCourseAccreditation>
+        shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
+
+        // Add the converted element to the accreditation vector
+        feedbackforum.push_back(tableElement);
+    
     }
 
     professorAttacked.profName = attackedName;
