@@ -31,7 +31,7 @@ void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <
                 }
                 if (cardResilience <= 0) {
                     elementneeded->resilience = "-0";
-                    cout << "CARD KILLED Name:" << elementneeded->type << " " << elementneeded->firstname << " " << elementneeded->lastname << " " << elementneeded->power << " " << elementneeded->resilience << " " << elementneeded->boost << " by player " << professorAttacker.profName << endl;
+                    cout << "Card Killed: " << elementneeded->type << " " << elementneeded->firstname << " " << elementneeded->lastname << " " << elementneeded->power << " " << elementneeded->resilience << " " << elementneeded->boost << " by player " << professorAttacker.profName << endl;
                     elementneeded->resilience = "-99";
                     tableAttacked.erase(tableAttacked.end() - 1);
                 }
@@ -73,7 +73,7 @@ void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector
 
             if (cardResilience <= 0) {
                 tableAttacked[j]->resilience = "0";
-                cout << "CARD KILLED Name: " << tableAttacked[j]->type << " " << tableAttacked[j]->firstname << " " << tableAttacked[j]->lastname << " " << tableAttacked[j]->power << " " << tableAttacked[j]->resilience << " " << tableAttacked[j]->boost << " by player " << professorAttacker.profName << endl;
+                cout << "Card Killed: " << tableAttacked[j]->type << " " << tableAttacked[j]->firstname << " " << tableAttacked[j]->lastname << " " << tableAttacked[j]->power << " " << tableAttacked[j]->resilience << " " << tableAttacked[j]->boost << " by player " << professorAttacker.profName << endl;
                 tableAttacked[j]->resilience = "-99";
                 tableAttacked.erase(tableAttacked.begin() + j);
             }
@@ -99,7 +99,7 @@ void CManager::tableCard(vector<shared_ptr<CCard>>& table, vector<shared_ptr<CCa
     }
 
     // Shows cards placed on table
-    cout << name.profName << " cards on table " << endl;
+    cout << name.profName << " cards on table: " << endl;
     for (int i = 0; i < table.size(); i++) {
         cout << table[i]->type << " " << table[i]->firstname << " " << table[i]->lastname << " " << table[i]->power << " " << table[i]->resilience << " " << table[i]->boost << endl;
         if (i > table.size() - table.size() + 1)
@@ -119,23 +119,25 @@ void CManager::gameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 
     if (piffle.profPrestige > plagiarist.profPrestige)
     {
-        cout << "Game Over" << endl;
         if (plagiarist.profPrestige < 0)
         {
             plagiarist.profPrestige = 0;
         }
         cout << plagiarist.profName << " prestige is " << plagiarist.profPrestige << " " << piffle.profName << " prestige is " << piffle.profPrestige << endl
-            << piffle.profName << " wins";
+            << piffle.profName << " wins" << endl << endl;
+
+        cout << "Game Over" << endl;
     }
     else if (plagiarist.profPrestige > piffle.profPrestige)
     {
-        cout << "Game Over" << endl;
         if (piffle.profPrestige < 0)
         {
             piffle.profPrestige = 0;
         }
         cout << piffle.profName << " prestige is " << piffle.profPrestige << " " << plagiarist.profName << " prestige is " << plagiarist.profPrestige << endl
-            << plagiarist.profName << " wins";
+            << plagiarist.profName << " wins" << endl << endl;
+
+        cout << "Game Over" << endl;
     }
 }
 
@@ -234,7 +236,7 @@ void CManager::cardsDuel(vector<shared_ptr<CCard>>& tableAttacked, vector<shared
             }
             if (cardResilience <= 0) {
                 tableAttacked[i]->resilience = "0";
-                cout << "CARD KILLED Name: " << tableAttacked[i]->type << " " << tableAttacked[i]->firstname << " " << tableAttacked[i]->lastname << " " << tableAttacked[i]->power << " " << tableAttacked[i]->resilience << " " << tableAttacked[i]->power << " by player " << professorAttacker.profName << endl;
+                cout << "Card Killed: " << tableAttacked[i]->type << " " << tableAttacked[i]->firstname << " " << tableAttacked[i]->lastname << " " << tableAttacked[i]->power << " " << tableAttacked[i]->resilience << " " << tableAttacked[i]->power << " by player " << professorAttacker.profName << endl;
                 tableAttacked[i]->resilience = "-99";
                 tableAttacked.erase(tableAttacked.begin() + i);
             }
@@ -276,7 +278,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
         if (randomChoice == 1)
         {
         if (!tableAttacked.empty()) {
-            CCard* elementneeded = tableAttacked.back().get();
+            shared_ptr<CCard> elementneeded = tableAttacked.back();
             if (!elementneeded->resilience.empty()) {
                 cardResilience = stoi(elementneeded->resilience);
             }
@@ -289,7 +291,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
                 }
                 if (cardResilience <= 0) {
                     elementneeded->resilience = "0";
-                    cout << "CARD KILLED Name:" << elementneeded->type << " " << elementneeded->firstname << " " << elementneeded->lastname << " " << elementneeded->power << " " << elementneeded->resilience << " " << elementneeded->boost << " by player " << professorAttacker.profName << endl;
+                    cout << "Card Killed: " << elementneeded->type << " " << elementneeded->firstname << " " << elementneeded->lastname << " " << elementneeded->power << " " << elementneeded->resilience << " " << elementneeded->boost << " by player " << professorAttacker.profName << endl;
                     elementneeded->resilience = "-99";
                     tableAttacked.erase(tableAttacked.end() - 1);
                 }
@@ -299,7 +301,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
         if (randomChoice == 2) {
 
                 if (!tableAttacker.empty()) {
-                    CCard* elementneeded = tableAttacker.back().get();
+                    shared_ptr<CCard> elementneeded = tableAttacker.back();
                     if (!elementneeded->resilience.empty()) {
                         cardResilience = stoi(elementneeded->resilience);
                     }
@@ -309,6 +311,9 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
                 tableAttacker[tableAttacker.size() - 1]->resilience = cardResilienceString;
 
                 professorAttacker.profPrestige += cardPower;
+
+                cout << professorAttacker.profName << " " << " has recieved healing of " << cardPower << " points" << endl;
+                cout << tableAttacker[tableAttacker.size() - 1]->firstname << " " << " has recieved healing of " << cardPower << " points" << endl;
         }
             
             
