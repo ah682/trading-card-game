@@ -11,7 +11,7 @@
 #include <sstream>
 
 class CPlagiarismHearing :
-    public CCard
+	public CCard
 {
 };
 

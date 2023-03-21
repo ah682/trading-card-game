@@ -13,10 +13,10 @@
 class CPlayers
 {
 public:
-    struct SProfessor
-    {
-        string profName;
-        int profPrestige = 30;
-    };
+	struct SProfessor
+	{
+		string profName;
+		int profPrestige = 30;
+	};
 };
 

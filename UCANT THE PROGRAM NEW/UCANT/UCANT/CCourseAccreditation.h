@@ -11,7 +11,7 @@
 #include <sstream>
 
 class CCourseAccreditation :
-    public CCard
+	public CCard
 {
 };
 

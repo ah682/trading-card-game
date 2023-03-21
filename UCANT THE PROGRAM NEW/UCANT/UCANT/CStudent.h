@@ -12,7 +12,7 @@
 
 
 class CStudent :
-    public CCard
+	public CCard
 {
 };
 

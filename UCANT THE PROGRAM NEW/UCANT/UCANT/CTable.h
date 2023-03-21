@@ -12,7 +12,7 @@
 
 
 class CTable :
-    public CCard
+	public CCard
 {
 };
 

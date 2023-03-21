@@ -1,7 +1,21 @@
-﻿  UCANT.cpp
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(35,33): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(59,40): warning C4552: '+': result of expression not used
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(65,36): warning C4552: '+': result of expression not used
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(157,118): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(161,130): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+﻿  CCard.cpp
+  CCounter.cpp
+  CCourseAccreditation.cpp
+  CFeedbackForum.cpp
+  CManager.cpp
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(229,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(231,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(308,61): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(338,62): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CPlagiarismHearing.cpp
+  CPlayers.cpp
+  CStudent.cpp
+  CTable.cpp
+  UCANT.cpp
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(35,30): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(59,34): warning C4552: '+': result of expression not used
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(65,30): warning C4552: '+': result of expression not used
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(163,109): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(167,121): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   UCANT.vcxproj -> C:\Users\Adam\Documents\GitHub\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe

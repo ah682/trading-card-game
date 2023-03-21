@@ -30,7 +30,7 @@ public:
 	ifstream file;
 	int Random(int max);
 	int randomRange(int min, int max);
-	
+
 	~CCounter() {
 		if (file.is_open()) {
 			file.close();
