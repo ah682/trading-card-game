@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #pragma once
 
 #include "CCard.h"
@@ -26,7 +27,15 @@ public:
 	string linePlagiarist = "";
 	ifstream filePlagiarist;
 	ifstream filePiffle;
+	ifstream file;
 	int Random(int max);
 	int randomRange(int min, int max);
+	
+	~CCounter() {
+		if (file.is_open()) {
+			file.close();
+			cout << "File closed" << endl;
+		}
+	}
 };
 

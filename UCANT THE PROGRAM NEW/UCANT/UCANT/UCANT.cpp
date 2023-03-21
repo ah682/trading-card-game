@@ -1,4 +1,4 @@
-// UCANT.cpp
+// Adam James Anthony Hall
 
 // Memory Leak Detection
 #define _CRTDBG_MAP_ALLOC
@@ -28,8 +28,8 @@ const time_t readSeedFile(string filename);
 
 int main()
 {
-    typedef std::shared_ptr<CCounter> CCounterPtr;
-    auto Counter = std::make_unique<CCounter>();
+    typedef shared_ptr<CCounter> CCounterPtr;
+    auto Counter = make_unique<CCounter>();
 
     // Genereates seed from read file
     Counter->seed = readSeedFile("seed.txt");
@@ -44,11 +44,14 @@ int main()
     const int deckSize = 48;
 
     Counter->filePlagiarist.open("plagiarist.txt");
-
     Counter->filePiffle.open("piffle-paper.txt");
+    //Counter->filePlagiarist.open("pointless.txt");
+   // Counter->filePiffle.open("perdition.txt");
 
-    auto Plagiarist = std::make_shared<CPlayers::SProfessor>();
-    auto Piffle = std::make_shared<CPlayers::SProfessor>();
+    auto Plagiarist = make_shared<CPlayers::SProfessor>();
+    auto Piffle = make_shared<CPlayers::SProfessor>();
+    auto Perdition = make_shared<CPlayers::SProfessor>();
+    auto Pointless = make_shared<CPlayers::SProfessor>();
 
     // Count the number of cards in the plagiarist file
     while (getline(Counter->filePlagiarist, Counter->linePlagiarist))
@@ -64,31 +67,31 @@ int main()
 
 
     // Allocate memory for the cards
-    auto cardsPiffle = std::vector<std::shared_ptr<CCard>>(Counter->num_cardsPiffle);
+    auto cardsPiffle = vector<shared_ptr<CCard>>(Counter->num_cardsPiffle);
 
     for (int i = 0; i < Counter->num_cardsPiffle; i++) {
-        cardsPiffle[i] = std::make_shared<CCard>(); // Assign the shared_ptr to the vector element
+        cardsPiffle[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    auto cardsPlagiarist = std::vector<std::shared_ptr<CCard>>(Counter->num_cardsPlagiarist);
+    auto cardsPlagiarist = vector<shared_ptr<CCard>>(Counter->num_cardsPlagiarist);
 
     for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
-        cardsPlagiarist[i] = std::make_shared<CCard>(); // Assign the shared_ptr to the vector element
+        cardsPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    auto cardsPlagiaristStudents = std::vector<std::shared_ptr<CStudent>>(Counter->num_cardsPlagiarist);
+    auto cardsPlagiaristStudents = vector<shared_ptr<CStudent>>(Counter->num_cardsPlagiarist);
 
     for (int i = 0; i < Counter->num_cardsPlagiarist; i++) {
-        cardsPlagiaristStudents[i] = std::make_shared<CStudent>(); // Assign the shared_ptr to the vector element
+        cardsPlagiaristStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
-    auto cardsPiffleStudents = std::vector<std::shared_ptr<CStudent>>(Counter->num_cardsPiffle);
+    auto cardsPiffleStudents = vector<shared_ptr<CStudent>>(Counter->num_cardsPiffle);
 
     for (int i = 0; i < Counter->num_cardsPiffle; i++) {
-        cardsPiffleStudents[i] = std::make_shared<CStudent>(); // Assign the shared_ptr to the vector element
+        cardsPiffleStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
     }
 
     // Allocate memory for the cards
@@ -120,7 +123,6 @@ int main()
     message.fillDeck(Counter->filePiffle, cardsPiffle, cardsPiffleStudents);
     
 
-    // Allocate
     // Allocate
     typedef vector<shared_ptr<bool>> checkUsedCard;
 
@@ -230,7 +232,7 @@ const time_t readSeedFile(string filename)
     }
     else
     {
-        std::cout << "Unable to open file " << filename << '\n';
+        cout << "Unable to open file " << filename << '\n';
     }
 
     return seed_value;

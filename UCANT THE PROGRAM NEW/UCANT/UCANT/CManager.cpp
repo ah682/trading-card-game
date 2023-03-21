@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CManager.h"
 #include "CPlayers.h"
 #include "CTable.h"

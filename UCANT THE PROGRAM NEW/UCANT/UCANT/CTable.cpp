@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CCard.h"
 #include <crtdbg.h>
 #include <iostream>

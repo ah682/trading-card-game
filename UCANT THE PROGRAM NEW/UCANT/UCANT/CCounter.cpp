@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CCard.h"
 #include "CCounter.h"
 #include <crtdbg.h>
