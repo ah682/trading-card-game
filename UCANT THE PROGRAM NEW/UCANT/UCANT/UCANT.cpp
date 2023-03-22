@@ -113,13 +113,13 @@ int main()
 	auto pTablePlagiarist = Table{};
 	auto pTablePiffle = Table{};
 
-	typedef vector <shared_ptr<CPlagiarismHearing>> plagiarismHearingCards;
-	auto pPlagiarismHearingPlagiarist = plagiarismHearingCards{};
-	auto pPlagiarismHearingPiffle = plagiarismHearingCards{};
+	typedef vector <shared_ptr<CPlagiarismHearing>> DrawPlagiarismHearingCardCards;
+	auto pDrawPlagiarismHearingCardPlagiarist = DrawPlagiarismHearingCardCards{};
+	auto pDrawPlagiarismHearingCardPiffle = DrawPlagiarismHearingCardCards{};
 
-	typedef vector <shared_ptr<CCourseAccreditation>> courseAccreditationCards;
-	auto pCourseAccreditationPlagiarist = courseAccreditationCards{};
-	auto pCourseAccreditationPiffle = courseAccreditationCards{};
+	typedef vector <shared_ptr<CCourseAccreditation>> DrawCourseAccreditationCardCards;
+	auto pDrawCourseAccreditationCardPlagiarist = DrawCourseAccreditationCardCards{};
+	auto pDrawCourseAccreditationCardPiffle = DrawCourseAccreditationCardCards{};
 
 	typedef vector <shared_ptr<CFeedbackForum>> feedbackForumCards;
 	auto pFeedbackForumPlagiarist = feedbackForumCards{};
@@ -171,19 +171,19 @@ int main()
 		}
 
 		//Prints table on cards for specific player
-		pGameState->TableCard(pTablePiffle, pCardsPiffleDrawn, *pPiffle, "Piffle-Paper", pCounterPiffle->mRandomCard);
-		pGameState->TableCard(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
+		pGameState->PrintTable(pTablePiffle, pCardsPiffleDrawn, *pPiffle, "Piffle-Paper", pCounterPiffle->mRandomCard);
+		pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
 
 		// Make cards duel
 		// Create Piffle Player piffle gets attacked
-		pGameState->CardsDuel(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", pCardsPlagiaristDrawn, pCounterPlagiarist->mRandomCard, pCounterPlagiarist->mResilienceIncrease);
+		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", pCardsPlagiaristDrawn, pCounterPlagiarist->mRandomCard, pCounterPlagiarist->mResilienceIncrease);
 
 
 		int randomRangeOneorTwo = pCounterPlagiarist->RandomRange(1, 2); //?????????????????????????????????????????????????????????
 		//Piffle Gets Attacked
-		pGameState->PlagiarismHearing(pCardsPlagiaristDrawn, pPlagiarismHearingPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
-		pGameState->CourseAccreditation(pCardsPlagiaristDrawn, pCourseAccreditationPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist");
-		pGameState->FeedbackForum(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
+		pGameState->UsePlagiarismHearingCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
+		pGameState->UseCourseAccreditationCard(pCardsPlagiaristDrawn, pDrawCourseAccreditationCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist");
+		pGameState->UseFeedbackForumCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
 
 
 		if (pPlagiarist->profPrestige <= 0 || pPiffle->profPrestige <= 0)
@@ -194,13 +194,13 @@ int main()
 
 		// Make cards duel
 		// Create Plagiarist Player plagiarist gets attacked
-		pGameState->CardsDuel(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pCardsPiffleDrawn, pCounterPiffle->mRandomCard, pCounterPiffle->mResilienceIncrease);
+		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pCardsPiffleDrawn, pCounterPiffle->mRandomCard, pCounterPiffle->mResilienceIncrease);
 
 		randomRangeOneorTwo = pCounterPiffle->RandomRange(1, 2); //?????????????????????????????????????????????????????????
 		//Plagiarist Gets Attacked
-		pGameState->PlagiarismHearing(pCardsPiffleDrawn, pPlagiarismHearingPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
-		pGameState->CourseAccreditation(pCardsPiffleDrawn, pCourseAccreditationPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper");
-		pGameState->FeedbackForum(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
+		pGameState->UsePlagiarismHearingCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
+		pGameState->UseCourseAccreditationCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper");
+		pGameState->UseFeedbackForumCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
 
 		if (pPlagiarist->profPrestige <= 0 || pPiffle->profPrestige <= 0)
 		{

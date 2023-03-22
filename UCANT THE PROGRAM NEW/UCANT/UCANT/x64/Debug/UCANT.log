@@ -1,7 +1,13 @@
-﻿  UCANT.cpp
+﻿  CManager.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(229,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(231,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(303,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(333,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  UCANT.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(37,38): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(61,38): warning C4552: '+': result of expression not used
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(67,34): warning C4552: '+': result of expression not used
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(165,120): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(169,136): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe

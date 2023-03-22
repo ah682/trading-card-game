@@ -65,13 +65,13 @@
     <ClInclude Include="CPlagiarismHearing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CCourseAccreditation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CCounter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CFeedbackForum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CCourseAccreditation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

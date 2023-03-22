@@ -1,9 +1,7 @@
-// Adam James Anthony Hall
 #pragma once
 #include "CCard.h"
-
 class CCourseAccreditation :
-	public CCard
+    public CCard
 {
 };
 
