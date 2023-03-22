@@ -7,9 +7,9 @@
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
 
-CCounter counter;
+CCounter randomNumber; //??????
 
-void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector < shared_ptr <CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
+void CManager::PlagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector < shared_ptr <CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
 	if (cardsDrawn[randomCard]->mType == "2" && cardsDrawn[randomCard]->mResilience != "-99")
 	{
@@ -61,7 +61,7 @@ void CManager::plagiarismHearing(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 	}
 }
 
-void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName)
+void CManager::CourseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName)
 {
 	const int CARD_POWER = 1;
 	int cardResilience = 0;
@@ -106,7 +106,7 @@ void CManager::courseAccreditation(vector<shared_ptr<CCard>>& cardsDrawn, vector
 	}
 }
 
-void CManager::tableCard(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
+void CManager::TableCard(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
 {
 	name.profName = professor;
 	if ((cardsDrawn[randomCard]->mType == "1" || cardsDrawn[randomCard]->mType == "5") && cardsDrawn[randomCard]->mResilience != "-99")
@@ -129,12 +129,12 @@ void CManager::tableCard(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CC
 		}
 	}
 }
-void CManager::gameStart()
+void CManager::GameStart()
 {
 	cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
 
-void CManager::gameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist)
+void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist)
 {
 
 
@@ -162,12 +162,12 @@ void CManager::gameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 	}
 }
 
-void CManager::startRound(int round)
+void CManager::StartRound(int round)
 {
 	cout << "Round: " << round << endl;
 }
 
-void CManager::fillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent)
+void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent)
 {
 	inFile.clear();
 	inFile.seekg(0);
@@ -187,7 +187,7 @@ void CManager::fillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 	}
 }
 
-void CManager::drawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor name, vector<shared_ptr<bool>>& usedCards)
+void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor name, vector<shared_ptr<bool>>& usedCards)
 {
 	for (int j = i; j < deckCounter; j++)
 	{
@@ -211,7 +211,7 @@ void CManager::drawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 }
 
 //Prof name is the one getting attacked
-void CManager::cardsDuel(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardDrawn, int randomCard, int& typeFiveCounter)
+void CManager::CardsDuel(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardDrawn, int randomCard, int& typeFiveCounter)
 {
 	professorAttacked.profName = name;
 	professorAttacker.profName = nametwo;
@@ -278,12 +278,7 @@ void CManager::cardsDuel(vector<shared_ptr<CTable>>& tableAttacked, vector<share
 	cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
 }
 
-void CManager::cardsDuelCards()
-{
-
-}
-
-void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
+void CManager::FeedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	if (cardsDrawn[randomCard]->mType == "4" && cardsDrawn[randomCard]->mResilience != "-99")
 	{
@@ -305,7 +300,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 	{
 		if (randomChoice == 1)
 		{
-			int randomIndex = counter.Random(tableAttacked.size() - 1);
+			int randomIndex = randomNumber.Random(tableAttacked.size() - 1);
 
 			if (!tableAttacked.empty())
 			{
@@ -335,7 +330,7 @@ void CManager::feedbackForum(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 			if (randomChoice == 2)
 			{
 
-				int randomIndex = counter.Random(tableAttacker.size() - 1);
+				int randomIndex = randomNumber.Random(tableAttacker.size() - 1);
 				if (!tableAttacker.empty())
 				{
 					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
