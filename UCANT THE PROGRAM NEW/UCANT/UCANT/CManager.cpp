@@ -1,4 +1,6 @@
 // Adam James Anthony Hall
+
+// Initialize necessary header files
 #include "CManager.h"
 #include "CPlayers.h"
 #include "CTable.h"
@@ -199,7 +201,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 		{
 			drawnCards.push_back(cards[j]);
 			*usedCards[j] = true;
-			cout << "Player " << name.profName << " has drawn " << drawnCards.back()->mType << " " << drawnCards.back()->mFirstname << " " << drawnCards.back()->mLastname << " " << drawnCards.back()->mPower << " " << drawnCards.back()->mResilience << " " << drawnCards.back()->mBoost << endl;
+			cout << name.profName << " has drawn " << drawnCards.back()->mType << " " << drawnCards.back()->mFirstname << " " << drawnCards.back()->mLastname << " " << drawnCards.back()->mPower << " " << drawnCards.back()->mResilience << " " << drawnCards.back()->mBoost << endl;
 		}
 		else
 		{

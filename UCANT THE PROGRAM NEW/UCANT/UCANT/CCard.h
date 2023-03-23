@@ -1,5 +1,7 @@
 // Adam James Anthony Hall
 #pragma once
+
+// Initialize necessary header files
 #include <crtdbg.h>
 #include <iostream>
 #include <cstdlib>
