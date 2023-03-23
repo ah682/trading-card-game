@@ -3,6 +3,7 @@
 
 // Initialize necessary header files
 #include "CCard.h"
+
 class CFeedbackForum :
 	public CCard
 {

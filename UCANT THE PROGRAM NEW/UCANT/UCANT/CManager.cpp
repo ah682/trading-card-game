@@ -1,6 +1,8 @@
 // Adam James Anthony Hall
 
 // Initialize necessary header files
+#include <memory>
+
 #include "CManager.h"
 #include "CPlayers.h"
 #include "CTable.h"
@@ -9,7 +11,9 @@
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
 
-CCounter randomNumber; //??????
+using namespace std;
+
+unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
@@ -302,7 +306,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 	{
 		if (randomChoice == 1)
 		{
-			int randomIndex = randomNumber.Random(tableAttacked.size() - 1);
+			int randomIndex = randomNumber->Random(tableAttacked.size() - 1);
 
 			if (!tableAttacked.empty())
 			{
@@ -332,7 +336,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 			if (randomChoice == 2)
 			{
 
-				int randomIndex = randomNumber.Random(tableAttacker.size() - 1);
+				int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
 				if (!tableAttacker.empty())
 				{
 					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
