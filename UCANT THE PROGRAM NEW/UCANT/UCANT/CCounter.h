@@ -11,7 +11,7 @@
 class CCounter
 {
 public:
-	int i = 0;
+	int mI = 0;
 	int mDeckCounter = 2;
 	int mCardCounter = 0;
 	int mRandomCard = 0;
@@ -23,6 +23,7 @@ public:
 	int Random(int max);
 	int RandomRange(int min, int max);
 
+	// Close player files
 	~CCounter() {
 		if (mFile.is_open()) {
 			mFile.close();

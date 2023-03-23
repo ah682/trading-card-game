@@ -62,9 +62,13 @@ int main()
 
 	// Create a shared pointer to new SProfessor objects
 	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
+	pPlagiarist->mProfName = "Plagiarist";
 	auto pPiffle = make_shared<CPlayers::SProfessor>();
+	pPlagiarist->mProfName = "Piffle";
 	auto pPerdition = make_shared<CPlayers::SProfessor>();
+	pPlagiarist->mProfName = "Perdition";
 	auto pPointless = make_shared<CPlayers::SProfessor>();
+	pPlagiarist->mProfName = "Pointless";
 
 	// Count the number of cards in the plagiarist file
 	while (getline(pCounterPlagiarist->mFile, pCounterPiffle->mLine))
@@ -187,17 +191,13 @@ int main()
 	do
 	{
 		// Draws random card for plagiarist and prints cards if pCounterPlagiarist->i < DECK_SIZE
-		if (pCounterPlagiarist->i < DECK_SIZE)
+		if (pCounterPlagiarist->mI < DECK_SIZE)
 		{
-			// Prints out "Drawn Cards for Plagiarist"
-			cout << "Drawn Cards from Plagiarist:" << endl;
 			// Draw card function draws two cards for Plagiarist
-			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->i, *pPlagiarist, pCheckUsedCardPlagiarist);
+			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mI, *pPlagiarist, pCheckUsedCardPlagiarist);
 
-			// Prints out "Drawn Cards for Piffle-paper"
-			cout << "Drawn Cards from Piffle-Paper:" << endl;
 			//	Draw card function draws two cards for Piffle
-			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->i, *pPiffle, pCheckUsedCardPiffle);
+			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
 			// Piffle Chooses a random card from the two cards DrawCard function have selected
 			pCounterPiffle->mRandomCard = pCounterPiffle->RandomRange(pCardsPiffleDrawn.size() - 2, pCardsPiffleDrawn.size() - 1);
@@ -227,7 +227,7 @@ int main()
 		pGameState->UseFeedbackForumCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
 
 		// Exits the do while loop when one of the players loses all their prestige
-		if (pPlagiarist->profPrestige <= 0 || pPiffle->profPrestige <= 0)
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
 		{
 			// Exit the do while loop when one of the players loses all their prestige
 			break;
@@ -246,20 +246,16 @@ int main()
 		pGameState->UseFeedbackForumCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
-		if (pPlagiarist->profPrestige <= 0 || pPiffle->profPrestige <= 0)
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
 		{
 			// Exit the loop when one of the players loses all their prestige
 			break;
 		}
 
-	} while (pPlagiarist->profPrestige > 0 && pPiffle->profPrestige > 0);
+	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0);
 
 	// GameOver function checks which player has won
 	pGameState->GameOver(*pPiffle, *pPlagiarist);
-
-	// Close player files
-	pCounterPlagiarist->mFile.close();
-	pCounterPiffle->mFile.close();
 
 	// Memory Leak Detection
 	_CrtDumpMemoryLeaks();

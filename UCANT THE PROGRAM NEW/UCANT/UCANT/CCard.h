@@ -22,7 +22,7 @@ public:
 	string mPower;
 	string mResilience;
 	string mBoost;
-	const string M_DEAD_CARD;
+	
 	virtual ~CCard() {}
 };
 

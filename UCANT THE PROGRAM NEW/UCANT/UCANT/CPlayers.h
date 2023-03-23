@@ -16,8 +16,8 @@ class CPlayers
 public:
 	struct SProfessor
 	{
-		string profName;
-		int profPrestige = 30;
+		string mProfName;
+		int mProfPrestige = 30;
 	};
 };
 
