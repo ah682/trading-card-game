@@ -30,5 +30,16 @@ public:
 			cout << "File closed" << endl;
 		}
 	}
+
+	//Constructor open player files
+	//CCounter() {
+	//	mFile.open("Player1.txt");
+	//	if (mFile.is_open()) {
+	//		cout << "File opened" << endl;
+	//	}
+	//	else {
+	//		cout << "File not opened" << endl;
+	//	}
+	//}
 };
 

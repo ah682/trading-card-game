@@ -132,10 +132,13 @@
     <ClCompile Include="CCourseAccreditation.cpp" />
     <ClCompile Include="CFeedbackForum.cpp" />
     <ClCompile Include="CManager.cpp" />
+    <ClCompile Include="CPassLeader.cpp" />
     <ClCompile Include="CPlagiarismHearing.cpp" />
     <ClCompile Include="CPlayers.cpp" />
     <ClCompile Include="CStudent.cpp" />
     <ClCompile Include="CTable.cpp" />
+    <ClCompile Include="MitigatingCircumstances.cpp" />
+    <ClCompile Include="ResearchFunding.cpp" />
     <ClCompile Include="UCANT.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +147,13 @@
     <ClInclude Include="CCourseAccreditation.h" />
     <ClInclude Include="CFeedbackForum.h" />
     <ClInclude Include="CManager.h" />
+    <ClInclude Include="CPassLeader.h" />
     <ClInclude Include="CPlagiarismHearing.h" />
     <ClInclude Include="CPlayers.h" />
     <ClInclude Include="CStudent.h" />
     <ClInclude Include="CTable.h" />
+    <ClInclude Include="MitigatingCircumstances.h" />
+    <ClInclude Include="ResearchFunding.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

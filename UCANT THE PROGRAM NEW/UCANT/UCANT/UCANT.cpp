@@ -64,11 +64,11 @@ int main()
 	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
 	pPlagiarist->mProfName = "Plagiarist";
 	auto pPiffle = make_shared<CPlayers::SProfessor>();
-	pPlagiarist->mProfName = "Piffle";
+	pPiffle->mProfName = "Piffle";
 	auto pPerdition = make_shared<CPlayers::SProfessor>();
-	pPlagiarist->mProfName = "Perdition";
+	pPerdition->mProfName = "Perdition";
 	auto pPointless = make_shared<CPlayers::SProfessor>();
-	pPlagiarist->mProfName = "Pointless";
+	pPointless->mProfName = "Pointless";
 
 	// Count the number of cards in the plagiarist file
 	while (getline(pCounterPlagiarist->mFile, pCounterPiffle->mLine))
@@ -158,7 +158,16 @@ int main()
 	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
 	auto pFeedbackForumPlagiarist = feedbackForumCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
-	auto pFeedbackForumPiffle = feedbackForumCards{};
+	auto pFeedbackForumPiffle = feedbackForumCards{};\
+
+	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
+	typedef vector <shared_ptr<CPassLeader>> passLeaderCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pPassLeaderPlagiarist = passLeaderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pPassLeaderPiffle = passLeaderCards{};
+
+
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
 	pGameState->FillDeck(pCounterPlagiarist->mFile, pCardsPlagiarist, pCardsPlagiaristStudents);
@@ -190,6 +199,8 @@ int main()
 	// Do while loop which continues until pPlagiarist->profPrestige > 0 and pPiffle->profPrestige > 0;
 	do
 	{
+		pGameState->StartRound(pGameState->mRoundCounter);
+
 		// Draws random card for plagiarist and prints cards if pCounterPlagiarist->i < DECK_SIZE
 		if (pCounterPlagiarist->mI < DECK_SIZE)
 		{
@@ -219,12 +230,15 @@ int main()
 
 		// Initialize random range between one or two to choose truly random card
 		int randomRangeOneorTwo = pCounterPlagiarist->RandomRange(1, 2); 
+		
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
 		pGameState->UsePlagiarismHearingCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
 		// Use type x cards (Course Accreditation Cards), Piffle gets attacked
 		pGameState->UseCourseAccreditationCard(pCardsPlagiaristDrawn, pDrawCourseAccreditationCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist");
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Plagiarist gets healed
 		pGameState->UseFeedbackForumCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
+		// Use type x cards (Pass Leader Cards), Plagiarist type 6 deck gets increased attack power
+		pGameState->UsePassLeaderCard(pCardsPlagiaristDrawn, pPassLeaderPlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
@@ -238,12 +252,15 @@ int main()
 
 		// Initialize random range between one or two to choose truly random card
 		randomRangeOneorTwo = pCounterPiffle->RandomRange(1, 2);
+		
 		// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
 		pGameState->UsePlagiarismHearingCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
 		// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
 		pGameState->UseCourseAccreditationCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper");
 		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 		pGameState->UseFeedbackForumCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
+		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
+		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, 0/*removethis*/, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
@@ -251,6 +268,8 @@ int main()
 			// Exit the loop when one of the players loses all their prestige
 			break;
 		}
+
+		
 
 	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0);
 

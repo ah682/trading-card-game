@@ -15,7 +15,10 @@ using namespace std;
 
 unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
 
+// Initilalise size of dead card as -9999 string value
 const string DEAD_CARD = "-9999";
+
+// Initilalise size of decks as 48 integers
 const int DECK_SIZE = 48;
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
@@ -115,10 +118,10 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 	}
 }
 
-void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor name, string professor, int randomCard)
+void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
 {
-	name.mProfName = professor;
-	if ((cardsDrawn[randomCard]->mType == "1" || cardsDrawn[randomCard]->mType == "5") && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
+	playerName.mProfName = professor;
+	if (((cardsDrawn[randomCard]->mType == "1" || cardsDrawn[randomCard]->mType == "5") || cardsDrawn[randomCard]->mType == "6") && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
@@ -128,7 +131,7 @@ void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<C
 	}
 
 	// Shows cards placed on table
-	cout << name.mProfName << " cards on table: " << endl;
+	cout << playerName.mProfName << " cards on table: " << endl;
 	for (int i = 0; i < table.size(); i++)
 	{
 		cout << table[i]->mType << " " << table[i]->mFirstname << " " << table[i]->mLastname << " " << table[i]->mPower << " " << table[i]->mResilience << " " << table[i]->mBoost << endl;
@@ -171,9 +174,10 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 	}
 }
 
-void CManager::StartRound(int round)
+void CManager::StartRound(int &round)
 {
 	cout << "Round: " << round << endl;
+	round++;
 }
 
 void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent)
@@ -362,6 +366,49 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 				professorAttacked.mProfPrestige = 0;
 			}
 			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+		}
+	}
+}
+
+void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+{
+	
+	if (cardsDrawn[randomCard]->mType == "6" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+	{
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CPassLeader> passLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the pass leader vector
+		passLeader.push_back(passLeaderElement);
+
+	}
+
+	professorAttacker.mProfName = attackerName;
+
+	int passLeaderCounter = 0;
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		passLeaderCounter++;
+	}	
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		if (tableAttacker[i]->mType == "6")
+		{
+        int cardPower = 0;
+		cardPower = stoi(tableAttacker[i]->mPower);
+		cardPower += passLeaderCounter;
+		string cardPowerString = to_string(cardPower);
+		tableAttacker[i]->mPower = cardPowerString;
+		}
+	}
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		if (tableAttacker[i]->mType == "6")
+		{
+		cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
 	}
 }

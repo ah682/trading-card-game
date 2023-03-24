@@ -45,6 +45,15 @@
     <ClCompile Include="CFeedbackForum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CPassLeader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResearchFunding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MitigatingCircumstances.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CManager.h">
@@ -72,6 +81,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CCourseAccreditation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPassLeader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResearchFunding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MitigatingCircumstances.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
