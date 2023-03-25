@@ -7,6 +7,7 @@
 #include "CPlayers.h"
 #include "CTable.h"
 #include "CCounter.h"
+#include "CStudent.h"
 #include "CCourseAccreditation.h"
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
@@ -465,7 +466,7 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 	 }
 }
 
-void CManager::UseMitigatingCircumstancesCard()
+void CManager::UseMitigatingCircumstancesCard(shared_ptr<CStudent> damageReduction)
 {
-
+	int ok = damageReduction->grantDamageReduction();
 }
