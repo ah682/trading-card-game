@@ -464,3 +464,8 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 
 	 }
 }
+
+void CManager::UseMitigatingCircumstancesCard()
+{
+
+}
