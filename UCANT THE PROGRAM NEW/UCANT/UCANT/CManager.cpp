@@ -394,7 +394,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && tableAttacker[i]->mType == "6")
 		{
         int cardPower = 0;
 		cardPower = stoi(tableAttacker[i]->mPower);
@@ -406,9 +406,61 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && tableAttacker[i]->mType == "6")
 		{
 		cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
 	}
+}
+
+void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+{
+	if (cardsDrawn[randomCard]->mType == "7")
+	{
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CResearchFunding> researchFundingElement = static_pointer_cast<CResearchFunding>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the accreditation vector
+		researchFunding.push_back(researchFundingElement);
+
+	}
+
+	professorAttacker.mProfName = attackerName;
+
+	 int cardPowerAdditionInteger = 2;
+	 int cardPower;
+
+	 for (int i = 0; i < researchFunding.size(); i++)
+	 {
+		 int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+		 if (randomIndex < tableAttacker.size())
+		 {
+			 if (!researchFunding.empty())
+			 {
+
+				 if (!tableAttacker.empty())
+				 {
+
+					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex]; 
+					cardPower = stoi(elementneeded->mPower);
+					cardPower += cardPowerAdditionInteger;
+					string cardPowerString = to_string(cardPower);
+					tableAttacker[randomIndex]->mPower = cardPowerString;
+					 
+				 }
+
+			 }
+
+			 if (tableAttacker.empty())
+			 {
+				 professorAttacker.mProfPrestige += cardPowerAdditionInteger;
+				 cout << professorAttacker.mProfName << " prestige is now " << professorAttacker.mProfPrestige << endl;
+
+			 }
+		 }
+	 }
+	 if (researchFunding.empty())
+	 {
+
+	 }
 }

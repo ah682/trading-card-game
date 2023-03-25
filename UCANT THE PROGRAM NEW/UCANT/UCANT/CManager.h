@@ -14,6 +14,11 @@
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
 #include "CPassLeader.h"
+#include "CResearchFunding.h"
+#include "CMitigatingCircumstances.h"
+#include "CEasyTarget.h"
+#include "CSerialOffender.h"
+#include "CGraduateStudent.h"
 
 class CManager
 {
@@ -29,8 +34,11 @@ public:
 	void UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName);
 	void UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker);
 	void UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker);
-	void UseResearchFundingCard();
+	void UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker);
 	void UseMitigatingCircumstancesCard();
+	void UseEasyTargetCard();
+	void UseSerialOffenderCard();
+	void UseGraduateStudentCard();
 
 	int mRoundCounter = 1;
 };

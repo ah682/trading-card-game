@@ -48,10 +48,22 @@
     <ClCompile Include="CPassLeader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResearchFunding.cpp">
+    <ClCompile Include="MitigatingCircumstances.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MitigatingCircumstances.cpp">
+    <ClCompile Include="CResearchFunding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMitigatingCircumstances.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CEasyTarget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CSerialOffender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CGraduateStudent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,10 +98,22 @@
     <ClInclude Include="CPassLeader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ResearchFunding.h">
+    <ClInclude Include="MitigatingCircumstances.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MitigatingCircumstances.h">
+    <ClInclude Include="CMitigatingCircumstances.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CEasyTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSerialOffender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CGraduateStudent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CResearchFunding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,6 +21,7 @@
 #include "CPlagiarismHearing.h"
 #include "CCounter.h"
 #include "CFeedbackForum.h"
+#include "CResearchFunding.h"
 
 // Use the standard namespace
 using namespace std;
@@ -167,6 +168,13 @@ int main()
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pPassLeaderPiffle = passLeaderCards{};
 
+	// Define a type alias for a vector of shared pointers to CResearchFunding objects
+	typedef vector <shared_ptr<CResearchFunding>> researchFundingCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pResearchFundingPlagiarist = researchFundingCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pResearchFundingPiffle = researchFundingCards{};
+
 
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
@@ -238,7 +246,9 @@ int main()
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Plagiarist gets healed
 		pGameState->UseFeedbackForumCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
 		// Use type x cards (Pass Leader Cards), Plagiarist type 6 deck gets increased attack power
-		pGameState->UsePassLeaderCard(pCardsPlagiaristDrawn, pPassLeaderPlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPlagiarist, "Plagiarist", pTablePlagiarist);
+		pGameState->UsePassLeaderCard(pCardsPlagiaristDrawn, pPassLeaderPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, *pPlagiarist, "Plagiarist", pTablePlagiarist);
+		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
+		pGameState->UseResearchFundingCard(pCardsPlagiaristDrawn, pResearchFundingPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
@@ -260,7 +270,9 @@ int main()
 		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 		pGameState->UseFeedbackForumCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
-		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, 0/*removethis*/, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
+		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
+		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
+		pGameState->UseResearchFundingCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
