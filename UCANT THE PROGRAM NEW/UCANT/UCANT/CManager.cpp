@@ -466,7 +466,33 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 	 }
 }
 
-void CManager::UseMitigatingCircumstancesCard(shared_ptr<CStudent> damageReduction)
+void CManager::UseMitigatingCircumstancesCard(shared_ptr<CStudent> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircmstances>> mitigatingCircumstances)
 {
-	int ok = damageReduction->grantDamageReduction();
+	if (cardsDrawn[randomCard]->mType == "8")
+	{
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CMitigatingCircumstances> mitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the accreditation vector
+		mitigatingCircumstances.push_back(mitigatingCircumstancesElement);
+
+	}
+	
+	for (int i = 0; i < mitigatingCircumstances.size(); i++)
+	{
+		if (!mitigatingCircumstances.empty())
+		{
+			if(!tableAttacker.empty())
+			{
+				int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+
+				int tableAttackerInt = stoi(tableAttacker[randomIndex]->mResilience);
+				int ok = damageReduction->grantDamageReduction(tableAttackerInt, damageReduction->mDamageReduction);
+				string okString = to_string(ok);
+				tableAttacker[randomIndex]->mResilience = okString;
+				cout << "Damaged Reduced!" << endl;
+			}
+		}
+		
+	}
 }
