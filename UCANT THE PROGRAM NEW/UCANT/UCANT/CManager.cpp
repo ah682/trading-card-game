@@ -373,15 +373,20 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 
 void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
-	
-	if (cardsDrawn[randomCard]->mType == "6" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+	if (randomCard < cardsDrawn.size())
 	{
-		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CPassLeader> passLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
+		if (cardsDrawn[randomCard]->mType == "6" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		{
+			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+			shared_ptr<CPassLeader> passLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
 
-		// Add the converted element to the pass leader vector
-		passLeader.push_back(passLeaderElement);
-
+			// Add the converted element to the pass leader vector
+			passLeader.push_back(passLeaderElement);
+		}
+	}
+	else
+	{
+		std::cout << "randomCard is out of range" << endl;
 	}
 
 	professorAttacker.mProfName = attackerName;
@@ -391,25 +396,25 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	for (int i = 0; i < passLeader.size(); i++)
 	{
 		passLeaderCounter++;
-	}	
+	}
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (!tableAttacker.empty() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
 		{
-        int cardPower = 0;
-		cardPower = stoi(tableAttacker[i]->mPower);
-		cardPower += passLeaderCounter;
-		string cardPowerString = to_string(cardPower);
-		tableAttacker[i]->mPower = cardPowerString;
+			int cardPower = 0;
+			cardPower = stoi(tableAttacker[i]->mPower);
+			cardPower += passLeaderCounter;
+			string cardPowerString = to_string(cardPower);
+			tableAttacker[i]->mPower = cardPowerString;
 		}
 	}
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (!tableAttacker.empty() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
 		{
-		cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
+			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
 	}
 }
@@ -466,33 +471,58 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 	 }
 }
 
-void CManager::UseMitigatingCircumstancesCard(shared_ptr<CStudent> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircmstances>> mitigatingCircumstances)
+void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CStudent> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard)
 {
-	if (cardsDrawn[randomCard]->mType == "8")
+	if (randomCard < cardsDrawn.size())
 	{
-		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CMitigatingCircumstances> mitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
+		if (cardsDrawn[randomCard]->mType == "8" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		{
+			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+			shared_ptr<CMitigatingCircumstances> mitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
 
-		// Add the converted element to the accreditation vector
-		mitigatingCircumstances.push_back(mitigatingCircumstancesElement);
-
+			// Add the converted element to the accreditation vector
+			mitigatingCircumstances.push_back(mitigatingCircumstancesElement);
+		}
 	}
-	
+	else
+	{
+		std::cout << "randomCard is out of range" << endl;
+	}
+
 	for (int i = 0; i < mitigatingCircumstances.size(); i++)
 	{
-		if (!mitigatingCircumstances.empty())
+		int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+		if (randomIndex < tableAttacker.size())
 		{
-			if(!tableAttacker.empty())
+			if (!mitigatingCircumstances.empty())
 			{
-				int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+				if (!tableAttacker.empty())
+				{
+					if (randomIndex < tableAttacker.size())
+					{
+						int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+						int tableAttackerInt = stoi(tableAttacker[randomIndex]->mResilience);
+						int ok = damageReduction->grantDamageReduction(tableAttackerInt, damageReduction->mDamageReduction);
+						string okString = to_string(ok);
+						tableAttacker[randomIndex]->mResilience = okString;
+						cout << "Damaged Reduced!" << endl;
+					}
+					else
+					{
+						std::cout << "randomIndex is out of range" << endl;
+					}
+				}
+			}
 
-				int tableAttackerInt = stoi(tableAttacker[randomIndex]->mResilience);
-				int ok = damageReduction->grantDamageReduction(tableAttackerInt, damageReduction->mDamageReduction);
-				string okString = to_string(ok);
-				tableAttacker[randomIndex]->mResilience = okString;
-				cout << "Damaged Reduced!" << endl;
+			if (tableAttacker.empty())
+			{
+				std::cout << "NOTHING HAPPEN" << endl;
 			}
 		}
-		
+	}
+	if (mitigatingCircumstances.empty())
+	{
+		std::cout << "NOTHING HAPPEN" << endl;
 	}
 }
+

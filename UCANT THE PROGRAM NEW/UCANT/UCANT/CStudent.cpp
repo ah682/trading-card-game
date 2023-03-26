@@ -4,8 +4,8 @@
 #include "CStudent.h"
 #include "CCard.h"
 
-int CStudent::grantDamageReduction(int damage, int mDamageReduction, )
+int CStudent::grantDamageReduction(int damage, int mDamageReduction)
 {
-	damage =+ mDamageReduction;
+	damage += mDamageReduction;
 	return damage;
 }

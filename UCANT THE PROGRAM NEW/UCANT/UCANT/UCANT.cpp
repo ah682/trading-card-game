@@ -22,6 +22,7 @@
 #include "CCounter.h"
 #include "CFeedbackForum.h"
 #include "CResearchFunding.h"
+#include "CMitigatingCircumstances.h"
 
 // Use the standard namespace
 using namespace std;
@@ -159,7 +160,7 @@ int main()
 	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
 	auto pFeedbackForumPlagiarist = feedbackForumCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
-	auto pFeedbackForumPiffle = feedbackForumCards{};\
+	auto pFeedbackForumPiffle = feedbackForumCards{};
 
 	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
 	typedef vector <shared_ptr<CPassLeader>> passLeaderCards;
@@ -174,6 +175,20 @@ int main()
 	auto pResearchFundingPlagiarist = researchFundingCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pResearchFundingPiffle = researchFundingCards{};
+
+	//	Define  a type alias for a vector of shared pointers to CMitigatingCircumstances objects
+	typedef vector <shared_ptr<CMitigatingCircumstances>> mitigatingCircumstancesCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pMitigatingCircumstancesPlagiarist = mitigatingCircumstancesCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pMitigatingCircumstancesPiffle = mitigatingCircumstancesCards{};
+
+	// Define a type for a shared pointer to a CStudent object
+	typedef  shared_ptr<CStudent> studentCard;
+	// Create an instance of studentCard named pStudentPlagiaristTest
+	auto pStudentPlagiaristTest = studentCard{};
+	// Create an instance of studentCard named pStudentPiffleTest
+	auto pStudentPiffleTest = studentCard{};
 
 
 
@@ -249,6 +264,8 @@ int main()
 		pGameState->UsePassLeaderCard(pCardsPlagiaristDrawn, pPassLeaderPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
 		pGameState->UseResearchFundingCard(pCardsPlagiaristDrawn, pResearchFundingPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, "Plagiarist", pTablePlagiarist);
+		// Use type x cards(Pass Leader Cards), Piffle type 6 deck gets increased attack power
+		pGameState->UseMitigatingCircumstancesCard(pCardsPlagiarist, pStudentPlagiaristTest, pTablePlagiarist, pMitigatingCircumstancesPlagiarist, pCounterPlagiarist->mRandomCard);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
@@ -273,6 +290,8 @@ int main()
 		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
 		pGameState->UseResearchFundingCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
+		// Use type x cards(Pass Leader Cards), Piffle type 6 deck gets increased attack power
+		pGameState->UseMitigatingCircumstancesCard(pCardsPiffle, pStudentPiffleTest, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
