@@ -9,3 +9,9 @@ int CStudent::grantDamageReduction(int damage, int mDamageReduction)
 	damage += mDamageReduction;
 	return damage;
 }
+
+int CStudent::attackEasyTarget(int damage, VECTORHERE)
+{
+	damage += mDamageReduction;
+	return damage;
+}

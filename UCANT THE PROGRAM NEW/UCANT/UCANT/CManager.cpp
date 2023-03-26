@@ -525,4 +525,57 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 		std::cout << "NOTHING HAPPEN" << endl;
 	}
 }
-
+//Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
+void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+{
+	if (randomCard < cardsDrawn.size())
+	{
+		if (cardsDrawn[randomCard]->mType == "9" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		{
+			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+			shared_ptr<CEasyTarget> easyTargetElement = static_pointer_cast<CEasyTarget>(cardsDrawn[randomCard]);
+			// Add the converted element to the accreditation vector
+			easyTarget.push_back(easyTargetElement);
+		}
+	}
+	else
+	{
+		std::cout << "randomCard is out of range" << endl;
+	}
+	professorAttacker.mProfName = attackerName;
+	for (int i = 0; i < easyTarget.size(); i++)
+	{
+		int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+		if (randomIndex < tableAttacker.size())
+		{
+			if (!easyTarget.empty())
+			{
+				if (!tableAttacker.empty())
+				{
+					if (randomIndex < tableAttacker.size())
+					{
+						int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+						int tableAttackerInt = stoi(tableAttacker[randomIndex]->mResilience);
+						int ok = easyTarget->grantEasyTarget(tableAttackerInt, easyTarget->mEasyTarget);
+						string okString = to_string(ok);
+						tableAttacker[randomIndex]->mResilience = okString;
+						cout << "Damaged Reduced!" << endl;
+					}
+					else
+					{
+						std::cout << "randomIndex is out of range" << endl;
+					}
+				}
+			}
+			if (tableAttacker.empty())
+			{
+				std::cout << "NOTHING HAPPEN" << endl;
+			}
+		}
+	}
+	if (easyTarget.empty())
+	{
+		std::cout << "NOTHING HAPPEN" << endl;
+	}
+}
+void CManager::UsePassLeaderCard(vector<
