@@ -18,29 +18,29 @@ using namespace std;
 unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 
 // Initilalise size of dead card as -9999 string value
-const string DEAD_CARD = "-9999";
+const string G_DEAD_CARD = "-9999";
 
 // Initilalise size of decks as 48 integers
-const int DECK_SIZE = 48;
+const int G_DECK_SIZE = 48;
 
 // Initialise Card Types
-const string STUDENT = "1";
-const string PLAGIARISM_HEARING = "2";
-const string COURSE_ACCREDITATION = "3";
-const string FEEDBACK_FORUM = "4";
-const string INDUSTRIAL_PLACEMENT = "5";
-const string PASS_LEADER = "6";
-const string RESEARCH_FUNDING = "7";
-const string MITIGATING_CIRCUMSTANCES = "8";
-const string EASY_TARGET = "9";
-const string SERIAL_OFFENDER = "10";
-const string GRADUATE_STUDENT = "11";
+const string G_STUDENT = "1";
+const string G_PLAGIARISM_HEARING = "2";
+const string G_COURSE_ACCREDITATION = "3";
+const string G_FEEDBACK_FORUM = "4";
+const string G_INDUSTRIAL_PLACEMENT = "5";
+const string G_PASS_LEADER = "6";
+const string G_RESEARCH_FUNDING = "7";
+const string G_MITIGATING_CIRCUMSTANCES = "8";
+const string G_EASY_TARGET = "9";
+const string G_SERIAL_OFFENDER = "10";
+const string G_GRADUATE_STUDENT = "11";
 
 
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
-	if (cardsDrawn[randomCard]->mType == "2" && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CPlagiarismHearing> pPlagiarismElement = static_pointer_cast<CPlagiarismHearing>(cardsDrawn[randomCard]);
@@ -73,7 +73,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 				if (cardResilience <= 0) {
 					elementneeded->mResilience = "-0";
 					cout << "Card Killed: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
-					elementneeded->mResilience = DEAD_CARD;
+					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.end() - 1);
 				}
 			}
@@ -95,7 +95,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 	const int CARD_POWER = 1;
 	int cardResilience = 0;
 
-	if (cardsDrawn[randomCard]->mType == "3" && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_COURSE_ACCREDITATION && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CCourseAccreditation> accreditationElement = static_pointer_cast<CCourseAccreditation>(cardsDrawn[randomCard]);
@@ -119,7 +119,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 			if (cardResilience <= 0) {
 				tableAttacked[j]->mResilience = "0";
 				cout << "Card Killed: " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " by player " << professorAttacker.mProfName << endl;
-				tableAttacked[j]->mResilience = DEAD_CARD;
+				tableAttacked[j]->mResilience = G_DEAD_CARD;
 				tableAttacked.erase(tableAttacked.begin() + j);
 			}
 		}
@@ -138,7 +138,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
 {
 	playerName.mProfName = professor;
-	if (((cardsDrawn[randomCard]->mType == "1" || cardsDrawn[randomCard]->mType == "5") || cardsDrawn[randomCard]->mType == "6") && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
+	if (((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
@@ -208,7 +208,7 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 		if (getline(inFile, line)) {
 			stringstream ss(line);
 			ss >> cards[i]->mType >> cards[i]->mFirstname >> cards[i]->mLastname >> cards[i]->mPower >> cards[i]->mResilience >> cards[i]->mBoost;
-			if (cardsStudent[i]->mType == "1")
+			if (cardsStudent[i]->mType == G_STUDENT)
 			{
 				ss >> cardsStudent[i]->mType >> cardsStudent[i]->mFirstname >> cardsStudent[i]->mLastname >> cardsStudent[i]->mPower >> cardsStudent[i]->mResilience >> cardsStudent[i]->mBoost;
 			}
@@ -221,7 +221,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 {
 	for (int j = i; j < deckCounter; j++)
 	{
-		if (i == 48)
+		if (i == G_DECK_SIZE)
 		{
 			break;
 		}
@@ -267,7 +267,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 		{
 			cardResilience = stoi(tableAttacked[i]->mResilience);
 		}
-		if (tableAttacker[j]->mType == "5")
+		if (tableAttacker[j]->mType == G_INDUSTRIAL_PLACEMENT)
 		{
 			attackerCardResilience = stoi(tableAttacker[j]->mResilience);
 			attackerCardResilience += typeFiveCounter;
@@ -280,7 +280,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 			if (cardResilience > 0)
 			{
 				cardResilience -= cardPower;
-				if (tableAttacker[j]->mType == "5")
+				if (tableAttacker[j]->mType == G_INDUSTRIAL_PLACEMENT)
 				{
 					typeFiveCounter++;
 				}
@@ -290,7 +290,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 			if (cardResilience <= 0) {
 				tableAttacked[i]->mResilience = "0";
 				cout << "Card Killed: " << tableAttacked[i]->mType << " " << tableAttacked[i]->mFirstname << " " << tableAttacked[i]->mLastname << " " << tableAttacked[i]->mPower << " " << tableAttacked[i]->mResilience << " " << tableAttacked[i]->mBoost << " by player " << professorAttacker.mProfName << endl;
-				tableAttacked[i]->mResilience = DEAD_CARD;
+				tableAttacked[i]->mResilience = G_DEAD_CARD;
 				tableAttacked.erase(tableAttacked.begin() + i);
 			}
 		}
@@ -310,7 +310,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
-	if (cardsDrawn[randomCard]->mType == "4" && cardsDrawn[randomCard]->mResilience != DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CFeedbackForum> feedbackElement = static_pointer_cast<CFeedbackForum>(cardsDrawn[randomCard]);
@@ -351,7 +351,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 				{
 					elementneeded->mResilience = "0";
 					cout << "Card Killed: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
-					elementneeded->mResilience = DEAD_CARD;
+					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.end() - 1);
 				}
 				professorAttacked.mProfPrestige -= CARD_POWER;
@@ -391,7 +391,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 {
 	if (randomCard < cardsDrawn.size())
 	{
-		if (cardsDrawn[randomCard]->mType == "6" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		if (cardsDrawn[randomCard]->mType == G_PASS_LEADER && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 			shared_ptr<CPassLeader> passLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
@@ -437,7 +437,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
-	if (cardsDrawn[randomCard]->mType == "7")
+	if (cardsDrawn[randomCard]->mType == G_RESEARCH_FUNDING)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CResearchFunding> researchFundingElement = static_pointer_cast<CResearchFunding>(cardsDrawn[randomCard]);
@@ -491,7 +491,7 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 {
 	if (randomCard < cardsDrawn.size())
 	{
-		if (cardsDrawn[randomCard]->mType == "8" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		if (cardsDrawn[randomCard]->mType == G_MITIGATING_CIRCUMSTANCES && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 			shared_ptr<CMitigatingCircumstances> mitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
@@ -546,7 +546,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 {
 	if (randomCard < cardsDrawn.size())
 	{
-		if (cardsDrawn[randomCard]->mType == "9" && (cardsDrawn[randomCard]->mType != DEAD_CARD))
+		if (cardsDrawn[randomCard]->mType == G_EASY_TARGET && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 			shared_ptr<CEasyTarget> easyTargetElement = static_pointer_cast<CEasyTarget>(cardsDrawn[randomCard]);

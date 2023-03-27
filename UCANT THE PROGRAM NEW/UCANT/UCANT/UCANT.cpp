@@ -30,6 +30,9 @@ using namespace std;
 // Function declaration to read seed file
 time_t ReadSeedFile(string filename);
 
+// Initilalise size of decks as 48 integers
+const int G_DECK_SIZE = 48;
+
 
 int main()
 {
@@ -53,9 +56,6 @@ int main()
 	auto pGameState = make_unique<CManager>();
 	pGameState->GameStart();
 
-	// Initilalise size of decks as 48 integers
-	const int DECK_SIZE = 48;
-
 	// Open texts files and assign the contents to mFile
 	pCounterPlagiarist->mFile.open("plagiarist.txt");
 	pCounterPiffle->mFile.open("piffle-paper.txt");
@@ -75,13 +75,13 @@ int main()
 	// Count the number of cards in the plagiarist file
 	while (getline(pCounterPlagiarist->mFile, pCounterPiffle->mLine))
 	{
-		pCounterPlagiarist->mCardCounter++ + DECK_SIZE;
+		pCounterPlagiarist->mCardCounter++ + G_DECK_SIZE;
 	}
 
 	// Count the number of cards in the piffle file
 	while (getline(pCounterPiffle->mFile, pCounterPlagiarist->mLine))
 	{
-		pCounterPiffle->mCardCounter++ + DECK_SIZE;
+		pCounterPiffle->mCardCounter++ + G_DECK_SIZE;
 	}
 
 
@@ -207,19 +207,19 @@ int main()
 	typedef vector<shared_ptr<bool>> checkUsedCard;
 
 	// Create a checkUsedCard object for Plagiarist with size DECK_SIZE
-	auto pCheckUsedCardPlagiarist = checkUsedCard(DECK_SIZE);
+	auto pCheckUsedCardPlagiarist = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPlagiarist to unique pointers to false
-	for (int i = 0; i < DECK_SIZE; i++)
+	for (int i = 0; i < G_DECK_SIZE; i++)
 	{
 		pCheckUsedCardPlagiarist[i] = make_unique<bool>(false);
 	}
 
 	// Create a checkUsedCard object for Piffle with size DECK_SIZE
-	auto pCheckUsedCardPiffle = checkUsedCard(DECK_SIZE);
+	auto pCheckUsedCardPiffle = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPiffle to unique pointers to false
-	for (int i = 0; i < DECK_SIZE; i++)
+	for (int i = 0; i < G_DECK_SIZE; i++)
 	{
 		pCheckUsedCardPiffle[i] = make_unique<bool>(false);
 	}
@@ -230,7 +230,7 @@ int main()
 		pGameState->StartRound(pGameState->mRoundCounter);
 
 		// Draws random card for plagiarist and prints cards if pCounterPlagiarist->i < DECK_SIZE
-		if (pCounterPlagiarist->mI < DECK_SIZE)
+		if (pCounterPlagiarist->mI < G_DECK_SIZE)
 		{
 			// Draw card function draws two cards for Plagiarist
 			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mI, *pPlagiarist, pCheckUsedCardPlagiarist);
