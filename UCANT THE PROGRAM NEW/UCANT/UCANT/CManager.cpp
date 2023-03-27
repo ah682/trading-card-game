@@ -12,15 +12,31 @@
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
 
+// This statement tells the compiler to use the standard namespace
 using namespace std;
 
-unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
+unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 
 // Initilalise size of dead card as -9999 string value
 const string DEAD_CARD = "-9999";
 
 // Initilalise size of decks as 48 integers
 const int DECK_SIZE = 48;
+
+// Initialise Card Types
+const string STUDENT = "1";
+const string PLAGIARISM_HEARING = "2";
+const string COURSE_ACCREDITATION = "3";
+const string FEEDBACK_FORUM = "4";
+const string INDUSTRIAL_PLACEMENT = "5";
+const string PASS_LEADER = "6";
+const string RESEARCH_FUNDING = "7";
+const string MITIGATING_CIRCUMSTANCES = "8";
+const string EASY_TARGET = "9";
+const string SERIAL_OFFENDER = "10";
+const string GRADUATE_STUDENT = "11";
+
+
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
@@ -525,7 +541,7 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 		std::cout << "NOTHING HAPPEN" << endl;
 	}
 }
-//Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
+// Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
 void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	if (randomCard < cardsDrawn.size())
@@ -554,12 +570,6 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 				{
 					if (randomIndex < tableAttacker.size())
 					{
-						int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
-						int tableAttackerInt = stoi(tableAttacker[randomIndex]->mResilience);
-						int ok = easyTarget->grantEasyTarget(tableAttackerInt, easyTarget->mEasyTarget);
-						string okString = to_string(ok);
-						tableAttacker[randomIndex]->mResilience = okString;
-						cout << "Damaged Reduced!" << endl;
 					}
 					else
 					{
@@ -578,4 +588,8 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 		std::cout << "NOTHING HAPPEN" << endl;
 	}
 }
-void CManager::UsePassLeaderCard(vector<
+
+// Card Type 10 - Student - Serial Offender - When a student who is a Serial Offender reduces an enemy student’s resilience to 0 and has excess power, they move on to target another victim in the same turn.
+
+
+

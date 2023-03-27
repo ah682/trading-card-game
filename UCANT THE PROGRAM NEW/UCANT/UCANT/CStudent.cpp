@@ -2,6 +2,7 @@
 
 // Initialize necessary header files
 #include "CStudent.h"
+#include "CEasyTarget.h"
 #include "CCard.h"
 
 int CStudent::grantDamageReduction(int damage, int mDamageReduction)
@@ -10,8 +11,7 @@ int CStudent::grantDamageReduction(int damage, int mDamageReduction)
 	return damage;
 }
 
-int CStudent::attackEasyTarget(int damage, VECTORHERE)
+int CStudent::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>> attacked)
 {
-	damage += mDamageReduction;
 	return damage;
 }
