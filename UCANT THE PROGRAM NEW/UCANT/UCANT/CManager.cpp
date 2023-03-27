@@ -11,8 +11,9 @@
 #include "CCourseAccreditation.h"
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
+#include "CSerialOffender.h"
 
-// This statement tells the compiler to use the standard namespace
+// Tells the compiler to use the standard namespace
 using namespace std;
 
 unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
@@ -589,7 +590,86 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 }
 
-// Card Type 10 - Student - Serial Offender - When a student who is a Serial Offender reduces an enemy student’s resilience to 0 and has excess power, they move on to target another victim in the same turn.
+// Create Card Type 10 function GraduateStudent
+void CManager::UseSerialOffenderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialoffender, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
+{
+	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	{
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CSerialOffender> cerealOffenderElement = static_pointer_cast<CSerialOffender>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the accreditation vector
+		serialoffender.push_back(cerealOffenderElement);
+
+	}
+
+	professorAttacked.mProfName = attackedName;
+	professorAttacker.mProfName = attackerName;
+
+	const int CARD_POWER = 2;
+	int cardResilience = 0;
+
+	for (int i = 0; i < serialoffender.size(); i++)
+	{
+		if (randomChoice == 1)
+		{
+			int randomIndex = randomNumber->Random(tableAttacked.size() - 1);
+
+			if (!tableAttacked.empty())
+			{
+				shared_ptr<CCard> elementneeded = tableAttacked[randomIndex];
+				if (!elementneeded->mResilience.empty())
+				{
+					cardResilience = stoi(elementneeded->mResilience);
+				}
+
+
+				if (cardResilience > 0)
+				{
+					cardResilience -= CARD_POWER;
+					string cardResilienceString = to_string(cardResilience);
+					tableAttacked[randomIndex]->mResilience = cardResilienceString;
+				}
+				if (cardResilience <= 0)
+				{
+					elementneeded->mResilience = "0";
+					cout << "Card Killed: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
+					elementneeded->mResilience = G_DEAD_CARD;
+					tableAttacked.erase(tableAttacked.end() - 1);
+				}
+				professorAttacked.mProfPrestige -= CARD_POWER;
+			}
+
+			if (randomChoice == 2)
+			{
+
+				int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+				if (!tableAttacker.empty())
+				{
+					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
+					if (!elementneeded->mResilience.empty())
+					{
+						cardResilience = stoi(elementneeded->mResilience);
+					}
+				}
+				cardResilience += CARD_POWER;
+				string cardResilienceString = to_string(cardResilience);
+				tableAttacker[randomIndex]->mResilience = cardResilienceString;
+				professorAttacker.mProfPrestige += CARD_POWER;
+				cout << professorAttacker.mProfName << " " << " has recieved healing of " << CARD_POWER << " points" << endl;
+				cout << tableAttacker[tableAttacker.size() - 1]->mFirstname << " " << " has recieved healing of " << CARD_POWER << " points" << endl;
+			}
+
+
+			if (professorAttacked.mProfPrestige < 0)
+			{
+				professorAttacked.mProfPrestige = 0;
+			}
+			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+		}
+	}
+}
+
 
 
 

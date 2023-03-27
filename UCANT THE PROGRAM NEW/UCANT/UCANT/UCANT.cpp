@@ -24,7 +24,7 @@
 #include "CResearchFunding.h"
 #include "CMitigatingCircumstances.h"
 
-// Use the standard namespace
+// Tells the compiler to use the standard namespace
 using namespace std;
 
 // Function declaration to read seed file
@@ -196,6 +196,20 @@ int main()
 	auto pEasyTargetPlagiarist = easyTargetCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pEasyTargetPiffle = easyTargetCards{};
+
+	//	Define  a type alias for a vector of shared pointers to CSerialOffender objects
+	typedef vector <shared_ptr<CSerialOffender>> serialOffenderCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pSerialOffenderPlagiarist = serialOffenderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pSerialOffenderPiffle = serialOffenderCards{};
+
+	//	Define  a type alias for a vector of shared pointers to CGraduateStudent objects
+	typedef vector <shared_ptr<CGraduateStudent>> graduateStudentCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pGraduateStudentPlagiarist = graduateStudentCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pGraduateStudentPiffle = graduateStudentCards{};
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
 	pGameState->FillDeck(pCounterPlagiarist->mFile, pCardsPlagiarist, pCardsPlagiaristStudents);
