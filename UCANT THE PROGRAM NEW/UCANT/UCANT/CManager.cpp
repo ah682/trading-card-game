@@ -12,6 +12,7 @@
 #include "CPlagiarismHearing.h"
 #include "CFeedbackForum.h"
 #include "CSerialOffender.h"
+#include "CMitigatingCircumstances.h"
 
 // Tells the compiler to use the standard namespace
 using namespace std;
@@ -488,7 +489,7 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 	 }
 }
 
-void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CStudent> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard)
+void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CMitigatingCircumstances> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard)
 {
 	if (randomCard < cardsDrawn.size())
 	{

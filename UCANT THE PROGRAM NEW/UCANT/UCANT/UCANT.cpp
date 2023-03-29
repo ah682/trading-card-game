@@ -184,7 +184,7 @@ int main()
 	auto pMitigatingCircumstancesPiffle = mitigatingCircumstancesCards{};
 
 	// Define a type for a shared pointer to a CStudent object
-	typedef  shared_ptr<CStudent> studentCard;
+	typedef  shared_ptr<CMitigatingCircumstances> studentCard;
 	// Create an instance of studentCard named pStudentPlagiaristTest
 	auto pStudentPlagiaristTest = studentCard{};
 	// Create an instance of studentCard named pStudentPiffleTest

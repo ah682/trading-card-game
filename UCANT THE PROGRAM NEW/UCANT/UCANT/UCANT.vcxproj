@@ -133,6 +133,7 @@
     <ClCompile Include="CEasyTarget.cpp" />
     <ClCompile Include="CFeedbackForum.cpp" />
     <ClCompile Include="CGraduateStudent.cpp" />
+    <ClCompile Include="CIndustrialPlacement.cpp" />
     <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CMitigatingCircumstances.cpp" />
     <ClCompile Include="CPassLeader.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="CEasyTarget.h" />
     <ClInclude Include="CFeedbackForum.h" />
     <ClInclude Include="CGraduateStudent.h" />
+    <ClInclude Include="CIndustrialPlacement.h" />
     <ClInclude Include="CManager.h" />
     <ClInclude Include="CMitigatingCircumstances.h" />
     <ClInclude Include="CPassLeader.h" />
