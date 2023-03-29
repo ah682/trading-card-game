@@ -246,71 +246,62 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 }
 
 //Prof name is the one getting attacked
-void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardDrawn, int randomCard, int& typeFiveCounter)
+void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard)
 {
-	professorAttacked.mProfName = name;
-	professorAttacker.mProfName = nametwo;
 
-	int cardPower = 0;
-	int cardResilience = 0;
-	int attackerCardResilience = 0;
-	int minuses = 0;
-
-	if (cardResilience < 0)
+	if (cardsDrawn[randomCard]->mType == G_STUDENT && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
-		minuses = cardResilience;
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CStudent> pStudentElement = static_pointer_cast<CStudent>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the accreditation vector
+		ordinaryStudent.push_back(pStudentElement);
 	}
 
-	int j = tableAttacker.size() - 1;
+	professorAttacked.mProfName;
+	professorAttacker.mProfName;
 
-	for (int i = tableAttacked.size() - 1; i >= 0 && j >= 0; i--)
+	for (int i = 0; i < ordinaryStudent.size(); i++)
 	{
-		cardPower = stoi(tableAttacker[j]->mPower);
+		string cardPowerAttacker = ordinaryStudent[i]->mPower;
+		string cardResilienceAttacker = ordinaryStudent[i]->mResilience;
 
+		int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+		string cardPowerAttacked = tableAttacked[randomIndex]->mPower;
+		string cardResilienceAttacked = tableAttacked[randomIndex]->mResilience;
 
-		if (tableAttacked[i]->mResilience != "")
-		{
-			cardResilience = stoi(tableAttacked[i]->mResilience);
-		}
-		if (tableAttacker[j]->mType == G_INDUSTRIAL_PLACEMENT)
-		{
-			attackerCardResilience = stoi(tableAttacker[j]->mResilience);
-			attackerCardResilience += typeFiveCounter;
-			string attackerCardResilienceString = to_string(attackerCardResilience);
-			tableAttacker[j]->mResilience = attackerCardResilienceString;
-		}
+		int cardPowerAttackerInt = stoi(cardPowerAttacker);
+		int cardResilienceAttackerInt = stoi(cardResilienceAttacker);
+		int cardPowerAttackedInt = stoi(cardPowerAttacked);
+		int cardResilienceAttackedInt = stoi(cardResilienceAttacked);
 
-		if (tableAttacked.size() > 0)
-		{
-			if (cardResilience > 0)
-			{
-				cardResilience -= cardPower;
-				if (tableAttacker[j]->mType == G_INDUSTRIAL_PLACEMENT)
-				{
-					typeFiveCounter++;
-				}
-				string cardResilienceString = to_string(cardResilience);
-				tableAttacked[i]->mResilience = cardResilienceString;
+		if (!tableAttacked.empty()) {
+
+			if (cardResilienceAttackedInt > 0) {
+
+				cardResilienceAttackedInt -= cardPowerAttackerInt;
+				string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
+				tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
 			}
-			if (cardResilience <= 0) {
-				tableAttacked[i]->mResilience = "0";
-				cout << "Card Killed: " << tableAttacked[i]->mType << " " << tableAttacked[i]->mFirstname << " " << tableAttacked[i]->mLastname << " " << tableAttacked[i]->mPower << " " << tableAttacked[i]->mResilience << " " << tableAttacked[i]->mBoost << " by player " << professorAttacker.mProfName << endl;
-				tableAttacked[i]->mResilience = G_DEAD_CARD;
-				tableAttacked.erase(tableAttacked.begin() + i);
+			if (cardResilienceAttackedInt <= 0) {
+				tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
+				cout << "Card Killed: " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " by player " << professorAttacker.mProfName << endl;
+				tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
+				//tableAttacked.erase(tableAttacked.end() - 1);
 			}
 		}
-		if (tableAttacked.size() <= 0) {
-			professorAttacked.mProfPrestige -= cardPower;
+
+		if (tableAttacked.empty()) {
+			professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 		}
-		j--;
-
+				
+		if (professorAttacked.mProfPrestige < 0)
+		{
+			professorAttacked.mProfPrestige = 0;
+		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+		
 	}
-
-	if (professorAttacked.mProfPrestige < 0)
-	{
-		professorAttacked.mProfPrestige = 0;
-	}
-	cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
@@ -421,7 +412,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == G_PASS_LEADER)
 		{
 			int cardPower = 0;
 			cardPower = stoi(tableAttacker[i]->mPower);
@@ -433,7 +424,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 	for (int i = 0; i < passLeader.size(); i++)
 	{
-		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == G_PASS_LEADER)
 		{
 			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
@@ -674,7 +665,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CCard>> cardsDrawn, vecto
 	}
 }
 
-void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	if (randomCard < cardsDrawn.size())
 	{
@@ -694,28 +685,28 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 
 	professorAttacker.mProfName = attackerName;
 
-	int passLeaderCounter = 0;
+	int industrialPlacementCounter = 0;
 
-	for (int i = 0; i < passLeader.size(); i++)
+	for (int i = 0; i < industrialPlacement; i++)
 	{
-		passLeaderCounter++;
+		industrialPlacementCounter++;
 	}
 
-	for (int i = 0; i < passLeader.size(); i++)
+	for (int i = 0; i < industrialPlacement.size(); i++)
 	{
-		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == G_INDUSTRIAL_PLACEMENT)
 		{
 			int cardPower = 0;
 			cardPower = stoi(tableAttacker[i]->mPower);
-			cardPower += passLeaderCounter;
+			cardPower += industrialPlacementCounter;
 			string cardPowerString = to_string(cardPower);
 			tableAttacker[i]->mPower = cardPowerString;
 		}
 	}
 
-	for (int i = 0; i < passLeader.size(); i++)
+	for (int i = 0; i < industrialPlacement.size(); i++)
 	{
-		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == G_INDUSTRIAL_PLACEMENT)
 		{
 			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}

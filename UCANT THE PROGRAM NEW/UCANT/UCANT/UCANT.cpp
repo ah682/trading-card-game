@@ -279,7 +279,7 @@ int main()
 		pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
 
 		// Use type 1 cards (Student Cards), Piffle gets attacked
-		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", pCardsPlagiaristDrawn, pCounterPlagiarist->mRandomCard, pCounterPlagiarist->mResilienceIncrease);
+		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "name?", "name?", pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard);
 
 		// Initialize random range between one or two to choose truly random card
 		int randomRangeOneorTwo = pCounterPlagiarist->RandomRange(1, 2); 
@@ -307,7 +307,7 @@ int main()
 		}
 
 		// Use type 1 cards (Student Cards), Plagiarist gets attacked
-		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pCardsPiffleDrawn, pCounterPiffle->mRandomCard, pCounterPiffle->mResilienceIncrease);
+		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard);
 
 		// Initialize random range between one or two to choose truly random card
 		randomRangeOneorTwo = pCounterPiffle->RandomRange(1, 2);
