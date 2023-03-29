@@ -23,6 +23,10 @@
 #include "CFeedbackForum.h"
 #include "CResearchFunding.h"
 #include "CMitigatingCircumstances.h"
+#include "CIndustrialPlacement.h"
+#include "CEasyTarget.h"
+#include "CSerialOffender.h"
+#include "CGraduateStudent.h"
 
 // Tells the compiler to use the standard namespace
 using namespace std;
@@ -210,6 +214,13 @@ int main()
 	auto pGraduateStudentPlagiarist = graduateStudentCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pGraduateStudentPiffle = graduateStudentCards{};
+
+	//	Define  a type alias for a vector of shared pointers to CIndustrialPlacement objects
+	typedef vector <shared_ptr<CIndustrialPlacement>> industrialPlacementCards;
+	// Create an instance of feedbackForumCards named pFeedbackForumPlagiarist
+	auto pIndustrialPlacementPlagiarist = industrialPlacementCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
+	auto pIndustrialPlacementPiffle = industrialPlacementCards{};
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
 	pGameState->FillDeck(pCounterPlagiarist->mFile, pCardsPlagiarist, pCardsPlagiaristStudents);

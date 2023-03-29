@@ -13,6 +13,9 @@
 #include "CFeedbackForum.h"
 #include "CSerialOffender.h"
 #include "CMitigatingCircumstances.h"
+#include "CIndustrialPlacement.h"
+#include "CEasyTarget.h"
+#include "CGraduateStudent.h"
 
 // Tells the compiler to use the standard namespace
 using namespace std;
@@ -671,6 +674,53 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CCard>> cardsDrawn, vecto
 	}
 }
 
+void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+{
+	if (randomCard < cardsDrawn.size())
+	{
+		if (cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
+		{
+			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+			shared_ptr<CIndustrialPlacement> industrialPlacementElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
+
+			// Add the converted element to the pass leader vector
+			passLeader.push_back(industrialPlacementElement);
+		}
+	}
+	else
+	{
+		std::cout << "randomCard is out of range" << endl;
+	}
+
+	professorAttacker.mProfName = attackerName;
+
+	int passLeaderCounter = 0;
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		passLeaderCounter++;
+	}
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		{
+			int cardPower = 0;
+			cardPower = stoi(tableAttacker[i]->mPower);
+			cardPower += passLeaderCounter;
+			string cardPowerString = to_string(cardPower);
+			tableAttacker[i]->mPower = cardPowerString;
+		}
+	}
+
+	for (int i = 0; i < passLeader.size(); i++)
+	{
+		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == "6")
+		{
+			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
+		}
+	}
+}
 
 
 
