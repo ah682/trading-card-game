@@ -290,6 +290,8 @@ int main()
 		pGameState->UseCourseAccreditationCard(pCardsPlagiaristDrawn, pDrawCourseAccreditationCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist");
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Plagiarist gets healed
 		pGameState->UseFeedbackForumCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist);
+		// Use type x cards (Industrial Placement Cards), Piffle gets attacked
+		pGameState->UseIndustrialPlacementCard(pCardsPlagiaristDrawn, pIndustrialPlacementPlagiarist, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "attackerName", pTablePlagiarist, pTablePiffle);
 		// Use type x cards (Pass Leader Cards), Plagiarist type 6 deck gets increased attack power
 		pGameState->UsePassLeaderCard(pCardsPlagiaristDrawn, pPassLeaderPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
@@ -318,6 +320,8 @@ int main()
 		pGameState->UseCourseAccreditationCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper");
 		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 		pGameState->UseFeedbackForumCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pTablePiffle);
+		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
+		pGameState->UseIndustrialPlacementCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "attackerName", pTablePiffle, pTablePlagiarist);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
 		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power

@@ -19,6 +19,7 @@
 #include "CEasyTarget.h"
 #include "CSerialOffender.h"
 #include "CGraduateStudent.h"
+#include "CIndustrialPlacement.h"
 
 class CManager
 {

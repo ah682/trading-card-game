@@ -79,7 +79,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 					elementneeded->mResilience = "-0";
 					cout << "Card Killed: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
 					elementneeded->mResilience = G_DEAD_CARD;
-					tableAttacked.erase(tableAttacked.end() - 1);
+					tableAttacked.pop_back();
 				}
 			}
 
@@ -364,7 +364,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 					elementneeded->mResilience = "0";
 					cout << "Card Killed: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
 					elementneeded->mResilience = G_DEAD_CARD;
-					tableAttacked.erase(tableAttacked.end() - 1);
+					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
 				professorAttacked.mProfPrestige -= CARD_POWER;
 			}
@@ -591,13 +591,13 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 			}
 			if (tableAttacker.empty())
 			{
-				std::cout << "NOTHING HAPPEN" << endl;
+				
 			}
 		}
 	}
 	if (easyTarget.empty())
 	{
-		std::cout << "NOTHING HAPPEN" << endl;
+		
 	}
 }
 

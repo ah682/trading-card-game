@@ -1,8 +1,4 @@
 ﻿  CManager.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,90): error C2065: 'CIndustrialPlacement': undeclared identifier
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,79): error C2923: 'std::shared_ptr': 'CIndustrialPlacement' is not a valid template type argument for parameter '_Ty'
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,90): message : see declaration of 'CIndustrialPlacement'
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,79): error C3203: 'shared_ptr': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(278,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(345,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(375,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
@@ -12,17 +8,5 @@ F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(531,7
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(576,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(627,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(657,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(685,16): error C2511: 'void CManager::UseIndustrialPlacementCard(std::vector<std::shared_ptr<CCard>,std::allocator<std::shared_ptr<CCard>>>,std::vector<std::shared_ptr<CIndustrialPlacement>,std::allocator<std::shared_ptr<CIndustrialPlacement>>> &,int,CPlayers::SProfessor &,CPlayers::SProfessor &,std::string,std::vector<std::shared_ptr<CTable>,std::allocator<std::shared_ptr<CTable>>> &,std::vector<std::shared_ptr<CTable>,std::allocator<std::shared_ptr<CTable>>> &)': overloaded member function not found in 'CManager'
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(23,7): message : see declaration of 'CManager'
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(714,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  UCANT.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,90): error C2065: 'CIndustrialPlacement': undeclared identifier
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,79): error C2923: 'std::shared_ptr': 'CIndustrialPlacement' is not a valid template type argument for parameter '_Ty'
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,90): message : see declaration of 'CIndustrialPlacement'
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.h(36,79): error C3203: 'shared_ptr': unspecialized class template can't be used as a template argument for template parameter '_Ty', expected a real type
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(53,38): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(82,38): warning C4552: '+': result of expression not used
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(88,34): warning C4552: '+': result of expression not used
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(267,120): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(272,136): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
