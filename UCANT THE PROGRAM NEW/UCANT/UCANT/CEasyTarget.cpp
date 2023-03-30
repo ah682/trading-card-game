@@ -8,7 +8,7 @@ const string G_DEAD_CARD = "-9999";
 
 unique_ptr<CCounter> TEST = make_unique<CCounter>(); // ?
 
-int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>> &attacked)
+int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
 {
 	if (attacked.size() > 0)
 	{

@@ -22,7 +22,7 @@ public:
 	string mPower;
 	string mResilience;
 	string mBoost;
-	
+
 	virtual ~CCard() {}
 };
 
