@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CStudent.h"
 #include "CEasyTarget.h"
 #include "CCard.h"

@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #pragma once
 
 // Initialize necessary header files

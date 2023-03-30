@@ -45,6 +45,9 @@ const string G_GRADUATE_STUDENT = "11";
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice)
 {
+
+	cout << "Using Plagiarism Hearing Card" << endl;
+
 	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
@@ -74,6 +77,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[tableAttacked.size() - 1]->mResilience = cardResilienceString;
+					cout << "Card Attacked: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
 				}
 				if (cardResilience <= 0) {
 					elementneeded->mResilience = "-0";
@@ -90,8 +94,8 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
-			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 }
 
@@ -99,6 +103,8 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 {
 	const int CARD_POWER = 1;
 	int cardResilience = 0;
+
+	cout << "Using Course Accreditation Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_COURSE_ACCREDITATION && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
@@ -120,6 +126,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 			cardResilience -= CARD_POWER;
 			string cardResilienceString = to_string(cardResilience);
 			tableAttacked[j]->mResilience = cardResilienceString;
+			cout << "Card Attacked: " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " by player " << professorAttacker.mProfName << endl;
 
 			if (cardResilience <= 0) {
 				tableAttacked[j]->mResilience = "0";
@@ -135,15 +142,16 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 		{
 			professorAttacked.mProfPrestige = 0;
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 
 	}
+	cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
 {
+	cout << "Printing Table" << endl;
 	playerName.mProfName = professor;
-	if (((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (((((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) || cardsDrawn[randomCard]->mType == G_EASY_TARGET) || cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM) && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
@@ -224,6 +232,8 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 
 void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards)
 {
+	cout << "Drawing Cards" << endl;
+
 	for (int j = i; j < deckCounter; j++)
 	{
 		if (i == G_DECK_SIZE)
@@ -248,6 +258,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 //Prof name is the one getting attacked
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard)
 {
+	cout << "Using Ordinary Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -309,9 +320,10 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
-			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+			
 
 		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (ordinaryStudent.empty())
 	{
@@ -322,6 +334,9 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
+
+	cout << "Using FeedBackForum Card" << endl;
+
 	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
@@ -394,13 +409,15 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
-			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+			
 		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 }
 
 void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	cout << "Using PassLeader Card" << endl;
 	if (randomCard < cardsDrawn.size())
 	{
 		if (cardsDrawn[randomCard]->mType == G_PASS_LEADER && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
@@ -449,6 +466,8 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	cout << "Using ResearchFunding Card" << endl;
+
 	if (cardsDrawn[randomCard]->mType == G_RESEARCH_FUNDING)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
@@ -480,6 +499,7 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 					cardPower += cardPowerAdditionInteger;
 					string cardPowerString = to_string(cardPower);
 					tableAttacker[randomIndex]->mPower = cardPowerString;
+					cout << tableAttacker[randomIndex]->mType << " " << tableAttacker[randomIndex]->mFirstname << " " << tableAttacker[randomIndex]->mLastname << " " << tableAttacker[randomIndex]->mPower << " " << tableAttacker[randomIndex]->mResilience << " " << tableAttacker[randomIndex]->mBoost << "has recieved a power increase of " << cardPowerAdditionInteger << endl;
 					 
 				 }
 
@@ -495,12 +515,13 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 	 }
 	 if (researchFunding.empty())
 	 {
-
+		 cout << "There is no research funding cards to use" << endl;
 	 }
 }
 
 void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CMitigatingCircumstances> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard)
 {
+	cout << "Using MitigatingCircumstances Card" << endl;
 	if (randomCard < cardsDrawn.size())
 	{
 		if (cardsDrawn[randomCard]->mType == G_MITIGATING_CIRCUMSTANCES && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
@@ -514,7 +535,7 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 	}
 	else
 	{
-		std::cout << "randomCard is out of range" << endl;
+		cout << "randomCard is out of range" << endl;
 	}
 
 	for (int i = 0; i < mitigatingCircumstances.size(); i++)
@@ -533,29 +554,30 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 						int damageReductionGranted = damageReduction->grantDamageReduction(tableAttackerResillienceInt, damageReduction->mDamageReduction); //error here
 						string damageReductionString = to_string(damageReductionGranted);
 						tableAttacker[randomIndex]->mResilience = damageReductionString;
-						cout << "Damaged Reduced!" << endl;
+						cout << "Damaged Reduced of card" << tableAttacker[randomIndex]->mType << tableAttacker[randomIndex]->mFirstname << tableAttacker[randomIndex]->mLastname << tableAttacker[randomIndex]->mPower << tableAttacker[randomIndex]->mResilience << tableAttacker[randomIndex]->mBoost << endl;
 					}
 					else
 					{
-						std::cout << "randomIndex is out of range" << endl;
+						
 					}
 				}
 			}
 
 			if (tableAttacker.empty())
 			{
-				std::cout << "NOTHING HAPPEN" << endl;
+				cout << "Table attacker is empty!" << endl;
 			}
 		}
 	}
 	if (mitigatingCircumstances.empty())
 	{
-		std::cout << "NOTHING HAPPEN" << endl;
+		cout << "There is no mitigating circumstance cards to use" << endl;
 	}
 }
 // Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
 void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	cout << "Using EasyTarget Card" << endl;
 	if (randomCard < cardsDrawn.size())
 	{
 		if (cardsDrawn[randomCard]->mType == G_EASY_TARGET && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
@@ -568,7 +590,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 	else
 	{
-		std::cout << "randomCard is out of range" << endl;
+		
 	}
 	professorAttacker.mProfName = attackerName;
 	for (int i = 0; i < easyTarget.size(); i++)
@@ -585,7 +607,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 					}
 					else
 					{
-						std::cout << "randomIndex is out of range" << endl;
+						
 					}
 				}
 			}
@@ -604,6 +626,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 // Create Card Type 10 function GraduateStudent
 void CManager::UseSerialOffenderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialoffender, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	cout << "Using SerialOffender Card" << endl;
 	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
@@ -676,14 +699,16 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CCard>> cardsDrawn, vecto
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
-			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+			
 		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 }
 
 
 void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked)
 {
+	cout << "Using IndustrialPlacement Card" << endl;
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
 	int cardPowerAttackedInt = 0;
@@ -731,6 +756,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 					cardResilienceAttackerInt += increaseResilience;
 					string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 					cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
+					cout << "Card Attacked: " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " by player " << professorAttacker.mProfName << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
@@ -751,13 +777,13 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
-			cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 
 		}
+		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (industrialPlacement.empty())
 	{
-		cout << "No student cards to use" << endl;
+		cout << "No Industrial Placement cards to use" << endl;
 	}
 }
 

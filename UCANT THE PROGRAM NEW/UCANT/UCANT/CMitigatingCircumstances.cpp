@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CMitigatingCircumstances.h"
 
 int CMitigatingCircumstances::grantDamageReduction(int damage, int mDamageReduction)

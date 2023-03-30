@@ -1,4 +1,5 @@
 // Adam James Anthony Hall
+
 // Memory Leak Detection
 #define _CRTDBG_MAP_ALLOC
 
@@ -31,15 +32,15 @@
 // Tells the compiler to use the standard namespace
 using namespace std;
 
-// Function declaration to read seed file
-time_t ReadSeedFile(string filename);
-
 // Initilalise size of decks as 48 integers
 const int G_DECK_SIZE = 48;
 
 
 int main()
 {
+	// Function declaration to read seed file
+	time_t ReadSeedFile(string filename);
+
 	// Define a type alias for a unique pointer to a CCounter object
 	typedef unique_ptr<CCounter> pCCounterPtr;
 
@@ -48,6 +49,15 @@ int main()
 
 	// Create a unique pointer to a CCounter object for Plagiarist
 	auto pCounterPlagiarist = make_unique<CCounter>();
+
+	// Create a unique pointer to a CCounter object for Pointless
+	auto pCounter = make_unique<CCounter>();
+
+	// Create a unique pointer to a CCounter object for Perdition
+	auto pCounterPerdition = make_unique<CCounter>();
+
+	// Create a unique pointer to a CCounter object for Pointless
+	auto pCounterPointless = make_unique<CCounter>();
 
 	// Genereate seed from read file
 	pCounterPiffle->mSeed = ReadSeedFile("seed.txt");
@@ -63,14 +73,14 @@ int main()
 	// Open texts files and assign the contents to mFile
 	pCounterPlagiarist->mFile.open("plagiarist.txt");
 	pCounterPiffle->mFile.open("piffle-paper.txt");
-	//Counter->filePlagiarist.open("pointless.txt");
-   // Counter->filePiffle.open("perdition.txt");
+	pCounterPointless->mFile.open("pointless.txt");
+	pCounterPerdition->mFile.open("perdition.txt");
 
 	// Create a shared pointer to new SProfessor objects
 	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
 	pPlagiarist->mProfName = "Plagiarist";
 	auto pPiffle = make_shared<CPlayers::SProfessor>();
-	pPiffle->mProfName = "Piffle";
+	pPiffle->mProfName = "Piffle-Paper";
 	auto pPerdition = make_shared<CPlayers::SProfessor>();
 	pPerdition->mProfName = "Perdition";
 	auto pPointless = make_shared<CPlayers::SProfessor>();
@@ -86,6 +96,18 @@ int main()
 	while (getline(pCounterPiffle->mFile, pCounterPlagiarist->mLine))
 	{
 		pCounterPiffle->mCardCounter++ + G_DECK_SIZE;
+	}
+
+	// Count the number of cards in the pointless file
+	while (getline(pCounter->mFile, pCounter->mLine))
+	{
+		pCounter->mCardCounter++ + G_DECK_SIZE;
+	}
+
+	// Count the number of cards in the perdition file
+	while (getline(pCounter->mFile, pCounter->mLine))
+	{
+		pCounter->mCardCounter++ + G_DECK_SIZE;
 	}
 
 
@@ -323,13 +345,13 @@ int main()
 		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 		pGameState->UseIndustrialPlacementCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "attackerName", pTablePiffle, pTablePlagiarist);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
-		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
+		pGameState->UsePassLeaderCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle-Paper", pTablePiffle);
 		// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
-		pGameState->UseResearchFundingCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
+		pGameState->UseResearchFundingCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 		// Use type x cards(Pass Leader Cards), Piffle type 6 deck gets increased attack power
 		pGameState->UseMitigatingCircumstancesCard(pCardsPiffle, pStudentPiffleTest, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
 		// Use type x cards(Pass Leader Cards), Piffle type 6 deck gets increased attack power
-		pGameState->UseEasyTargetCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
+		pGameState->UseEasyTargetCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
