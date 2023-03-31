@@ -3,8 +3,7 @@
 #include "CEasyTarget.h"
 #include "CCard.h"
 #include "CCounter.h"
-
-const string G_DEAD_CARD = "-9999";
+#include "CManager.h"
 
 unique_ptr<CCounter> TEST = make_unique<CCounter>(); // ?
 

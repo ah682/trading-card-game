@@ -32,10 +32,6 @@
 // Tells the compiler to use the standard namespace
 using namespace std;
 
-// Initilalise size of decks as 48 integers
-const int G_DECK_SIZE = 48;
-
-
 int main()
 {
 	// Function declaration to read seed file
