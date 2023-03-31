@@ -245,7 +245,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 //Prof name is the one getting attacked
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget)
 {
-	cout << "Using Ordinary Student Card" << endl;
+	cout << "Using Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -451,6 +451,10 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
 	}
+	if (passLeader.empty())
+	{
+		cout << "There is no pass leade cards to use" << endl;
+	}
 }
 
 void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
@@ -622,7 +626,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 // Create Card Type 10 function GraduateStudent
 void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	cout << "Using Ordinary Student Card" << endl;
+	cout << "Using Serial Offender Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -819,7 +823,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 
 void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	cout << "Using Ordinary Student Card" << endl;
+	cout << "Graduate Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -891,7 +895,7 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 	}
 	if (graduateStudent.empty())
 	{
-		cout << "No student cards to use" << endl;
+		cout << "No graduate student cards to use" << endl;
 	}
 }
 
