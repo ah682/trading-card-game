@@ -23,6 +23,6 @@ public:
 	string mResilience;
 	string mBoost;
 
-	virtual ~CCard() {}
+	//virtual int useCardAbility(int ability = 0) = 0; // Virtual Function
 };
 

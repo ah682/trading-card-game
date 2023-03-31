@@ -20,8 +20,9 @@ public:
 
 	string mLine = "";
 	ifstream mFile;
+	// Function overloading
 	int Random(int max);
-	int RandomRange(int min, int max);
+	int Random(int min, int max);
 
 	// Close player files
 	~CCounter() {

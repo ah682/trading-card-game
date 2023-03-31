@@ -6,6 +6,6 @@ class CMitigatingCircumstances :
 {
 public:
 	int mDamageReduction = 1;
-	int grantDamageReduction(int damage, int mDamageReduction);
+	int grantDamageReduction(int damage, int mDamageReduction); //Grant Damage Reduction
 };
 

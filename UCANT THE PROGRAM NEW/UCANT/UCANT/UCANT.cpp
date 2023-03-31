@@ -286,12 +286,12 @@ int main()
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
 			// Piffle Chooses a random card from the two cards DrawCard function have selected
-			pCounterPiffle->mRandomCard = pCounterPiffle->RandomRange(pCardsPiffleDrawn.size() - 2, pCardsPiffleDrawn.size() - 1);
+			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 2, pCardsPiffleDrawn.size() - 1);
 			// Prints out chosen card for Piffle-Paper
 			cout << "Piffle-Paper chooses card: " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mType << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mFirstname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mLastname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mPower << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mResilience << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mBoost << endl;
 
 			// Plagiarist Chooses a random card from the two cards DrawCard function have selected
-			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->RandomRange(pCardsPlagiaristDrawn.size() - 2, pCardsPlagiaristDrawn.size() - 1);
+			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(pCardsPlagiaristDrawn.size() - 2, pCardsPlagiaristDrawn.size() - 1);
 			// Prints out chosen card for Plagiarist
 			cout << "Plagiarist chooses: " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mType << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mFirstname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mLastname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mPower << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mResilience << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mBoost << endl;
 		}
@@ -304,7 +304,7 @@ int main()
 		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "name?", "name?", pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard);
 
 		// Initialize random range between one or two to choose truly random card
-		int randomRangeOneorTwo = pCounterPlagiarist->RandomRange(1, 2);
+		int randomRangeOneorTwo = pCounterPlagiarist->Random(1, 2);
 
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
 		pGameState->UsePlagiarismHearingCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
@@ -334,7 +334,7 @@ int main()
 		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard);
 
 		// Initialize random range between one or two to choose truly random card
-		randomRangeOneorTwo = pCounterPiffle->RandomRange(1, 2);
+		randomRangeOneorTwo = pCounterPiffle->Random(1, 2);
 
 		// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
 		pGameState->UsePlagiarismHearingCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
