@@ -4,5 +4,7 @@
 class CSerialOffender :
 	public CCard
 {
+	void printCardUse();
+	void printCardDeath();
 };
 

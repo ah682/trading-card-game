@@ -4,5 +4,8 @@
 class CGraduateStudent :
 	public CCard
 {
+	public:
+		void printCardUse();
+		void printCardDeath();
 };
 

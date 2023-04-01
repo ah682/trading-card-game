@@ -4,5 +4,8 @@
 class CPassLeader :
 	public CCard
 {
+public:
+	void printCardUse();
+	void printCardDeath();
 };
 

@@ -8,6 +8,8 @@ class CStudent :
 	public CCard
 {
 public:
+	void printCardUse();
+	void printCardDeath();
 };
 
 

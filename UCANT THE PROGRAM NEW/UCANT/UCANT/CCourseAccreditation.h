@@ -6,5 +6,7 @@
 class CCourseAccreditation :
 	public CCard
 {
+	void printCardUse();
+	void printCardDeath();
 };
 

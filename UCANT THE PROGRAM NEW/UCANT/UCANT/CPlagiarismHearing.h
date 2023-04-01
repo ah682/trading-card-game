@@ -7,5 +7,8 @@
 class CPlagiarismHearing :
 	public CCard
 {
+	public:
+		void printCardUse();
+		void printCardDeath();
 };
 

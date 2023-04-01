@@ -20,6 +20,7 @@ public:
 
 	string mLine = "";
 	ifstream mFile;
+	
 	// Function overloading
 	int Random(int max);
 	int Random(int min, int max);
