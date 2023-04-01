@@ -46,3 +46,4 @@
 1 Lazy Complainer 2 4
 1 Hung Over 2 1
 1 Sneaky Cheat 2 4
+1 Clever Dick 2 4

@@ -1,3 +1,4 @@
+1 Smarty Pants 4 2
 1 Hard Worker 2 4
 1 Lazy Complainer 2 4
 10 Scary Austrian 4 6
