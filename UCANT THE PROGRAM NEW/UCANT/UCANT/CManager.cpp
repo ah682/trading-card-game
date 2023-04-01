@@ -22,7 +22,7 @@ using namespace std;
 
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	cout << "Using Plagiarism Hearing Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
@@ -42,7 +42,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 
 	for (int i = 0; i < plagiarism.size(); i++)
 	{
-		TEST->attackEasyTarget(CARD_POWER, easyTarget);
+		activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
 		if (!tableAttacked.empty()) {
 			CCard* elementneeded = tableAttacked.back().get();
 			if (!elementneeded->mResilience.empty()) {
@@ -80,7 +80,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 
 	const int CARD_POWER = 1;
 	int cardResilience = 0;
@@ -104,7 +104,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 		if (!tableAttacked.empty()) {
 			for (int j = 0; j < tableAttacked.size() - 1; j++)
 			{
-				TEST->attackEasyTarget(CARD_POWER, easyTarget);
+				activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
 				cardResilience = stoi(tableAttacked[j]->mResilience);
 				cardResilience -= CARD_POWER;
 				string cardResilienceString = to_string(cardResilience);
@@ -190,7 +190,7 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 
 void CManager::StartRound(int& round)
 {
-	cout << "Round: " << round << endl;
+	cout << "Round: " << round << endl << "=========" << endl;
 	round++;
 }
 
@@ -243,7 +243,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 
 	cout << "Using Student Card" << endl;
 
@@ -284,7 +284,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 				cardPowerAttackedInt = stoi(cardPowerAttacked);
 				cardResilienceAttackedInt = stoi(cardResilienceAttacked);
 
-				TEST->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+				activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
 
@@ -323,7 +323,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	cout << "Using FeedBackForum Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
@@ -344,7 +344,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 
 	for (int i = 0; i < feedbackforum.size(); i++)
 	{
-		TEST->attackEasyTarget(CARD_POWER, easyTarget);
+		activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
 		if (randomChoice == 1)
 		{
 			int randomIndex = randomNumber->Random(tableAttacked.size() - 1);
@@ -631,7 +631,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 
 	cout << "Using Serial Offender Student Card" << endl;
 
@@ -672,7 +672,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 				cardPowerAttackedInt = stoi(cardPowerAttacked);
 				cardResilienceAttackedInt = stoi(cardResilienceAttacked);
 
-				TEST->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+				activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
 
@@ -744,7 +744,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	cout << "Using IndustrialPlacement Card" << endl;
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -788,7 +788,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 
 
 				if (cardResilienceAttackedInt > 0) {
-					TEST->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+					activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
 					if (easyTarget.size() > 0)
 					{
 						cardResilienceAttackerInt += increaseResilience;
@@ -833,7 +833,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	cout << "Graduate Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
@@ -873,7 +873,7 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 				cardPowerAttackedInt = stoi(cardPowerAttacked);
 				cardResilienceAttackedInt = stoi(cardResilienceAttacked);
 
-				TEST->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+				activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
 
