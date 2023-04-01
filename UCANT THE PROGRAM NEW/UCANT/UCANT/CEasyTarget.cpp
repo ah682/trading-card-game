@@ -5,13 +5,14 @@
 #include "CCounter.h"
 #include "CManager.h"
 
-unique_ptr<CCounter> TEST = make_unique<CCounter>(); // ?
+
 
 int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
 {
+	unique_ptr<CCounter> pickRandom = make_unique<CCounter>();
 	if (attacked.size() > 0)
 	{
-		int randomIndex = TEST->Random(attacked.size() - 1);
+		int randomIndex = pickRandom->Random(attacked.size() - 1);
 		int  attackedResilience = stoi(attacked[randomIndex]->mResilience);
 		attackedResilience -= damage;
 

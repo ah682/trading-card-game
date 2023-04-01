@@ -20,15 +20,9 @@
 // Tells the compiler to use the standard namespace
 using namespace std;
 
-unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?\
-
-shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
-
-
-
 void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
 	cout << "Using Plagiarism Hearing Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
@@ -85,6 +79,9 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 
 void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
+
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+
 	const int CARD_POWER = 1;
 	int cardResilience = 0;
 
@@ -245,6 +242,9 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 //Prof name is the one getting attacked
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+
 	cout << "Using Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
@@ -322,7 +322,8 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
 	cout << "Using FeedBackForum Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
@@ -343,7 +344,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 
 	for (int i = 0; i < feedbackforum.size(); i++)
 	{
-		TEST->attackEasyTarget(CARD_POWER, easyTarget );
+		TEST->attackEasyTarget(CARD_POWER, easyTarget);
 		if (randomChoice == 1)
 		{
 			int randomIndex = randomNumber->Random(tableAttacked.size() - 1);
@@ -459,6 +460,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 
 void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 	cout << "Using ResearchFunding Card" << endl;
 
 	if (cardsDrawn[randomCard]->mType == G_RESEARCH_FUNDING)
@@ -514,6 +516,7 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 
 void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CMitigatingCircumstances> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 	cout << "Using MitigatingCircumstances Card" << endl;
 	if (randomCard < cardsDrawn.size())
 	{
@@ -577,6 +580,7 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 // Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
 void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 	cout << "Using EasyTarget Card" << endl;
 	if (randomCard < cardsDrawn.size())
 	{
@@ -619,13 +623,16 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 	if (easyTarget.empty())
 	{
-
+		cout << "Easy Target card is empty" << endl;
 	}
 }
 
 // Create Card Type 10 function GraduateStudent
 void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
+
 	cout << "Using Serial Offender Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;
@@ -736,6 +743,8 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 
 void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
 	cout << "Using IndustrialPlacement Card" << endl;
 	int cardPowerAttackerInt = 0;
 	int cardResilienceAttackerInt = 0;
@@ -823,6 +832,8 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 
 void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
+	shared_ptr<CEasyTarget> TEST = make_shared<CEasyTarget>(); // ?
 	cout << "Graduate Student Card" << endl;
 
 	int cardPowerAttackerInt = 0;

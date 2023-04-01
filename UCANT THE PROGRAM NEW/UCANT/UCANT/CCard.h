@@ -23,6 +23,7 @@ public:
 	string mResilience;
 	string mBoost;
 
-	//virtual int useCardAbility(int ability = 0) = 0; // Virtual Function
+	//virtual int printCardUse(int ability = 0) = 0; // Virtual Function
+	//virtual int printCardDeath = 0 //Virtual function
 };
 

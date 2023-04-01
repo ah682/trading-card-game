@@ -8,5 +8,6 @@ class CEasyTarget :
 public:
 	int attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked);
 
+private:
 };
 
