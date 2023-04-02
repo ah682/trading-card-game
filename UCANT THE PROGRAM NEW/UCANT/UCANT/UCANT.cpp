@@ -300,13 +300,13 @@ int main()
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
 			// Adds card to hand for Plagiarist
-			pGameState->pushToHand(pCardsPlagiaristDrawn, pHandPlagiarist, pCounterPlagiarist->mI, *pPlagiarist);
+			//pGameState->pushToHand(pCardsPlagiaristDrawn, pHandPlagiarist, pCounterPlagiarist->mI, *pPlagiarist);
 
 			// Adds card to hand for Piffle
-			pGameState->pushToHand(pCardsPiffleDrawn, pHandPiffle, pCounterPiffle->mI, *pPiffle);
+			//pGameState->pushToHand(pCardsPiffleDrawn, pHandPiffle, pCounterPiffle->mI, *pPiffle);
 
 			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
-			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 2, pCardsPiffleDrawn.size() - 1);
+			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 1, pCardsPiffleDrawn.size() - 1);
 			// Prints out chosen card for Piffle-Paper
 			cout << "Piffle-Paper chooses card: " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mType << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mFirstname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mLastname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mPower << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mResilience << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mBoost << endl;
 

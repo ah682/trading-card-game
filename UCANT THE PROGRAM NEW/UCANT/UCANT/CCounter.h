@@ -12,7 +12,7 @@ class CCounter
 {
 public:
 	int mI = 0;
-	int mDeckCounter = 2;
+	int mDeckCounter = 1;
 	int mCardCounter = 0;
 	int mRandomCard = 0;
 	int mSeed = 0;
