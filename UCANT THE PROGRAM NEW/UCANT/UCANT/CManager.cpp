@@ -217,7 +217,7 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 
 void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards)
 {
-	cout << "Drawing Cards" << endl;
+	cout << "Drawing Card" << endl;
 
 	for (int j = i; j < deckCounter; j++)
 	{
@@ -229,7 +229,8 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 		{
 			drawnCards.push_back(cards[j]);
 			*usedCards[j] = true;
-			cout << playerName.mProfName << " has drawn " << drawnCards[j]->mType << " " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
+			cout << playerName.mProfName << " draws " << drawnCards[j]->mType << " " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
+			cout << playerName.mProfName << " plays " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
 		}
 		else
 		{
