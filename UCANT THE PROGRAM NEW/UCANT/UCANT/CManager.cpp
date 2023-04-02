@@ -56,11 +56,11 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[tableAttacked.size() - 1]->mResilience = cardResilienceString;
-					cout << "Card Attacked: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " by player " << professorAttacker.mProfName << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " " <<elementneeded->mFirstname << " " << elementneeded->mLastname << " resilience is now " << elementneeded->mResilience << endl;
 				}
 				if (cardResilience <= 0) {
 					elementneeded->mResilience = "-0";
-					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated by player " << professorAttacker.mProfName << endl;
+					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated"  << endl;
 					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.pop_back();
 				}
@@ -68,13 +68,13 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 
 			if (randomChoice == 2) {
 				professorAttacked.mProfPrestige -= CARD_POWER;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 			}
 			if (professorAttacked.mProfPrestige < 0)
 			{
 				professorAttacked.mProfPrestige = 0;
 			}
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 }
 
@@ -111,17 +111,19 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 				cardResilience -= CARD_POWER;
 				string cardResilienceString = to_string(cardResilience);
 				tableAttacked[j]->mResilience = cardResilienceString;
-				cout << "Card Attacked: " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " by player " << professorAttacker.mProfName << endl;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " resilience is now " << tableAttacked[j]->mResilience << endl;
+		
 
 				if (cardResilience <= 0) {
 					tableAttacked[j]->mResilience = "0";
-					cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated by player " << professorAttacker.mProfName << endl;
+					cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
 					tableAttacked[j]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + j);
 				}
 			}
 
 			professorAttacked.mProfPrestige -= CARD_POWER;
+			cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 
 			if (professorAttacked.mProfPrestige < 0)
 			{
@@ -130,7 +132,6 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 		}
 
 	}
-	cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
@@ -291,10 +292,11 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 					cardResilienceAttackedInt -= cardPowerAttackerInt;
 					string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 					tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated  " << " by player " << professorAttacker.mProfName << endl;
+					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated  " << endl;
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -302,6 +304,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 			if (tableAttacked.empty()) {
 				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks  " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -311,7 +314,6 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (ordinaryStudent.empty())
 	{
@@ -365,11 +367,12 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[randomIndex]->mResilience = cardResilienceString;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilience <= 0)
 				{
 					elementneeded->mResilience = "0";
-					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated by player " << professorAttacker.mProfName << endl;
+					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated by player" << endl;
 					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -457,7 +460,7 @@ void CManager::UsePassLeaderCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 	if (passLeader.empty())
 	{
-		cout << "There is no pass leade cards to use" << endl;
+		cout << "There is no pass leader cards to use" << endl;
 	}
 }
 
@@ -507,7 +510,7 @@ void CManager::UseResearchFundingCard(vector<shared_ptr<CCard>> cardsDrawn, vect
 			if (tableAttacker.empty())
 			{
 				professorAttacker.mProfPrestige += cardPowerAdditionInteger;
-				cout << professorAttacker.mProfName << " prestige is now " << professorAttacker.mProfPrestige << endl;
+				cout << cardsDrawn[randomCard]->mFirstname << cardsDrawn[randomCard]->mLastname << " gives " << professorAttacker.mProfName << " " << cardPowerAdditionInteger << " prestige points, prestige is now " << professorAttacker.mProfPrestige << endl;
 
 			}
 		}
@@ -557,7 +560,6 @@ void CManager::UseMitigatingCircumstancesCard(vector<shared_ptr<CCard>> cardsDra
 							string damageReductionString = to_string(damageReductionGranted);
 							tableAttacker[randomIndex]->mResilience = damageReductionString;
 							cout << "Damaged Reduced of card" << tableAttacker[randomIndex]->mType << tableAttacker[randomIndex]->mFirstname << tableAttacker[randomIndex]->mLastname << tableAttacker[randomIndex]->mPower << tableAttacker[randomIndex]->mResilience << tableAttacker[randomIndex]->mBoost << endl;
-							// rest of the code
 						}
 						else {
 							// skip the function or handle the null pointer case
@@ -601,7 +603,7 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	else
 	{
 
-	}
+
 	professorAttacker.mProfName = attackerName;
 	for (int i = 0; i < easyTarget.size(); i++)
 	{
@@ -698,21 +700,25 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 						if (additionalCardResilienceAttackedIntEasyTarget > 0 && easyTarget.size() > 0)
 						{
 							additionalCardResilienceAttackedIntEasyTarget -= leftOverDamage;
+							cout << "Left over damage attacks" << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname;
 							string additionalCardResilienceAttackedStringEasyTarget = to_string(additionalCardResilienceAttackedIntEasyTarget);
 							easyTarget[randomIndex]->mResilience = additionalCardResilienceAttackedIntEasyTarget;
 							if (additionalCardResilienceAttackedIntEasyTarget <= 0)
 							{
+								cout << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
 								easyTarget.erase(easyTarget.begin() + additionalEasyTargetRandomIndex);
 							}
 						}
 						if (additionalCardResilienceAttackedInt > 0 && easyTarget.size() <= 0)
 						{
 							additionalCardResilienceAttackedInt -= leftOverDamage;
+							cout << "Left over damage attacks" << tableAttacked[additionalRandomIndex]->mFirstname << tableAttacked[additionalRandomIndex]->mLastname;
 							string additionalCardResilienceAttackedString = to_string(additionalCardResilienceAttackedInt);
 							tableAttacked[randomIndex]->mResilience = additionalCardResilienceAttackedString;
 							leftOverDamage -= additionalCardResilienceAttackedInt;
 							if (additionalCardResilienceAttackedInt <= 0)
 							{
+								cout << tableAttacked[additionalRandomIndex]->mFirstname << tableAttacked[additionalRandomIndex]->mLastname << " is defeated" << endl;
 								tableAttacked.erase(tableAttacked.begin() + additionalRandomIndex);
 							}
 						}
@@ -723,7 +729,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated by player " << professorAttacker.mProfName << endl;
+					cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -731,6 +737,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 
 			if (tableAttacked.empty()) {
 				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -740,7 +747,6 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 
 
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (serialOffender.empty())
 	{
@@ -810,7 +816,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 					cardResilienceAttackerInt += increaseResilience;
 					string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 					cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
-					cout << "Card Attacked: " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " by player " << professorAttacker.mProfName << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
@@ -825,6 +831,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 				cardResilienceAttackerInt += increaseResilience;
 				string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 				cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -833,7 +840,6 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 			}
 
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (industrialPlacement.empty())
 	{
@@ -894,10 +900,11 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 					string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 					tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
 					professorAttacker.mProfPrestige += 2;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated by player " << professorAttacker.mProfName << endl;
+					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -906,6 +913,7 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 			if (tableAttacked.empty()) {
 				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 				professorAttacker.mProfPrestige += 2;
+				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -915,7 +923,6 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 
 
 		}
-		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
 	if (graduateStudent.empty())
 	{

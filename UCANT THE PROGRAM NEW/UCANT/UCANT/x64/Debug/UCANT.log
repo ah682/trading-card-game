@@ -1,14 +1,1 @@
-﻿  CManager.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(277,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(352,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(382,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(487,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(544,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(553,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(608,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(673,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(693,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(694,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(789,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(879,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
+﻿  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
