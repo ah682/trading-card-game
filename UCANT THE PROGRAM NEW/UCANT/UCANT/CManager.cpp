@@ -240,6 +240,23 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 	}
 }
 
+void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName)
+{
+	cout << "Pushing Cards to Hand" << endl;
+	for (int j = i; j < drawnCards.size(); j++)
+	{
+		if (i == G_DECK_SIZE)
+		{
+			break;
+		}
+		if (hand.size() < 2)
+		{
+			hand.push_back(drawnCards[j]);
+			cout << playerName.mProfName << " has pushed " << hand[j]->mType << " " << hand[j]->mFirstname << " " << hand[j]->mLastname << " " << hand[j]->mPower << " " << hand[j]->mResilience << " " << hand[j]->mBoost << " to hand" << endl;
+		}
+	}
+} 
+
 //Prof name is the one getting attacked
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget)
 {

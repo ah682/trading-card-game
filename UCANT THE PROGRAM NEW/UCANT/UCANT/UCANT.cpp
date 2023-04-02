@@ -124,6 +124,24 @@ int main()
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
 		pCardsPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
+	
+	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
+	auto pHandPiffle = vector<shared_ptr<CCard>>(pCounterPiffle->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPiffle->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+			pHandPiffle[i] = make_shared<CCard>();
+	}
+
+	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
+	auto pHandPlagiarist = vector<shared_ptr<CCard>>(pCounterPlagiarist->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+			pHandPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+	}
 
 	// Create a vector of shared pointers to CStudent objects from pCounterPlagiarist's mCardCounter
 	auto pCardsPlagiaristStudents = vector<shared_ptr<CStudent>>(pCounterPlagiarist->mCardCounter);
@@ -281,7 +299,13 @@ int main()
 			//	Draw card function draws two cards for Piffle
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
-			// Piffle Chooses a random card from the two cards DrawCard function have selected
+			// Adds card to hand for Plagiarist
+			pGameState->pushToHand(pCardsPlagiaristDrawn, pHandPlagiarist, pCounterPlagiarist->mI, *pPlagiarist);
+
+			// Adds card to hand for Piffle
+			pGameState->pushToHand(pCardsPiffleDrawn, pHandPiffle, pCounterPiffle->mI, *pPiffle);
+
+			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
 			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 2, pCardsPiffleDrawn.size() - 1);
 			// Prints out chosen card for Piffle-Paper
 			cout << "Piffle-Paper chooses card: " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mType << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mFirstname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mLastname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mPower << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mResilience << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mBoost << endl;
