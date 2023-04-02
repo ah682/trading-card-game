@@ -604,34 +604,35 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	{
 
 
-	professorAttacker.mProfName = attackerName;
-	for (int i = 0; i < easyTarget.size(); i++)
-	{
-		int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
-		if (randomIndex < tableAttacker.size())
+		professorAttacker.mProfName = attackerName;
+		for (int i = 0; i < easyTarget.size(); i++)
 		{
-			if (!easyTarget.empty())
+			int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
+			if (randomIndex < tableAttacker.size())
 			{
-				if (!tableAttacker.empty())
+				if (!easyTarget.empty())
 				{
-					if (randomIndex < tableAttacker.size())
+					if (!tableAttacker.empty())
 					{
-					}
-					else
-					{
+						if (randomIndex < tableAttacker.size())
+						{
+						}
+						else
+						{
 
+						}
 					}
 				}
-			}
-			if (tableAttacker.empty())
-			{
+				if (tableAttacker.empty())
+				{
 
+				}
 			}
 		}
-	}
-	if (easyTarget.empty())
-	{
-		cout << "Easy Target card is empty" << endl;
+		if (easyTarget.empty())
+		{
+			cout << "Easy Target card is empty" << endl;
+		}
 	}
 }
 
