@@ -229,7 +229,7 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 		{
 			drawnCards.push_back(cards[j]);
 			*usedCards[j] = true;
-			cout << playerName.mProfName << " has drawn " << drawnCards.back()->mType << " " << drawnCards.back()->mFirstname << " " << drawnCards.back()->mLastname << " " << drawnCards.back()->mPower << " " << drawnCards.back()->mResilience << " " << drawnCards.back()->mBoost << endl;
+			cout << playerName.mProfName << " has drawn " << drawnCards[j]->mType << " " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
 		}
 		else
 		{
