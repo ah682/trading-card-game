@@ -3,7 +3,7 @@
 
 void::CPassLeader::printCardUse()
 {
-	cout << "You have used the Pass Leader card." << endl;
+	cout << "Using Pass Leader Card" << endl;
 }
 
 void::CPassLeader::printCardDeath()

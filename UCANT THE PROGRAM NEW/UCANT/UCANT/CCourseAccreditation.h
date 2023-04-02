@@ -6,7 +6,8 @@
 class CCourseAccreditation :
 	public CCard
 {
-	void printCardUse();
-	void printCardDeath();
+	public:
+	void printCardUse() override;
+	void printCardDeath() override;
 };
 

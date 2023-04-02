@@ -39,7 +39,7 @@ int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& 
 
 void CEasyTarget::printCardUse()
 {
-	cout << "Easy Target Used" << endl;
+	cout << "Using Easy Target Card" << endl;
 }
 
 void CEasyTarget::printCardDeath()

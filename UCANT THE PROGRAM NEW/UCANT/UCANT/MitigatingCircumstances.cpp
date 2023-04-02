@@ -3,7 +3,7 @@
 
 void MitigatingCircumstances::printCardUse()
 {
-	cout << "You have been caught cheating on an exam. You may use this card to avoid a penalty." << endl;
+	cout << "Using Mitigiating Circumstances Card" << endl;
 }
 
 void MitigatingCircumstances::printCardDeath()

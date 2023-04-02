@@ -3,7 +3,7 @@
 
 void CSerialOffender::printCardUse()
 {
-	cout << "You have been caught plagiarizing. You must go to a plagiarism hearing." << endl;
+	cout << "Using Serial Offender Card" << endl;
 }
 
 void CSerialOffender::printCardDeath()

@@ -2,7 +2,7 @@
 
 void CGraduateStudent::printCardUse()
 {
-	cout << "You have been caught cheating on an exam. You are expelled from the university." << endl;
+	cout << "Using Graduate Student Card" << endl;
 }
 
 void CGraduateStudent::printCardDeath()

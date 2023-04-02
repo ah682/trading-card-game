@@ -5,7 +5,7 @@ class MitigatingCircumstances :
 	public CCard
 {
 	public:
-	void printCardUse();
-	void printCardDeath();
+		void printCardUse() override;
+		void printCardDeath() override;
 };
 

@@ -3,7 +3,7 @@
 
 void CIndustrialPlacement::printCardUse()
 {
-	cout << "You have been placed in an industrial placement. You will be paid $1000 per turn." << endl;
+	cout << "Using Industrial Placement Card" << endl;
 }
 
 void CIndustrialPlacement::printCardDeath()

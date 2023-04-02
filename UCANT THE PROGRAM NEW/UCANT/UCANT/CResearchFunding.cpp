@@ -2,7 +2,7 @@
 
 void CResearchFunding::printCardUse()
 {
-	cout << "You have used Research Funding." << endl;
+	cout << "Using Research Funding Card" << endl;
 }
 
 void CResearchFunding::printCardDeath()

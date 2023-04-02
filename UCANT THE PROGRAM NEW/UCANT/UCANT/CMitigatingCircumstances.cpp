@@ -9,7 +9,7 @@ int CMitigatingCircumstances::grantDamageReduction(int damage, int mDamageReduct
 
 void CMitigatingCircumstances::printCardUse()
 {
-	std::cout << "You have used Mitigating Circumstances. You have gained 1 damage reduction." << std::endl;
+	cout << "Using Mitigiating Circumstances Card" << endl;
 }
 
 void CMitigatingCircumstances::printCardDeath()

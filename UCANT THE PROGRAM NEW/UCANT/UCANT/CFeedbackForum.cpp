@@ -6,7 +6,7 @@
 
 void CFeedbackForum::printCardUse()
 {
-	cout << "You have used the Feedback Forum card." << endl;
+	cout << "Using FeedBackForum Card" << endl;
 }
 
 void CFeedbackForum::printCardDeath()

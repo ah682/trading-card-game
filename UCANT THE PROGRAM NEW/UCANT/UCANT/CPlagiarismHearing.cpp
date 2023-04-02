@@ -5,7 +5,7 @@
 
 void CPlagiarismHearing::printCardUse()
 {
-	cout << "You have been caught plagiarizing. You must go to a plagiarism hearing." << endl;
+	cout << "Using Plagiarism Hearing Card" << endl;
 }
 
 void CPlagiarismHearing::printCardDeath()

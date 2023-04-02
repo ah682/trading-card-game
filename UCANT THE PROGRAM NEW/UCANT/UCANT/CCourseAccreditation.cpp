@@ -5,7 +5,7 @@
 
 void CCourseAccreditation::printCardUse()
 {
-	cout << "You have been awarded a Course Accreditation card. You may now take a course of your choice." << endl;
+	cout << "Using Course Accreditation Card" << endl;
 }
 
 void CCourseAccreditation::printCardDeath()

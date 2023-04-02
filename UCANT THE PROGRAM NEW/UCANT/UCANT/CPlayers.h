@@ -19,7 +19,5 @@ public:
 		string mProfName;
 		int mProfPrestige = 30;
 	};
-	void printCardUse();
-	void printCardDeath();
 };
 

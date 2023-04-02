@@ -7,7 +7,7 @@ class CMitigatingCircumstances :
 public:
 	int mDamageReduction = 1;
 	int grantDamageReduction(int damage, int mDamageReduction); //Grant Damage Reduction
-	void printCardUse();
-	void printCardDeath();
+	void printCardUse() override;
+	void printCardDeath() override;
 };
 
