@@ -56,9 +56,9 @@ int main()
 	auto pCounterPointless = make_unique<CCounter>();
 
 	// Genereate seed from read file
-	pCounterPiffle->mSeed = ReadSeedFile("seed.txt");
+	pCounter->mSeed = ReadSeedFile("seed.txt");
 	// Generate random number from seed
-	srand(pCounterPiffle->mSeed);
+	srand(pCounter->mSeed);
 	// Prints out seed number of U-Can't the widowing
 	cout << "Seed Number: " << pCounterPiffle->mSeed << endl;
 
@@ -422,7 +422,7 @@ int main()
 		pUseResearchFundingCard->useCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 		// Use type x cards(Mitigiating Circumstances Cards), Piffle type 6 deck gets increased attack power
 		pUseMitigatingCircumstancesCard->useCard(pCardsPiffle, pStudentPiffleTest, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
-		// Use type x cards(Easy Target Cards), Piffle type 6 deck gets increased attack power
+		// Use type x cards(Easy Target Cards), Piffle type 6 deck gets increased attack power THIS NEEDS TO BE FIXED
 		pGameState->UseEasyTargetCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 		// Use type 1 cards (Student Cards), Plagiarist gets attacked
 		pUseSerialOffenderCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pSerialOffenderPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);

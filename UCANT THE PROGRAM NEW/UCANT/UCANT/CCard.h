@@ -13,6 +13,25 @@
 
 using namespace std;
 
+// Initilalise size of dead card as -9999 string value
+const string G_DEAD_CARD = "-9999";
+
+// Initilalise size of decks as 48 integers
+const int G_DECK_SIZE = 48;
+
+// Initialise Card Types
+const string G_STUDENT = "1";
+const string G_PLAGIARISM_HEARING = "2";
+const string G_COURSE_ACCREDITATION = "3";
+const string G_FEEDBACK_FORUM = "4";
+const string G_INDUSTRIAL_PLACEMENT = "5";
+const string G_PASS_LEADER = "6";
+const string G_RESEARCH_FUNDING = "7";
+const string G_MITIGATING_CIRCUMSTANCES = "8";
+const string G_EASY_TARGET = "9";
+const string G_SERIAL_OFFENDER = "10";
+const string G_GRADUATE_STUDENT = "11";
+
 class CCard
 {
 public:
@@ -26,7 +45,6 @@ public:
 	void useCard(); // function overloading
 	//virtual void useCardSpecialAbility //virtual Function
 	//virtual void hand?
-	//void attack();
 	virtual void printCardUse(); // Virtual Function
 	void printCardDeath(); //function overloading
 };
