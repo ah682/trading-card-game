@@ -9,7 +9,7 @@ void CFeedbackForum::printCardUse()
 	cout << "Using FeedBackForum Card" << endl;
 }
 
-void CFeedbackForum::printCardDeath()
+void CFeedbackForum::printCardDeath(shared_ptr<CCard> elementneeded)
 {
-	cout << "You have been awarded a Feedback Forum card. You may now use it to get feedback on your work." << endl;
+	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
 }

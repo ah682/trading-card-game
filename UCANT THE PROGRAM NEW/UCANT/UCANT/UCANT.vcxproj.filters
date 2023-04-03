@@ -110,9 +110,6 @@
     <ClInclude Include="CEasyTarget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CSerialOffender.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CGraduateStudent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -120,6 +117,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CIndustrialPlacement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CSerialOffender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

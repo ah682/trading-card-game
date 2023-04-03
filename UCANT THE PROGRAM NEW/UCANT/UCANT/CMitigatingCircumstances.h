@@ -8,6 +8,6 @@ public:
 	int mDamageReduction = 1;
 	int grantDamageReduction(int damage, int mDamageReduction); //Grant Damage Reduction
 	void printCardUse() override;
-	void printCardDeath() override;
+	void printCardDeath();
 };
 

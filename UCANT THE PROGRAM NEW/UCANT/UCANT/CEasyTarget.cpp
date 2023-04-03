@@ -42,7 +42,8 @@ void CEasyTarget::printCardUse()
 	cout << "Using Easy Target Card" << endl;
 }
 
-void CEasyTarget::printCardDeath()
+void CEasyTarget::printCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	cout << "Easy Target Killed" << endl;
+	cout << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
+	
 }

@@ -6,6 +6,6 @@ class CResearchFunding :
 {
 public:
 	void printCardUse() override;
-	void printCardDeath() override;
+	void printCardDeath();
 };
 

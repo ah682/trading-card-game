@@ -60,7 +60,7 @@ void CManager::UsePlagiarismHearingCard(vector<shared_ptr<CCard>>& cardsDrawn, v
 				}
 				if (cardResilience <= 0) {
 					elementneeded->mResilience = "-0";
-					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated"  << endl;
+					printCardType->printCardDeath(elementneeded);
 					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.pop_back();
 				}
@@ -116,7 +116,7 @@ void CManager::UseCourseAccreditationCard(vector<shared_ptr<CCard>>& cardsDrawn,
 
 				if (cardResilience <= 0) {
 					tableAttacked[j]->mResilience = "0";
-					cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
+					printCardType->printCardDeath(j, tableAttacked);
 					tableAttacked[j]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + j);
 				}
@@ -263,6 +263,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); 
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); 
+	shared_ptr<CStudent> printCardType = make_shared<CStudent>();
 
 	activateEasyTarget->printCardUse();
 
@@ -314,7 +315,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated  " << endl;
+					printCardType->printCardDeath(randomIndex, tableAttacked);
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -390,7 +391,7 @@ void CManager::UseFeedbackForumCard(vector<shared_ptr<CCard>> cardsDrawn, vector
 				if (cardResilience <= 0)
 				{
 					elementneeded->mResilience = "0";
-					cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated by player" << endl;
+					printCardType->printCardDeath(elementneeded);
 					elementneeded->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -657,11 +658,12 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 // Create Card Type 10 function GraduateStudent
 void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	unique_ptr<CSerialOffender> printCardType = make_unique<CSerialOffender>();
+	unique_ptr<CSerialOffender> printCardTypeSerialOffender = make_unique<CSerialOffender>();
+	unique_ptr<CEasyTarget> printCardTypeEasyTarget = make_unique<CEasyTarget>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	
-	printCardType->printCardUse();
+	printCardTypeSerialOffender->printCardUse();
 
 
 	int cardPowerAttackerInt = 0;
@@ -724,7 +726,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 							easyTarget[randomIndex]->mResilience = additionalCardResilienceAttackedIntEasyTarget;
 							if (additionalCardResilienceAttackedIntEasyTarget <= 0)
 							{
-								cout << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
+								printCardTypeEasyTarget->printCardDeath(additionalEasyTargetRandomIndex, easyTarget);
 								easyTarget.erase(easyTarget.begin() + additionalEasyTargetRandomIndex);
 							}
 						}
@@ -737,7 +739,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 							leftOverDamage -= additionalCardResilienceAttackedInt;
 							if (additionalCardResilienceAttackedInt <= 0)
 							{
-								cout << tableAttacked[additionalRandomIndex]->mFirstname << tableAttacked[additionalRandomIndex]->mLastname << " is defeated" << endl;
+								printCardTypeSerialOffender->printCardDeath(additionalRandomIndex, tableAttacked);
 								tableAttacked.erase(tableAttacked.begin() + additionalRandomIndex);
 							}
 						}
@@ -748,7 +750,7 @@ void CManager::UseSerialOffenderCard(vector<shared_ptr<CTable>>& tableAttacked, 
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
+					printCardTypeSerialOffender->printCardDeath(randomIndex, tableAttacked);
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -839,7 +841,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is deafted by player " << professorAttacker.mProfName << endl;
+					printCardType->printCardDeath(randomIndex, tableAttacked);
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -868,7 +870,7 @@ void CManager::UseIndustrialPlacementCard(vector<shared_ptr<CCard>> cardsDrawn, 
 
 void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
-	unique_ptr<CIndustrialPlacement> printCardType = make_unique<CIndustrialPlacement>();
+	unique_ptr<CGraduateStudent> printCardType = make_unique<CGraduateStudent>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
 	
@@ -923,7 +925,7 @@ void CManager::UseGraduateStudentCard(vector<shared_ptr<CTable>>& tableAttacked,
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
+					printCardType->printCardDeath(randomIndex, tableAttacked);
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}

@@ -9,6 +9,6 @@ class CFeedbackForum :
 {
 	public:
 		void printCardUse() override;
-		void printCardDeath() override;
+		void printCardDeath(shared_ptr<CCard> elementneeded);
 };
 

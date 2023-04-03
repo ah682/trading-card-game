@@ -9,6 +9,6 @@ class CPlagiarismHearing :
 {
 	public:
 		void printCardUse() override;
-		void printCardDeath() override;
+		void printCardDeath(CCard* elementneeded);
 };
 

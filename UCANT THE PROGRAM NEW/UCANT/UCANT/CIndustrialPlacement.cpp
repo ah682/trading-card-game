@@ -1,12 +1,13 @@
 // Adam James Anthony Hall
 #include "CIndustrialPlacement.h"
 
+
 void CIndustrialPlacement::printCardUse()
 {
 	cout << "Using Industrial Placement Card" << endl;
 }
 
-void CIndustrialPlacement::printCardDeath()
+void CIndustrialPlacement::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << "You have been fired from your industrial placement. You will no longer be paid." << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
 }

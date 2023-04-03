@@ -8,7 +8,8 @@ void CPlagiarismHearing::printCardUse()
 	cout << "Using Plagiarism Hearing Card" << endl;
 }
 
-void CPlagiarismHearing::printCardDeath()
+void CPlagiarismHearing::printCardDeath(CCard* elementneeded) //Function overloading
 {
-	cout << "You have been caught plagiarizing. You must go to a plagiarism hearing." << endl;
+	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
+
 }

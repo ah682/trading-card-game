@@ -3,12 +3,14 @@
 // Initialize necessary header files
 #include "CCourseAccreditation.h"
 
+
+
 void CCourseAccreditation::printCardUse()
 {
 	cout << "Using Course Accreditation Card" << endl;
 }
 
-void CCourseAccreditation::printCardDeath()
+void CCourseAccreditation::printCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << "You have been awarded a Course Accreditation card. You may now take a course of your choice." << endl;
+	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
 }

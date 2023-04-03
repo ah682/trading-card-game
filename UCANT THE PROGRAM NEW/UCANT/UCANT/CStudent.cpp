@@ -9,7 +9,7 @@ void CStudent::printCardUse()
 	cout << "Using Student Card" << endl;
 }
 
-void CStudent::printCardDeath()
+void CStudent::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
 	cout << "You have been expelled from the university." << endl;
 }

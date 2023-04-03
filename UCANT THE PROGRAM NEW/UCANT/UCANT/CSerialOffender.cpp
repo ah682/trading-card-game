@@ -6,7 +6,8 @@ void CSerialOffender::printCardUse()
 	cout << "Using Serial Offender Card" << endl;
 }
 
-void CSerialOffender::printCardDeath()
+//Bottom
+void CSerialOffender::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //overload
 {
-	cout << "You have been expelled from the university." << endl;
+	cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
 }

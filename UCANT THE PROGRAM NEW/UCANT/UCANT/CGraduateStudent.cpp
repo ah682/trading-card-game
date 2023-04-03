@@ -5,7 +5,7 @@ void CGraduateStudent::printCardUse()
 	cout << "Using Graduate Student Card" << endl;
 }
 
-void CGraduateStudent::printCardDeath()
+void CGraduateStudent::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << "You have been caught cheating on an exam. You are expelled from the university." << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
 }

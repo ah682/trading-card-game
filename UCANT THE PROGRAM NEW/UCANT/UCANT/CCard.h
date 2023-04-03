@@ -25,8 +25,9 @@ public:
 
 	//virtual void	useCard(); //virtual Function
 	//virtual void useCardSpecialAbility //virtual Function
-	//virtual void hand
+	//virtual void hand?
+	//void attack();
 	virtual void printCardUse(); // Virtual Function
-	virtual void printCardDeath(); //Virtual function NEED TO FIGURE OUT HOW TO USE THIS
+	void printCardDeath(); //function overloading
 };
 
