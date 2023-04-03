@@ -15,7 +15,7 @@ public:
 	int mDeckCounter = 1;
 	int mCardCounter = 0;
 	int mRandomCard = 0;
-	int mSeed = 0;
+	time_t mSeed = 0;
 	int mResilienceIncrease = 0;
 
 	string mLine = "";
