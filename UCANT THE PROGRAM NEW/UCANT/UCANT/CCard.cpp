@@ -12,3 +12,8 @@ void CCard::printCardDeath()
 {
 	cout << "s" << endl;
 }
+
+void CCard::useCard()
+{
+	cout << "s" << endl;
+}

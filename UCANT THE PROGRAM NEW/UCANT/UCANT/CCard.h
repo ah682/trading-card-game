@@ -23,7 +23,7 @@ public:
 	string mResilience;
 	string mBoost;
 
-	//virtual void	useCard(); //virtual Function
+	void useCard(); // function overloading
 	//virtual void useCardSpecialAbility //virtual Function
 	//virtual void hand?
 	//void attack();

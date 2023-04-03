@@ -188,6 +188,54 @@ int main()
 	// Create an instance of DrawPlagiarismHearingCardS named pDrawPlagiarismHearingCardsPiffle
 	auto pDrawPlagiarismHearingCardPiffle = DrawPlagiarismHearingCards{};
 
+
+	/// <summary>
+	/// ELELELELELELELELELE
+	/// </summary>
+	/// <returns></returns>
+	typedef shared_ptr<CPlagiarismHearing> PlagiarismCard;
+	// Create an instance of PlagiarismCard named pUsePlagiarismCard
+	auto pUsePlagiarismCard = PlagiarismCard{};
+
+	typedef shared_ptr<CCourseAccreditation> CourseAccreditationCard;
+	// Create an instance of CourseAccreditationCard named pUseCourseAccreditationCard
+	auto pUseCourseAccreditationCard = CourseAccreditationCard{};
+
+	typedef shared_ptr<CEasyTarget> EasyTargetCard;
+	// Create an instance of EasyTargetCard named pUseEasyTargetCard
+	auto pUseEasyTargetCard = EasyTargetCard{};
+
+	typedef shared_ptr<CFeedbackForum> FeedbackForumCard;
+	// Create an instance of FeedbackForumCard named pUseFeedbackForumCard
+	auto pUseFeedbackForumCard = FeedbackForumCard{};
+
+	typedef shared_ptr<CGraduateStudent> GraduateStudentCard;
+	// Create an instance of GraduateStudentCard named pUseGraduateStudentCard
+	auto pUseGraduateStudentCard = GraduateStudentCard{};
+
+	typedef shared_ptr<CIndustrialPlacement> IndustrialPlacementCard;
+	// Create an instance of IndustrialPlacementCard named pUseIndustrialPlacementCard
+	auto pUseIndustrialPlacementCard = IndustrialPlacementCard{};
+
+	typedef shared_ptr<CMitigatingCircumstances> MitigatingCircumstancesCard;
+	// Create an instance of MitigatingCircumstancesCard named pUseMitigatingCircumstancesCard
+	auto pUseMitigatingCircumstancesCard = MitigatingCircumstancesCard{};
+
+	typedef shared_ptr<CPassLeader> PassLeaderCard;
+	// Create an instance of PassLeaderCard named pUsePassLeaderCard
+	auto pUsePassLeaderCard = PassLeaderCard{};
+
+	typedef shared_ptr<CResearchFunding> ResearchFundingCard;
+	// Create an instance of PassLeaderCard named pUsePassLeaderCard
+	auto pUseResearchFundingCard = ResearchFundingCard{};
+
+	typedef shared_ptr<CSerialOffender> SerialOffenderCard;
+	// Create an instance of SerialOffenderCard named pUseSerialOffenderCard
+	auto pUseSerialOffenderCard = SerialOffenderCard{};
+
+
+
+
 	// Define a type alias for a vector of shared pointers to CCourseAccreditation objects
 	typedef vector <shared_ptr<CCourseAccreditation>> DrawCourseAccreditationCards;
 	// Create an instance of DrawCourseAccreditationCards named pDrawCourseAccreditationCardPlagiarist
@@ -327,7 +375,7 @@ int main()
 		int randomRangeOneorTwo = pCounterPlagiarist->Random(1, 2);
 
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
-		pGameState->UsePlagiarismHearingCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pEasyTargetPiffle);
+		ptest929->useCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo, pEasyTargetPiffle);
 		// Use type x cards (Course Accreditation Cards), Piffle gets attacked
 		pGameState->UseCourseAccreditationCard(pCardsPlagiaristDrawn, pDrawCourseAccreditationCardPlagiarist, pTablePiffle, pCounterPlagiarist->mRandomCard, *pPiffle, *pPlagiarist, "Piffle-Paper", "Plagiarist", pEasyTargetPiffle);
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Plagiarist gets healed
@@ -361,7 +409,7 @@ int main()
 		randomRangeOneorTwo = pCounterPiffle->Random(1, 2);
 
 		// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
-		pGameState->UsePlagiarismHearingCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pEasyTargetPlagiarist);
+		ptest929->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo, pEasyTargetPlagiarist);
 		// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
 		pGameState->UseCourseAccreditationCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pEasyTargetPlagiarist);
 		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
