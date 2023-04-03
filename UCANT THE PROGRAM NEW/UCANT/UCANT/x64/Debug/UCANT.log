@@ -1,9 +1,34 @@
-﻿  UCANT.cpp
+﻿  CCourseAccreditation.cpp
+  CEasyTarget.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CEasyTarget.cpp(15,59): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CFeedbackForum.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CFeedbackForum.cpp(37,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CFeedbackForum.cpp(68,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CGraduateStudent.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CGraduateStudent.cpp(38,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CIndustrialPlacement.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CIndustrialPlacement.cpp(41,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CManager.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(183,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(253,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CMitigatingCircumstances.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CMitigatingCircumstances.cpp(33,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CMitigatingCircumstances.cpp(42,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CPassLeader.cpp
+  CPlagiarismHearing.cpp
+  CResearchFunding.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CResearchFunding.cpp(26,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CSerialOffender.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(41,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(61,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(62,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  UCANT.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(59,38): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(88,38): warning C4552: '+': result of expression not used
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(94,34): warning C4552: '+': result of expression not used
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(100,28): warning C4552: '+': result of expression not used
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(106,28): warning C4552: '+': result of expression not used
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(314,115): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(319,131): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(357,115): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(362,131): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
