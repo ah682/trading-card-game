@@ -193,11 +193,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 				activateEasyTarget->useCardSpecialAbility(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
-
-					cardResilienceAttackedInt -= cardPowerAttackerInt;
-					string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
-					tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+					printCardType->attackEntity(cardResilienceAttackedInt, cardPowerAttackerInt, randomIndex, randomCard, tableAttacked, cardsDrawn);
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					printCardType->activateCardDeath(randomIndex, tableAttacked);
@@ -205,8 +201,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 			}
 
 			if (tableAttacked.empty()) {
-				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks  " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+				printCardType->attackProfessor(professorAttacked, cardsDrawn, randomCard, cardPowerAttackedInt);
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
