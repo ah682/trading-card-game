@@ -35,8 +35,7 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 				cardResilience = stoi(tableAttacked[j]->mResilience);
 				cardResilience -= CARD_POWER;
 				string cardResilienceString = to_string(cardResilience);
-				tableAttacked[j]->mResilience = cardResilienceString;
-				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " resilience is now " << tableAttacked[j]->mResilience << endl;
+				printCardType->attackEntity(cardResilienceString, tableAttacked, cardsDrawn, j, randomCard);
 
 
 				if (cardResilience <= 0) {
@@ -73,4 +72,10 @@ void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlaye
 {
 	professorAttacked.mProfPrestige -= cardPower;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+}
+
+void CCourseAccreditation::attackEntity(string cardResilienceString, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>>& cardsDrawn, int j, int randomCard)
+{
+	tableAttacked[j]->mResilience = cardResilienceString;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " resilience is now " << tableAttacked[j]->mResilience << endl;
 }

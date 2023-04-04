@@ -12,5 +12,6 @@ class CGraduateStudent :
 		void printCardUse() override;
 		void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
 		void attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, vector<shared_ptr<CCard>> cardsDrawn, int randomCard);
+		void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, string& cardResilienceStringDueled, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex, int randomCard, vector<shared_ptr<CCard>>& cardsDrawn);
 };
 

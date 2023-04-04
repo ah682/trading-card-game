@@ -47,7 +47,7 @@ public:
 	virtual void printCardUse(); // Virtual Function
 	void activateCardDeath(); //function overloading
 	void attackProfessor();
-	//void attackStudent
+	void attackEntity();
 	//void addToTypeVector
 };
 

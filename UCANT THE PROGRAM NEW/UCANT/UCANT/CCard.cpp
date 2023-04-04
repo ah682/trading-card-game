@@ -28,3 +28,8 @@ void CCard::attackProfessor()
 {
 	cout << "Let's keep going" << endl;
 }
+
+void CCard::attackEntity()
+{
+	cout << "Attacking Entity" << endl;
+}
