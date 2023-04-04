@@ -13,5 +13,6 @@ class CPlagiarismHearing :
 		void useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget);
 		void printCardUse() override;
 		void activateCardDeath(CCard* enmemyTable, vector <shared_ptr<CTable>>& tableAttacked);
+		void attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard);
 };
 

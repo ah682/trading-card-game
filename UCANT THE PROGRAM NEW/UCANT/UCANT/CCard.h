@@ -46,5 +46,8 @@ public:
 	int useCardSpecialAbility();
 	virtual void printCardUse(); // Virtual Function
 	void activateCardDeath(); //function overloading
+	void attackProfessor();
+	//void attackStudent
+	//void addToTypeVector
 };
 

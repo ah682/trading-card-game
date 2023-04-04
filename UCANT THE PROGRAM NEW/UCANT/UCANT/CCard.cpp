@@ -23,3 +23,8 @@ int CCard::useCardSpecialAbility()
 		cout << "Using Special Card Ability" << endl;
 		return 0;
 }
+
+void CCard::attackProfessor()
+{
+	cout << "Let's keep going" << endl;
+}

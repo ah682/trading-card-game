@@ -18,6 +18,12 @@ void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr
 	tableAttacked.pop_back();
 }
 
+void CPlagiarismHearing::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard)
+{
+	professorAttacked.mProfPrestige -= cardPower;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+}
+
 void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CPlagiarismHearing> printCardType = make_unique<CPlagiarismHearing>();
@@ -62,8 +68,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 			}
 
 			if (randomChoice == 2) {
-				professorAttacked.mProfPrestige -= CARD_POWER;
-				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+				printCardType->attackProfessor(professorAttacked, CARD_POWER, cardsDrawn, randomCard);
 			}
 			if (professorAttacked.mProfPrestige < 0)
 			{
