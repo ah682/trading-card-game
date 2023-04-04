@@ -31,7 +31,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
 	for (int i = 0; i < feedbackforum.size(); i++)
 	{
-		activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
+		activateEasyTarget->useCardSpecialAbility(CARD_POWER, easyTarget);
 		if (randomChoice == 1)
 		{
 			int randomIndex = randomNumber->Random(tableAttacked.size() - 1);

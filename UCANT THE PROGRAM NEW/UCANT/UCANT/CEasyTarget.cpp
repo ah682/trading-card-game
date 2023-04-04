@@ -6,8 +6,8 @@
 #include "CManager.h"
 
 
-
-int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
+//Attacks Easy Target
+int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
 {
 	unique_ptr<CCounter> pickRandom = make_unique<CCounter>();
 	unique_ptr<CEasyTarget> cardType = make_unique<CEasyTarget>();

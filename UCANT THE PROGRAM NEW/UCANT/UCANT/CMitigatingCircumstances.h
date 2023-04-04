@@ -8,7 +8,7 @@ class CMitigatingCircumstances :
 {
 public:
 	int mDamageReduction = 1;
-	int grantDamageReduction(int damage, int mDamageReduction); //Grant Damage Reduction
+	int useCardSpecialAbility(int damage, int mDamageReduction); //Grant Damage Reduction
 	void useCard(vector<shared_ptr<CCard>> cardsDrawn, shared_ptr<CMitigatingCircumstances> damageReduction, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CMitigatingCircumstances>> mitigatingCircumstances, int randomCard);
 	void printCardUse() override;
 };

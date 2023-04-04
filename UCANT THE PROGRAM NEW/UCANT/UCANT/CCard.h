@@ -43,8 +43,7 @@ public:
 	string mBoost;
 
 	void useCard(); // function overloading
-	//virtual void useCardSpecialAbility //virtual Function
-	//virtual void hand?
+	int useCardSpecialAbility();
 	virtual void printCardUse(); // Virtual Function
 	void activateCardDeath(); //function overloading
 };

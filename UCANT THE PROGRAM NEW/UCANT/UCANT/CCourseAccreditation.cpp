@@ -31,7 +31,7 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 		if (!tableAttacked.empty()) {
 			for (int j = 0; j < tableAttacked.size() - 1; j++)
 			{
-				activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
+				activateEasyTarget->useCardSpecialAbility(CARD_POWER, easyTarget);
 				cardResilience = stoi(tableAttacked[j]->mResilience);
 				cardResilience -= CARD_POWER;
 				string cardResilienceString = to_string(cardResilience);

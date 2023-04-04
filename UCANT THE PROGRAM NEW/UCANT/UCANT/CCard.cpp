@@ -5,15 +5,21 @@
 
 void CCard::printCardUse()
 {
-	cout << "s" << endl;
+	cout << "Card" << endl;
 }
 
 void CCard::activateCardDeath()
 {
-	cout << "s" << endl;
+	cout << "Activating Card Death" << endl;
 }
 
 void CCard::useCard()
 {
-	cout << "s" << endl;
+	cout << "Using Card" << endl;
+}
+
+int CCard::useCardSpecialAbility()
+{
+		cout << "Using Special Card Ability" << endl;
+		return 0;
 }

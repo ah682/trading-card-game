@@ -1,6 +1,8 @@
 // Adam James Anthony Hall
 #include "CPassLeader.h"
 
+
+//Gives buff
 void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CPassLeader> printCardType = make_unique<CPassLeader>();

@@ -6,7 +6,7 @@ class CEasyTarget :
 	public CCard
 {
 public:
-	int attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked);
+	int useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarget>>& attacked);
 	void printCardUse() override;
 	void activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); //overload
 

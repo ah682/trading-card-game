@@ -41,7 +41,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 
 	for (int i = 0; i < plagiarism.size(); i++)
 	{
-		activateEasyTarget->attackEasyTarget(CARD_POWER, easyTarget);
+		activateEasyTarget->useCardSpecialAbility(CARD_POWER, easyTarget);
 		if (!tableAttacked.empty()) {
 			CCard* elementneeded = tableAttacked.back().get();
 			if (!elementneeded->mResilience.empty()) {

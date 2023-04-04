@@ -45,7 +45,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 				cardPowerAttackedInt = stoi(cardPowerAttacked);
 				cardResilienceAttackedInt = stoi(cardResilienceAttacked);
 
-				activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+				activateEasyTarget->useCardSpecialAbility(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
 

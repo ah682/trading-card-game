@@ -51,7 +51,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 
 
 				if (cardResilienceAttackedInt > 0) {
-					activateEasyTarget->attackEasyTarget(cardPowerAttackerInt, easyTarget);
+					activateEasyTarget->useCardSpecialAbility(cardPowerAttackerInt, easyTarget);
 					if (easyTarget.size() > 0)
 					{
 						cardResilienceAttackerInt += increaseResilience;
