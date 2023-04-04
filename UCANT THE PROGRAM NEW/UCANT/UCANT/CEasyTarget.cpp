@@ -10,6 +10,8 @@
 int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
 {
 	unique_ptr<CCounter> pickRandom = make_unique<CCounter>();
+	unique_ptr<CEasyTarget> cardType = make_unique<CEasyTarget>();
+
 	if (attacked.size() > 0)
 	{
 		int randomIndex = pickRandom->Random(attacked.size() - 1);
@@ -23,11 +25,8 @@ int CEasyTarget::attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& 
 		}
 		if (attackedResilience <= 0)
 		{
-			attacked[randomIndex]->mResilience = "0";
-			cout << "Easy Target Killed" << endl;
-			attacked[randomIndex]->mResilience = G_DEAD_CARD;
-			attacked.erase(attacked.begin() + randomIndex);
-
+			
+			cardType->printCardDeath(randomIndex, attacked);
 		}
 	}
 	if (attacked.size() <= 0)
@@ -42,8 +41,14 @@ void CEasyTarget::printCardUse()
 	cout << "Using Easy Target Card" << endl;
 }
 
-void CEasyTarget::printCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CEasyTarget::printCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked)
 {
-	cout << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
+	cout << attacked[additionalEasyTargetRandomIndex]->mFirstname << attacked[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
+	
+
+	attacked[additionalEasyTargetRandomIndex]->mResilience = "0";
+	cout << "Easy Target Killed" << endl;
+	attacked[additionalEasyTargetRandomIndex]->mResilience = G_DEAD_CARD;
+	attacked.erase(attacked.begin() + additionalEasyTargetRandomIndex);
 	
 }
