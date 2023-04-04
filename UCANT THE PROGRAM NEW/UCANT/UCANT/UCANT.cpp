@@ -369,7 +369,7 @@ int main()
 		pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
 
 		// Use type 1 cards (Student Cards), Piffle gets attacked
-		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "name?", "name?", pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
+		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
 
 		// Initialize random range between one or two to choose truly random card
 		int randomRangeOneorTwo = pCounterPlagiarist->Random(1, 2);
@@ -391,9 +391,9 @@ int main()
 		// Use type x cards(EasyTarget Cards), Piffle type 6 deck gets increased attack power
 		pGameState->UseEasyTargetCard(pCardsPlagiarist, pEasyTargetPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 		// Use type x cards(Serial Offender Cards), Piffle type 6 deck gets increased attack power
-		pUseSerialOffenderCard->useCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "name?", "name?", pCardsPlagiaristDrawn, pSerialOffenderPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
+		pUseSerialOffenderCard->useCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, pCardsPlagiaristDrawn, pSerialOffenderPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
 		// Use type 1 cards(Graduate Student Cards), Piffle gets attacked
-		pUseGraduateStudentCard->useCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, "name?", "name?", pCardsPlagiaristDrawn, pGraduateStudentPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
+		pUseGraduateStudentCard->useCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, pCardsPlagiaristDrawn, pGraduateStudentPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
@@ -403,7 +403,7 @@ int main()
 		}
 
 		// Use type 1 cards (Student Cards), Plagiarist gets attacked
-		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
+		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
 		// Initialize random range between one or two to choose truly random card
 		randomRangeOneorTwo = pCounterPiffle->Random(1, 2);
@@ -425,9 +425,9 @@ int main()
 		// Use type x cards(Easy Target Cards), Piffle type 6 deck gets increased attack power THIS NEEDS TO BE FIXED
 		pGameState->UseEasyTargetCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 		// Use type 1 cards (Student Cards), Plagiarist gets attacked
-		pUseSerialOffenderCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pSerialOffenderPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
+		pUseSerialOffenderCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pSerialOffenderPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 		// Use type 1 cards (Graduate Student Cards), Plagiarist gets attacked
-		pUseGraduateStudentCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, "name?", "name?", pCardsPiffleDrawn, pGraduateStudentPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
+		pUseGraduateStudentCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pGraduateStudentPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
