@@ -9,7 +9,7 @@ void CPlagiarismHearing::printCardUse()
 	cout << "Using Plagiarism Hearing Card" << endl;
 }
 
-void CPlagiarismHearing::printCardDeath(CCard* elementneeded, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
+void CPlagiarismHearing::activateCardDeath(CCard* elementneeded, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
 	elementneeded->mResilience = "-0";
 	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
@@ -57,7 +57,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " resilience is now " << elementneeded->mResilience << endl;
 				}
 				if (cardResilience <= 0) {
-					printCardType->printCardDeath(elementneeded, tableAttacked);
+					printCardType->activateCardDeath(elementneeded, tableAttacked);
 				}
 			}
 

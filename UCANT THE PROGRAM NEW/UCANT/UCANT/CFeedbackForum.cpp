@@ -54,7 +54,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 				}
 				if (cardResilience <= 0)
 				{
-					printCardType->printCardDeath(elementneeded, tableAttacked, randomIndex);
+					printCardType->activateCardDeath(elementneeded, tableAttacked, randomIndex);
 				}
 				professorAttacked.mProfPrestige -= CARD_POWER;
 			}
@@ -95,7 +95,7 @@ void CFeedbackForum::printCardUse()
 	cout << "Using FeedBackForum Card" << endl;
 }
 
-void CFeedbackForum::printCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
+void CFeedbackForum::activateCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
 {
 	elementneeded->mResilience = "0";
 	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;

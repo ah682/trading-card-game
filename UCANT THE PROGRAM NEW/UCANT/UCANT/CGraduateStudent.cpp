@@ -56,7 +56,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
-					printCardType->printCardDeath(randomIndex, tableAttacked);
+					printCardType->activateCardDeath(randomIndex, tableAttacked);
 				
 				}
 			}
@@ -85,7 +85,7 @@ void CGraduateStudent::printCardUse()
 	cout << "Using Graduate Student Card" << endl;
 }
 
-void CGraduateStudent::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
+void CGraduateStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
 	tableAttacked[randomIndex]->mResilience = "0";
 	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;

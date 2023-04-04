@@ -10,6 +10,6 @@ class CGraduateStudent :
 	public:
 		void useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget);
 		void printCardUse() override;
-		void printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
+		void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
 };
 

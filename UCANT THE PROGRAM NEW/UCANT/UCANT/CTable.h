@@ -9,6 +9,6 @@ class CTable :
 {
 public:
 	void printCardUse();
-	void printCardDeath();
+	void activateCardDeath();
 };
 

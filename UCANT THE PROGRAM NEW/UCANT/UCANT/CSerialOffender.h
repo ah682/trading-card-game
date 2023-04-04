@@ -13,6 +13,6 @@ class CSerialOffender :
 	void useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string name, string nametwo, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget);
 	void printCardUse() override;
 	//Bottom
-	void printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); //overload
+	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); //overload
 };
 

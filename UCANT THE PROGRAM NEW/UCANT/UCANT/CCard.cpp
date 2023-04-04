@@ -8,7 +8,7 @@ void CCard::printCardUse()
 	cout << "s" << endl;
 }
 
-void CCard::printCardDeath()
+void CCard::activateCardDeath()
 {
 	cout << "s" << endl;
 }

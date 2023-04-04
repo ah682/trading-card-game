@@ -10,7 +10,7 @@ class CStudent :
 {
 public:
 	void printCardUse() override;
-	void printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
+	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
 };
 
 

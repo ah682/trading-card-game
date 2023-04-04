@@ -9,6 +9,6 @@ class CResearchFunding :
 public:
 	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker);
 	void printCardUse() override;
-	void printCardDeath();
+	void activateCardDeath();
 };
 

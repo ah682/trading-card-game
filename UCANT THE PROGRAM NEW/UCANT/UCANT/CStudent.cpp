@@ -9,7 +9,7 @@ void CStudent::printCardUse()
 	cout << "Using Student Card" << endl;
 }
 
-void CStudent::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
+void CStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
 
 	tableAttacked[randomIndex]->mResilience = "0";

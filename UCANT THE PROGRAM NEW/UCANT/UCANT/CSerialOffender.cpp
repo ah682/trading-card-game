@@ -71,7 +71,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 							easyTarget[randomIndex]->mResilience = additionalCardResilienceAttackedIntEasyTarget;
 							if (additionalCardResilienceAttackedIntEasyTarget <= 0)
 							{
-								printCardTypeEasyTarget->printCardDeath(additionalEasyTargetRandomIndex, easyTarget);
+								printCardTypeEasyTarget->activateCardDeath(additionalEasyTargetRandomIndex, easyTarget);
 							}
 						}
 						if (additionalCardResilienceAttackedInt > 0 && easyTarget.size() <= 0)
@@ -83,7 +83,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 							leftOverDamage -= additionalCardResilienceAttackedInt;
 							if (additionalCardResilienceAttackedInt <= 0)
 							{
-								printCardTypeSerialOffender->printCardDeath(additionalRandomIndex, tableAttacked);
+								printCardTypeSerialOffender->activateCardDeath(additionalRandomIndex, tableAttacked);
 							}
 						}
 
@@ -92,7 +92,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 				}
 				if (cardResilienceAttackedInt <= 0) {
-					printCardTypeSerialOffender->printCardDeath(randomIndex, tableAttacked);
+					printCardTypeSerialOffender->activateCardDeath(randomIndex, tableAttacked);
 				}
 			}
 
@@ -120,7 +120,7 @@ void CSerialOffender::printCardUse()
 }
 
 //Bottom
-void CSerialOffender::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //overload
+void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //overload
 {
 	tableAttacked[randomIndex]->mResilience = "0";
 	cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;

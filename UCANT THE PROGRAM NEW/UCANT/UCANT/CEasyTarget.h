@@ -8,7 +8,7 @@ class CEasyTarget :
 public:
 	int attackEasyTarget(int damage, vector <shared_ptr<CEasyTarget>>& attacked);
 	void printCardUse() override;
-	void printCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); //overload
+	void activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); //overload
 
 };
 

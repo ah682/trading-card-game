@@ -59,7 +59,7 @@ void::CPassLeader::printCardUse()
 	cout << "Using Pass Leader Card" << endl;
 }
 
-void::CPassLeader::printCardDeath()
+void::CPassLeader::activateCardDeath()
 {
 	cout << "You have been killed by the Pass Leader card." << endl;
 }

@@ -46,6 +46,6 @@ public:
 	//virtual void useCardSpecialAbility //virtual Function
 	//virtual void hand?
 	virtual void printCardUse(); // Virtual Function
-	void printCardDeath(); //function overloading
+	void activateCardDeath(); //function overloading
 };
 

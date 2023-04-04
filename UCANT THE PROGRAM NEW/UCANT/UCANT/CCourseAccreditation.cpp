@@ -40,7 +40,7 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 
 
 				if (cardResilience <= 0) {
-					printCardType->printCardDeath(j, tableAttacked);
+					printCardType->activateCardDeath(j, tableAttacked);
 				}
 			}
 
@@ -62,7 +62,7 @@ void CCourseAccreditation::printCardUse()
 	cout << "Using Course Accreditation Card" << endl;
 }
 
-void CCourseAccreditation::printCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked)
+void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked)
 {
 	tableAttacked[j]->mResilience = "0";
 	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;

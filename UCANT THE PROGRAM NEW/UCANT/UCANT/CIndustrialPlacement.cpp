@@ -66,7 +66,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					tableAttacked[randomIndex]->mResilience = "0";
-					printCardType->printCardDeath(randomIndex, tableAttacked);
+					printCardType->activateCardDeath(randomIndex, tableAttacked);
 					tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 					tableAttacked.erase(tableAttacked.begin() + randomIndex);
 				}
@@ -98,7 +98,7 @@ void CIndustrialPlacement::printCardUse()
 	cout << "Using Industrial Placement Card" << endl;
 }
 
-void CIndustrialPlacement::printCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
+void CIndustrialPlacement::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
 	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
 }

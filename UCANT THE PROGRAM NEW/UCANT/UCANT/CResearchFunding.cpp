@@ -62,7 +62,7 @@ void CResearchFunding::printCardUse()
 	cout << "Using Research Funding Card" << endl;
 }
 
-void CResearchFunding::printCardDeath()
+void CResearchFunding::activateCardDeath()
 {
 	cout << "You have been killed by Research Funding." << endl;
 }
