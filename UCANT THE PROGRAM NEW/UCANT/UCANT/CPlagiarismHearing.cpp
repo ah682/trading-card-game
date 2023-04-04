@@ -9,12 +9,12 @@ void CPlagiarismHearing::printCardUse()
 	cout << "Using Plagiarism Hearing Card" << endl;
 }
 
-void CPlagiarismHearing::activateCardDeath(CCard* elementneeded, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
+void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
-	elementneeded->mResilience = "-0";
-	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
+	enemyTable->mResilience = "-0";
+	cout << enemyTable->mType << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " " << enemyTable->mPower << " " << enemyTable->mResilience << " " << enemyTable->mBoost << " is defeated" << endl;
 
-	elementneeded->mResilience = G_DEAD_CARD;
+	enemyTable->mResilience = G_DEAD_CARD;
 	tableAttacked.pop_back();
 }
 
@@ -43,9 +43,9 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 	{
 		activateEasyTarget->useCardSpecialAbility(CARD_POWER, easyTarget);
 		if (!tableAttacked.empty()) {
-			CCard* elementneeded = tableAttacked.back().get();
-			if (!elementneeded->mResilience.empty()) {
-				cardResilience = stoi(elementneeded->mResilience);
+			CCard* enemyTable = tableAttacked.back().get();
+			if (!enemyTable->mResilience.empty()) {
+				cardResilience = stoi(enemyTable->mResilience);
 			}
 
 			if (randomChoice == 1)
@@ -54,10 +54,10 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[tableAttacked.size() - 1]->mResilience = cardResilienceString;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " resilience is now " << elementneeded->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << enemyTable->mType << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " " << enemyTable->mPower << " " << enemyTable->mResilience << " " << enemyTable->mBoost << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " resilience is now " << enemyTable->mResilience << endl;
 				}
 				if (cardResilience <= 0) {
-					printCardType->activateCardDeath(elementneeded, tableAttacked);
+					printCardType->activateCardDeath(enemyTable, tableAttacked);
 				}
 			}
 

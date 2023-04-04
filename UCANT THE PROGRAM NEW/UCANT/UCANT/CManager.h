@@ -25,7 +25,11 @@ class CManager
 {
 public:
 	int mRoundCounter = 1;
-
+	enum mChoice
+	{
+		mChoiceOne,
+		mChoiceTwo,
+	};
 	void GameStart();
 	void GameOver(CPlayers::SProfessor winner, CPlayers::SProfessor loser);
 	void StartRound(int& round);
