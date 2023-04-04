@@ -52,3 +52,11 @@ void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<
 	attacked.erase(attacked.begin() + additionalEasyTargetRandomIndex);
 	
 }
+
+void CEasyTarget::attackEntity(int& additionalCardResilienceAttackedIntEasyTarget, int& leftOverDamage, int randomIndex, int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget)
+{
+	additionalCardResilienceAttackedIntEasyTarget -= leftOverDamage;
+	cout << "Left over damage attacks" << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname;
+	string additionalCardResilienceAttackedStringEasyTarget = to_string(additionalCardResilienceAttackedIntEasyTarget);
+	easyTarget[randomIndex]->mResilience = additionalCardResilienceAttackedIntEasyTarget;
+}

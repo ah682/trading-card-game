@@ -20,8 +20,8 @@ F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CMitigatingCircums
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CResearchFunding.cpp(26,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   CSerialOffender.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(41,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(61,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(62,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(58,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(59,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   UCANT.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(61,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\UCANT.cpp(88,38): warning C4552: '+': result of expression not used

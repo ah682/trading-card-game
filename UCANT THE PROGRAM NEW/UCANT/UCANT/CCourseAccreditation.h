@@ -14,6 +14,6 @@ class CCourseAccreditation :
 	void printCardUse() override;
 	void activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked); //Overloaded function
 	void attackProfessor(int cardPower, int randomCard, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn);
-	void attackEntity(string cardResilienceString, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>>& cardsDrawn, int j, int randomCard);
+	void attackEntity(string& cardResilienceString, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>>& cardsDrawn, int j, int randomCard);
 };
 

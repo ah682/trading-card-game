@@ -14,6 +14,7 @@ class CSerialOffender :
 	void printCardUse() override;
 	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); //overload
 	void attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard);
-
+	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); //not left over damage for serial offender
+	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int additionalRandomIndex, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, int& leftOverDamage, int& additionalCardResilienceAttackedInt); //left over damage for serialoffender
 };
 
