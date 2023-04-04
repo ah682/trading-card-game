@@ -12,5 +12,6 @@ public:
 	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CEasyTarget>>& easyTarget);
 	void printCardUse() override;
 	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked);
+	void attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, int randomCard, vector<shared_ptr<CCard>> cardsDrawn);
 };
 

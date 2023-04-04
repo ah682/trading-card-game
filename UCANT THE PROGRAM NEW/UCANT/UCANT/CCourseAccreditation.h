@@ -13,5 +13,7 @@ class CCourseAccreditation :
 	void useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget);
 	void printCardUse() override;
 	void activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked); //Overloaded function
+	void attackProfessor(int cardPower, int randomCard, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn
+	);
 };
 

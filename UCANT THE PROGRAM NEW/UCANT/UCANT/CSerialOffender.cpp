@@ -5,8 +5,8 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 {
 	unique_ptr<CSerialOffender> printCardTypeSerialOffender = make_unique<CSerialOffender>();
 	unique_ptr<CEasyTarget> printCardTypeEasyTarget = make_unique<CEasyTarget>();
-	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
-	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); // ?
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); 
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); 
 
 	printCardTypeSerialOffender->printCardUse();
 
@@ -97,8 +97,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 			}
 
 			if (tableAttacked.empty()) {
-				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+				printCardTypeSerialOffender->attackProfessor(cardPowerAttackerInt, professorAttacked, cardsDrawn, randomCard);
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -127,4 +126,10 @@ void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTabl
 	tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 
+}
+
+void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
+{
+	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }

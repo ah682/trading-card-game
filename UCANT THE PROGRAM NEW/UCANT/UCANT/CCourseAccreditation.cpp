@@ -44,8 +44,7 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 				}
 			}
 
-			professorAttacked.mProfPrestige -= CARD_POWER;
-			cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+			printCardType->attackProfessor(CARD_POWER, randomCard, professorAttacked, cardsDrawn);
 
 			if (professorAttacked.mProfPrestige < 0)
 			{
@@ -68,4 +67,10 @@ void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& 
 	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
 	tableAttacked[j]->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + j);
+}
+
+void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn)
+{
+	professorAttacked.mProfPrestige -= cardPower;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }

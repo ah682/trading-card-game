@@ -73,11 +73,11 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 			}
 
 			if (tableAttacked.empty()) {
-				professorAttacked.mProfPrestige -= cardPowerAttackerInt;
+				
 				cardResilienceAttackerInt += increaseResilience;
 				string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 				cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
-				cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+				printCardType->attackProfessor(professorAttacked, cardPowerAttackerInt, randomCard, cardsDrawn);
 			}
 
 			if (professorAttacked.mProfPrestige < 0)
@@ -101,4 +101,10 @@ void CIndustrialPlacement::printCardUse()
 void CIndustrialPlacement::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
 	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
+}
+
+void CIndustrialPlacement::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, int randomCard, vector<shared_ptr<CCard>> cardsDrawn)
+{
+	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
