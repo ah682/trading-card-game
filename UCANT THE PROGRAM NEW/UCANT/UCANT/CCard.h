@@ -13,9 +13,6 @@
 
 using namespace std;
 
-// Initilalise size of dead card as -9999 string value
-const string G_DEAD_CARD = "-9999";
-
 // Initilalise size of decks as 48 integers
 const int G_DECK_SIZE = 48;
 
@@ -35,12 +32,6 @@ const string G_GRADUATE_STUDENT = "11";
 class CCard
 {
 public:
-	string mType;
-	string mFirstname;
-	string mLastname;
-	string mPower;
-	string mResilience;
-	string mBoost;
 
 	void useCard(); // function overloading
 	int useCardSpecialAbility();
@@ -48,6 +39,12 @@ public:
 	void activateCardDeath(); //function overloading
 	void attackProfessor();
 	void attackEntity();
-	//void addToTypeVector
+
+	string mType;
+	string mFirstname;
+	string mLastname;
+	string mPower;
+	string mResilience;
+	string mBoost;
 };
 

@@ -9,7 +9,7 @@ void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_p
 	printCardType->printCardUse();
 	if (randomCard < cardsDrawn.size())
 	{
-		if (cardsDrawn[randomCard]->mType == G_PASS_LEADER && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
+		if (cardsDrawn[randomCard]->mType == G_PASS_LEADER)
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 			shared_ptr<CPassLeader> pPassLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);

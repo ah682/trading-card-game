@@ -13,7 +13,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
 	printCardType->printCardUse();
 
-	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CFeedbackForum> pFeedbackElement = static_pointer_cast<CFeedbackForum>(cardsDrawn[randomCard]);
@@ -97,8 +97,6 @@ void CFeedbackForum::printCardUse()
 
 void CFeedbackForum::activateCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
 {
-	elementneeded->mResilience = "0";
 	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
-	elementneeded->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }

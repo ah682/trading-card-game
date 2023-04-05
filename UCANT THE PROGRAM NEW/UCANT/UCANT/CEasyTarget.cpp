@@ -44,11 +44,7 @@ void CEasyTarget::printCardUse()
 void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked)
 {
 	cout << attacked[additionalEasyTargetRandomIndex]->mFirstname << attacked[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
-	
-
-	attacked[additionalEasyTargetRandomIndex]->mResilience = "0";
 	cout << "Easy Target Killed" << endl;
-	attacked[additionalEasyTargetRandomIndex]->mResilience = G_DEAD_CARD;
 	attacked.erase(attacked.begin() + additionalEasyTargetRandomIndex);
 	
 }

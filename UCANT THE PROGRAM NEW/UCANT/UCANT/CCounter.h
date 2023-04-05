@@ -3,7 +3,6 @@
 
 // Initialize necessary header files
 #include "CCard.h"
-
 #include <crtdbg.h>
 #include <fstream>
 
@@ -25,23 +24,11 @@ public:
 	int Random(int max);
 	int Random(int min, int max);
 
-	// Close player files
+	// Close player files once game is complete
 	~CCounter() {
 		if (mFile.is_open()) {
 			mFile.close();
-			cout << "File closed" << endl;
 		}
 	}
-
-	//Constructor open player files
-	//CCounter() {
-	//	mFile.open("Player1.txt");
-	//	if (mFile.is_open()) {
-	//		cout << "File opened" << endl;
-	//	}
-	//	else {
-	//		cout << "File not opened" << endl;
-	//	}
-	//}
 };
 

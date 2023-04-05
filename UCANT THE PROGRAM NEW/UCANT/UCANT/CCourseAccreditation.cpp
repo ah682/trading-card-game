@@ -14,7 +14,7 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 
 	printCardType->printCardUse();
 
-	if (cardsDrawn[randomCard]->mType == G_COURSE_ACCREDITATION && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_COURSE_ACCREDITATION)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CCourseAccreditation> pAccreditationElement = static_pointer_cast<CCourseAccreditation>(cardsDrawn[randomCard]);
@@ -62,9 +62,7 @@ void CCourseAccreditation::printCardUse()
 
 void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	tableAttacked[j]->mResilience = "0";
 	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
-	tableAttacked[j]->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + j);
 }
 

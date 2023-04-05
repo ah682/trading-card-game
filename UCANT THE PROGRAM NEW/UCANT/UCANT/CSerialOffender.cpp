@@ -18,7 +18,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	int additionalCardResilienceAttackedInt = 0;
 	int additionalCardResilienceAttackedIntEasyTarget = 0;
 
-	if (cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CSerialOffender> pSerialOffenderElement = static_pointer_cast<CSerialOffender>(cardsDrawn[randomCard]);
@@ -133,9 +133,7 @@ void CSerialOffender::printCardUse()
 //Bottom
 void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //overload
 {
-	tableAttacked[randomIndex]->mResilience = "0";
 	cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
-	tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 
 }

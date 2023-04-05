@@ -14,7 +14,7 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 	printCardType->printCardUse();
 	if (randomCard < cardsDrawn.size())
 	{
-		if (cardsDrawn[randomCard]->mType == G_MITIGATING_CIRCUMSTANCES && (cardsDrawn[randomCard]->mType != G_DEAD_CARD))
+		if (cardsDrawn[randomCard]->mType == G_MITIGATING_CIRCUMSTANCES)
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 			shared_ptr<CMitigatingCircumstances> pMitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);

@@ -143,7 +143,6 @@
     <ClCompile Include="CSerialOffender.cpp" />
     <ClCompile Include="CStudent.cpp" />
     <ClCompile Include="CTable.cpp" />
-    <ClCompile Include="MitigatingCircumstances.cpp" />
     <ClCompile Include="UCANT.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +162,6 @@
     <ClInclude Include="CSerialOffender.h" />
     <ClInclude Include="CStudent.h" />
     <ClInclude Include="CTable.h" />
-    <ClInclude Include="MitigatingCircumstances.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

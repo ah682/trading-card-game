@@ -13,7 +13,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 	int cardPowerAttackedInt = 0;
 	int cardResilienceAttackedInt = 0;
 
-	if (cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CGraduateStudent> pStudentElement = static_pointer_cast<CGraduateStudent>(cardsDrawn[randomCard]);
@@ -83,9 +83,7 @@ void CGraduateStudent::printCardUse()
 
 void CGraduateStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	tableAttacked[randomIndex]->mResilience = "0";
 	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
-	tableAttacked[randomIndex]->mResilience = G_DEAD_CARD;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }
 

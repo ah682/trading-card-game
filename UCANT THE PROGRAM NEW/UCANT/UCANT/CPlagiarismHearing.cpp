@@ -11,10 +11,7 @@ void CPlagiarismHearing::printCardUse()
 
 void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
-	enemyTable->mResilience = "-0";
 	cout << enemyTable->mType << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " " << enemyTable->mPower << " " << enemyTable->mResilience << " " << enemyTable->mBoost << " is defeated" << endl;
-
-	enemyTable->mResilience = G_DEAD_CARD;
 	tableAttacked.pop_back();
 }
 
@@ -30,7 +27,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();
 	printCardType->printCardUse();
 
-	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
+	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
 		shared_ptr<CPlagiarismHearing> pPlagiarismElement = static_pointer_cast<CPlagiarismHearing>(cardsDrawn[randomCard]);
