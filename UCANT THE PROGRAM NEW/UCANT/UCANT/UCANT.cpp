@@ -46,7 +46,7 @@ int main()
 	// Create a unique pointer to a CCounter object for Plagiarist
 	auto pCounterPlagiarist = make_unique<CCounter>();
 
-	// Create a unique pointer to a CCounter object for Pointless
+	// Create a unique pointer to a CCounter object
 	auto pCounter = make_unique<CCounter>();
 
 	// Create a unique pointer to a CCounter object for Perdition
@@ -124,6 +124,24 @@ int main()
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
 		pCardsPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
+
+	//Create a vector of shared pointers to CCard objects from pCounterPointless's mCardCounter
+	auto pCardsPointless = vector<shared_ptr<CCard>>(pCounterPointless->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+			pCardsPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+	}
+
+	//Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
+	auto pCardsPerdition = vector<shared_ptr<CCard>>(pCounterPerdition->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+				pCardsPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+		}
 	
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
 	auto pHandPiffle = vector<shared_ptr<CCard>>(pCounterPiffle->mCardCounter);
@@ -141,6 +159,24 @@ int main()
 	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
 			pHandPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+	}
+
+	// Create a vector of shared pointers to CCard objects from pCounterPointless's mCardCounter
+	auto pHandPointless = vector<shared_ptr<CCard>>(pCounterPointless->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+			pHandPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+	}
+
+	// Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
+	auto pHandPerdition = vector<shared_ptr<CCard>>(pCounterPerdition->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
+	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+				pHandPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
 
 	// Create a vector of shared pointers to CStudent objects from pCounterPlagiarist's mCardCounter
@@ -163,23 +199,49 @@ int main()
 		pCardsPiffleStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
 	}
 
+	// Create a vector of shared pointers to CStudent objects from pCounterPointless's mCardCounter
+	auto pCardsPointlessStudents = vector<shared_ptr<CStudent>>(pCounterPointless->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
+	{
+		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
+		pCardsPointlessStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
+	}
+
+	// Create a vector of shared pointers to CStudent objects from pCounterPerdition's mCardCounter
+	auto pCardsPerditionStudents = vector<shared_ptr<CStudent>>(pCounterPerdition->mCardCounter);
+
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
+	{
+		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
+		pCardsPerditionStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
+	}
+
 	// Define a new type alias named cardsDrawn for a vector of shared pointers to CCard objects
 	typedef vector <shared_ptr<CCard>> cardsDrawn;
 	// Create two new variables of type cardsDrawn and initialize them with empty vectors
 	auto pCardsPlagiaristDrawn = cardsDrawn{};
 	auto pCardsPiffleDrawn = cardsDrawn{};
+	auto pCardsPointlessDrawn = cardsDrawn{};
+	auto pCardsPerditionDrawn = cardsDrawn{};
 
 	// Define a new type alias named cardsStudentDrawn for a vector of shared pointers to CStudent objects
 	typedef vector <shared_ptr<CStudent>> cardsStudentDrawn;
 	// Create two new variables of type cardsStudentDrawn and initialize them with empty vectors
 	auto pCardsPlagiaristStudentsDrawn = cardsStudentDrawn{};
 	auto pCardsPiffleStudentsDrawn = cardsStudentDrawn{};
+	auto pCardsPointlessStudentsDrawn = cardsStudentDrawn{};
+	auto pCardsPerditionStudentsDrawn = cardsStudentDrawn{};
 
 	// Define a new type alias named Table for a vector of shared pointers to CTable objects
 	typedef vector <shared_ptr<CTable>> Table;
 	// Create two new variables of type Table and initialize them with empty vectors
 	auto pTablePlagiarist = Table{};
 	auto pTablePiffle = Table{};
+	auto pTablePointless = Table{};
+	auto pTablePerdition = Table{};
 
 	// Define a type alias for a vector of shared pointers to CPlagiarismHearing objects
 	typedef vector <shared_ptr<CPlagiarismHearing>> DrawPlagiarismHearingCards;
@@ -187,6 +249,10 @@ int main()
 	auto pDrawPlagiarismHearingCardPlagiarist = DrawPlagiarismHearingCards{};
 	// Create an instance of DrawPlagiarismHearingCardS named pDrawPlagiarismHearingCardsPiffle
 	auto pDrawPlagiarismHearingCardPiffle = DrawPlagiarismHearingCards{};
+	// Create an instance of DrawPlagiarismHearingCardS named pDrawPlagiarismHearingCardsPointless
+	auto pDrawPlagiarismHearingCardPointless = DrawPlagiarismHearingCards{};
+	// Create an instance of DrawPlagiarismHearingCardS named pDrawPlagiarismHearingCardsPerdition
+	auto pDrawPlagiarismHearingCardPerdition = DrawPlagiarismHearingCards{};
 
 
 	/// <summary>
@@ -242,6 +308,8 @@ int main()
 	auto pDrawCourseAccreditationCardPlagiarist = DrawCourseAccreditationCards{};
 	// Create an instance of DrawCourseAccreditationCards named pDrawCourseAccreditationCardPiffle
 	auto pDrawCourseAccreditationCardPiffle = DrawCourseAccreditationCards{};
+	// Create an instance of DrawCourseAccreditationCards named pDrawCourseAccreditationCardPointless
+	auto pDrawCourseAccreditationCardPointless = DrawCourseAccreditationCards{};
 
 	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
 	typedef vector <shared_ptr<CFeedbackForum>> feedbackForumCards;
@@ -249,6 +317,8 @@ int main()
 	auto pFeedbackForumPlagiarist = feedbackForumCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pFeedbackForumPiffle = feedbackForumCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pFeedbackForumPointless = feedbackForumCards{};
 
 	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
 	typedef vector <shared_ptr<CPassLeader>> passLeaderCards;
@@ -256,6 +326,8 @@ int main()
 	auto pPassLeaderPlagiarist = passLeaderCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pPassLeaderPiffle = passLeaderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pPassLeaderPointless = passLeaderCards{};
 
 	// Define a type alias for a vector of shared pointers to CResearchFunding objects
 	typedef vector <shared_ptr<CResearchFunding>> researchFundingCards;
@@ -263,6 +335,9 @@ int main()
 	auto pResearchFundingPlagiarist = researchFundingCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pResearchFundingPiffle = researchFundingCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pResearchFundingPointless = researchFundingCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
 
 	//	Define  a type alias for a vector of shared pointers to CMitigatingCircumstances objects
 	typedef vector <shared_ptr<CMitigatingCircumstances>> mitigatingCircumstancesCards;
@@ -270,6 +345,8 @@ int main()
 	auto pMitigatingCircumstancesPlagiarist = mitigatingCircumstancesCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pMitigatingCircumstancesPiffle = mitigatingCircumstancesCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pMitigatingCircumstancesPointless = mitigatingCircumstancesCards{};
 
 	// Define a type for a shared pointer to a CStudent object
 	typedef  shared_ptr<CMitigatingCircumstances> studentCard;
@@ -277,6 +354,10 @@ int main()
 	auto pStudentPlagiaristTest = studentCard{};
 	// Create an instance of studentCard named pStudentPiffleTest
 	auto pStudentPiffleTest = studentCard{};
+	// Create an instance of studentCard named pStudentPointlessTest
+	auto pStudentPointlessTest = studentCard{};
+	// Create an instance of studentCard named pStudentPerditionTest
+	auto pStudentPerditionTest = studentCard{};
 
 	//	Define  a type alias for a vector of shared pointers to CEasyTarget objects
 	typedef vector <shared_ptr<CEasyTarget>> easyTargetCards;
@@ -284,6 +365,10 @@ int main()
 	auto pEasyTargetPlagiarist = easyTargetCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pEasyTargetPiffle = easyTargetCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pEasyTargetPointless = easyTargetCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pEasyTargetPerdition = easyTargetCards{};
 
 	//	Define  a type alias for a vector of shared pointers to CSerialOffender objects
 	typedef vector <shared_ptr<CSerialOffender>> serialOffenderCards;
@@ -291,6 +376,10 @@ int main()
 	auto pSerialOffenderPlagiarist = serialOffenderCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pSerialOffenderPiffle = serialOffenderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pSerialOffenderPointless = serialOffenderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pSerialOffenderPerdition = serialOffenderCards{};
 
 	//	Define  a type alias for a vector of shared pointers to CGraduateStudent objects
 	typedef vector <shared_ptr<CGraduateStudent>> graduateStudentCards;
@@ -298,6 +387,10 @@ int main()
 	auto pGraduateStudentPlagiarist = graduateStudentCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pGraduateStudentPiffle = graduateStudentCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pGraduateStudentPointless = graduateStudentCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pGraduateStudentPerdition = graduateStudentCards{};
 
 	//	Define  a type alias for a vector of shared pointers to CIndustrialPlacement objects
 	typedef vector <shared_ptr<CIndustrialPlacement>> industrialPlacementCards;
@@ -305,11 +398,19 @@ int main()
 	auto pIndustrialPlacementPlagiarist = industrialPlacementCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPiffle
 	auto pIndustrialPlacementPiffle = industrialPlacementCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPointless
+	auto pIndustrialPlacementPointless = industrialPlacementCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pIndustrialPlacementPerdition = industrialPlacementCards{};
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
 	pGameState->FillDeck(pCounterPlagiarist->mFile, pCardsPlagiarist, pCardsPlagiaristStudents);
 	// Call the FillDeck method of the pGameState object with arguments pCounterPiffle->mFile, pCardsPlagiarist and pCardsPiffleStudents
 	pGameState->FillDeck(pCounterPiffle->mFile, pCardsPiffle, pCardsPiffleStudents);
+	// Call the FillDeck method of the pGameState object with arguments pCounterPointless->mFile, pCardsPlagiarist and pCardsPointlessStudents
+	pGameState->FillDeck(pCounterPointless->mFile, pCardsPointless, pCardsPointlessStudents);
+	// Call the FillDeck method of the pGameState object with arguments pCounterPerdition->mFile, pCardsPlagiarist and pCardsPerditionStudents
+	pGameState->FillDeck(pCounterPerdition->mFile, pCardsPerdition, pCardsPerditionStudents);
 
 
 	// Define a type alias for a vector of shared pointers to bools
@@ -333,6 +434,24 @@ int main()
 		pCheckUsedCardPiffle[i] = make_unique<bool>(false);
 	}
 
+	// Create a checkUsedCard object for Pointless with size DECK_SIZE
+	auto pCheckUsedCardPointless = checkUsedCard(G_DECK_SIZE);
+
+	// Initialize all elements of pCheckUsedCardPointless to unique pointers to false
+	for (int i = 0; i < G_DECK_SIZE; i++)
+	{
+		pCheckUsedCardPointless[i] = make_unique<bool>(false);
+	}
+
+	// Create a checkUsedCard object for Perdition with size DECK_SIZE
+	auto pCheckUsedCardPerdition = checkUsedCard(G_DECK_SIZE);
+
+	// Initialize all elements of pCheckUsedCardPerdition to unique pointers to false
+	for (int i = 0; i < G_DECK_SIZE; i++)
+	{
+		pCheckUsedCardPerdition[i] = make_unique<bool>(false);
+	}
+
 	// Do while loop which continues until pPlagiarist->profPrestige > 0 and pPiffle->profPrestige > 0;
 	do
 	{
@@ -346,6 +465,8 @@ int main()
 
 			//	Draw card function draws two cards for Piffle
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
+
+
 
 			// Adds card to hand for Plagiarist
 			//pGameState->pushToHand(pCardsPlagiaristDrawn, pHandPlagiarist, pCounterPlagiarist->mI, *pPlagiarist);
