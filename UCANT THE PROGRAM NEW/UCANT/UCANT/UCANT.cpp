@@ -83,27 +83,27 @@ int main()
 	pPointless->mProfName = "Pointless";
 
 	// Count the number of cards in the plagiarist file
-	while (getline(pCounterPlagiarist->mFile, pCounterPiffle->mLine))
+	while (getline(pCounterPlagiarist->mFile, pCounterPlagiarist->mLine))
 	{
 		pCounterPlagiarist->mCardCounter++ + G_DECK_SIZE;
 	}
 
 	// Count the number of cards in the piffle file
-	while (getline(pCounterPiffle->mFile, pCounterPlagiarist->mLine))
+	while (getline(pCounterPiffle->mFile, pCounterPiffle->mLine))
 	{
 		pCounterPiffle->mCardCounter++ + G_DECK_SIZE;
 	}
 
 	// Count the number of cards in the pointless file
-	while (getline(pCounter->mFile, pCounter->mLine))
+	while (getline(pCounterPointless->mFile, pCounterPointless->mLine))
 	{
-		pCounter->mCardCounter++ + G_DECK_SIZE;
+		pCounterPointless->mCardCounter++ + G_DECK_SIZE;
 	}
 
 	// Count the number of cards in the perdition file
-	while (getline(pCounter->mFile, pCounter->mLine))
+	while (getline(pCounterPerdition->mFile, pCounterPerdition->mLine))
 	{
-		pCounter->mCardCounter++ + G_DECK_SIZE;
+		pCounterPerdition->mCardCounter++ + G_DECK_SIZE;
 	}
 
 
@@ -131,7 +131,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-			pCardsPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+		pCardsPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
 
 	//Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
@@ -140,8 +140,8 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-				pCardsPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-		}
+		pCardsPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+	}
 	
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
 	auto pHandPiffle = vector<shared_ptr<CCard>>(pCounterPiffle->mCardCounter);
@@ -149,7 +149,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPiffle->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-			pHandPiffle[i] = make_shared<CCard>();
+		pHandPiffle[i] = make_shared<CCard>();
 	}
 
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
@@ -158,7 +158,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-			pHandPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+		pHandPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
 
 	// Create a vector of shared pointers to CCard objects from pCounterPointless's mCardCounter
@@ -167,7 +167,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-			pHandPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+		pHandPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
 
 	// Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
@@ -176,7 +176,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
 	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-				pHandPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
+		pHandPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
 	}
 
 	// Create a vector of shared pointers to CStudent objects from pCounterPlagiarist's mCardCounter
@@ -310,6 +310,8 @@ int main()
 	auto pDrawCourseAccreditationCardPiffle = DrawCourseAccreditationCards{};
 	// Create an instance of DrawCourseAccreditationCards named pDrawCourseAccreditationCardPointless
 	auto pDrawCourseAccreditationCardPointless = DrawCourseAccreditationCards{};
+	// Create an instance of DrawCourseAccreditationCards named pDrawCourseAccreditationCardPerdition
+	auto pDrawCourseAccreditationCardPerdition = DrawCourseAccreditationCards{};
 
 	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
 	typedef vector <shared_ptr<CFeedbackForum>> feedbackForumCards;
@@ -319,6 +321,8 @@ int main()
 	auto pFeedbackForumPiffle = feedbackForumCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPointless
 	auto pFeedbackForumPointless = feedbackForumCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pFeedbackForumPerdition = feedbackForumCards{};
 
 	// Define a type alias for a vector of shared pointers to CFeedbackForum objects
 	typedef vector <shared_ptr<CPassLeader>> passLeaderCards;
@@ -328,6 +332,8 @@ int main()
 	auto pPassLeaderPiffle = passLeaderCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPointless
 	auto pPassLeaderPointless = passLeaderCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pPassLeaderPerdition = passLeaderCards{};
 
 	// Define a type alias for a vector of shared pointers to CResearchFunding objects
 	typedef vector <shared_ptr<CResearchFunding>> researchFundingCards;
@@ -338,6 +344,7 @@ int main()
 	// Create an instance of feedbackForumCards named pFeedbackForumPointless
 	auto pResearchFundingPointless = researchFundingCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pResearchFundingPerdition = researchFundingCards{};
 
 	//	Define  a type alias for a vector of shared pointers to CMitigatingCircumstances objects
 	typedef vector <shared_ptr<CMitigatingCircumstances>> mitigatingCircumstancesCards;
@@ -347,6 +354,8 @@ int main()
 	auto pMitigatingCircumstancesPiffle = mitigatingCircumstancesCards{};
 	// Create an instance of feedbackForumCards named pFeedbackForumPointless
 	auto pMitigatingCircumstancesPointless = mitigatingCircumstancesCards{};
+	// Create an instance of feedbackForumCards named pFeedbackForumPerdition
+	auto pMitigatingCircumstancesPerdition = mitigatingCircumstancesCards{};
 
 	// Define a type for a shared pointer to a CStudent object
 	typedef  shared_ptr<CMitigatingCircumstances> studentCard;
@@ -455,24 +464,20 @@ int main()
 	// Do while loop which continues until pPlagiarist->profPrestige > 0 and pPiffle->profPrestige > 0;
 	do
 	{
-		pGameState->StartRound(pGameState->mRoundCounter);
+			pGameState->StartRound(pGameState->mRoundCounter);
 
-		// Draws random card for plagiarist and prints cards if pCounterPlagiarist->i < DECK_SIZE
-		if (pCounterPlagiarist->mI < G_DECK_SIZE)
-		{
+		
 			// Draw card function draws two cards for Plagiarist
 			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mI, *pPlagiarist, pCheckUsedCardPlagiarist);
 
 			//	Draw card function draws two cards for Piffle
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
+			//	Draw card function draws two cards for Pointless
+			pGameState->DrawCard(pCardsPointless, pCardsPointlessDrawn, pCounterPointless->mDeckCounter, pCounterPointless->mI, *pPointless, pCheckUsedCardPointless);
 
-
-			// Adds card to hand for Plagiarist
-			//pGameState->pushToHand(pCardsPlagiaristDrawn, pHandPlagiarist, pCounterPlagiarist->mI, *pPlagiarist);
-
-			// Adds card to hand for Piffle
-			//pGameState->pushToHand(pCardsPiffleDrawn, pHandPiffle, pCounterPiffle->mI, *pPiffle);
+			//	Draw card function draws two cards for Perdition
+			pGameState->DrawCard(pCardsPerdition, pCardsPerditionDrawn, pCounterPerdition->mDeckCounter, pCounterPerdition->mI, *pPerdition, pCheckUsedCardPerdition);
 
 			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
 			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 1, pCardsPiffleDrawn.size() - 1);
@@ -480,14 +485,27 @@ int main()
 			cout << "Piffle-Paper chooses card: " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mType << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mFirstname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mLastname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mPower << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mResilience << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mBoost << endl;
 
 			// Plagiarist Chooses a random card from the two cards DrawCard function have selected
-			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(pCardsPlagiaristDrawn.size() - 2, pCardsPlagiaristDrawn.size() - 1);
+			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(pCardsPlagiaristDrawn.size() - 1, pCardsPlagiaristDrawn.size() - 1);
 			// Prints out chosen card for Plagiarist
 			cout << "Plagiarist chooses: " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mType << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mFirstname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mLastname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mPower << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mResilience << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mBoost << endl;
-		}
+
+			// Pointless Chooses a random card from the two cards DrawCard function have selected
+			pCounterPointless->mRandomCard = pCounterPointless->Random(pCardsPointlessDrawn.size() - 1, pCardsPointlessDrawn.size() - 1);
+			// Prints out chosen card for Pointless
+			cout << "Pointless chooses: " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mType << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mFirstname << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mLastname << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mPower << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mResilience << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mBoost << endl;
+
+			// Perdition Chooses a random card from the two cards DrawCard function have selected
+			pCounterPerdition->mRandomCard = pCounterPerdition->Random(pCardsPerditionDrawn.size() - 1, pCardsPerditionDrawn.size() - 1);
+			// Prints out chosen card for Perdition
+			cout << "Perdition chooses: " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mType << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mFirstname << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mLastname << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mPower << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mResilience << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mBoost << endl;
+
+		
 
 		//PrintTable function prints current cards on table for each player
 		pGameState->PrintTable(pTablePiffle, pCardsPiffleDrawn, *pPiffle, "Piffle-Paper", pCounterPiffle->mRandomCard);
 		pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
+		pGameState->PrintTable(pTablePointless, pCardsPointlessDrawn, *pPointless, "Pointless", pCounterPointless->mRandomCard);
+		pGameState->PrintTable(pTablePerdition, pCardsPerditionDrawn, *pPerdition, "Perdition", pCounterPerdition->mRandomCard);
 
 		// Use type 1 cards (Student Cards), Piffle gets attacked
 		pGameState->UseStudentCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
@@ -517,7 +535,7 @@ int main()
 		pUseGraduateStudentCard->useCard(pTablePiffle, pTablePlagiarist, *pPiffle, *pPlagiarist, pCardsPlagiaristDrawn, pGraduateStudentPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPiffle);
 
 		// Exits the do while loop when one of the players loses all their prestige
-		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
 		{
 			// Exit the do while loop when one of the players loses all their prestige
 			break;
@@ -550,8 +568,62 @@ int main()
 		// Use type 1 cards (Graduate Student Cards), Plagiarist gets attacked
 		pUseGraduateStudentCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pGraduateStudentPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
+		// Use type 1 cards (Student Cards) of Pointless, Perdition gets attacked
+		pGameState->UseStudentCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pCardsPointlessStudentsDrawn, pCounterPointless->mRandomCard, pEasyTargetPerdition);
+
+		// Initialize random range between one or two to choose truly random card
+		randomRangeOneorTwo = pCounterPointless->Random(1, 2);
+
+		// Use type x cards (Plagiarism Hearing Cards), Perdition gets attacked
+		pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", randomRangeOneorTwo, pEasyTargetPerdition);
+		// Use type x cards (Course Accreditation Cards), Perdition gets attacked
+		pUseCourseAccreditationCard->useCard(pCardsPointlessDrawn, pDrawCourseAccreditationCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", pEasyTargetPerdition);
+		// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
+		pUseFeedbackForumCard->useCard(pCardsPointlessDrawn, pFeedbackForumPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", randomRangeOneorTwo, pTablePointless, pEasyTargetPerdition);
+		// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
+		pUseIndustrialPlacementCard->useCard(pCardsPointlessDrawn, pIndustrialPlacementPointless, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "attackerName", pTablePointless, pTablePerdition, pEasyTargetPerdition);
+		// Use type x cards (Pass Leader Cards), Pointless type 6 deck gets increased attack power
+		pUsePassLeaderCard->useCard(pCardsPointlessDrawn, pPassLeaderPointless, pCounterPointless->mRandomCard, *pPointless, *pPointless, "Pointless-Paper", pTablePointless);
+		// Use type x cards (Research Funding Cards), Pointless type 6 deck gets increased attack power
+		pUseResearchFundingCard->useCard(pCardsPointlessDrawn, pResearchFundingPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless-Paper", pTablePointless);
+		// Use type x cards(Mitigating Circumstances Cards), Pointless type 6 deck gets increased attack power
+		pUseMitigatingCircumstancesCard->useCard(pCardsPointless, pStudentPointlessTest, pTablePointless, pMitigatingCircumstancesPointless, pCounterPointless->mRandomCard);
+		// Use type x cards(Easy Target Cards), Pointless type 6 deck gets increased attack power THIS NEEDS TO BE FIXED
+		pGameState->UseEasyTargetCard(pCardsPointless, pEasyTargetPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless-Paper", pTablePointless);
+		// Use type 1 cards (Student Cards), Perdition gets attacked
+		pUseSerialOffenderCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pSerialOffenderPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
+		// Use type 1 cards (Graduate Student Cards), Perdition gets attacked
+		pUseGraduateStudentCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pGraduateStudentPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
+
+		// Use type 1 cards (Student Cards) of Perdition, Pointless gets attacked
+		pGameState->UseStudentCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
+
+		// Initialize random range between one or two to choose truly random card
+		randomRangeOneorTwo = pCounterPerdition->Random(1, 2);
+
+		// Use type x cards (Plagiarism Hearing Cards), Pointless gets attacked
+		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePointless, pCounterPerdition->mRandomCard, *pPointless, *pPerdition, "Pointless-Paper", "Perdition", randomRangeOneorTwo, pEasyTargetPointless);
+		// Use type x cards (Course Accreditation Cards), Pointless gets attacked
+		pUseCourseAccreditationCard->useCard(pCardsPerditionDrawn, pDrawCourseAccreditationCardPerdition, pTablePointless, pCounterPerdition->mRandomCard, *pPointless, *pPerdition, "Pointless-Paper", "Perdition", pEasyTargetPointless);
+		// Use type x cards (Feedback Forum Cards), Pointless gets attacked or Perdition gets healed
+		pUseFeedbackForumCard->useCard(pCardsPerditionDrawn, pFeedbackForumPerdition, pTablePointless, pCounterPerdition->mRandomCard, *pPointless, *pPerdition, "Pointless-Paper", "Perdition", randomRangeOneorTwo, pTablePerdition, pEasyTargetPointless);
+		// Use type x cards (Industrial Placement Cards), Pointless gets attacked or Perdition gets healed
+		pUseIndustrialPlacementCard->useCard(pCardsPerditionDrawn, pIndustrialPlacementPerdition, pCounterPerdition->mRandomCard, *pPointless, *pPerdition, "attackerName", pTablePerdition, pTablePointless, pEasyTargetPointless);
+		// Use type x cards (Pass Leader Cards), Perdition type 6 deck gets increased attack power
+		pUsePassLeaderCard->useCard(pCardsPerditionDrawn, pPassLeaderPerdition, pCounterPerdition->mRandomCard, *pPerdition, *pPerdition, "Perdition", pTablePerdition);
+		// Use type x cards (Research Funding Cards), Perdition type 6 deck gets increased attack power
+		pUseResearchFundingCard->useCard(pCardsPerditionDrawn, pResearchFundingPerdition, pCounterPerdition->mRandomCard, *pPerdition, "Perdition", pTablePerdition);
+		// Use type x cards(Mitigating Circumstances Cards), Perdition type 6 deck gets increased attack power
+		pUseMitigatingCircumstancesCard->useCard(pCardsPerdition, pStudentPerditionTest, pTablePerdition, pMitigatingCircumstancesPerdition, pCounterPerdition->mRandomCard);
+		// Use type x cards(Easy Target Cards), Perdition type 6 deck gets increased attack power
+		pGameState->UseEasyTargetCard(pCardsPerdition, pEasyTargetPerdition, pCounterPerdition->mRandomCard, *pPerdition, "Perdition", pTablePerdition);
+		// Use type 1 cards (Student Cards), Pointless gets attacked
+		pUseSerialOffenderCard->useCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pSerialOffenderPerdition, pCounterPerdition->mRandomCard, pEasyTargetPointless);
+		// Use type 1 cards (Graduate Student Cards), Pointless gets attacked
+		pUseGraduateStudentCard->useCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pGraduateStudentPerdition, pCounterPerdition->mRandomCard, pEasyTargetPointless);
+
 		// Exits the do while loop when one of the players loses all their prestige
-		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0)
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
 		{
 			// Exit the loop when one of the players loses all their prestige
 			break;
@@ -559,7 +631,7 @@ int main()
 
 
 
-	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0);
+	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0 && pPointless->mProfPrestige > 0 && pPerdition->mProfPrestige > 0);
 
 	// GameOver function checks which player has won
 	pGameState->GameOver(*pPiffle, *pPlagiarist);
