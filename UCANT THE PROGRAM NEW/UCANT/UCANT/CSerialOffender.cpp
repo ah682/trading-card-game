@@ -56,11 +56,11 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 					do
 					{
 						int additionalRandomIndex = randomNumber->Random(tableAttacked.size() - 1);
-						int additionalEasyTargetRandomIndex = randomNumber->Random(serialOffender.size() - 1);
+						int additionalEasyTargetRandomIndex = randomNumber->Random(easyTarget.size() - 1);
 						int additionalCardResilienceAttackedInt = stoi(tableAttacked[additionalRandomIndex]->mResilience);
 						int additionalCardResilienceAttackedIntEasyTarget = stoi(easyTarget[additionalEasyTargetRandomIndex]->mResilience);
 						int additionalCardPowerAttackerInt = stoi(tableAttacked[randomIndex]->mPower);
-						if (additionalCardResilienceAttackedIntEasyTarget > 0 && easyTarget.size() > 0)
+						if (additionalCardResilienceAttackedIntEasyTarget > 0 && easyTarget.size() >= 0)
 						{
 							printCardTypeEasyTarget->attackEntity(additionalCardResilienceAttackedIntEasyTarget, leftOverDamage, randomIndex, additionalEasyTargetRandomIndex, easyTarget);
 							if (additionalCardResilienceAttackedIntEasyTarget <= 0)
