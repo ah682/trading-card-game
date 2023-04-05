@@ -15,7 +15,7 @@ int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarge
 	if (attacked.size() > 0)
 	{
 		int randomIndex = pickRandom->Random(attacked.size() - 1);
-		int  attackedResilience = stoi(attacked[randomIndex]->mResilience);
+		int attackedResilience = stoi(attacked[randomIndex]->mResilience);
 		attackedResilience -= damage;
 
 		if (attackedResilience > 0)
@@ -29,7 +29,7 @@ int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarge
 			cardType->activateCardDeath(randomIndex, attacked);
 		}
 	}
-	if (attacked.size() <= 0)
+	if (attacked.size() <= 0 || attacked.empty())
 	{
 		cout << "No Easy Targets left" << endl;
 	}

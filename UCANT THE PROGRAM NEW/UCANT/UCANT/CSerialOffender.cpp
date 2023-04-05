@@ -15,6 +15,8 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	int cardResilienceAttackerInt = 0;
 	int cardPowerAttackedInt = 0;
 	int cardResilienceAttackedInt = 0;
+	int additionalCardResilienceAttackedInt = 0;
+	int additionalCardResilienceAttackedIntEasyTarget = 0;
 
 	if (cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER && cardsDrawn[randomCard]->mResilience != G_DEAD_CARD)
 	{
@@ -57,8 +59,28 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 					{
 						int additionalRandomIndex = randomNumber->Random(tableAttacked.size() - 1);
 						int additionalEasyTargetRandomIndex = randomNumber->Random(easyTarget.size() - 1);
-						int additionalCardResilienceAttackedInt = stoi(tableAttacked[additionalRandomIndex]->mResilience);
-						int additionalCardResilienceAttackedIntEasyTarget = stoi(easyTarget[additionalEasyTargetRandomIndex]->mResilience);
+
+						if (additionalRandomIndex < 0 || additionalEasyTargetRandomIndex < 0) {
+							// break out of the loop if either of the random indices is invalid
+							break;
+						}
+
+						if (additionalRandomIndex >= 0 && additionalRandomIndex < tableAttacked.size())
+						{
+							additionalCardResilienceAttackedInt = stoi(tableAttacked[additionalRandomIndex]->mResilience); //-2 dont think this is an issue [table attacked random index value]
+						}
+						else
+						{
+							break;
+						}
+						if (additionalEasyTargetRandomIndex >= 0 && additionalEasyTargetRandomIndex < easyTarget.size())
+						{
+							additionalCardResilienceAttackedIntEasyTarget = stoi(easyTarget[additionalEasyTargetRandomIndex]->mResilience); //This is -858993460 [easy target random index] i assume this is the issue
+						}
+						else
+						{
+							break;
+						}
 						int additionalCardPowerAttackerInt = stoi(tableAttacked[randomIndex]->mPower);
 						if (additionalCardResilienceAttackedIntEasyTarget > 0 && easyTarget.size() >= 0)
 						{
