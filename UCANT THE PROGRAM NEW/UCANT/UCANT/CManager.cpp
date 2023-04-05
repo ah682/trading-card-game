@@ -49,29 +49,49 @@ void CManager::GameStart()
 	cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
 
-void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist)
+void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition)
 {
 
 
-	if (piffle.mProfPrestige > plagiarist.mProfPrestige)
+	if (piffle.mProfPrestige > plagiarist.mProfPrestige && piffle.mProfPrestige > pointless.mProfPrestige && piffle.mProfPrestige > perdition.mProfPrestige)
 	{
-		if (plagiarist.mProfPrestige < 0)
-		{
-			plagiarist.mProfPrestige = 0;
-		}
-		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << " " << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl << plagiarist.mProfName << " has no prestige and is a sacked!" << endl << piffle.mProfName << " wins" << endl;
-
-		cout << "Game Over" << endl;
+		cout << "Game Over" << endl << "=========" << endl;
+		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
+		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
+		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << piffle.mProfName << " wins" << endl;
 	}
-	else if (plagiarist.mProfPrestige > piffle.mProfPrestige)
+	else if (plagiarist.mProfPrestige > piffle.mProfPrestige && plagiarist.mProfPrestige > pointless.mProfPrestige && plagiarist.mProfPrestige > perdition.mProfPrestige)
 	{
-		if (piffle.mProfPrestige < 0)
-		{
-			piffle.mProfPrestige = 0;
-		}
-		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << " " << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl << piffle.mProfName << " has no prestige and is a sacked!" << endl << plagiarist.mProfName << " wins" << endl;
-
-		cout << "Game Over" << endl;
+		cout << "Game Over" << endl << "=========" << endl;
+		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
+		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
+		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << plagiarist .mProfName << " wins" << endl;
+	}
+	else if (pointless.mProfPrestige > plagiarist.mProfPrestige && pointless.mProfPrestige > piffle.mProfPrestige && pointless.mProfPrestige > perdition.mProfPrestige)
+	{
+		cout << "Game Over" << endl << "=========" << endl;
+		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
+		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl; 
+		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << pointless.mProfName << " wins" << endl;
+	}
+	else if (perdition.mProfPrestige > plagiarist.mProfPrestige && perdition.mProfPrestige > pointless.mProfPrestige && perdition.mProfPrestige > piffle.mProfPrestige)
+	{
+		cout << "Game Over" << endl << "=========" << endl;
+		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
+		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
+		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << perdition.mProfName << " wins" << endl;
+	}
+	else
+	{
+		cout << "Game Over" << endl << "=========" << endl;
 	}
 }
 

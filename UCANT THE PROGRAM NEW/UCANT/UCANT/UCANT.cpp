@@ -634,7 +634,7 @@ int main()
 	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0 && pPointless->mProfPrestige > 0 && pPerdition->mProfPrestige > 0);
 
 	// GameOver function checks which player has won
-	pGameState->GameOver(*pPiffle, *pPlagiarist);
+	pGameState->GameOver(*pPiffle, *pPlagiarist, *pPointless, *pPerdition);
 
 	// Memory Leak Detection
 	_CrtDumpMemoryLeaks();
