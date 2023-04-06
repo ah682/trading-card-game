@@ -481,23 +481,15 @@ int main()
 
 			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
 			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 1, pCardsPiffleDrawn.size() - 1);
-			// Prints out chosen card for Piffle-Paper
-			cout << "Piffle-Paper chooses card: " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mType << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mFirstname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mLastname << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mPower << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mResilience << " " << pCardsPiffleDrawn[pCounterPiffle->mRandomCard]->mBoost << endl;
-
+	
 			// Plagiarist Chooses a random card from the two cards DrawCard function have selected
 			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(pCardsPlagiaristDrawn.size() - 1, pCardsPlagiaristDrawn.size() - 1);
-			// Prints out chosen card for Plagiarist
-			cout << "Plagiarist chooses: " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mType << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mFirstname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mLastname << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mPower << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mResilience << " " << pCardsPlagiaristDrawn[pCounterPlagiarist->mRandomCard]->mBoost << endl;
-
+			
 			// Pointless Chooses a random card from the two cards DrawCard function have selected
 			pCounterPointless->mRandomCard = pCounterPointless->Random(pCardsPointlessDrawn.size() - 1, pCardsPointlessDrawn.size() - 1);
-			// Prints out chosen card for Pointless
-			cout << "Pointless chooses: " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mType << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mFirstname << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mLastname << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mPower << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mResilience << " " << pCardsPointlessDrawn[pCounterPointless->mRandomCard]->mBoost << endl;
 
 			// Perdition Chooses a random card from the two cards DrawCard function have selected
 			pCounterPerdition->mRandomCard = pCounterPerdition->Random(pCardsPerditionDrawn.size() - 1, pCardsPerditionDrawn.size() - 1);
-			// Prints out chosen card for Perdition
-			cout << "Perdition chooses: " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mType << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mFirstname << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mLastname << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mPower << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mResilience << " " << pCardsPerditionDrawn[pCounterPerdition->mRandomCard]->mBoost << endl;
 
 		
 
