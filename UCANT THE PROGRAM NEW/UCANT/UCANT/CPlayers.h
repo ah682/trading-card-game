@@ -11,6 +11,9 @@
 #include <vector>
 #include <ctime>
 #include <sstream>
+
+using namespace std;
+
 class CPlayers
 {
 public:
@@ -19,5 +22,9 @@ public:
 		string mProfName;
 		int mProfPrestige = 30;
 	};
+
+	void ProfessorSacked(CPlayers::SProfessor& plagiarist, CPlayers::SProfessor& piffle, CPlayers::SProfessor& pointless, CPlayers::SProfessor& perdition);
+	
+
 };
 
