@@ -24,6 +24,17 @@ public:
 	int Random(int max);
 	int Random(int min, int max);
 
+	// Count number of lines
+	void countCardsInFile(unique_ptr<CCounter>& pCounter);
+
+	// Push into vector
+	void createCardsInVector(unique_ptr<CCounter>& pCounter, vector<shared_ptr<CCard>>& pCards);
+
+	// Initialize check used card array
+	void initializeCheckUsedCard(vector<shared_ptr<bool>>& pCheckUsedCardPlagiarist);
+
+	void initializeHand(vector<shared_ptr<CCard>>& pHand, int size);
+
 	// Close player files once game is complete
 	~CCounter() {
 		if (mFile.is_open()) {

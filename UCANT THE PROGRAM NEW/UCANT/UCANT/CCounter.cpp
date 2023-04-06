@@ -23,3 +23,38 @@ int CCounter::Random(int min, int max)
 {
 	return min + int(float(rand()) / (RAND_MAX + 1) * float(max - min + 1));
 }
+
+// Count number of cards in file
+void CCounter::countCardsInFile(unique_ptr<CCounter>& pCounter)
+{
+    // Count the number of cards in the file
+    while (getline(pCounter->mFile, pCounter->mLine))
+    {
+        pCounter->mCardCounter++ + G_DECK_SIZE;
+    }
+}
+
+void CCounter::createCardsInVector(unique_ptr<CCounter>& pCounter, vector<shared_ptr<CCard>>& pCards)
+{
+	// Iterate over each element in the vector using a for loop
+	for (int i = 0; i < pCounter->mCardCounter; i++)
+	{
+		// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
+		pCards[i] = make_shared<CCard>();
+	}
+}
+
+
+void CCounter::initializeCheckUsedCard(vector<shared_ptr<bool>>& pCheckUsedCardPlagiarist) {
+	for (int i = 0; i < pCheckUsedCardPlagiarist.size(); i++) {
+		pCheckUsedCardPlagiarist[i] = make_shared<bool>(false);
+	}
+}
+
+void CCounter::initializeHand(vector<shared_ptr<CCard>>& pHand, int size) {
+	for (int i = 0; i < size; i++) {
+		pHand[i] = make_shared<CCard>();
+	}
+}
+
+

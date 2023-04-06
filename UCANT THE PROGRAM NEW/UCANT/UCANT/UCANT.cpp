@@ -37,21 +37,14 @@ int main()
 	// Function declaration to read seed file
 	time_t ReadSeedFile(string filename);
 
-	// Define a type alias for a unique pointer to a CCounter object
-	typedef unique_ptr<CCounter> pCCounterPtr;
-
-	// Create a unique pointer to a CCounter object for Piffle
-	auto pCounterPiffle = make_unique<CCounter>();
-
-	// Create a unique pointer to a CCounter object for Plagiarist
-	auto pCounterPlagiarist = make_unique<CCounter>();
-
 	// Create a unique pointer to a CCounter object
 	auto pCounter = make_unique<CCounter>();
-
+	// Create a unique pointer to a CCounter object for Piffle
+	auto pCounterPiffle = make_unique<CCounter>();
+	// Create a unique pointer to a CCounter object for Plagiarist
+	auto pCounterPlagiarist = make_unique<CCounter>();
 	// Create a unique pointer to a CCounter object for Perdition
 	auto pCounterPerdition = make_unique<CCounter>();
-
 	// Create a unique pointer to a CCounter object for Pointless
 	auto pCounterPointless = make_unique<CCounter>();
 
@@ -59,8 +52,6 @@ int main()
 	pCounter->mSeed = ReadSeedFile("seed.txt");
 	// Generate random number from seed
 	srand(pCounter->mSeed);
-	// Prints out seed number of U-Can't the widowing
-	cout << "Seed Number: " << pCounterPiffle->mSeed << endl;
 
 	// Initialize data before commencing U-Can't
 	auto pGameState = make_unique<CManager>();
@@ -85,112 +76,65 @@ int main()
 	// Create a shared pointer to new SStudent objects
 	auto pStudent = make_shared<CPlayers>();
 
-	// Count the number of cards in the plagiarist file
-	while (getline(pCounterPlagiarist->mFile, pCounterPlagiarist->mLine))
-	{
-		pCounterPlagiarist->mCardCounter++ + G_DECK_SIZE;
-	}
-
-	// Count the number of cards in the piffle file
-	while (getline(pCounterPiffle->mFile, pCounterPiffle->mLine))
-	{
-		pCounterPiffle->mCardCounter++ + G_DECK_SIZE;
-	}
-
-	// Count the number of cards in the pointless file
-	while (getline(pCounterPointless->mFile, pCounterPointless->mLine))
-	{
-		pCounterPointless->mCardCounter++ + G_DECK_SIZE;
-	}
-
-	// Count the number of cards in the perdition file
-	while (getline(pCounterPerdition->mFile, pCounterPerdition->mLine))
-	{
-		pCounterPerdition->mCardCounter++ + G_DECK_SIZE;
-	}
-
+	pCounterPlagiarist->countCardsInFile(pCounterPlagiarist);
+	pCounterPiffle->countCardsInFile(pCounterPiffle);
+	pCounterPointless->countCardsInFile(pCounterPointless);
+	pCounterPerdition->countCardsInFile(pCounterPerdition);
 
 	// Create a vector of shared pointers to CCard objects from pCounterPiffle's mCardCounter
 	auto pCardsPiffle = vector<shared_ptr<CCard>>(pCounterPiffle->mCardCounter);
 
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPiffle->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pCardsPiffle[i] = make_shared<CCard>();
-	}
+	pCounterPiffle->createCardsInVector(pCounterPiffle, pCardsPiffle);
 
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
 	auto pCardsPlagiarist = vector<shared_ptr<CCard>>(pCounterPlagiarist->mCardCounter);
 
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pCardsPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPlagiarist->createCardsInVector(pCounterPlagiarist, pCardsPlagiarist);
 
 	//Create a vector of shared pointers to CCard objects from pCounterPointless's mCardCounter
 	auto pCardsPointless = vector<shared_ptr<CCard>>(pCounterPointless->mCardCounter);
 
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pCardsPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPointless->createCardsInVector(pCounterPointless, pCardsPointless);
 
 	//Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
 	auto pCardsPerdition = vector<shared_ptr<CCard>>(pCounterPerdition->mCardCounter);
 
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pCardsPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPerdition->createCardsInVector(pCounterPerdition, pCardsPerdition);
 	
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
 	auto pHandPiffle = vector<shared_ptr<CCard>>(pCounterPiffle->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPiffle->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pHandPiffle[i] = make_shared<CCard>();
-	}
+	pCounterPiffle->initializeHand(pHandPiffle, pCounterPiffle->mCardCounter);
 
 	// Create a vector of shared pointers to CCard objects from pCounterPlagiarist's mCardCounter
 	auto pHandPlagiarist = vector<shared_ptr<CCard>>(pCounterPlagiarist->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pHandPlagiarist[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPlagiarist->initializeHand(pHandPlagiarist, pCounterPlagiarist->mCardCounter);
 
 	// Create a vector of shared pointers to CCard objects from pCounterPointless's mCardCounter
 	auto pHandPointless = vector<shared_ptr<CCard>>(pCounterPointless->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pHandPointless[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPointless->initializeHand(pHandPointless, pCounterPointless->mCardCounter);
+	
 
 	// Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
 	auto pHandPerdition = vector<shared_ptr<CCard>>(pCounterPerdition->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
-	{	// Use make_shared to create a new shared_ptr to a CCard object and assign it to the current element in the vector
-		pHandPerdition[i] = make_shared<CCard>(); // Assign the shared_ptr to the vector element
-	}
+	pCounterPerdition->initializeHand(pHandPerdition, pCounterPerdition->mCardCounter);
 
 	// Create a vector of shared pointers to CStudent objects from pCounterPlagiarist's mCardCounter
 	auto pCardsPlagiaristStudents = vector<shared_ptr<CStudent>>(pCounterPlagiarist->mCardCounter);
 
-	// Iterate over each element in the vector using a for loop
 	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
 	{
 		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
 		pCardsPlagiaristStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
 	}
+	
 
 	// Create a vector of shared pointers to CStudent objects from pCounterPiffle's mCardCounter
 	auto pCardsPiffleStudents = vector<shared_ptr<CStudent>>(pCounterPiffle->mCardCounter);
@@ -432,37 +376,25 @@ int main()
 	auto pCheckUsedCardPlagiarist = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPlagiarist to unique pointers to false
-	for (int i = 0; i < G_DECK_SIZE; i++)
-	{
-		pCheckUsedCardPlagiarist[i] = make_unique<bool>(false);
-	}
+	pCounterPlagiarist->initializeCheckUsedCard(pCheckUsedCardPlagiarist);
 
 	// Create a checkUsedCard object for Piffle with size DECK_SIZE
 	auto pCheckUsedCardPiffle = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPiffle to unique pointers to false
-	for (int i = 0; i < G_DECK_SIZE; i++)
-	{
-		pCheckUsedCardPiffle[i] = make_unique<bool>(false);
-	}
+	pCounterPiffle->initializeCheckUsedCard(pCheckUsedCardPiffle);
 
 	// Create a checkUsedCard object for Pointless with size DECK_SIZE
 	auto pCheckUsedCardPointless = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPointless to unique pointers to false
-	for (int i = 0; i < G_DECK_SIZE; i++)
-	{
-		pCheckUsedCardPointless[i] = make_unique<bool>(false);
-	}
+	pCounterPointless->initializeCheckUsedCard(pCheckUsedCardPointless);
 
 	// Create a checkUsedCard object for Perdition with size DECK_SIZE
 	auto pCheckUsedCardPerdition = checkUsedCard(G_DECK_SIZE);
 
 	// Initialize all elements of pCheckUsedCardPerdition to unique pointers to false
-	for (int i = 0; i < G_DECK_SIZE; i++)
-	{
-		pCheckUsedCardPerdition[i] = make_unique<bool>(false);
-	}
+	pCounterPerdition->initializeCheckUsedCard(pCheckUsedCardPerdition);
 
 	// Do while loop which continues until pPlagiarist->profPrestige > 0 and pPiffle->profPrestige > 0;
 	do

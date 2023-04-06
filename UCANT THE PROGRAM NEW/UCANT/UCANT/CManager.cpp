@@ -61,7 +61,7 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 		cout << "Prof " << pointless.mProfName << "'s prestige is " << pointless.mProfPrestige << endl;
 		cout << "Prof " << perdition.mProfName << "'s prestige is " << perdition.mProfPrestige << endl;
 		cout << "Prof " << piffle.mProfName << "'s prestige is " << piffle.mProfPrestige << endl << endl;
-		cout << "Prof " << piffle.mProfName << " wins" << endl;
+		cout << "Prof " << piffle.mProfName << " wins!" << endl;
 	}
 	else if (plagiarist.mProfPrestige > piffle.mProfPrestige && plagiarist.mProfPrestige > pointless.mProfPrestige && plagiarist.mProfPrestige > perdition.mProfPrestige)
 	{
@@ -70,7 +70,7 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 		cout << "Prof " << pointless.mProfName << "'s prestige is " << pointless.mProfPrestige << endl;
 		cout << "Prof " << perdition.mProfName << "'s prestige is " << perdition.mProfPrestige << endl;
 		cout << "Prof " << piffle.mProfName << "'s prestige is " << piffle.mProfPrestige << endl << endl;
-		cout << "Prof " << plagiarist.mProfName << " wins" << endl;
+		cout << "Prof " << plagiarist.mProfName << " wins!" << endl;
 	}
 	else if (pointless.mProfPrestige > plagiarist.mProfPrestige && pointless.mProfPrestige > piffle.mProfPrestige && pointless.mProfPrestige > perdition.mProfPrestige)
 	{
@@ -79,7 +79,7 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 		cout << "Prof " << pointless.mProfName << "'s prestige is " << pointless.mProfPrestige << endl;
 		cout << "Prof " << perdition.mProfName << "'s prestige is " << perdition.mProfPrestige << endl;
 		cout << "Prof " << piffle.mProfName << "'s prestige is " << piffle.mProfPrestige << endl << endl;
-		cout << "Prof " << pointless.mProfName << " wins" << endl;
+		cout << "Prof " << pointless.mProfName << " wins!" << endl;
 	}
 	else if (perdition.mProfPrestige > plagiarist.mProfPrestige && perdition.mProfPrestige > pointless.mProfPrestige && perdition.mProfPrestige > piffle.mProfPrestige)
 	{
@@ -88,7 +88,7 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 		cout << "Prof " << pointless.mProfName << "'s prestige is " << pointless.mProfPrestige << endl;
 		cout << "Prof " << perdition.mProfName << "'s prestige is " << perdition.mProfPrestige << endl;
 		cout << "Prof " << piffle.mProfName << "'s prestige is " << piffle.mProfPrestige << endl << endl;
-		cout << "Prof " << perdition.mProfName << " wins" << endl;
+		cout << "Prof " << perdition.mProfName << " wins!" << endl;
 	}
 	else
 	{

@@ -27,8 +27,8 @@ public:
 	int mRoundCounter = 1;
 	enum mChoice
 	{
-		mChoiceOne,
-		mChoiceTwo,
+		eChoiceOne,
+		eChoiceTwo,
 	};
 	void GameStart();
 	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition);
