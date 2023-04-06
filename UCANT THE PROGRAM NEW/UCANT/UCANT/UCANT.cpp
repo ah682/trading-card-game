@@ -568,6 +568,13 @@ int main()
 		// Use type 1 cards (Graduate Student Cards), Plagiarist gets attacked
 		pUseGraduateStudentCard->useCard(pTablePointless, pTablePlagiarist, *pPointless, *pPlagiarist, pCardsPlagiaristDrawn, pGraduateStudentPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPointless);
 
+		// Exits the do while loop when one of the players loses all their prestige
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
+		{
+			// Exit the loop when one of the players loses all their prestige
+			break;
+		}
+
 		// Use type 1 cards (Student Cards) of Pointless, Perdition gets attacked
 		pGameState->UseStudentCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pCardsPointlessStudentsDrawn, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 
@@ -594,6 +601,13 @@ int main()
 		pUseSerialOffenderCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pSerialOffenderPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 		// Use type 1 cards (Graduate Student Cards), Perdition gets attacked
 		pUseGraduateStudentCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pGraduateStudentPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
+
+		// Exits the do while loop when one of the players loses all their prestige
+		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
+		{
+			// Exit the loop when one of the players loses all their prestige
+			break;
+		}
 
 		// Use type 1 cards (Student Cards) of Perdition, Pointless gets attacked
 		pGameState->UseStudentCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
