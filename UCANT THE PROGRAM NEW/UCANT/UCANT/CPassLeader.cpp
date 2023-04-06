@@ -55,6 +55,7 @@ void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_p
 	{
 		
 	}
+	passLeader.clear();
 }
 void::CPassLeader::printCardUse()
 {

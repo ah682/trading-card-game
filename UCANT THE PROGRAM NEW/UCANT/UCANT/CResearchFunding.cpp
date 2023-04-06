@@ -55,6 +55,7 @@ void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shar
 	{
 		
 	}
+	researchFunding.clear();
 }
 
 void CResearchFunding::printCardUse()

@@ -73,4 +73,5 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 			}
 		}
 	}
+	plagiarism .clear();
 }

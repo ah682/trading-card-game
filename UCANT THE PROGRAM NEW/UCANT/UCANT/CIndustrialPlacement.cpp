@@ -89,6 +89,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 	{
 		
 	}
+	industrialPlacement.clear();
 }
 
 void CIndustrialPlacement::printCardUse()

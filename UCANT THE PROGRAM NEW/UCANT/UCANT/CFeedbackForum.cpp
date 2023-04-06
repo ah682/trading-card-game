@@ -88,6 +88,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 		}
 		cout << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 	}
+	feedbackforum.clear();
 }
 
 void CFeedbackForum::printCardUse()

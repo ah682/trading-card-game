@@ -75,6 +75,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 	{
 		
 	}
+	graduateStudent.clear();
 }
 void CGraduateStudent::printCardUse()
 {

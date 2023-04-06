@@ -124,6 +124,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	{
 		
 	}
+	serialOffender.clear();
 }
 void CSerialOffender::printCardUse()
 {

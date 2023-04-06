@@ -69,6 +69,7 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 	{
 		
 	}
+	mitigatingCircumstances.clear();
 }
 
 void CMitigatingCircumstances::printCardUse()

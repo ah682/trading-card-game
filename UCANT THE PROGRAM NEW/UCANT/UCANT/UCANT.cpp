@@ -507,17 +507,17 @@ int main()
 		pGameState->PrintTable(pTablePointless, pCardsPointlessDrawn, *pPointless, "Pointless", pCounterPointless->mRandomCard);
 		pGameState->PrintTable(pTablePerdition, pCardsPerditionDrawn, *pPerdition, "Perdition", pCounterPerdition->mRandomCard);
 
-		// Use type 1 cards (Student Cards), Piffle gets attacked
+		// Use type 1 cards (Student Cards), Plagiarist gets attacked
 		pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
 		// Initialize random range between one or two to choose truly random card
 		int randomRangeOneorTwo = pCounterPiffle->Random(1, 2);
 
-		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
+		// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
 		pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", randomRangeOneorTwo, pEasyTargetPlagiarist);
-		// Use type x cards (Course Accreditation Cards), Piffle gets attacked
+		// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
 		pUseCourseAccreditationCard->useCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pEasyTargetPlagiarist);
-		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Plagiarist gets healed
+		// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 		pUseFeedbackForumCard->useCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", randomRangeOneorTwo, pTablePiffle, pEasyTargetPlagiarist);
 		// Use type x cards (Industrial Placement Cards), Piffle gets attacked
 		pUseIndustrialPlacementCard->useCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "attackerName", pTablePiffle, pTablePlagiarist, pEasyTargetPlagiarist);
@@ -531,7 +531,7 @@ int main()
 		pGameState->UseEasyTargetCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
 		// Use type x cards(Serial Offender Cards), Piffle type 6 deck gets increased attack power
 		pUseSerialOffenderCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pSerialOffenderPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
-		// Use type 1 cards(Graduate Student Cards), Piffle gets attacked
+		// Use type 1 cards(Graduate Student Cards), Plagiarist gets attacked
 		pUseGraduateStudentCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pGraduateStudentPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
 		// Exits the do while loop when one of the players loses all their prestige

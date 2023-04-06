@@ -238,6 +238,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	{
 		
 	}
+	ordinaryStudent.clear();
 
 }
 
