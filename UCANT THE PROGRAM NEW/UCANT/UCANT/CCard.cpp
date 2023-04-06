@@ -15,12 +15,12 @@ void CCard::activateCardDeath()
 
 void CCard::useCard()
 {
-	cout << "Using Card" << endl;
+	
 }
 
 int CCard::useCardSpecialAbility()
 {
-		cout << "Using Special Card Ability" << endl;
+		
 		return 0;
 }
 

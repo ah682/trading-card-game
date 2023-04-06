@@ -53,13 +53,13 @@ void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shar
 	}
 	if (researchFunding.empty())
 	{
-		cout << "There is no research funding cards to use" << endl;
+		
 	}
 }
 
 void CResearchFunding::printCardUse()
 {
-	cout << "Using Research Funding Card" << endl;
+	
 }
 
 void CResearchFunding::activateCardDeath()

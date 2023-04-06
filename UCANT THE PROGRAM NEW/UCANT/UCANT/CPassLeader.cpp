@@ -53,12 +53,12 @@ void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_p
 	}
 	if (passLeader.empty())
 	{
-		cout << "There is no pass leader cards to use" << endl;
+		
 	}
 }
 void::CPassLeader::printCardUse()
 {
-	cout << "Using Pass Leader Card" << endl;
+	
 }
 
 void::CPassLeader::activateCardDeath()

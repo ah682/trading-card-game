@@ -31,14 +31,14 @@ int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarge
 	}
 	if (attacked.size() <= 0 || attacked.empty())
 	{
-		cout << "No Easy Targets left" << endl;
+		//If there is no easy targets left do nothing
 	}
 	return damage;
 }
 
 void CEasyTarget::printCardUse()
 {
-	cout << "Using Easy Target Card" << endl;
+	
 }
 
 void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked)

@@ -575,21 +575,21 @@ int main()
 		randomRangeOneorTwo = pCounterPointless->Random(1, 2);
 
 		// Use type x cards (Plagiarism Hearing Cards), Perdition gets attacked
-		pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", randomRangeOneorTwo, pEasyTargetPerdition);
+		pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", randomRangeOneorTwo, pEasyTargetPerdition);
 		// Use type x cards (Course Accreditation Cards), Perdition gets attacked
-		pUseCourseAccreditationCard->useCard(pCardsPointlessDrawn, pDrawCourseAccreditationCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", pEasyTargetPerdition);
+		pUseCourseAccreditationCard->useCard(pCardsPointlessDrawn, pDrawCourseAccreditationCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", pEasyTargetPerdition);
 		// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
-		pUseFeedbackForumCard->useCard(pCardsPointlessDrawn, pFeedbackForumPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless-Paper", randomRangeOneorTwo, pTablePointless, pEasyTargetPerdition);
+		pUseFeedbackForumCard->useCard(pCardsPointlessDrawn, pFeedbackForumPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", randomRangeOneorTwo, pTablePointless, pEasyTargetPerdition);
 		// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
-		pUseIndustrialPlacementCard->useCard(pCardsPointlessDrawn, pIndustrialPlacementPointless, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "attackerName", pTablePointless, pTablePerdition, pEasyTargetPerdition);
+		pUseIndustrialPlacementCard->useCard(pCardsPointlessDrawn, pIndustrialPlacementPointless, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Pointless", pTablePointless, pTablePerdition, pEasyTargetPerdition);
 		// Use type x cards (Pass Leader Cards), Pointless type 6 deck gets increased attack power
-		pUsePassLeaderCard->useCard(pCardsPointlessDrawn, pPassLeaderPointless, pCounterPointless->mRandomCard, *pPointless, *pPointless, "Pointless-Paper", pTablePointless);
+		pUsePassLeaderCard->useCard(pCardsPointlessDrawn, pPassLeaderPointless, pCounterPointless->mRandomCard, *pPointless, *pPointless, "Pointless", pTablePointless);
 		// Use type x cards (Research Funding Cards), Pointless type 6 deck gets increased attack power
-		pUseResearchFundingCard->useCard(pCardsPointlessDrawn, pResearchFundingPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless-Paper", pTablePointless);
+		pUseResearchFundingCard->useCard(pCardsPointlessDrawn, pResearchFundingPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless", pTablePointless);
 		// Use type x cards(Mitigating Circumstances Cards), Pointless type 6 deck gets increased attack power
 		pUseMitigatingCircumstancesCard->useCard(pCardsPointless, pStudentPointlessTest, pTablePointless, pMitigatingCircumstancesPointless, pCounterPointless->mRandomCard);
 		// Use type x cards(Easy Target Cards), Pointless type 6 deck gets increased attack power THIS NEEDS TO BE FIXED
-		pGameState->UseEasyTargetCard(pCardsPointless, pEasyTargetPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless-Paper", pTablePointless);
+		pGameState->UseEasyTargetCard(pCardsPointless, pEasyTargetPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless", pTablePointless);
 		// Use type 1 cards (Student Cards), Perdition gets attacked
 		pUseSerialOffenderCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pSerialOffenderPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 		// Use type 1 cards (Graduate Student Cards), Perdition gets attacked

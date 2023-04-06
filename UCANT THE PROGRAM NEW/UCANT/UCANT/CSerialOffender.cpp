@@ -122,12 +122,12 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	}
 	if (serialOffender.empty())
 	{
-		cout << "No serial offender cards to use" << endl;
+		
 	}
 }
 void CSerialOffender::printCardUse()
 {
-	cout << "Using Serial Offender Card" << endl;
+	
 }
 
 //Bottom
@@ -141,7 +141,7 @@ void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTabl
 void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 // Regular Entity

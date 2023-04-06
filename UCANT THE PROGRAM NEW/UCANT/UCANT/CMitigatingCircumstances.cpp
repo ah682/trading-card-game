@@ -67,11 +67,11 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 	}
 	if (mitigatingCircumstances.empty())
 	{
-		cout << "There is no mitigating circumstance cards to use" << endl;
+		
 	}
 }
 
 void CMitigatingCircumstances::printCardUse()
 {
-	cout << "Using Mitigiating Circumstances Card" << endl;
+	
 }

@@ -20,9 +20,9 @@
 // Tells the compiler to use the standard namespace
 using namespace std;
 
+//pRINTS TABLE!! to see!!!
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
 {
-	cout << "Printing Table" << endl;
 	playerName.mProfName = professor;
 	if (((((((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) || cardsDrawn[randomCard]->mType == G_EASY_TARGET) || cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM) || cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER) || cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT))
 	{
@@ -37,12 +37,13 @@ void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<C
 	cout << playerName.mProfName << " cards on table: " << endl;
 	for (int i = 0; i < table.size(); i++)
 	{
-		cout << table[i]->mType << " " << table[i]->mFirstname << " " << table[i]->mLastname << " " << table[i]->mPower << " " << table[i]->mResilience << " " << table[i]->mBoost << endl;
+		cout << table[i]->mFirstname << " " << table[i]->mLastname << " (" << table[i]->mType << ")" << " , ";
 		if (i > table.size() - table.size() + 1)
 		{
 			break;
 		}
 	}
+	cout << endl;
 }
 void CManager::GameStart()
 {
@@ -55,49 +56,53 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 
 	if (piffle.mProfPrestige > plagiarist.mProfPrestige && piffle.mProfPrestige > pointless.mProfPrestige && piffle.mProfPrestige > perdition.mProfPrestige)
 	{
-		cout << "Game Over" << endl << "=========" << endl;
+		cout << endl << "Game Over" << endl << "=========" << endl;
 		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
 		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
 		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
-		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl << endl;
 		cout << piffle.mProfName << " wins" << endl;
 	}
 	else if (plagiarist.mProfPrestige > piffle.mProfPrestige && plagiarist.mProfPrestige > pointless.mProfPrestige && plagiarist.mProfPrestige > perdition.mProfPrestige)
 	{
-		cout << "Game Over" << endl << "=========" << endl;
+		cout << endl << "Game Over" << endl << "=========" << endl;
 		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
 		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
 		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
-		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl << endl;
 		cout << plagiarist .mProfName << " wins" << endl;
 	}
 	else if (pointless.mProfPrestige > plagiarist.mProfPrestige && pointless.mProfPrestige > piffle.mProfPrestige && pointless.mProfPrestige > perdition.mProfPrestige)
 	{
-		cout << "Game Over" << endl << "=========" << endl;
+		cout << endl << "Game Over" << endl << "=========" << endl;
 		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
 		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl; 
 		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
-		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl << endl;
 		cout << pointless.mProfName << " wins" << endl;
 	}
 	else if (perdition.mProfPrestige > plagiarist.mProfPrestige && perdition.mProfPrestige > pointless.mProfPrestige && perdition.mProfPrestige > piffle.mProfPrestige)
 	{
-		cout << "Game Over" << endl << "=========" << endl;
+		cout << endl << "Game Over" << endl << "=========" << endl;
 		cout << plagiarist.mProfName << " prestige is " << plagiarist.mProfPrestige << endl;
 		cout << pointless.mProfName << " prestige is " << pointless.mProfPrestige << endl;
 		cout << perdition.mProfName << " prestige is " << perdition.mProfPrestige << endl;
-		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl;
+		cout << piffle.mProfName << " prestige is " << piffle.mProfPrestige << endl << endl;
 		cout << perdition.mProfName << " wins" << endl;
 	}
 	else
 	{
-		cout << "Game Over" << endl << "=========" << endl;
+		cout << endl << "Game Over" << endl << "=========" << endl;
 	}
 }
 
 void CManager::StartRound(int& round)
 {
-	cout << "Round: " << round << endl << "=========" << endl;
+	if (round == 1)
+	{
+		cout << endl;
+	}
+	cout << endl << "Round: " << round << endl << "=========" << endl << endl;
 	round++;
 }
 
@@ -123,8 +128,6 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 
 void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards)
 {
-	cout << "Drawing Card" << endl;
-
 	for (int j = i; j < deckCounter; j++)
 	{
 		if (i == G_DECK_SIZE)
@@ -149,7 +152,6 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 
 void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName)
 {
-	cout << "Pushing Cards to Hand" << endl;
 	for (int j = i; j < drawnCards.size(); j++)
 	{
 		if (i == G_DECK_SIZE)
@@ -234,7 +236,7 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	}
 	if (ordinaryStudent.empty())
 	{
-		cout << "No student cards to use" << endl;
+		
 	}
 
 }

@@ -92,7 +92,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
 void CFeedbackForum::printCardUse()
 {
-	cout << "Using FeedBackForum Card" << endl;
+	
 }
 
 void CFeedbackForum::activateCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)

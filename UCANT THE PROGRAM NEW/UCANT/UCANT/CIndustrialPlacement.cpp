@@ -87,13 +87,13 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 	}
 	if (industrialPlacement.empty())
 	{
-		cout << "No Industrial Placement cards to use" << endl;
+		
 	}
 }
 
 void CIndustrialPlacement::printCardUse()
 {
-	cout << "Using Industrial Placement Card" << endl;
+	
 }
 
 void CIndustrialPlacement::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
@@ -104,5 +104,5 @@ void CIndustrialPlacement::activateCardDeath(int randomIndex, vector<shared_ptr<
 void CIndustrialPlacement::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, int randomCard, vector<shared_ptr<CCard>> cardsDrawn)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
