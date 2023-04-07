@@ -1,6 +1,6 @@
 // Adam James Anthony Hall
 #pragma once
-
+#pragma warning(suppress : 6031)
 // Initialize necessary header files
 #include <fstream>
 #include <vector>
