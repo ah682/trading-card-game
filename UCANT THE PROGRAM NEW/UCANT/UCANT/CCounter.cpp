@@ -57,4 +57,20 @@ void CCounter::initializeHand(vector<shared_ptr<CCard>>& pHand, int size) {
 	}
 }
 
+time_t CCounter::getSeed() {
+	return mSeed;
+}
+
+void CCounter::setSeed(time_t seed) {
+	mSeed = seed;
+}
+
+ifstream& CCounter::getFile() {
+	return mFile;
+}
+
+void CCounter::setFile(const string& filename) {
+	mFile.open(filename);
+}
+
 

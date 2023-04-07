@@ -49,19 +49,21 @@ int main()
 	auto pCounterPointless = make_unique<CCounter>();
 
 	// Genereate seed from read file
-	pCounter->mSeed = ReadSeedFile("seed.txt");
+	pCounter->mSeeder = pCounter->getSeed();
+	pCounter->mSeeder = ReadSeedFile("seed.txt");
 	// Generate random number from seed
-	srand(static_cast<unsigned int>(pCounter->mSeed));
+	srand(static_cast<unsigned int>(pCounter->mSeeder));
+	pCounter->setSeed(pCounter->mSeeder);
 
 	// Initialize data before commencing U-Can't
 	auto pGameState = make_unique<CManager>();
 	pGameState->GameStart();
 
 	// Open texts files and assign the contents to mFile
-	pCounterPlagiarist->mFile.open("plagiarist.txt");
-	pCounterPiffle->mFile.open("piffle-paper.txt");
-	pCounterPointless->mFile.open("pointless.txt");
-	pCounterPerdition->mFile.open("perdition.txt");
+	pCounterPlagiarist->setFile("plagiarist.txt");
+	pCounterPiffle->setFile("piffle-paper.txt");
+	pCounterPointless->setFile("pointless.txt");
+	pCounterPerdition->setFile("perdition.txt");
 
 	// Create a shared pointer to new SProfessor objects
 	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
@@ -360,13 +362,13 @@ int main()
 	auto pIndustrialPlacementPerdition = industrialPlacementCards{};
 
 	// Call the FillDeck method of the pGameState object with arguments pCounterPlagiarist->mFile, pCardsPlagiarist and pCardsPlagiaristStudents
-	pGameState->FillDeck(pCounterPlagiarist->mFile, pCardsPlagiarist, pCardsPlagiaristStudents);
+	pGameState->FillDeck(pCounterPlagiarist->getFile(), pCardsPlagiarist, pCardsPlagiaristStudents);
 	// Call the FillDeck method of the pGameState object with arguments pCounterPiffle->mFile, pCardsPlagiarist and pCardsPiffleStudents
-	pGameState->FillDeck(pCounterPiffle->mFile, pCardsPiffle, pCardsPiffleStudents);
+	pGameState->FillDeck(pCounterPiffle->getFile(), pCardsPiffle, pCardsPiffleStudents);
 	// Call the FillDeck method of the pGameState object with arguments pCounterPointless->mFile, pCardsPlagiarist and pCardsPointlessStudents
-	pGameState->FillDeck(pCounterPointless->mFile, pCardsPointless, pCardsPointlessStudents);
+	pGameState->FillDeck(pCounterPointless->getFile(), pCardsPointless, pCardsPointlessStudents);
 	// Call the FillDeck method of the pGameState object with arguments pCounterPerdition->mFile, pCardsPlagiarist and pCardsPerditionStudents
-	pGameState->FillDeck(pCounterPerdition->mFile, pCardsPerdition, pCardsPerditionStudents);
+	pGameState->FillDeck(pCounterPerdition->getFile(), pCardsPerdition, pCardsPerditionStudents);
 
 
 	// Define a type alias for a vector of shared pointers to bools

@@ -14,11 +14,11 @@ public:
 	int mDeckCounter = 1;
 	int mCardCounter = 0;
 	int mRandomCard = 0;
-	time_t mSeed = 0;
 	int mResilienceIncrease = 0;
 
 	string mLine = "";
-	ifstream mFile;
+	ifstream* mFileReader;
+	time_t mSeeder = 0;
 	
 	// Function overloading
 	int Random(int max);
@@ -35,11 +35,21 @@ public:
 
 	void initializeHand(vector<shared_ptr<CCard>>& pHand, int size);
 
+	time_t getSeed();
+	void setSeed(time_t seed);
+
+	ifstream& getFile();
+	void setFile(const string& filename);
+
 	// Close player files once game is complete
 	~CCounter() {
 		if (mFile.is_open()) {
 			mFile.close();
 		}
 	}
+
+private:
+	time_t mSeed = 0;
+	ifstream mFile;
 };
 
