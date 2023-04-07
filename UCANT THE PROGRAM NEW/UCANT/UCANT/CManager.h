@@ -21,31 +21,58 @@
 #include "CGraduateStudent.h"
 #include "CIndustrialPlacement.h"
 
+/*
+ * The CManager class has several public member functions and an enum for selecting choices.
+ * The public member functions include:
+ * - GameStart: which starts the game.
+ * - GameOver: which takes several SProfessor objects as arguments and ends the game.
+ * - StartRound: which takes a reference to an int for the round number and starts a new round.
+ * - UseStudentCard: which takes several arguments including vectors of shared pointers to CTable, CCard, CStudent and CEasyTarget objects,
+ *   as well as references to SProfessor objects and an int for a random card.
+ * - FillDeck: which takes an ifstream object, a vector of shared pointers to CCard objects and a vector of shared pointers to CStudent objects as arguments and fills the deck with cards.
+ * - DrawCard: which takes several arguments including vectors of shared pointers to CCard objects, references to ints for the deck counter and index,
+ *   an SProfessor object for the player name and a vector of shared pointers to bools for used cards.
+ * - pushToHand: which takes vectors of shared pointers to CCard objects, a reference to an int for the index,
+ *   and an SProfessor object for the player name as arguments and pushes cards to the player's hand.
+ * - PrintTable: which takes several arguments including vectors of shared pointers to CTable and CCard objects,
+ *   an SProfessor object for the player name, a string for the professor name and an int for a random card.
+ * - UseEasyTargetCard: which takes several arguments including vectors of shared pointers to CCard and CEasyTarget objects,
+ *   an int for a random card, a reference to an SProfessor object for the attacker, a string for the attacker name
+ *   and a vector of shared pointers to CTable objects for the table attacker.
+ * - getChoice: which returns the value of mChoice.
+ * - setChoice: which takes an int for the choice and sets the value of mChoice using the values from the mSelectChoice enum.
+ * - getRoundCounter: which returns the value of mRoundCounter.
+ * - setRoundCounter: which takes an int for the round number and sets the value of mRoundCounter.
+ *
+ * The class also has two private data members:
+ * - mChoice: which stores the value of the choice selected by the user.
+ * - mRoundCounter: which stores the value of the current round number.
+ */
 class CManager
 {
 public:
-	enum mSelectChoice
+	enum mSelectChoice // Enum for selecting choices
 	{
 		eChoiceAlpha = 1,
 		eChoiceBeta = 2,
 	};
-	void GameStart();
-	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition);
-	void StartRound(int& round);
-	void UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget);
-	void FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent);
-	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards);
-	void pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName);
-	void PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard);
-	void UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker);
+	void GameStart(); // Starts the game
+	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition); // Ends the game
+	void StartRound(int& round); // Starts a new round
+	void UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget); // Uses a student card
+	void FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent); // Fills the deck with cards
+	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards); // Draws a card
+	void pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName); // Pushes cards to the player's hand
+	void PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard); // Prints the table
+	void UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker); // Uses an easy target card
 	int getChoice() const;  // Returns mChoice
 	void setChoice(int choice);  //Sets mChoice either 1 or two from enum mSelectChoice
 	int getRoundCounter() const; // Returns round number
 	void setRoundCounter(int round); // Sets round number when incremented
 
 private:
-	int mChoice = 0;
-	int mRoundCounter = 1;
+	int mChoice = 0; // Stores the value of the choice selected by the user
+	int mRoundCounter = 1; // Stores the value of the current round number
 };
 
 

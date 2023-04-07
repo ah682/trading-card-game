@@ -2,14 +2,20 @@
 #pragma once
 #include "CCard.h"
 #include "CCounter.h"
+
+/*
+ * The CEasyTarget class is derived from the CCard class and represents a type of card in the game.
+ * This class contains methods to use the card's special ability, print its usage, activate its death effect,
+ * and attack an entity on the table.
+ */
 class CEasyTarget :
-	public CCard
+	public CCard // CEasyTarget is derived from CCard using public inheritance
 {
 public:
 	int useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarget>>& attacked); // Returns damage if required
-	void printCardUse() override;
-	void activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); // overload
-	void attackEntity(int& additionalCardResilienceAttackedIntEasyTarget, int& leftOverDamage, int randomIndex, int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget);
+	void printCardUse() override; // Overrides the printCardUse method from the base class
+	void activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); // Overloaded method to activate the card's death effect
+	void attackEntity(int& additionalCardResilienceAttackedIntEasyTarget, int& leftOverDamage, int randomIndex, int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget); // Method to attack an entity on the table
 
 };
 

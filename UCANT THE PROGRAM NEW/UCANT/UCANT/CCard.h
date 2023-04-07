@@ -16,7 +16,7 @@ using namespace std;
 // Initilalise size of decks as 48 integers
 const int G_DECK_SIZE = 48;
 
-// Initialise Card Types
+// Initialise Card Type's Integer ID
 const string G_STUDENT = "1";
 const string G_PLAGIARISM_HEARING = "2";
 const string G_COURSE_ACCREDITATION = "3";
@@ -29,22 +29,29 @@ const string G_EASY_TARGET = "9";
 const string G_SERIAL_OFFENDER = "10";
 const string G_GRADUATE_STUDENT = "11";
 
+/*
+ * The CCard class represents a card in the game.
+ * It has several public member functions for using the card and its abilities,
+ * as well as virtual functions that can be overridden in derived classes.
+ * The class also has several public data members for storing information about the card,
+ * such as its type, name, power, resilience, and boost.
+ */
 class CCard
 {
 public:
 
-	void useCard(); // function overloading
+	void useCard(); // Function overloading
 	int useCardSpecialAbility(); // Gets returned value such as damage to pass to professor or entities
 	virtual void printCardUse(); // Virtual Function
-	void activateCardDeath(); //function overloading
-	void attackProfessor();
-	void attackEntity();
+	void activateCardDeath(); // Function overloading
+	void attackProfessor(); // Function which attacks CPlayers class
+	void attackEntity(); // Function which attacks
 
-	string mType;
-	string mFirstname;
-	string mLastname;
-	string mPower;
-	string mResilience;
-	string mBoost;
+	string mType; // Stores card type for use in source files
+	string mFirstname; // Stores card's first name for use in source files
+	string mLastname; // Stores card's last name for use in source files
+	string mPower; // Stores cards power for use in source files
+	string mResilience; // Store cards resilience for use in source files
+	string mBoost; // Stores cards boost for use in source files
 };
 
