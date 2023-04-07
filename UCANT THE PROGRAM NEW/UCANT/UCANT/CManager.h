@@ -25,10 +25,11 @@ class CManager
 {
 public:
 	int mRoundCounter = 1;
-	enum mChoice
+	int mChoice = 0;
+	enum mSelectChoice
 	{
-		eChoiceOne,
-		eChoiceTwo,
+		eChoiceAlpha = 1,
+		eChoiceBeta = 2,
 	};
 	void GameStart();
 	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition);

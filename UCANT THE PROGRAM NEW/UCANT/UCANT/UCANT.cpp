@@ -51,7 +51,7 @@ int main()
 	// Genereate seed from read file
 	pCounter->mSeed = ReadSeedFile("seed.txt");
 	// Generate random number from seed
-	srand(pCounter->mSeed);
+	srand(static_cast<unsigned int>(pCounter->mSeed));
 
 	// Initialize data before commencing U-Can't
 	auto pGameState = make_unique<CManager>();
@@ -410,17 +410,18 @@ int main()
 			pGameState->UseStudentCard(pTablePointless, pTablePlagiarist, *pPointless, *pPlagiarist, pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPointless);
 
 			// Plagiarist Chooses a random card from the two cards DrawCard function have selected
-			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(pCardsPlagiaristDrawn.size() - 1, pCardsPlagiaristDrawn.size() - 1);
+			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(static_cast<int>(pCardsPlagiaristDrawn.size() - 1), static_cast<int>(pCardsPlagiaristDrawn.size() - 1));
+
 
 			// Initialize random range between one or two to choose truly random card
-			int randomRangeOneorTwo = pCounterPlagiarist->Random(1, 2);
+			pGameState->mChoice = pCounterPlagiarist->Random(pGameState->eChoiceAlpha, pGameState->eChoiceBeta);
 
 			// Use type x cards (Plagiarism Hearing Cards), Pointless gets attacked by plagiarist
-			pUsePlagiarismCard->useCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePointless, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "Pointless", "Plagiarist", randomRangeOneorTwo, pEasyTargetPointless);
+			pUsePlagiarismCard->useCard(pCardsPlagiaristDrawn, pDrawPlagiarismHearingCardPlagiarist, pTablePointless, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "Pointless", "Plagiarist", pGameState->mChoice, pEasyTargetPointless);
 			// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
 			pUseCourseAccreditationCard->useCard(pCardsPlagiaristDrawn, pDrawCourseAccreditationCardPlagiarist, pTablePointless, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "Pointless", "Plagiarist", pEasyTargetPointless);
 			// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
-			pUseFeedbackForumCard->useCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePointless, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "Pointless", "Plagiarist", randomRangeOneorTwo, pTablePlagiarist, pEasyTargetPointless);
+			pUseFeedbackForumCard->useCard(pCardsPlagiaristDrawn, pFeedbackForumPlagiarist, pTablePointless, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "Pointless", "Plagiarist", pGameState->mChoice, pTablePlagiarist, pEasyTargetPointless);
 			// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
 			pUseIndustrialPlacementCard->useCard(pCardsPlagiaristDrawn, pIndustrialPlacementPlagiarist, pCounterPlagiarist->mRandomCard, *pPointless, *pPlagiarist, "attackerName", pTablePlagiarist, pTablePointless, pEasyTargetPointless);
 			// Use type x cards (Pass Leader Cards), Piffle type 6 deck gets increased attack power
@@ -451,22 +452,22 @@ int main()
 			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
 
 			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
-			pCounterPiffle->mRandomCard = pCounterPiffle->Random(pCardsPiffleDrawn.size() - 1, pCardsPiffleDrawn.size() - 1);
+			pCounterPiffle->mRandomCard = pCounterPiffle->Random(static_cast<int>(pCardsPiffleDrawn.size() - 1), static_cast<int>(pCardsPiffleDrawn.size() - 1));
 
 			//PrintTable function prints current cards on table for each player
 			pGameState->PrintTable(pTablePiffle, pCardsPiffleDrawn, *pPiffle, "Piffle-Paper", pCounterPiffle->mRandomCard);
 
 			// Initialize random range between one or two to choose truly random card
-			randomRangeOneorTwo = pCounterPiffle->Random(1, 2);
+			pGameState->mChoice = pCounterPiffle->Random(pGameState->eChoiceAlpha, pGameState->eChoiceBeta);
 
 			// Use type 1 cards (Student Cards), Plagiarist gets attacked
 			pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 			// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
-			pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", randomRangeOneorTwo, pEasyTargetPlagiarist);
+			pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pGameState->mChoice, pEasyTargetPlagiarist);
 			// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
 			pUseCourseAccreditationCard->useCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pEasyTargetPlagiarist);
 			// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
-			pUseFeedbackForumCard->useCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", randomRangeOneorTwo, pTablePiffle, pEasyTargetPlagiarist);
+			pUseFeedbackForumCard->useCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pGameState->mChoice, pTablePiffle, pEasyTargetPlagiarist);
 			// Use type x cards (Industrial Placement Cards), Piffle gets attacked
 			pUseIndustrialPlacementCard->useCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "attackerName", pTablePiffle, pTablePlagiarist, pEasyTargetPlagiarist);
 			// Use type x cards (Pass Leader Cards), Plagiarist type 6 deck gets increased attack power
@@ -497,21 +498,21 @@ int main()
 			pGameState->DrawCard(pCardsPointless, pCardsPointlessDrawn, pCounterPointless->mDeckCounter, pCounterPointless->mI, *pPointless, pCheckUsedCardPointless);
 
 			// Pointless Chooses a random card from the two cards DrawCard function have selected
-			pCounterPointless->mRandomCard = pCounterPointless->Random(pCardsPointlessDrawn.size() - 1, pCardsPointlessDrawn.size() - 1);
+			pCounterPointless->mRandomCard = pCounterPointless->Random(static_cast<int>(pCardsPointlessDrawn.size() - 1), static_cast<int>(pCardsPointlessDrawn.size() - 1));
 			
 			// Initialize random range between one or two to choose truly random card
-			randomRangeOneorTwo = pCounterPointless->Random(1, 2);
+			pGameState->mChoice = pCounterPointless->Random(pGameState->eChoiceAlpha, pGameState->eChoiceBeta);
 
 			pGameState->PrintTable(pTablePointless, pCardsPointlessDrawn, *pPointless, "Pointless", pCounterPointless->mRandomCard);
 
 			// Use type 1 cards (Student Cards) of Pointless, Perdition gets attacked
 			pGameState->UseStudentCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pCardsPointlessStudentsDrawn, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 			// Use type x cards (Plagiarism Hearing Cards), Perdition gets attacked
-			pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", randomRangeOneorTwo, pEasyTargetPerdition);
+			pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", pGameState->mChoice, pEasyTargetPerdition);
 			// Use type x cards (Course Accreditation Cards), Perdition gets attacked
 			pUseCourseAccreditationCard->useCard(pCardsPointlessDrawn, pDrawCourseAccreditationCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", pEasyTargetPerdition);
 			// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
-			pUseFeedbackForumCard->useCard(pCardsPointlessDrawn, pFeedbackForumPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", randomRangeOneorTwo, pTablePointless, pEasyTargetPerdition);
+			pUseFeedbackForumCard->useCard(pCardsPointlessDrawn, pFeedbackForumPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", pGameState->mChoice, pTablePointless, pEasyTargetPerdition);
 			// Use type x cards (Feedback Forum Cards), Perdition gets attacked or Pointless gets healed
 			pUseIndustrialPlacementCard->useCard(pCardsPointlessDrawn, pIndustrialPlacementPointless, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Pointless", pTablePointless, pTablePerdition, pEasyTargetPerdition);
 			// Use type x cards (Pass Leader Cards), Pointless type 6 deck gets increased attack power
@@ -540,22 +541,22 @@ int main()
 		//	Draw card function draws two cards for Perdition
 		pGameState->DrawCard(pCardsPerdition, pCardsPerditionDrawn, pCounterPerdition->mDeckCounter, pCounterPerdition->mI, *pPerdition, pCheckUsedCardPerdition);
 		// Perdition Chooses a random card from the two cards DrawCard function have selected
-		pCounterPerdition->mRandomCard = pCounterPerdition->Random(pCardsPerditionDrawn.size() - 1, pCardsPerditionDrawn.size() - 1);
+		pCounterPerdition->mRandomCard = pCounterPerdition->Random(static_cast<int>(pCardsPerditionDrawn.size() - 1), static_cast<int>(pCardsPerditionDrawn.size() - 1));
 
 		pGameState->PrintTable(pTablePerdition, pCardsPerditionDrawn, *pPerdition, "Perdition", pCounterPerdition->mRandomCard);
 
 		// Initialize random range between one or two to choose truly random card
-		randomRangeOneorTwo = pCounterPerdition->Random(1, 2);
+		pGameState->mChoice = pCounterPerdition->Random(pGameState->eChoiceAlpha, pGameState->eChoiceBeta);
 
 		// Use type 1 cards (Student Cards) of Perdition, Pointless gets attacked
 		pGameState->UseStudentCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
 
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
-		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", randomRangeOneorTwo, pEasyTargetPiffle);
+		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pGameState->mChoice, pEasyTargetPiffle);
 		// Use type x cards (Course Accreditation Cards), Piffle gets attacked
 		pUseCourseAccreditationCard->useCard(pCardsPerditionDrawn, pDrawCourseAccreditationCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pEasyTargetPiffle);
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Perdition gets healed
-		pUseFeedbackForumCard->useCard(pCardsPerditionDrawn, pFeedbackForumPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", randomRangeOneorTwo, pTablePerdition, pEasyTargetPiffle);
+		pUseFeedbackForumCard->useCard(pCardsPerditionDrawn, pFeedbackForumPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pGameState->mChoice, pTablePerdition, pEasyTargetPiffle);
 		// Use type x cards (Industrial Placement Cards), Piffle gets attacked or Perdition gets healed
 		pUseIndustrialPlacementCard->useCard(pCardsPerditionDrawn, pIndustrialPlacementPerdition, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Perdition", pTablePerdition, pTablePiffle, pEasyTargetPiffle);
 		// Use type x cards (Pass Leader Cards), Perdition type 6 deck gets increased attack power
