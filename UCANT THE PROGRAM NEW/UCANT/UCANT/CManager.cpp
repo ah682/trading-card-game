@@ -304,3 +304,13 @@ void CManager::setChoice(int choice)
 	mChoice = choice;
 }
 
+int CManager::getRoundCounter() const
+{
+	return mRoundCounter;
+}
+
+void CManager::setRoundCounter(int round)
+{
+	mRoundCounter = round;
+}
+

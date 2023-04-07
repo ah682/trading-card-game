@@ -24,7 +24,6 @@
 class CManager
 {
 public:
-	int mRoundCounter = 1;
 	enum mSelectChoice
 	{
 		eChoiceAlpha = 1,
@@ -41,9 +40,12 @@ public:
 	void UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker);
 	int getChoice() const;
 	void setChoice(int choice);
+	int getRoundCounter() const;
+	void setRoundCounter(int round);
 
 private:
 	int mChoice = 0;
+	int mRoundCounter = 1;
 };
 
 

@@ -399,9 +399,11 @@ int main()
 	// Do while loop which continues until pPlagiarist->profPrestige > 0 and pPiffle->profPrestige > 0;
 	do
 	{
-			pGameState->StartRound(pGameState->mRoundCounter);
+	
+			int getRound = pGameState->getRoundCounter();
+			pGameState->StartRound(getRound);
+			pGameState->setRoundCounter(getRound);
 
-		
 			// Draw card function draws two cards for Plagiarist
 			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mI, *pPlagiarist, pCheckUsedCardPlagiarist);
 			pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
