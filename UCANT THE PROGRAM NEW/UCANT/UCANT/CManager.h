@@ -69,6 +69,8 @@ public:
 	void setChoice(int choice);  //Sets mChoice either 1 or two from enum mSelectChoice
 	int getRoundCounter() const; // Returns round number
 	void setRoundCounter(int round); // Sets round number when incremented
+	int mGetRoundInteger = 0; // Stores the value of the round number
+	int mGetChoiceInteger = 0; // Stores the value of the choice selected by the user
 
 private:
 	int mChoice = 0; // Stores the value of the choice selected by the user

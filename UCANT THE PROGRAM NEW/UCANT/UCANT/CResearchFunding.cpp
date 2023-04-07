@@ -1,5 +1,14 @@
 #include "CResearchFunding.h"
 
+/**
+
+This function takes in a vector of shared pointers to cards, a vector of shared pointers to research funding cards, an integer 
+representing a random card index, a player's professor structure, a string representing the attacker's name, and a vector of shared pointers to table objects.
+The function converts the shared pointer to a research funding card and adds it to the research funding vector if the drawn card is a research funding card.
+Then, it randomly selects a table object and adds 2 to its power if there are research funding cards in the research funding vector and the table vector is 
+not empty. If the table vector is empty, the professor's prestige is increased by 2.
+Finally, if the research funding vector is empty, the function does nothing, and the research funding vector is cleared at the end of the function.
+*/
 void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CResearchFunding> printCardType = make_unique<CResearchFunding>();

@@ -20,7 +20,12 @@
 // Tells the compiler to use the standard namespace
 using namespace std;
 
-//pRINTS TABLE!! to see!!!
+/**
+This function, PrintTable, takes in a vector of shared pointers to CTable objects, a vector of shared pointers to CCard objects, 
+the name of the player as a struct, the name of the professor as a string, and an integer representing a random card drawn. It checks 
+if the drawn card is of a certain type and, if so, converts it to a shared pointer to a CTable object and adds it to the table vector. 
+It then prints out the cards on the table, along with their type, for the specified professor.
+*/
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
 {
 	playerName.mProfName = professor;
@@ -45,11 +50,25 @@ void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<C
 	}
 	cout << endl;
 }
+
+/**
+
+This function represents the starting point of the game.
+It prints a welcome message to the console and signals the start of the game.
+The message printed is "Welcome to U-Can't. Let the winnowing begin...".
+*/
 void CManager::GameStart()
 {
 	cout << "Welcome to U-Can't. Let the winnowing begin..." << endl;
 }
 
+/**
+ * GameOver - Determines the winner of the game based on the prestige of each professor
+ * @param piffle - Professor object representing Piffle
+ * @param plagiarist - Professor object representing Plagiarist
+ * @param pointless - Professor object representing Pointless
+ * @param perdition - Professor object representing Perdition
+ */
 void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition)
 {
 
@@ -96,6 +115,11 @@ void CManager::GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagia
 	}
 }
 
+/**
+
+Start a new round of the game and increment the round number.
+@param round a reference to an integer storing the current round number
+*/
 void CManager::StartRound(int& round)
 {
 	if (round == 1)
@@ -106,6 +130,16 @@ void CManager::StartRound(int& round)
 	round++;
 }
 
+/**
+
+Fills the deck of cards and students with data read from the input file stream.
+
+@param[in] inFile The input file stream.
+
+@param[in] cards A vector of shared pointers to CCard objects to be filled with data.
+
+@param[in] cardsStudent A vector of shared pointers to CStudent objects to be filled with data.
+*/
 void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent)
 {
 	inFile.clear();
@@ -126,6 +160,17 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 	}
 }
 
+/**
+
+Draws a card from the given deck of cards and adds it to the drawnCards vector.
+Also updates the usedCards vector to mark the drawn card as used.
+@param cards - The deck of cards to draw from.
+@param drawnCards - The vector of drawn cards to add the drawn card to.
+@param deckCounter - The current number of cards in the deck.
+@param i - The current index of the card being drawn.
+@param playerName - The name of the player drawing the card.
+@param usedCards - A vector of bools representing whether a card has already been drawn.
+*/
 void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards)
 {
 	for (int j = i; j < deckCounter; j++)
@@ -150,6 +195,18 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 	}
 }
 
+/**
+
+This function adds cards from the 'drawnCards' vector to the 'hand' vector, for a given professor 'playerName'.
+It uses a for loop to iterate over the 'drawnCards' vector, starting from index 'i'.
+It breaks out of the loop if 'i' equals G_DECK_SIZE.
+If the 'hand' vector is not full, it adds the card at index 'j' to the 'hand' vector and prints a message indicating that the card was added.
+@param drawnCards A vector of shared pointers to the cards drawn from the deck
+@param hand A vector of shared pointers to the cards in the player's hand
+@param i An integer representing the starting index for the for loop
+@param playerName A struct representing the current player's name
+@return void
+*/
 void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName)
 {
 	for (int j = i; j < drawnCards.size(); j++)
@@ -166,7 +223,19 @@ void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_p
 	}
 } 
 
-//Prof name is the one getting attacked
+/**
+
+This function uses a student card to attack either a table or a professor. If a table is attacked, the function selects a random table from the tableAttacked vector and subtracts the card's power from the table's resilience. If a professor is attacked, the function subtracts the card's power from the professor's prestige. If the table's resilience or the professor's prestige reaches zero or below, they are removed from the game. The function also activates any special abilities of the card, and adds any drawn student cards to the ordinaryStudent vector.
+@param tableAttacked - a vector of shared_ptr<CTable> representing the tables being attacked
+@param tableAttacker - a vector of shared_ptr<CTable> representing the tables belonging to the attacker
+@param professorAttacked - a struct representing the professor being attacked
+@param professorAttacker - a struct representing the professor who owns the attacking card
+@param cardsDrawn - a vector of shared_ptr<CCard> representing the cards drawn during the turn
+@param ordinaryStudent - a vector of shared_ptr<CStudent> representing the drawn student cards
+@param randomCard - an integer representing the index of the card being used
+@param easyTarget - a vector of shared_ptr<CEasyTarget> representing the cards that can be used on tables directly
+@return void
+*/
 void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); 
@@ -242,7 +311,22 @@ void CManager::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 
 }
 
-// Card Type 9 – Student – When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
+/**
+
+This method is responsible for using Card Type 9 - Student. When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
+
+@param cardsDrawn A vector containing shared pointers to all cards drawn
+
+@param easyTarget A vector containing shared pointers to all Easy Target cards in play
+
+@param randomCard An integer representing the index of the card chosen at random
+
+@param professorAttacker A struct representing the attacking professor
+
+@param attackerName A string representing the name of the attacking professor
+
+@param tableAttacker A vector containing shared pointers to all tables in the attacking professor's cohort
+*/
 void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CEasyTarget> printCardType = make_unique<CEasyTarget>();

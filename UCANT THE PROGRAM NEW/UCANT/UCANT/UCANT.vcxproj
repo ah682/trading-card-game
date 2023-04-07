@@ -136,7 +136,6 @@
     <ClCompile Include="CIndustrialPlacement.cpp" />
     <ClCompile Include="CManager.cpp" />
     <ClCompile Include="CMitigatingCircumstances.cpp" />
-    <ClCompile Include="CObjects.cpp" />
     <ClCompile Include="CPassLeader.cpp" />
     <ClCompile Include="CPlagiarismHearing.cpp" />
     <ClCompile Include="CPlayers.cpp" />
@@ -156,7 +155,6 @@
     <ClInclude Include="CIndustrialPlacement.h" />
     <ClInclude Include="CManager.h" />
     <ClInclude Include="CMitigatingCircumstances.h" />
-    <ClInclude Include="CObjects.h" />
     <ClInclude Include="CPassLeader.h" />
     <ClInclude Include="CPlagiarismHearing.h" />
     <ClInclude Include="CPlayers.h" />

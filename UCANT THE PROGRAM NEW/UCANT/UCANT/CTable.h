@@ -12,6 +12,5 @@
 class CTable :
 	public CCard // Inherit from the CCard class
 {
-public:
 };
 

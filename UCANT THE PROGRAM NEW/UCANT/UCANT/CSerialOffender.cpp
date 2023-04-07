@@ -1,6 +1,19 @@
 // Adam James Anthony Hall
 #include "CSerialOffender.h"
 
+/**
+ * This function uses the Serial Offender card on the specified targets. It also handles the card's special abilities
+ * including attacking additional entities and activating the Easy Target card's special ability.
+ *
+ * @param tableAttacked the vector of tables that the card can attack
+ * @param tableAttacker the vector of tables that the card belongs to
+ * @param professorAttacked the professor that the card can attack
+ * @param professorAttacker the professor that the card belongs to
+ * @param cardsDrawn the vector of cards drawn by the player
+ * @param serialOffender the vector of Serial Offender cards that the player has
+ * @param randomCard the index of the card in the cardsDrawn vector that the player wants to use
+ * @param easyTarget the vector of Easy Target cards that the player has
+ */
 void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CSerialOffender> printCardTypeSerialOffender = make_unique<CSerialOffender>();
@@ -131,7 +144,12 @@ void CSerialOffender::printCardUse()
 	
 }
 
-//Bottom
+/**
+Activates the card death ability of the Serial Offender on a random table in the vector of tables.
+Removes the defeated table from the vector.
+@param randomIndex The index of the table to be attacked.
+@param tableAttacked The vector of tables to choose from.
+*/
 void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //overload
 {
 	cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
@@ -139,13 +157,31 @@ void CSerialOffender::activateCardDeath(int randomIndex, vector<shared_ptr<CTabl
 
 }
 
+/*
+
+Function: attackProfessor
+This function is used to attack a professor with a card. It subtracts the card power from the
+professor's prestige and prints out a message indicating the attack.
+Parameters:
+cardPowerAttackerInt: an integer representing the power of the attacking card
+professorAttacked: a reference to the professor object being attacked
+cardsDrawn: a vector of shared pointers to cards that have been drawn
+randomCard: an integer representing the index of the attacking card in the cardsDrawn vector
+*/
 void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
-// Regular Entity
+/**
+ * Regular Entity
+ * Attacks an entity on a table with a card
+ * @param cardResilienceAttackedInt the resilience value of the attacked entity
+ * @param cardPowerAttackerInt the power value of the attacking card
+ * @param randomIndex the index of the attacked entity in the table
+ * @param tableAttacked the table containing the attacked entity
+ */
 void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //not left over damage for serialoffender
 {
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
@@ -154,7 +190,17 @@ void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowe
 
 }
 
-// Additional Entity
+/** 
+ * Additional Entity
+ * Attacks an entity on a table with a card, taking into account any left over damage from a previous attack
+ * @param cardResilienceAttackedInt the resilience value of the attacked entity
+ * @param cardPowerAttackerInt the power value of the attacking card
+ * @param additionalRandomIndex the index of the additional attacked entity in the table
+ * @param randomIndex the index of the main attacked entity in the table
+ * @param tableAttacked the table containing the attacked entities
+ * @param leftOverDamage any left over damage from a previous attack
+ * @param additionalCardResilienceAttackedInt the resilience value of the additional attacked entity
+ */
 void CSerialOffender::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int additionalRandomIndex, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, int &leftOverDamage, int &additionalCardResilienceAttackedInt) //left over damage for serialoffender
 {
 	additionalCardResilienceAttackedInt -= leftOverDamage;
