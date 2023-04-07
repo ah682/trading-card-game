@@ -1,7 +1,7 @@
 // Adam James Anthony Hall
 #include "CMitigatingCircumstances.h"
 
-int CMitigatingCircumstances::useCardSpecialAbility(int damage, int mDamageReduction)
+int CMitigatingCircumstances::useCardSpecialAbility(int damage, int mDamageReduction) // Grant Damage Reduction returns left over dmaage if required
 {
 	damage += mDamageReduction;
 	return damage;
@@ -42,7 +42,8 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 						int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
 						int tableAttackerResillienceInt = stoi(tableAttacker[randomIndex]->mResilience);
 						if (damageReduction != nullptr) {
-							int damageReductionGranted = damageReduction->useCardSpecialAbility(tableAttackerResillienceInt, damageReduction->mDamageReduction);
+							damageReduction->mDamageReductionGetterInt = damageReduction->getMDamageReduction();
+							int damageReductionGranted = damageReduction->useCardSpecialAbility(tableAttackerResillienceInt, damageReduction->mDamageReductionGetterInt);
 							string damageReductionString = to_string(damageReductionGranted);
 							tableAttacker[randomIndex]->mResilience = damageReductionString;
 							cout << "Damaged Reduced of card" << tableAttacker[randomIndex]->mType << tableAttacker[randomIndex]->mFirstname << tableAttacker[randomIndex]->mLastname << tableAttacker[randomIndex]->mPower << tableAttacker[randomIndex]->mResilience << tableAttacker[randomIndex]->mBoost << endl;
@@ -70,6 +71,10 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 		
 	}
 	mitigatingCircumstances.clear();
+}
+
+int CMitigatingCircumstances::getMDamageReduction() { // Getter method for the mDamageReductionInt variable.
+	return mDamageReductionInt;
 }
 
 void CMitigatingCircumstances::printCardUse()

@@ -18,7 +18,7 @@ void CCard::useCard()
 	
 }
 
-int CCard::useCardSpecialAbility()
+int CCard::useCardSpecialAbility() // Gets returned value such as damage to pass to professor or entities
 {
 		
 		return 0;

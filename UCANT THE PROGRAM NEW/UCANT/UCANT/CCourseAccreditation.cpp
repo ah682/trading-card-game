@@ -60,7 +60,7 @@ void CCourseAccreditation::printCardUse()
 	
 }
 
-void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked)
+void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked) // Overloaded function
 {
 	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + j);

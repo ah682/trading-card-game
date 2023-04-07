@@ -14,12 +14,12 @@
 #include <sstream>
 
 // Function overloading
-int CCounter::Random(int max)
+int CCounter::Random(int max) // Returns random value
 {
 	return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
 
-int CCounter::Random(int min, int max)
+int CCounter::Random(int min, int max) // Returns random value within a range
 {
 	return min + int(float(rand()) / (RAND_MAX + 1) * float(max - min + 1));
 }
@@ -57,7 +57,7 @@ void CCounter::initializeHand(vector<shared_ptr<CCard>>& pHand, int size) {
 	}
 }
 
-time_t CCounter::getSeed() {
+time_t CCounter::getSeed() { // Gets seed value to pass to setSeed
 	return mSeed;
 }
 
@@ -65,7 +65,7 @@ void CCounter::setSeed(time_t seed) {
 	mSeed = seed;
 }
 
-ifstream& CCounter::getFile() {
+ifstream& CCounter::getFile() { // Gets filename from setFile
 	return mFile;
 }
 

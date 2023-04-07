@@ -294,22 +294,22 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 }
 
-int CManager::getChoice() const
+int CManager::getChoice() const // Returns mChoice
 {
 	return mChoice;
 }
 
-void CManager::setChoice(int choice)
+void CManager::setChoice(int choice) //Sets mChoice either 1 or two from enum mSelectChoice
 {
 	mChoice = choice;
 }
 
-int CManager::getRoundCounter() const
+int CManager::getRoundCounter() const // Returns round number
 {
 	return mRoundCounter;
 }
 
-void CManager::setRoundCounter(int round)
+void CManager::setRoundCounter(int round) // Sets round number when incremented
 {
 	mRoundCounter = round;
 }

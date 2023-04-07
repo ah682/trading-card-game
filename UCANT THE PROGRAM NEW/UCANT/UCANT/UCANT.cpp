@@ -407,7 +407,7 @@ int main()
 			pGameState->setRoundCounter(getRound);
 
 			// Draw card function draws two cards for Plagiarist
-			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mI, *pPlagiarist, pCheckUsedCardPlagiarist);
+			pGameState->DrawCard(pCardsPlagiarist, pCardsPlagiaristDrawn, pCounterPlagiarist->mDeckCounter, pCounterPlagiarist->mLoopCounter, *pPlagiarist, pCheckUsedCardPlagiarist);
 			pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
 
 			// Use type 1 cards (Student Cards), Plagiarist gets attacked
@@ -454,7 +454,7 @@ int main()
 
 			cout << endl;
 			//	Draw card function draws two cards for Piffle
-			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mI, *pPiffle, pCheckUsedCardPiffle);
+			pGameState->DrawCard(pCardsPiffle, pCardsPiffleDrawn, pCounterPiffle->mDeckCounter, pCounterPiffle->mLoopCounter, *pPiffle, pCheckUsedCardPiffle);
 
 			// Piffle Chooses a random card from hand the two cards DrawCard function have selected
 			pCounterPiffle->mRandomCard = pCounterPiffle->Random(static_cast<int>(pCardsPiffleDrawn.size() - 1), static_cast<int>(pCardsPiffleDrawn.size() - 1));
@@ -502,7 +502,7 @@ int main()
 
 			cout << endl;
 			//	Draw card function draws two cards for Pointless
-			pGameState->DrawCard(pCardsPointless, pCardsPointlessDrawn, pCounterPointless->mDeckCounter, pCounterPointless->mI, *pPointless, pCheckUsedCardPointless);
+			pGameState->DrawCard(pCardsPointless, pCardsPointlessDrawn, pCounterPointless->mDeckCounter, pCounterPointless->mLoopCounter, *pPointless, pCheckUsedCardPointless);
 
 			// Pointless Chooses a random card from the two cards DrawCard function have selected
 			pCounterPointless->mRandomCard = pCounterPointless->Random(static_cast<int>(pCardsPointlessDrawn.size() - 1), static_cast<int>(pCardsPointlessDrawn.size() - 1));
@@ -548,7 +548,7 @@ int main()
 			
 		cout << endl;
 		//	Draw card function draws two cards for Perdition
-		pGameState->DrawCard(pCardsPerdition, pCardsPerditionDrawn, pCounterPerdition->mDeckCounter, pCounterPerdition->mI, *pPerdition, pCheckUsedCardPerdition);
+		pGameState->DrawCard(pCardsPerdition, pCardsPerditionDrawn, pCounterPerdition->mDeckCounter, pCounterPerdition->mLoopCounter, *pPerdition, pCheckUsedCardPerdition);
 		// Perdition Chooses a random card from the two cards DrawCard function have selected
 		pCounterPerdition->mRandomCard = pCounterPerdition->Random(static_cast<int>(pCardsPerditionDrawn.size() - 1), static_cast<int>(pCardsPerditionDrawn.size() - 1));
 

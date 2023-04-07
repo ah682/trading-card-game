@@ -34,7 +34,7 @@ class CCard
 public:
 
 	void useCard(); // function overloading
-	int useCardSpecialAbility();
+	int useCardSpecialAbility(); // Gets returned value such as damage to pass to professor or entities
 	virtual void printCardUse(); // Virtual Function
 	void activateCardDeath(); //function overloading
 	void attackProfessor();

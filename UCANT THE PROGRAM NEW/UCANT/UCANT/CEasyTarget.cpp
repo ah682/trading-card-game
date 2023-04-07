@@ -7,7 +7,7 @@
 
 
 //Attacks Easy Target
-int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarget>>& attacked)
+int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarget>>& attacked) // Returns damage if required
 {
 	unique_ptr<CCounter> pickRandom = make_unique<CCounter>();
 	unique_ptr<CEasyTarget> cardType = make_unique<CEasyTarget>();
@@ -41,7 +41,7 @@ void CEasyTarget::printCardUse()
 	
 }
 
-void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked)
+void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked) // overload
 {
 	cout << attacked[additionalEasyTargetRandomIndex]->mFirstname << attacked[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
 	cout << "Easy Target Killed" << endl;

@@ -10,7 +10,7 @@
 class CCounter
 {
 public:
-	int mI = 0;
+	int mLoopCounter = 0;
 	int mDeckCounter = 1;
 	int mCardCounter = 0;
 	int mRandomCard = 0;
@@ -21,8 +21,8 @@ public:
 	time_t mSeeder = 0;
 	
 	// Function overloading
-	int Random(int max);
-	int Random(int min, int max);
+	int Random(int max); // Returns random value
+	int Random(int min, int max); // Returns random value within a range
 
 	// Count number of lines
 	void countCardsInFile(unique_ptr<CCounter>& pCounter);
@@ -35,10 +35,10 @@ public:
 
 	void initializeHand(vector<shared_ptr<CCard>>& pHand, int size);
 
-	time_t getSeed();
+	time_t getSeed(); // Gets seed value to pass to setSeed
 	void setSeed(time_t seed);
 
-	ifstream& getFile();
+	ifstream& getFile(); // Gets filename from setFile
 	void setFile(const string& filename);
 
 	// Close player files once game is complete
