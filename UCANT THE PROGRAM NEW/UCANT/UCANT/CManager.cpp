@@ -294,3 +294,13 @@ void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<sh
 	}
 }
 
+int CManager::getChoice() const
+{
+	return mChoice;
+}
+
+void CManager::setChoice(int choice)
+{
+	mChoice = choice;
+}
+
