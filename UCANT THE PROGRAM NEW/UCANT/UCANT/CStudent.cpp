@@ -136,3 +136,12 @@ void CStudent::UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_
 	ordinaryStudent.clear();
 
 }
+
+void CStudent::AddStudents(vector<shared_ptr<CStudent>>& pCardsStudents)
+{
+	for (int i = 0; i < pCardsStudents.size(); i++)
+	{
+		auto student = make_shared<CStudent>();
+		pCardsStudents[i] = student;
+	}
+}

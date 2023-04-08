@@ -125,53 +125,34 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	pCounterPointless->initializeHand(pHandPointless, pCounterPointless->mCardCounter);
 	
-
 	// Create a vector of shared pointers to CCard objects from pCounterPerdition's mCardCounter
 	auto pHandPerdition = vector<shared_ptr<CCard>>(pCounterPerdition->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
 	pCounterPerdition->initializeHand(pHandPerdition, pCounterPerdition->mCardCounter);
 
+	// Create a new variousStudents object
+	typedef vector <shared_ptr<CStudent>> variousStudents;
+	// Create a new shared_ptr<CStudent> object that points to a null pointer
+	auto pStudents = shared_ptr<CStudent>();
 	// Create a vector of shared pointers to CStudent objects from pCounterPlagiarist's mCardCounter
-	auto pCardsPlagiaristStudents = vector<shared_ptr<CStudent>>(pCounterPlagiarist->mCardCounter);
-
-	for (int i = 0; i < pCounterPlagiarist->mCardCounter; i++)
-	{
-		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
-		pCardsPlagiaristStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
-	}
-	
-
+	auto pCardsPlagiaristStudents = variousStudents(pCounterPlagiarist->mCardCounter);
 	// Create a vector of shared pointers to CStudent objects from pCounterPiffle's mCardCounter
-	auto pCardsPiffleStudents = vector<shared_ptr<CStudent>>(pCounterPiffle->mCardCounter);
-
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPiffle->mCardCounter; i++)
-	{
-		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
-		pCardsPiffleStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
-	}
-
+	auto pCardsPiffleStudents = variousStudents(pCounterPiffle->mCardCounter);
 	// Create a vector of shared pointers to CStudent objects from pCounterPointless's mCardCounter
-	auto pCardsPointlessStudents = vector<shared_ptr<CStudent>>(pCounterPointless->mCardCounter);
-
-	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPointless->mCardCounter; i++)
-	{
-		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
-		pCardsPointlessStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
-	}
-
+	auto pCardsPointlessStudents = variousStudents(pCounterPointless->mCardCounter);
 	// Create a vector of shared pointers to CStudent objects from pCounterPerdition's mCardCounter
-	auto pCardsPerditionStudents = vector<shared_ptr<CStudent>>(pCounterPerdition->mCardCounter);
+	auto pCardsPerditionStudents = variousStudents(pCounterPerdition->mCardCounter);
 
 	// Iterate over each element in the vector using a for loop
-	for (int i = 0; i < pCounterPerdition->mCardCounter; i++)
-	{
-		// Use make_shared to create a new shared_ptr to a CStudent object and assign it to the current element in the vector
-		pCardsPerditionStudents[i] = make_shared<CStudent>(); // Assign the shared_ptr to the vector element
-	}
-
+	pStudents->AddStudents(pCardsPlagiaristStudents);
+	// Iterate over each element in the vector using a for loop
+	pStudents->AddStudents(pCardsPiffleStudents);
+	// Iterate over each element in the vector using a for loop
+	pStudents->AddStudents(pCardsPointlessStudents);
+	// Iterate over each element in the vector using a for loop
+	pStudents->AddStudents(pCardsPerditionStudents);
+	
 	// Define a new type alias named cardsDrawn for a vector of shared pointers to CCard objects
 	typedef vector <shared_ptr<CCard>> cardsDrawn;
 	// Create two new variables of type cardsDrawn and initialize them with empty vectors
