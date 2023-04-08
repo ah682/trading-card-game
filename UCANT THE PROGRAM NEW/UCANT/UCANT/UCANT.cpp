@@ -476,21 +476,21 @@ int main()
 			// Use type 1 cards (Student Cards), Plagiarist gets attacked
 			pUseStudentCard->UseCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 			// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
-			pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pGameState->mGetChoiceInteger, pEasyTargetPlagiarist);
+			pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pGameState->mGetChoiceInteger, pEasyTargetPlagiarist);
 			// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
-			pUseCourseAccreditationCard->useCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pEasyTargetPlagiarist);
+			pUseCourseAccreditationCard->useCard(pCardsPiffleDrawn, pDrawCourseAccreditationCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pEasyTargetPlagiarist);
 			// Use type x cards (Feedback Forum Cards), Plagiarist gets attacked or Piffle gets healed
-			pUseFeedbackForumCard->useCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pGameState->mGetChoiceInteger, pTablePiffle, pEasyTargetPlagiarist);
+			pUseFeedbackForumCard->useCard(pCardsPiffleDrawn, pFeedbackForumPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle-Paper", pGameState->mGetChoiceInteger, pTablePiffle, pEasyTargetPlagiarist);
 			// Use type x cards (Industrial Placement Cards), Plagiarist gets attacked but piffle minions gain 1 resilience
-			pUseIndustrialPlacementCard->useCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "attackerName", pTablePiffle, pTablePlagiarist, pEasyTargetPlagiarist);
+			pUseIndustrialPlacementCard->useCard(pCardsPiffleDrawn, pIndustrialPlacementPiffle, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Paper-Paper", pTablePiffle, pTablePlagiarist, pEasyTargetPlagiarist);
 			// Use type x cards (Pass Leader Cards), Piffle minions get increased attack power depending on amont of minions on the table
-			pUsePassLeaderCard->useCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle", pTablePiffle);
+			pUsePassLeaderCard->useCard(pCardsPiffleDrawn, pPassLeaderPiffle, pCounterPiffle->mRandomCard, *pPiffle, *pPiffle, "Piffle-Paper", pTablePiffle);
 			// Use type x cards (ResearchFunding Cards), Piffle deck gets increased attack power by 2
-			pUseResearchFundingCard->useCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
+			pUseResearchFundingCard->useCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 			// Use type x cards(MitigatingCircumstances Cards), piffle cards get power of attack damage recieved reduced by 1
 			pUseMitigatingCircumstancesCard->useCard(pCardsPiffle, pStudentPiffle, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
 			// Use type x cards(EasyTarget Cards), Piffle minions get increased attack power
-			pUseEasyTargetCard->UseCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
+			pUseEasyTargetCard->UseCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle-Paper", pTablePiffle);
 			// Use type x cards(Serial Offender Cards), Plagiarist gets attacked
 			pUseSerialOffenderCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pSerialOffenderPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 			// Use type 1 cards(Graduate Student Cards), Plagiarist gets attacked
@@ -569,11 +569,11 @@ int main()
 		pUseStudentCard->UseCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
 
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
-		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pGameState->mGetChoiceInteger, pEasyTargetPiffle);
+		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle-Paper", "Perdition", pGameState->mGetChoiceInteger, pEasyTargetPiffle);
 		// Use type x cards (Course Accreditation Cards), Piffle gets attacked
-		pUseCourseAccreditationCard->useCard(pCardsPerditionDrawn, pDrawCourseAccreditationCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pEasyTargetPiffle);
+		pUseCourseAccreditationCard->useCard(pCardsPerditionDrawn, pDrawCourseAccreditationCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle-Paper", "Perdition", pEasyTargetPiffle);
 		// Use type x cards (Feedback Forum Cards), Piffle gets attacked or Perdition and minions gets healed
-		pUseFeedbackForumCard->useCard(pCardsPerditionDrawn, pFeedbackForumPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pGameState->mGetChoiceInteger, pTablePerdition, pEasyTargetPiffle);
+		pUseFeedbackForumCard->useCard(pCardsPerditionDrawn, pFeedbackForumPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle-Paper", "Perdition", pGameState->mGetChoiceInteger, pTablePerdition, pEasyTargetPiffle);
 		// Use type x cards (Industrial Placement Cards), Piffle gets attacked but perdition minion gains 1 resilience
 		pUseIndustrialPlacementCard->useCard(pCardsPerditionDrawn, pIndustrialPlacementPerdition, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Perdition", pTablePerdition, pTablePiffle, pEasyTargetPiffle);
 		// Use type x cards (Pass Leader Cards), Perdition type 6 deck gets increased attack power depending on amount on table

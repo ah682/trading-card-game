@@ -1,17 +1,2 @@
-﻿  CCourseAccreditation.cpp
-  CEasyTarget.cpp
-  CFeedbackForum.cpp
-  CGraduateStudent.cpp
-  CIndustrialPlacement.cpp
-  CManager.cpp
-  CMitigatingCircumstances.cpp
-  CPassLeader.cpp
-  CPlagiarismHearing.cpp
-  CPlayers.cpp
-  CResearchFunding.cpp
-  CSerialOffender.cpp
-  CStudent.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CStudent.cpp(100,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  UCANT.cpp
-  Generating Code...
+﻿  UCANT.cpp
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
