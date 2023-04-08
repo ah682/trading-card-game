@@ -59,7 +59,6 @@ public:
 	void GameStart(); // Starts the game
 	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition); // Ends the game
 	void StartRound(int& round); // Starts a new round
-	void UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>> &easyTarget); // Uses a student card
 	void FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent); // Fills the deck with cards
 	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards); // Draws a card
 	void pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName); // Pushes cards to the player's hand

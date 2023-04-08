@@ -246,6 +246,10 @@ int main()
 	// Create an instance of SerialOffenderCard named pUseSerialOffenderCard
 	auto pUseSerialOffenderCard = SerialOffenderCard{};
 
+	typedef shared_ptr<CStudent> StudentCard;
+	// Create an instance of StudentCard named pUseStudentCard
+	auto pUseStudentCard = StudentCard{};
+
 
 
 
@@ -409,7 +413,7 @@ int main()
 			pGameState->PrintTable(pTablePlagiarist, pCardsPlagiaristDrawn, *pPlagiarist, "Plagiarist", pCounterPlagiarist->mRandomCard);
 
 			// Use type 1 cards (Student Cards), Pointless gets attacked
-			pGameState->UseStudentCard(pTablePointless, pTablePlagiarist, *pPointless, *pPlagiarist, pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPointless);
+			pUseStudentCard->UseStudentCard(pTablePointless, pTablePlagiarist, *pPointless, *pPlagiarist, pCardsPlagiaristDrawn, pCardsPlagiaristStudentsDrawn, pCounterPlagiarist->mRandomCard, pEasyTargetPointless);
 
 			// Plagiarist Chooses a random card from the two cards DrawCard function have selected
 			pCounterPlagiarist->mRandomCard = pCounterPlagiarist->Random(static_cast<int>(pCardsPlagiaristDrawn.size() - 1), static_cast<int>(pCardsPlagiaristDrawn.size() - 1));
@@ -466,7 +470,7 @@ int main()
 			pGameState->setChoice(pGameState->mGetChoiceInteger);
 
 			// Use type 1 cards (Student Cards), Plagiarist gets attacked
-			pGameState->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
+			pUseStudentCard->UseStudentCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pCardsPiffleStudentsDrawn, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 			// Use type x cards (Plagiarism Hearing Cards), Plagiarist gets attacked
 			pUsePlagiarismCard->useCard(pCardsPiffleDrawn, pDrawPlagiarismHearingCardPiffle, pTablePlagiarist, pCounterPiffle->mRandomCard, *pPlagiarist, *pPiffle, "Plagiarist", "Piffle", pGameState->mGetChoiceInteger, pEasyTargetPlagiarist);
 			// Use type x cards (Course Accreditation Cards), Plagiarist gets attacked
@@ -513,7 +517,7 @@ int main()
 			pGameState->PrintTable(pTablePointless, pCardsPointlessDrawn, *pPointless, "Pointless", pCounterPointless->mRandomCard);
 
 			// Use type 1 cards (Student Cards), Perdition gets attacked
-			pGameState->UseStudentCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pCardsPointlessStudentsDrawn, pCounterPointless->mRandomCard, pEasyTargetPerdition);
+			pUseStudentCard->UseStudentCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pCardsPointlessStudentsDrawn, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 			// Use type x cards (Plagiarism Hearing Cards), Perdition gets attacked
 			pUsePlagiarismCard->useCard(pCardsPointlessDrawn, pDrawPlagiarismHearingCardPointless, pTablePerdition, pCounterPointless->mRandomCard, *pPerdition, *pPointless, "Perdition", "Pointless", pGameState->mGetChoiceInteger, pEasyTargetPerdition);
 			// Use type x cards (Course Accreditation Cards), Perdition gets attacked
@@ -558,7 +562,7 @@ int main()
 		pGameState->setChoice(pGameState->mGetChoiceInteger);
 
 		// Use type 1 cards (Student Cards) of Perdition, Pointless gets attacked
-		pGameState->UseStudentCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
+		pUseStudentCard->UseStudentCard(pTablePointless, pTablePerdition, *pPointless, *pPerdition, pCardsPerditionDrawn, pCardsPerditionStudentsDrawn, pCounterPerdition->mRandomCard, pEasyTargetPointless);
 
 		// Use type x cards (Plagiarism Hearing Cards), Piffle gets attacked
 		pUsePlagiarismCard->useCard(pCardsPerditionDrawn, pDrawPlagiarismHearingCardPerdition, pTablePiffle, pCounterPerdition->mRandomCard, *pPiffle, *pPerdition, "Piffle", "Perdition", pGameState->mGetChoiceInteger, pEasyTargetPiffle);

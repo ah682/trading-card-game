@@ -48,3 +48,91 @@ void CStudent::attackProfessor(CPlayers::SProfessor& professorAttacked, vector<s
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
+
+/**
+
+This function uses a student card to attack either a table or a professor. If a table is attacked, the function selects a random table from the tableAttacked vector and subtracts the card's power from the table's resilience. If a professor is attacked, the function subtracts the card's power from the professor's prestige. If the table's resilience or the professor's prestige reaches zero or below, they are removed from the game. The function also activates any special abilities of the card, and adds any drawn student cards to the ordinaryStudent vector.
+@param tableAttacked - a vector of shared_ptr<CTable> representing the tables being attacked
+@param tableAttacker - a vector of shared_ptr<CTable> representing the tables belonging to the attacker
+@param professorAttacked - a struct representing the professor being attacked
+@param professorAttacker - a struct representing the professor who owns the attacking card
+@param cardsDrawn - a vector of shared_ptr<CCard> representing the cards drawn during the turn
+@param ordinaryStudent - a vector of shared_ptr<CStudent> representing the drawn student cards
+@param randomCard - an integer representing the index of the card being used
+@param easyTarget - a vector of shared_ptr<CEasyTarget> representing the cards that can be used on tables directly
+@return void
+*/
+void CStudent::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
+{
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();
+	shared_ptr<CStudent> printCardType = make_shared<CStudent>();
+
+	activateEasyTarget->printCardUse();
+
+	int cardPowerAttackerInt = 0;
+	int cardResilienceAttackerInt = 0;
+	int cardPowerAttackedInt = 0;
+	int cardResilienceAttackedInt = 0;
+
+	if (cardsDrawn[randomCard]->mType == G_STUDENT)
+	{
+		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
+		shared_ptr<CStudent> pStudentElement = static_pointer_cast<CStudent>(cardsDrawn[randomCard]);
+
+		// Add the converted element to the accreditation vector
+		ordinaryStudent.push_back(pStudentElement);
+	}
+
+	professorAttacked.mProfName;
+	professorAttacker.mProfName;
+
+	if (!ordinaryStudent.empty())
+	{
+
+		for (int i = 0; i < ordinaryStudent.size(); i++)
+		{
+
+			string cardPowerAttacker = ordinaryStudent[i]->mPower;
+			string cardResilienceAttacker = ordinaryStudent[i]->mResilience;
+
+			if (!tableAttacked.empty()) {
+				int randomIndex = randomNumber->Random(tableAttacked.size() - 1);
+
+				string cardPowerAttacked = tableAttacked[randomIndex]->mPower;
+				string cardResilienceAttacked = tableAttacked[randomIndex]->mResilience;
+
+				cardPowerAttackerInt = stoi(cardPowerAttacker);
+				cardResilienceAttackerInt = stoi(cardResilienceAttacker);
+				cardPowerAttackedInt = stoi(cardPowerAttacked);
+				cardResilienceAttackedInt = stoi(cardResilienceAttacked);
+
+				activateEasyTarget->useCardSpecialAbility(cardPowerAttackerInt, easyTarget);
+
+				if (cardResilienceAttackedInt > 0) {
+					printCardType->attackEntity(cardResilienceAttackedInt, cardPowerAttackerInt, randomIndex, randomCard, tableAttacked, cardsDrawn);
+				}
+				if (cardResilienceAttackedInt <= 0) {
+					printCardType->activateCardDeath(randomIndex, tableAttacked);
+				}
+			}
+
+			if (tableAttacked.empty()) {
+				printCardType->attackProfessor(professorAttacked, cardsDrawn, randomCard, cardPowerAttackedInt);
+			}
+
+			if (professorAttacked.mProfPrestige < 0)
+			{
+				professorAttacked.mProfPrestige = 0;
+			}
+
+
+		}
+	}
+	if (ordinaryStudent.empty())
+	{
+
+	}
+	ordinaryStudent.clear();
+
+}

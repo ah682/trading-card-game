@@ -9,8 +9,7 @@ F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CGraduateStudent.c
   CIndustrialPlacement.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CIndustrialPlacement.cpp(50,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   CManager.cpp
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(274,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(352,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CManager.cpp(264,67): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   CMitigatingCircumstances.cpp
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CMitigatingCircumstances.cpp(52,66): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CMitigatingCircumstances.cpp(61,70): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
@@ -22,6 +21,8 @@ F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CResearchFunding.c
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(56,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(73,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CSerialOffender.cpp(74,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  CStudent.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CStudent.cpp(100,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   UCANT.cpp
   Generating Code...
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
