@@ -1,6 +1,7 @@
 // Adam James Anthony Hall
 #pragma once
-#pragma warning(suppress : 6031)
+#pragma warning(disable : 4267)
+#pragma warning(disable : 6031)
 // Initialize necessary header files
 #include <fstream>
 #include <vector>
@@ -57,7 +58,7 @@ public:
 		eChoiceBeta = 2,
 	};
 	void GameStart(); // Starts the game
-	void GameOver(CPlayers::SProfessor piffle, CPlayers::SProfessor plagiarist, CPlayers::SProfessor pointless, CPlayers::SProfessor perdition); // Ends the game
+	void GameOver(shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition); // Ends the game
 	void StartRound(int& round); // Starts a new round
 	void FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent); // Fills the deck with cards
 	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards); // Draws a card

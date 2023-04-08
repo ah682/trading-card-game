@@ -13,27 +13,24 @@ having a prestige of zero or less.
 @param pointless A reference to the SProfessor struct for the third professor.
 @param perdition A reference to the SProfessor struct for the fourth professor.
 */
-void CPlayers::ProfessorSacked(CPlayers::SProfessor& plagiarist, CPlayers::SProfessor& piffle, CPlayers::SProfessor& pointless, CPlayers::SProfessor& perdition)
-{
-	if (plagiarist.mProfPrestige <= 0)
-	{
-		cout << endl << "Prof " << plagiarist.mProfName << " has no prestige and is sacked!" << endl;
-	}
-	else if (piffle.mProfPrestige <= 0)
-	{
-		cout << endl << "Prof " << piffle.mProfName << " has no prestige and is sacked!" << endl;
-	}
-	else if (pointless.mProfPrestige <= 0)
-	{
-		cout << endl << "Prof " << pointless.mProfName << " has no prestige and is sacked!" << endl;
-	}
-	else if (perdition.mProfPrestige <= 0)
-	{
-		cout << endl << "Prof " << perdition.mProfName << " has no prestige and is sacked!" << endl;
-	}
-	else
-	{
+void CPlayers::ProfessorSacked(shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition) {
+    if (plagiarist->mProfPrestige <= 0) {
+        cout << endl << "Prof " << plagiarist->mProfName << " has no prestige and is sacked!" << endl;
+    }
+    else if (piffle->mProfPrestige <= 0) {
+        cout << endl << "Prof " << piffle->mProfName << " has no prestige and is sacked!" << endl;
+    }
+    else if (pointless->mProfPrestige <= 0) {
+        cout << endl << "Prof " << pointless->mProfName << " has no prestige and is sacked!" << endl;
+    }
+    else if (perdition->mProfPrestige <= 0) {
+        cout << endl << "Prof " << perdition->mProfName << " has no prestige and is sacked!" << endl;
+    }
+    else {
 
-	}
-	
+    }
+}
+
+string CPlayers::setProfessorName(string name) { // Sets the name of the professor
+    return name;
 }

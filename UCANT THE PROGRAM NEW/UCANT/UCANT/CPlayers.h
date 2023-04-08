@@ -31,8 +31,9 @@ public:
 		string mProfName; // Stores the name of the professor
 		int mProfPrestige = 30; // Stores the prestige of the professor
 	};
-
-	void ProfessorSacked(CPlayers::SProfessor& plagiarist, CPlayers::SProfessor& piffle, CPlayers::SProfessor& pointless, CPlayers::SProfessor& perdition); // Determines if a professor has been sacked
+	
+	string setProfessorName(string name); // Sets the name of the professor
+	void ProfessorSacked(shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition); // Determines if a professor has been sacked
 	
 
 };

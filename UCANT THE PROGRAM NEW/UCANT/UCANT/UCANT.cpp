@@ -65,15 +65,19 @@ int main()
 	pCounterPointless->setFile("pointless.txt");
 	pCounterPerdition->setFile("perdition.txt");
 
-	// Create a shared pointer to new SProfessor objects
+	// Create a shared pointer to new SProfessor objects and CPlayer objects
 	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
-	pPlagiarist->mProfName = "Plagiarist";
+	auto pPlagiaristName = make_shared<CPlayers>();
+	pPlagiarist->mProfName = pPlagiaristName->setProfessorName("Plagiarist");
 	auto pPiffle = make_shared<CPlayers::SProfessor>();
-	pPiffle->mProfName = "Piffle-Paper";
+	auto pPiffleName = make_shared<CPlayers>();
+	pPiffle->mProfName = pPiffleName->setProfessorName("Piffle-Paper");
 	auto pPerdition = make_shared<CPlayers::SProfessor>();
-	pPerdition->mProfName = "Perdition";
+	auto pPerditionName = make_shared<CPlayers>();
+	pPerdition->mProfName = pPerditionName->setProfessorName("Perdition");
 	auto pPointless = make_shared<CPlayers::SProfessor>();
-	pPointless->mProfName = "Pointless";
+	auto pPointlessName = make_shared<CPlayers>();
+	pPointless->mProfName = pPointlessName->setProfessorName("Pointless");
 
 	// Create a shared pointer to new SStudent objects
 	auto pStudent = make_shared<CPlayers>();
@@ -310,14 +314,14 @@ int main()
 
 	// Define a type for a shared pointer to a CStudent object
 	typedef  shared_ptr<CMitigatingCircumstances> studentCard;
-	// Create an instance of studentCard named pStudentPlagiaristTest
-	auto pStudentPlagiaristTest = studentCard{};
-	// Create an instance of studentCard named pStudentPiffleTest
-	auto pStudentPiffleTest = studentCard{};
-	// Create an instance of studentCard named pStudentPointlessTest
-	auto pStudentPointlessTest = studentCard{};
-	// Create an instance of studentCard named pStudentPerditionTest
-	auto pStudentPerditionTest = studentCard{};
+	// Create an instance of studentCard named pStudentPlagiarist
+	auto pStudentPlagiarist = studentCard{};
+	// Create an instance of studentCard named pStudentPiffle
+	auto pStudentPiffle = studentCard{};
+	// Create an instance of studentCard named pStudentPointless
+	auto pStudentPointless = studentCard{};
+	// Create an instance of studentCard named pStudentPerdition
+	auto pStudentPerdition = studentCard{};
 
 	//	Define  a type alias for a vector of shared pointers to CEasyTarget objects
 	typedef vector <shared_ptr<CEasyTarget>> easyTargetCards;
@@ -436,7 +440,7 @@ int main()
 			// Use type x cards (Research Funding Cards), Plagiarist table gets increased attack power
 			pUseResearchFundingCard->useCard(pCardsPlagiaristDrawn, pResearchFundingPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 			// Use type x cards(Mitigiating Circumstances Cards), Plagiarist cards gets increased attack power
-			pUseMitigatingCircumstancesCard->useCard(pCardsPlagiarist, pStudentPlagiaristTest, pTablePlagiarist, pMitigatingCircumstancesPlagiarist, pCounterPlagiarist->mRandomCard);
+			pUseMitigatingCircumstancesCard->useCard(pCardsPlagiarist, pStudentPlagiarist, pTablePlagiarist, pMitigatingCircumstancesPlagiarist, pCounterPlagiarist->mRandomCard);
 			// Use type x cards(Easy Target Cards), spawns easy target card on table for plagiarist
 			pUseEasyTargetCard->UseCard(pCardsPlagiarist, pEasyTargetPlagiarist, pCounterPlagiarist->mRandomCard, *pPlagiarist, "Plagiarist", pTablePlagiarist);
 			// Use type 1 cards (Student Cards), Pointless gets attacked
@@ -445,7 +449,7 @@ int main()
 			pUseGraduateStudentCard->useCard(pTablePointless, pTablePlagiarist, *pPointless, *pPlagiarist, pCardsPlagiaristDrawn, pGraduateStudentPlagiarist, pCounterPlagiarist->mRandomCard, pEasyTargetPointless);
 
 			//Check if prestige is 0
-			pStudent->ProfessorSacked(*pPlagiarist, *pPiffle, *pPointless, *pPerdition);
+			pStudent->ProfessorSacked(pPlagiarist, pPiffle, pPointless, pPerdition);
 
 			// Exits the do while loop when one of the players loses all their prestige
 			if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
@@ -484,7 +488,7 @@ int main()
 			// Use type x cards (ResearchFunding Cards), Piffle deck gets increased attack power by 2
 			pUseResearchFundingCard->useCard(pCardsPiffleDrawn, pResearchFundingPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
 			// Use type x cards(MitigatingCircumstances Cards), piffle cards get power of attack damage recieved reduced by 1
-			pUseMitigatingCircumstancesCard->useCard(pCardsPiffle, pStudentPiffleTest, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
+			pUseMitigatingCircumstancesCard->useCard(pCardsPiffle, pStudentPiffle, pTablePiffle, pMitigatingCircumstancesPiffle, pCounterPiffle->mRandomCard);
 			// Use type x cards(EasyTarget Cards), Piffle minions get increased attack power
 			pUseEasyTargetCard->UseCard(pCardsPiffle, pEasyTargetPiffle, pCounterPiffle->mRandomCard, *pPiffle, "Piffle", pTablePiffle);
 			// Use type x cards(Serial Offender Cards), Plagiarist gets attacked
@@ -493,7 +497,7 @@ int main()
 			pUseGraduateStudentCard->useCard(pTablePlagiarist, pTablePiffle, *pPlagiarist, *pPiffle, pCardsPiffleDrawn, pGraduateStudentPiffle, pCounterPiffle->mRandomCard, pEasyTargetPlagiarist);
 
 			//Check if prestige is 0
-			pStudent->ProfessorSacked(*pPlagiarist, *pPiffle, *pPointless, *pPerdition);
+			pStudent->ProfessorSacked(pPlagiarist, pPiffle, pPointless, pPerdition);
 
 			// Exits the do while loop when one of the players loses all their prestige
 			if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
@@ -531,7 +535,7 @@ int main()
 			// Use type x cards (Research Funding Cards), Pointless deck gets increased attack power by 2
 			pUseResearchFundingCard->useCard(pCardsPointlessDrawn, pResearchFundingPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless", pTablePointless);
 			// Use type x cards(Mitigating Circumstances Cards), Pointless cards get power of attack damage recieved reduced by 1
-			pUseMitigatingCircumstancesCard->useCard(pCardsPointless, pStudentPointlessTest, pTablePointless, pMitigatingCircumstancesPointless, pCounterPointless->mRandomCard);
+			pUseMitigatingCircumstancesCard->useCard(pCardsPointless, pStudentPointless, pTablePointless, pMitigatingCircumstancesPointless, pCounterPointless->mRandomCard);
 			// Use type x cards(Easy Target Cards), spawns easy target card for Pointless
 			pUseEasyTargetCard->UseCard(pCardsPointless, pEasyTargetPointless, pCounterPointless->mRandomCard, *pPointless, "Pointless", pTablePointless);
 			// Use type 1 cards (Student Cards), Perdition gets attacked
@@ -540,7 +544,7 @@ int main()
 			pUseGraduateStudentCard->useCard(pTablePerdition, pTablePointless, *pPerdition, *pPointless, pCardsPointlessDrawn, pGraduateStudentPointless, pCounterPointless->mRandomCard, pEasyTargetPerdition);
 			
 			//Check if prestige is 0
-			pStudent->ProfessorSacked(*pPlagiarist, *pPiffle, *pPointless, *pPerdition);
+			pStudent->ProfessorSacked(pPlagiarist, pPiffle, pPointless, pPerdition);
 			// Exits the do while loop when one of the players loses all their prestige
 			if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
 			{
@@ -577,7 +581,7 @@ int main()
 		// Use type x cards (Research Funding Cards), Perdition type 6 deck gets increased attack power by 2
 		pUseResearchFundingCard->useCard(pCardsPerditionDrawn, pResearchFundingPerdition, pCounterPerdition->mRandomCard, *pPerdition, "Perdition", pTablePerdition);
 		// Use type x cards(Mitigating Circumstances Cards), Perdition cards get power of attack damage recieved reduced by 1
-		pUseMitigatingCircumstancesCard->useCard(pCardsPerdition, pStudentPerditionTest, pTablePerdition, pMitigatingCircumstancesPerdition, pCounterPerdition->mRandomCard);
+		pUseMitigatingCircumstancesCard->useCard(pCardsPerdition, pStudentPerdition, pTablePerdition, pMitigatingCircumstancesPerdition, pCounterPerdition->mRandomCard);
 		// Use type x cards(Easy Target Cards), spawns easy target card for perdition
 		pUseEasyTargetCard->UseCard(pCardsPerdition, pEasyTargetPerdition, pCounterPerdition->mRandomCard, *pPerdition, "Perdition", pTablePerdition);
 		// Use type 1 cards (Student Cards), Piffle gets attacked
@@ -586,7 +590,7 @@ int main()
 		pUseGraduateStudentCard->useCard(pTablePiffle, pTablePerdition, *pPiffle, *pPerdition, pCardsPerditionDrawn, pGraduateStudentPerdition, pCounterPerdition->mRandomCard, pEasyTargetPiffle);
 
 		//Check if prestige is 0
-		pStudent->ProfessorSacked(*pPlagiarist, *pPiffle, *pPointless, *pPerdition);
+		pStudent->ProfessorSacked(pPlagiarist, pPiffle, pPointless, pPerdition);
 		// Exits the do while loop when one of the players loses all their prestige
 		if (pPlagiarist->mProfPrestige <= 0 || pPiffle->mProfPrestige <= 0 || pPointless->mProfPrestige <= 0 || pPerdition->mProfPrestige <= 0)
 		{
@@ -599,7 +603,7 @@ int main()
 	} while (pPlagiarist->mProfPrestige > 0 && pPiffle->mProfPrestige > 0 && pPointless->mProfPrestige > 0 && pPerdition->mProfPrestige > 0);
 
 	// GameOver function checks which player has won
-	pGameState->GameOver(*pPiffle, *pPlagiarist, *pPointless, *pPerdition);
+	pGameState->GameOver(pPiffle, pPlagiarist, pPointless, pPerdition);
 
 	// Memory Leak Detection
 	_CrtDumpMemoryLeaks();
@@ -627,7 +631,7 @@ time_t ReadSeedFile(string filename)
 	}
 	else
 	{
-		cout << "Unable to open file " << filename << '\n';
+		cout << "Unable to open file " << filename << endl;
 	}
 	// Returns time_t statement of seed value read from file
 	return seed_value;
