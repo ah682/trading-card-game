@@ -62,7 +62,7 @@ This function uses a student card to attack either a table or a professor. If a 
 @param easyTarget - a vector of shared_ptr<CEasyTarget> representing the cards that can be used on tables directly
 @return void
 */
-void CStudent::UseStudentCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CStudent::UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();

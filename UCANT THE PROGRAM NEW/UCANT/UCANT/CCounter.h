@@ -23,7 +23,7 @@ public:
 	int mResilienceIncrease = 0; // Resillience increase value
 
 	string mLine = ""; // Line read from file
-	ifstream* mFileReader; // Pointer to ifle reader
+	unique_ptr<ifstream> mFileReader; // Pointer to ifle reader
 	time_t mSeeder = 0; // Seed value for random number generation
 	
 	// Function overloading

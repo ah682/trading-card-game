@@ -56,6 +56,7 @@ void CCounter::initializeHand(vector<shared_ptr<CCard>>& pHand, int size) // Ini
 	for (int i = 0; i < size; i++) {
 		pHand[i] = make_shared<CCard>();
 	}
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
 }
 
 time_t CCounter::getSeed() // Gets seed value to pass to setSeed

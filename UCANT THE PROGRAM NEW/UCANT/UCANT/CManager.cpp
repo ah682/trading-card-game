@@ -221,74 +221,9 @@ void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_p
 			cout << playerName.mProfName << " has pushed " << hand[j]->mType << " " << hand[j]->mFirstname << " " << hand[j]->mLastname << " " << hand[j]->mPower << " " << hand[j]->mResilience << " " << hand[j]->mBoost << " to hand" << endl;
 		}
 	}
+	
 } 
 
-/**
-
-This method is responsible for using Card Type 9 - Student. When students are activating, if there is an Easy Target in the enemy cohort, they MUST target them rather than choosing a random target.
-
-@param cardsDrawn A vector containing shared pointers to all cards drawn
-
-@param easyTarget A vector containing shared pointers to all Easy Target cards in play
-
-@param randomCard An integer representing the index of the card chosen at random
-
-@param professorAttacker A struct representing the attacking professor
-
-@param attackerName A string representing the name of the attacking professor
-
-@param tableAttacker A vector containing shared pointers to all tables in the attacking professor's cohort
-*/
-void CManager::UseEasyTargetCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
-{
-	unique_ptr<CEasyTarget> printCardType = make_unique<CEasyTarget>();
-	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
-	printCardType->printCardUse();
-	if (randomCard < cardsDrawn.size())
-	{
-		if (cardsDrawn[randomCard]->mType == G_EASY_TARGET)
-		{
-			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-			shared_ptr<CEasyTarget> pEasyTargetElement = static_pointer_cast<CEasyTarget>(cardsDrawn[randomCard]);
-			// Add the converted element to the accreditation vector
-			easyTarget.push_back(pEasyTargetElement);
-		}
-	}
-	else
-	{
-
-
-		professorAttacker.mProfName = attackerName;
-		for (int i = 0; i < easyTarget.size(); i++)
-		{
-			int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
-			if (randomIndex < tableAttacker.size())
-			{
-				if (!easyTarget.empty())
-				{
-					if (!tableAttacker.empty())
-					{
-						if (randomIndex < tableAttacker.size())
-						{
-						}
-						else
-						{
-
-						}
-					}
-				}
-				if (tableAttacker.empty())
-				{
-
-				}
-			}
-		}
-		if (easyTarget.empty())
-		{
-			cout << "Easy Target card is empty" << endl;
-		}
-	}
-}
 
 int CManager::getChoice() const // Returns mChoice
 {
