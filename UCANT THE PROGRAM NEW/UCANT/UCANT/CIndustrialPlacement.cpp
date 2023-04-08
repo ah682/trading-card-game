@@ -71,7 +71,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 					cardResilienceAttackerInt += increaseResilience;
 					string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 					cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					printCardType->activateCardDeath(randomIndex, tableAttacked);
@@ -115,7 +115,7 @@ Outputs the details of the defeated table to the console.
 */
 void CIndustrialPlacement::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
+	cout << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
 }
 
 /**

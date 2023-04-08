@@ -27,7 +27,7 @@ class CSerialOffender :
 	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); // Method to activate the death effect of the card
 	void attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard); // Method to attack a professor
 	// Function overloading - two versions of the attackEntity function with different parameters
-	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); // First version of the attackEntity function
+	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard); // First version of the attackEntity function
 	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int additionalRandomIndex, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, int& leftOverDamage, int& additionalCardResilienceAttackedInt); // Second version of the attackEntity function with additional parameters
 };
 

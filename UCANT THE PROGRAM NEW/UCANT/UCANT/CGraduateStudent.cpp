@@ -94,7 +94,7 @@ This function activates the death of a card and removes it from the tableAttacke
 */
 void CGraduateStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }
 
@@ -114,7 +114,7 @@ void CGraduateStudent::attackEntity(int &cardResilienceAttackedInt, int &cardPow
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 	tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 }
 
 /**

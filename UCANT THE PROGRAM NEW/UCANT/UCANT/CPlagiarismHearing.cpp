@@ -18,7 +18,7 @@ This function overloads the activateCardDeath function from the CCard class.
 */
 void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
-	cout << enemyTable->mType << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " " << enemyTable->mPower << " " << enemyTable->mResilience << " " << enemyTable->mBoost << " is defeated" << endl;
+	cout <<  enemyTable->mFirstname << " " << enemyTable->mLastname << " is defeated" << endl;
 	tableAttacked.pop_back();
 }
 
@@ -88,7 +88,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[tableAttacked.size() - 1]->mResilience = cardResilienceString;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << enemyTable->mType << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " " << enemyTable->mPower << " " << enemyTable->mResilience << " " << enemyTable->mBoost << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << " resilience is now " << enemyTable->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << enemyTable->mFirstname << " " << enemyTable->mLastname << ". " << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << "'s resilience is now " << enemyTable->mResilience << endl;
 				}
 				if (cardResilience <= 0) {
 					printCardType->activateCardDeath(enemyTable, tableAttacked);

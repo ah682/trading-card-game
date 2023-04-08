@@ -80,7 +80,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[randomIndex]->mResilience = cardResilienceString;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks : " << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilience <= 0)
 				{
@@ -136,6 +136,6 @@ and prints a message indicating the card's type, name, power, resilience, and bo
 */
 void CFeedbackForum::activateCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
 {
-	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " " << elementneeded->mPower << " " << elementneeded->mResilience << " " << elementneeded->mBoost << " is defeated" << endl;
+	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }

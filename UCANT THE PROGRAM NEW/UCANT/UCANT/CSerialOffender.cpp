@@ -66,7 +66,7 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 				activateEasyTarget->useCardSpecialAbility(cardPowerAttackerInt, easyTarget);
 
 				if (cardResilienceAttackedInt > 0) {
-					printCardTypeSerialOffender->attackEntity(cardResilienceAttackedInt, cardPowerAttackerInt, randomIndex, tableAttacked);
+					printCardTypeSerialOffender->attackEntity(cardResilienceAttackedInt, cardPowerAttackerInt, randomIndex, tableAttacked, cardsDrawn, randomCard);
 					int leftOverDamage = cardPowerAttackerInt - cardResilienceAttackedInt;
 					do
 					{
@@ -182,11 +182,12 @@ void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers::SProfe
  * @param randomIndex the index of the attacked entity in the table
  * @param tableAttacked the table containing the attacked entity
  */
-void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked) //not left over damage for serialoffender
+void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard) //not left over damage for serialoffender
 {
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 	tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 
 }
 

@@ -17,7 +17,7 @@ This function activates a card's death effect on a table entity by printing out 
 */
 void CStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " is defeated" << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }
 
@@ -33,7 +33,7 @@ void CStudent::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttack
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 	tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " " << tableAttacked[randomIndex]->mPower << " " << tableAttacked[randomIndex]->mResilience << " " << tableAttacked[randomIndex]->mBoost << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 }
 
 /**

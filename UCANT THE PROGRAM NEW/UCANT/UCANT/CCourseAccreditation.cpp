@@ -85,7 +85,7 @@ void CCourseAccreditation::printCardUse()
  */
 void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked) // Overloaded function
 {
-	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " " << tableAttacked[j]->mPower << " " << tableAttacked[j]->mResilience << " " << tableAttacked[j]->mBoost << " is defeated" << endl;
+	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + j);
 }
 
@@ -118,5 +118,5 @@ void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlaye
 void CCourseAccreditation::attackEntity(string& cardResilienceString, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>>& cardsDrawn, int j, int randomCard)
 {
 	tableAttacked[j]->mResilience = cardResilienceString;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << ". " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " resilience is now " << tableAttacked[j]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << ". " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << "'s resilience is now " << tableAttacked[j]->mResilience << endl;
 }
