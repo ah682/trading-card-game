@@ -1,3 +1,4 @@
+// Adam James Anthony Hall
 #include "CResearchFunding.h"
 
 /**

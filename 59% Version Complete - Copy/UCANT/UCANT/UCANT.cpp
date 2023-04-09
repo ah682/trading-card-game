@@ -29,8 +29,8 @@ class CCard
 {
 public:
     string type;
-    string firstname;
-    string lastname;
+    string namef;
+    string namel;
     string power;
     string resilience;
     string boost;
@@ -86,7 +86,7 @@ void GameState::plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &p
                     tableAttacked[tableAttacked.size() - 1]->resilience = cardResilienceString;
                 }
                 if (cardResilience <= 0) {
-                    cout << "CARD KILLED Name:" << elementneeded->firstname << " by player " << professorAttacker.profName << endl;
+                    cout << "CARD KILLED Name:" << elementneeded->namef << " by player " << professorAttacker.profName << endl;
                     elementneeded->resilience = "-99";
                     tableAttacked.erase(tableAttacked.end() - 1);
                 }
@@ -127,7 +127,7 @@ void GameState::courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>&
            tableAttacked[j]->resilience = cardResilienceString;
 
            if (cardResilience <= 0) {
-               cout << "CARD KILLED Name:" << tableAttacked[j]->firstname << " by player " << professorAttacker.profName << endl;
+               cout << "CARD KILLED Name:" << tableAttacked[j]->namef << " by player " << professorAttacker.profName << endl;
                tableAttacked[j]->resilience = "-99";
                tableAttacked.erase(tableAttacked.begin() + j);
            }
@@ -155,7 +155,7 @@ void GameState::tableCard(vector<CCard*> &table, vector<CCard*> &cardsDrawn, SPr
     // Shows cards placed on table
     cout << name.profName << " cards on table " << endl;
     for (int i = 0; i < table.size(); i++) {
-        cout << table[i]->type << " " << table[i]->firstname << " " << table[i]->lastname << " " << table[i]->power << " " << table[i]->power << " " << table[i]->resilience << table[i]->boost << endl;
+        cout << table[i]->type << " " << table[i]->namef << " " << table[i]->namel << " " << table[i]->power << " " << table[i]->power << " " << table[i]->resilience << table[i]->boost << endl;
         if (i > table.size() - table.size() + 1)
         {
             break;
@@ -208,10 +208,10 @@ void GameState::fillDeck(ifstream &inFile, vector<CCard*> &cards, vector<CStuden
     {
         if (getline(inFile, line)) {
             stringstream ss(line);
-            ss >> cards[i]->type >> cards[i]->firstname >> cards[i]->lastname >> cards[i]->power >> cards[i]->resilience >> cards[i]->boost;
+            ss >> cards[i]->type >> cards[i]->namef >> cards[i]->namel >> cards[i]->power >> cards[i]->resilience >> cards[i]->boost;
             if (cardsStudent[i]->type == "1")
             {
-                ss >> cardsStudent[i]->type >> cardsStudent[i]->firstname >> cardsStudent[i]->lastname >> cardsStudent[i]->power >> cardsStudent[i]->resilience >> cardsStudent[i]->boost;
+                ss >> cardsStudent[i]->type >> cardsStudent[i]->namef >> cardsStudent[i]->namel >> cardsStudent[i]->power >> cardsStudent[i]->resilience >> cardsStudent[i]->boost;
             }
         }
         
@@ -231,7 +231,7 @@ void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int&
         {
             drawnCards.push_back(cards[j]);
             *usedCards[j] = true;
-            cout << "Player " << name.profName << " has drawn " << drawnCards.back()->type << " " << drawnCards.back()->firstname << " " << drawnCards.back()->lastname << " " << drawnCards.back()->power << " " << drawnCards.back()->resilience << " " << drawnCards.back()->boost << endl;
+            cout << "Player " << name.profName << " has drawn " << drawnCards.back()->type << " " << drawnCards.back()->namef << " " << drawnCards.back()->namel << " " << drawnCards.back()->power << " " << drawnCards.back()->resilience << " " << drawnCards.back()->boost << endl;
         }
         else
         {
@@ -275,7 +275,7 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
                 tableAttacked[i]->resilience = cardResilienceString;
             }
             if (cardResilience <= 0) {
-                cout << "CARD KILLED Name:" << tableAttacked[i]->firstname << " by player " << professorAttacker.profName << endl;
+                cout << "CARD KILLED Name:" << tableAttacked[i]->namef << " by player " << professorAttacker.profName << endl;
                 tableAttacked[i]->resilience = "-99";
                 tableAttacked.erase(tableAttacked.begin() + i);
             }
@@ -312,23 +312,23 @@ int main()
     int numCardsPlagiarist = 0;
     int numCardsPifflePaper = 0;
 
-    ifstream filePlagiarist("plagiarist.txt");
+    ifstream fPlagiarist("plagiarist.txt");
     string linePlagiarist;
 
-    ifstream filePifflePaper("piffle-paper.txt");
+    ifstream fPifflePaper("piffle-paper.txt");
     string linePifflePaper;
 
     SProfessor Plagiarist;
     SProfessor PifflePaper;
 
     // Count the number of cards in the plagiarist file
-    while (getline(filePlagiarist, linePlagiarist))
+    while (getline(fPlagiarist, linePlagiarist))
     {
         numCardsPlagiarist++ + 200;
     }
 
     // Count the number of cards in the piffle file
-    while (getline(filePifflePaper, linePifflePaper))
+    while (getline(fPifflePaper, linePifflePaper))
     {
         numCardsPifflePaper++ + 200;
     }
@@ -383,8 +383,8 @@ int main()
     vector<CCard*> courseAccreditationPifflePaper;
 
     // Fills Piffle-Papers and Plagiarist decks with cards
-    message.fillDeck(filePlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
-    message.fillDeck(filePifflePaper, cardsPiffle, cardsPiffleStudents);
+    message.fillDeck(fPlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
+    message.fillDeck(fPifflePaper, cardsPiffle, cardsPiffleStudents);
 
     // Allocate
     int deckCounter = 2;
@@ -418,7 +418,7 @@ int main()
             cout << "DRAWN CARDS Plagiarist" << endl;
             message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
 
-            cout << "DRAWN CARDS Piffle" << endl;
+            cout << "DRAWN CARDS Piffle-Paper" << endl;
 
             message.drawCard(cardsPiffle, cardsPifflePaperDrawn, deckCounter, i, PifflePaper, checkUsedCardPiffle);
 
@@ -426,10 +426,10 @@ int main()
             // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
             randomCardPiffle = Random(cardsPifflePaperDrawn.size() - 2, cardsPifflePaperDrawn.size() - 1);
 
-            cout << "Piffle-Paper chooses " << cardsPifflePaperDrawn[randomCardPiffle]->type << " " << cardsPifflePaperDrawn[randomCardPiffle]->firstname << " " << cardsPifflePaperDrawn[randomCardPiffle]->lastname << " " << cardsPifflePaperDrawn[randomCardPiffle]->power << " " << cardsPifflePaperDrawn[randomCardPiffle]->resilience << " " << cardsPifflePaperDrawn[randomCardPiffle]->boost << endl;
+            cout << "Piffle-Paper chooses " << cardsPifflePaperDrawn[randomCardPiffle]->type << " " << cardsPifflePaperDrawn[randomCardPiffle]->namef << " " << cardsPifflePaperDrawn[randomCardPiffle]->namel << " " << cardsPifflePaperDrawn[randomCardPiffle]->power << " " << cardsPifflePaperDrawn[randomCardPiffle]->resilience << " " << cardsPifflePaperDrawn[randomCardPiffle]->boost << endl;
             // Plagiarist Chooses a card card THIS IS SUPPOSE TO BE RANDOM
             randomCardPlagiarist = Random(cardsPlagiaristDrawn.size() - 2, cardsPlagiaristDrawn.size() - 1);
-            cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->firstname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->lastname << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
+            cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->namef << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->namel << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
         }
 
         //Prints table on cards for specific player
@@ -466,8 +466,8 @@ int main()
     message.gameOver(PifflePaper, Plagiarist);
 
     // Close files
-    filePlagiarist.close();
-    filePifflePaper.close();
+    fPlagiarist.close();
+    fPifflePaper.close();
 
     // Memory Leak Detection
     _CrtDumpMemoryLeaks();
