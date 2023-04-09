@@ -1,4 +1,5 @@
-// UCANT.cpp
+// UCan't The Winnowing
+// Created by: Damnian Phillips
 
 // Memory Leak Detection
 #define _CRTDBG_MAP_ALLOC
@@ -11,11 +12,13 @@
 #include <iostream>
 #include <cstdlib>
 
-
-const int MAX_CARDS = 48;
 using namespace std;
 
-time_t seedingFile(string filename);
+const int G_MAX_CARDS = 48;
+const int G_CHOICE_ONE = 1;
+const int G_CHOICE_TWO = 2;
+
+time_t  seedValueFromFile(string filePath);
 int Random(int max);
 int Random(int min, int max);
 
@@ -28,6 +31,7 @@ struct SProfessor
 class CCard
 {
 public:
+    // Defines structore of a card
     string type;
     string namef;
     string namel;
@@ -73,9 +77,9 @@ void GameState::plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &p
     for (int i = 0; i < plagiarism.size(); i++)
     {
         if (!tableAttacked.empty()) {
-            CCard* elementneeded = tableAttacked[tableAttacked.size() - 1];
-            if (!elementneeded->resilience.empty()) {
-                cardResilience = stoi(elementneeded->resilience);
+            CCard* tableAttackede = tableAttacked[tableAttacked.size() - 1];
+            if (!tableAttackede->resilience.empty()) {
+                cardResilience = stoi(tableAttackede->resilience);
             }
 
             if (randomChoice == 1)
@@ -86,8 +90,8 @@ void GameState::plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &p
                     tableAttacked[tableAttacked.size() - 1]->resilience = cardResilienceString;
                 }
                 if (cardResilience <= 0) {
-                    cout << "CARD KILLED Name:" << elementneeded->namef << " by player " << professorAttacker.profName << endl;
-                    elementneeded->resilience = "-99";
+                    cout << "CARD KILLED Name:" << tableAttackede->namef << " by player " << professorAttacker.profName << '\n';
+                    tableAttackede->resilience = "-99";
                     tableAttacked.erase(tableAttacked.end() - 1);
                 }
             }
@@ -99,7 +103,7 @@ void GameState::plagiarismHearing(vector<CCard*>& cardsDrawn, vector <CCard*> &p
             {
                 professorAttacked.profPrestige = 0;
             }
-            cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+            cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << '\n';
         }
     }
 }
@@ -127,7 +131,7 @@ void GameState::courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>&
            tableAttacked[j]->resilience = cardResilienceString;
 
            if (cardResilience <= 0) {
-               cout << "CARD KILLED Name:" << tableAttacked[j]->namef << " by player " << professorAttacker.profName << endl;
+               cout << "CARD KILLED Name:" << tableAttacked[j]->namef << " by player " << professorAttacker.profName << '\n';
                tableAttacked[j]->resilience = "-99";
                tableAttacked.erase(tableAttacked.begin() + j);
            }
@@ -139,7 +143,7 @@ void GameState::courseAccreditation(vector<CCard*>& cardsDrawn, vector <CCard*>&
         {
           professorAttacked.profPrestige = 0;
         }
-        cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+        cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << '\n';
         
     }
 }
@@ -155,7 +159,7 @@ void GameState::tableCard(vector<CCard*> &table, vector<CCard*> &cardsDrawn, SPr
     // Shows cards placed on table
     cout << name.profName << " cards on table " << endl;
     for (int i = 0; i < table.size(); i++) {
-        cout << table[i]->type << " " << table[i]->namef << " " << table[i]->namel << " " << table[i]->power << " " << table[i]->power << " " << table[i]->resilience << table[i]->boost << endl;
+        cout << table[i]->type << " " << table[i]->namef << " " << table[i]->namel << " " << table[i]->power << " " << table[i]->power << " " << table[i]->resilience << table[i]->boost << '\n';
         if (i > table.size() - table.size() + 1)
         {
             break;
@@ -178,17 +182,17 @@ void GameState::gameOver(SProfessor pifflepaper, SProfessor plagiarist)
         {
             plagiarist.profPrestige = 0;
         }
-        cout << plagiarist.profName << " prestige is " << plagiarist.profPrestige << " " << pifflepaper.profName << " prestige is " << pifflepaper.profPrestige << endl
+        cout << plagiarist.profName << " prestige is " << plagiarist.profPrestige << " " << pifflepaper.profName << " prestige is " << pifflepaper.profPrestige << '\n'
             << pifflepaper.profName << " wins";
     }
     else if (plagiarist.profPrestige > pifflepaper.profPrestige)
     {
-        cout << "Game Over" << endl;
+        cout << "Game Over" << '\n';
         if (pifflepaper.profPrestige < 0)
         {
             pifflepaper.profPrestige = 0;
         }
-        cout << pifflepaper.profName << " prestige is " << pifflepaper.profPrestige << " " << plagiarist.profName << " prestige is " << plagiarist.profPrestige << endl
+        cout << pifflepaper.profName << " prestige is " << pifflepaper.profPrestige << " " << plagiarist.profName << " prestige is " << plagiarist.profPrestige << '\n'
             << plagiarist.profName << " wins";
     }
 }
@@ -223,7 +227,7 @@ void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int&
     int awesomeCounter = 0;
     for (int j = i; j < deckCounter; j++)
     {
-        if (i == 48)
+        if (i == G_MAX_CARDS)
         {
             break;
         }
@@ -231,7 +235,7 @@ void GameState::drawCard(vector<CCard*>& cards, vector<CCard*>& drawnCards, int&
         {
             drawnCards.push_back(cards[j]);
             *usedCards[j] = true;
-            cout << "Player " << name.profName << " has drawn " << drawnCards.back()->type << " " << drawnCards.back()->namef << " " << drawnCards.back()->namel << " " << drawnCards.back()->power << " " << drawnCards.back()->resilience << " " << drawnCards.back()->boost << endl;
+            cout << "Player " << name.profName << " has drawn " << drawnCards.back()->type << " " << drawnCards.back()->namef << " " << drawnCards.back()->namel << " " << drawnCards.back()->power << " " << drawnCards.back()->resilience << " " << drawnCards.back()->boost << '\n';
         }
         else
         {
@@ -275,7 +279,7 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
                 tableAttacked[i]->resilience = cardResilienceString;
             }
             if (cardResilience <= 0) {
-                cout << "CARD KILLED Name:" << tableAttacked[i]->namef << " by player " << professorAttacker.profName << endl;
+                cout << "CARD KILLED Name:" << tableAttacked[i]->namef << " by player " << professorAttacker.profName << '\n';
                 tableAttacked[i]->resilience = "-99";
                 tableAttacked.erase(tableAttacked.begin() + i);
             }
@@ -290,7 +294,7 @@ void GameState::cardsDuel(vector<CCard*>& tableAttacked, vector<CCard*>& tableAt
     {
         professorAttacked.profPrestige = 0;
     }
-    cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << endl;
+    cout << professorAttacked.profName << " Prestige is now " << professorAttacked.profPrestige << '\n';
 }
 
 void GameState::cardsDuelCards()
@@ -300,35 +304,36 @@ void GameState::cardsDuelCards()
 
 int main()
 {
-    // Genereates seed from seeding file
-    int seed = seedingFile("seed.txt");
+    // Genereates seed from seeding file and sets it by srand
+    int seed = seedValueFromFile("seed.txt");
     srand(seed);
 
-    // Initialize data before commencing U-Can't
-
+    // Initialises data before commencing combat of UCan't
     GameState message;
     message.gameStart();
 
+    // Counts number of cards for each professor
     int numCardsPlagiarist = 0;
     int numCardsPifflePaper = 0;
 
+    // Open the files
     ifstream fPlagiarist("plagiarist.txt");
-    string linePlagiarist;
-
+    string lineCountPlagiarist;
     ifstream fPifflePaper("piffle-paper.txt");
-    string linePifflePaper;
+    string lineCountPifflePaper;
 
+    // Object type of SProfessor for the two professors
     SProfessor Plagiarist;
     SProfessor PifflePaper;
 
     // Count the number of cards in the plagiarist file
-    while (getline(fPlagiarist, linePlagiarist))
+    while (getline(fPlagiarist, lineCountPlagiarist))
     {
         numCardsPlagiarist++ + 200;
     }
 
     // Count the number of cards in the piffle file
-    while (getline(fPifflePaper, linePifflePaper))
+    while (getline(fPifflePaper, lineCountPifflePaper))
     {
         numCardsPifflePaper++ + 200;
     }
@@ -369,16 +374,12 @@ int main()
     // Allocate memory for the cards
     vector<CCard*> cardsPlagiaristDrawn;
     vector<CCard*> cardsPifflePaperDrawn;
-
     vector<CStudent*> cardsPlagiaristStudentsDrawn;
     vector<CStudent*> cardsPiffleStudentsDrawn;
-
     vector<CCard*> tablePlagiarist;
     vector<CCard*> tablePifflePaper;
-
     vector<CCard*> plagiarismHearingPlagiarist; 
     vector<CCard*> plagiarismHearingPifflePaper; 
-
     vector<CCard*> courseAccreditationPlagiarist;
     vector<CCard*> courseAccreditationPifflePaper;
 
@@ -386,26 +387,26 @@ int main()
     message.fillDeck(fPlagiarist, cardsPlagiarist, cardsPlagiaristStudents);
     message.fillDeck(fPifflePaper, cardsPiffle, cardsPiffleStudents);
 
-    // Allocate
-    int deckCounter = 2;
+    // Iterators for the deck specifically with round increasing
+    int deckIteration = 2;
     int i = 0;
 
     // Allocate
-    vector<bool*> checkUsedCardPlagiarist(MAX_CARDS, nullptr);
+    vector<bool*> checkUsedCardPlagiarist(G_MAX_CARDS, nullptr);
 
-    for (int i = 0; i < MAX_CARDS; i++) {
+    for (int i = 0; i < G_MAX_CARDS; i++) {
         bool* cardTest3 = new bool(false); // Allocate memory for the card object
         checkUsedCardPlagiarist[i] = cardTest3; // Assign the pointer to point to the newly allocated memory
     }
 
-    vector<bool*> checkUsedCardPiffle(MAX_CARDS, nullptr);
+    vector<bool*> checkUsedCardPiffle(G_MAX_CARDS, nullptr);
 
-    for (int i = 0; i < MAX_CARDS; i++) {
+    for (int i = 0; i < G_MAX_CARDS; i++) {
         bool* cardTest4 = new bool(false); // Allocate memory for the card object
         checkUsedCardPiffle[i] = cardTest4; // Assign the pointer to point to the newly allocated memory
     }
 
-    //Loops until prestige of one of the professors is 0
+    // do while loop until prestige of one player game <= 0
     do
     {
         int randomCardPiffle = 0;
@@ -413,14 +414,14 @@ int main()
         // Allocate memory for the cards
         
         // Draws random card for plagiarist and checks if works with cout
-        if (i < MAX_CARDS)
+        if (i < G_MAX_CARDS)
         {
-            cout << "DRAWN CARDS Plagiarist" << endl;
-            message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckCounter, i, Plagiarist, checkUsedCardPlagiarist);
+            cout << "DRAWN CARDS Plagiarist" << '\n';
+            message.drawCard(cardsPlagiarist, cardsPlagiaristDrawn, deckIteration, i, Plagiarist, checkUsedCardPlagiarist);
 
-            cout << "DRAWN CARDS Piffle-Paper" << endl;
+            cout << "DRAWN CARDS Piffle-Paper" << '\n';
 
-            message.drawCard(cardsPiffle, cardsPifflePaperDrawn, deckCounter, i, PifflePaper, checkUsedCardPiffle);
+            message.drawCard(cardsPiffle, cardsPifflePaperDrawn, deckIteration, i, PifflePaper, checkUsedCardPiffle);
 
 
             // Piffle Chooses a card card THIS IS SUPPOSE TO BE RANDOM
@@ -432,16 +433,17 @@ int main()
             cout << "Plagiarist chooses " << cardsPlagiaristDrawn[randomCardPlagiarist]->type << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->namef << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->namel << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->power << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->resilience << " " << cardsPlagiaristDrawn[randomCardPlagiarist]->boost << endl;
         }
 
-        //Prints table on cards for specific player
+        //Prints table on cards for Piffle-Paper
         message.tableCard(tablePifflePaper, cardsPifflePaperDrawn, PifflePaper, "Piffle-Paper", randomCardPiffle);
+        //Prints table on cards for Plagiarist
         message.tableCard(tablePlagiarist, cardsPlagiaristDrawn, Plagiarist, "Plagiarist", randomCardPlagiarist);
 
-        // Make cards duel
-        // Create Piffle Player piffle gets attacked
+        
+        // Piffle-Paper's minions gets attacked by Plagiarist's minions
         message.cardsDuel(tablePifflePaper, tablePlagiarist, PifflePaper, Plagiarist, "Piffle-Paper", "Plagiarist", cardsPlagiaristDrawn, randomCardPlagiarist);
 
 
-        int randomRangeOneorTwo = Random(1, 2);
+        int randomRangeOneorTwo = Random(G_CHOICE_ONE, G_CHOICE_TWO);
         //Piffle Gets Attacked
         message.plagiarismHearing(cardsPlagiaristDrawn, plagiarismHearingPlagiarist, tablePifflePaper, randomCardPlagiarist, PifflePaper, Plagiarist, "Piffle-Paper", "Plagiarist", randomRangeOneorTwo);
         message.courseAccreditation(cardsPlagiaristDrawn, courseAccreditationPlagiarist, tablePifflePaper, randomCardPlagiarist, PifflePaper, Plagiarist, "Piffle-Paper", "Plagiarist");
@@ -450,7 +452,7 @@ int main()
         // Create Plagiarist Player plagiarist gets attacked
         message.cardsDuel(tablePlagiarist, tablePifflePaper, Plagiarist, PifflePaper, "Plagiarist", "Piffle-Paper", cardsPifflePaperDrawn, randomCardPiffle);
 
-        randomRangeOneorTwo = Random(1, 2);    
+        randomRangeOneorTwo = Random(G_CHOICE_ONE, G_CHOICE_TWO);    
         //Plagiarist Gets Attacked
         message.plagiarismHearing(cardsPifflePaperDrawn, plagiarismHearingPifflePaper, tablePlagiarist, randomCardPiffle, Plagiarist, PifflePaper, "Plagiarist", "Piffle-Paper", randomRangeOneorTwo);
         message.courseAccreditation(cardsPifflePaperDrawn, courseAccreditationPifflePaper, tablePlagiarist, randomCardPiffle, Plagiarist, PifflePaper, "Plagiarist", "Piffle-Paper");
@@ -469,41 +471,47 @@ int main()
     fPlagiarist.close();
     fPifflePaper.close();
 
-    // Memory Leak Detection
+    // Detects Memory Leaks Before Compiler returns 0, just before code is running
     _CrtDumpMemoryLeaks();
 
     return 0;
 }
 
+
+// Random number generator
 int Random(int max)
 {
     return int(float(rand()) / (RAND_MAX + 1) * float(max));
 }
 
+// Random number generator within range
 int Random(int min, int max)
 {
     return min + int(float(rand()) / (RAND_MAX + 1) * float(max - min + 1));
 }
 
-time_t seedingFile(string filename)
+// Function to seed a value from a file
+time_t seedValueFromFile(string filePath)
 {
-    time_t seed_value = 0;
+    time_t seedValue = 0; // Initialize seed value to 0
+    string fileLine;
+    ifstream fileStream(filePath); // Open file stream
 
-    // Read from the file
-    ifstream file_stream(filename);
-    if (file_stream.is_open())
+    // Check if file stream is open
+    if (fileStream.is_open())
     {
-        string line;
-        if (getline(file_stream, line))
+        // Read first line from file
+        if (getline(fileStream, fileLine))
         {
-            seed_value = stoi(line);
+            seedValue = stoi(fileLine); // Convert line to integer and store as seed value
         }
-        file_stream.close();
+        fileStream.close(); // Close file stream
     }
     else
     {
-        std::cout << "Unable to open file this card file " << filename << '\n';
+        // Print error message if unable to open file
+        std::cout << "Unable to open file this card file " << filePath << '\n';
     }
 
-    return seed_value;
+    return seedValue; // Return seed value
 }
