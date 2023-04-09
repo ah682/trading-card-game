@@ -87,7 +87,7 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 	}
 	if (mitigatingCircumstances.empty())
 	{
-		
+
 	}
 	mitigatingCircumstances.clear();
 }
@@ -99,5 +99,5 @@ int CMitigatingCircumstances::getMDamageReduction() { // Getter method for the m
 
 void CMitigatingCircumstances::printCardUse()
 {
-	
+
 }

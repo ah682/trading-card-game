@@ -80,7 +80,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 			}
 
 			if (tableAttacked.empty()) {
-				
+
 				cardResilienceAttackerInt += increaseResilience;
 				string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 				cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
@@ -96,14 +96,14 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 	}
 	if (industrialPlacement.empty())
 	{
-		
+
 	}
 	industrialPlacement.clear();
 }
 
 void CIndustrialPlacement::printCardUse()
 {
-	
+
 }
 
 /**

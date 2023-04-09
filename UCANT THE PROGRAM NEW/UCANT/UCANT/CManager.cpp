@@ -21,9 +21,9 @@
 using namespace std;
 
 /**
-This function, PrintTable, takes in a vector of shared pointers to CTable objects, a vector of shared pointers to CCard objects, 
-the name of the player as a struct, the name of the professor as a string, and an integer representing a random card drawn. It checks 
-if the drawn card is of a certain type and, if so, converts it to a shared pointer to a CTable object and adds it to the table vector. 
+This function, PrintTable, takes in a vector of shared pointers to CTable objects, a vector of shared pointers to CCard objects,
+the name of the player as a struct, the name of the professor as a string, and an integer representing a random card drawn. It checks
+if the drawn card is of a certain type and, if so, converts it to a shared pointer to a CTable object and adds it to the table vector.
 It then prints out the cards on the table, along with their type, for the specified professor.
 */
 void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers playerName, string professor, int randomCard)
@@ -221,8 +221,8 @@ void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_p
 			cout << playerName.mProfName << " has pushed " << hand[j]->mType << " " << hand[j]->mFirstname << " " << hand[j]->mLastname << " " << hand[j]->mPower << " " << hand[j]->mResilience << " " << hand[j]->mBoost << " to hand" << endl;
 		}
 	}
-	
-} 
+
+}
 
 
 int CManager::getChoice() const // Returns mChoice

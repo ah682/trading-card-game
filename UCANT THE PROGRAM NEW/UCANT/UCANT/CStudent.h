@@ -26,7 +26,7 @@ class CStudent :
 public:
 	void printCardUse() override; // Override the printCardUse function from the base class
 	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); // Activate the card's death effect
-	void attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, int randomCard, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn); // Attack the entity
+	void attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, int randomCard, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn); // Attack the entity
 	void attackProfessor(CPlayers& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard, int& cardPowerAttackedInt); // Attack the professor
 	void UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers& professorAttacked, CPlayers& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget); // Uses a student card
 	void AddStudents(vector<shared_ptr<CStudent>>& pCardsStudents);

@@ -32,6 +32,6 @@ public:
 	void ProfessorSacked(shared_ptr<CPlayers> plagiarist, shared_ptr<CPlayers> piffle, shared_ptr<CPlayers> pointless, shared_ptr<CPlayers> perdition); // Determines if a professor has been sacked
 	string mProfNamer; // Gets Name of professor to set
 private:
-	
+
 };
 

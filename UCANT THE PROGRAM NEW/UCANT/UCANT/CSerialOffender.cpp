@@ -18,8 +18,8 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 {
 	unique_ptr<CSerialOffender> printCardTypeSerialOffender = make_unique<CSerialOffender>();
 	unique_ptr<CEasyTarget> printCardTypeEasyTarget = make_unique<CEasyTarget>();
-	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); 
-	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); 
+	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();
 
 	printCardTypeSerialOffender->printCardUse();
 
@@ -135,13 +135,13 @@ void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<
 	}
 	if (serialOffender.empty())
 	{
-		
+
 	}
 	serialOffender.clear();
 }
 void CSerialOffender::printCardUse()
 {
-	
+
 }
 
 /**
@@ -182,7 +182,7 @@ void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers& profes
  * @param randomIndex the index of the attacked entity in the table
  * @param tableAttacked the table containing the attacked entity
  */
-void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard) //not left over damage for serialoffender
+void CSerialOffender::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard) //not left over damage for serialoffender
 {
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
@@ -191,7 +191,7 @@ void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowe
 
 }
 
-/** 
+/**
  * Additional Entity
  * Attacks an entity on a table with a card, taking into account any left over damage from a previous attack
  * @param cardResilienceAttackedInt the resilience value of the attacked entity
@@ -202,7 +202,7 @@ void CSerialOffender::attackEntity(int &cardResilienceAttackedInt, int &cardPowe
  * @param leftOverDamage any left over damage from a previous attack
  * @param additionalCardResilienceAttackedInt the resilience value of the additional attacked entity
  */
-void CSerialOffender::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int additionalRandomIndex, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, int &leftOverDamage, int &additionalCardResilienceAttackedInt) //left over damage for serialoffender
+void CSerialOffender::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int additionalRandomIndex, int randomIndex, vector<shared_ptr<CTable>>& tableAttacked, int& leftOverDamage, int& additionalCardResilienceAttackedInt) //left over damage for serialoffender
 {
 	additionalCardResilienceAttackedInt -= leftOverDamage;
 	cout << "Left over damage attacks" << tableAttacked[additionalRandomIndex]->mFirstname << tableAttacked[additionalRandomIndex]->mLastname;

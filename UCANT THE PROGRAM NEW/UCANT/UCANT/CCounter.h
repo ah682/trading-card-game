@@ -25,7 +25,7 @@ public:
 	string mLine = ""; // Line read from file
 	unique_ptr<ifstream> mFileReader; // Pointer to ifle reader
 	time_t mSeeder = 0; // Seed value for random number generation
-	
+
 	// Function overloading
 	int Random(int max); // Returns random value
 	int Random(int min, int max); // Returns random value within a range

@@ -123,7 +123,7 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
 void CFeedbackForum::printCardUse()
 {
-	
+
 }
 
 /**

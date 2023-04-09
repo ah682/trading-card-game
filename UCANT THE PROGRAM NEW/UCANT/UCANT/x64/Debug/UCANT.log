@@ -1,4 +1,7 @@
-﻿  CCourseAccreditation.cpp
+﻿  CCard.cpp
+  CCounter.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CCounter.cpp(32,28): warning C4552: '+': result of expression not used
+  CCourseAccreditation.cpp
   CEasyTarget.cpp
   CFeedbackForum.cpp
   CGraduateStudent.cpp
@@ -7,8 +10,11 @@
   CMitigatingCircumstances.cpp
   CPassLeader.cpp
   CPlagiarismHearing.cpp
+  CPlayers.cpp
   CResearchFunding.cpp
   CSerialOffender.cpp
+  CStudent.cpp
+F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\UCANT\CStudent.cpp(100,68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   UCANT.cpp
   Generating Code...
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe

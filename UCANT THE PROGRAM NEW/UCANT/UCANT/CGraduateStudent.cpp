@@ -8,7 +8,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 {
 	unique_ptr<CGraduateStudent> printCardType = make_unique<CGraduateStudent>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
-	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>(); 
+	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();
 
 	printCardType->printCardUse();
 
@@ -58,7 +58,7 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					printCardType->activateCardDeath(randomIndex, tableAttacked);
-				
+
 				}
 			}
 
@@ -77,13 +77,13 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 	}
 	if (graduateStudent.empty())
 	{
-		
+
 	}
 	graduateStudent.clear();
 }
 void CGraduateStudent::printCardUse()
 {
-	
+
 }
 
 /**
@@ -109,7 +109,7 @@ void CGraduateStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTab
  * @param randomCard The index of the card drawn from the deck of cards.
  * @param cardsDrawn A vector of shared pointers to CCard objects representing the deck of cards.
  */
-void CGraduateStudent::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, string &cardResilienceStringDueled, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex, int randomCard, vector<shared_ptr<CCard>> &cardsDrawn)
+void CGraduateStudent::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, string& cardResilienceStringDueled, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex, int randomCard, vector<shared_ptr<CCard>>& cardsDrawn)
 {
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	cardResilienceStringDueled = to_string(cardResilienceAttackedInt);

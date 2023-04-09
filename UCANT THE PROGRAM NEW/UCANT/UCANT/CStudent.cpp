@@ -6,7 +6,7 @@
 
 void CStudent::printCardUse()
 {
-	
+
 }
 
 /**
@@ -28,7 +28,7 @@ It also takes in a randomCard parameter for selecting the attacking card from th
 The function subtracts the attacker's card's power from the attacked entity's resilience and updates the entity's resilience in the tableAttacked vector.
 Then it prints out a message indicating the attack details, including the attacker's card's name, the entity's name and its power, resilience and boost values before and after the attack.
 */
-void CStudent::attackEntity(int &cardResilienceAttackedInt, int &cardPowerAttackerInt, int randomIndex, int randomCard, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn)
+void CStudent::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttackerInt, int randomIndex, int randomCard, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>> cardsDrawn)
 {
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);

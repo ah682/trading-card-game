@@ -20,10 +20,10 @@
 class CPlagiarismHearing :
 	public CCard
 {
-	public:
-		void useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget); // Use card function
-		void printCardUse() override; // Override the printCardUse function from the base class
-		void activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked); // Activate the card's death effect
-		void attackProfessor(CPlayers& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard); // Attack the professor
+public:
+	void useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget); // Use card function
+	void printCardUse() override; // Override the printCardUse function from the base class
+	void activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked); // Activate the card's death effect
+	void attackProfessor(CPlayers& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard); // Attack the professor
 };
 

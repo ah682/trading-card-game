@@ -6,7 +6,7 @@
 
 void CPlagiarismHearing::printCardUse()
 {
-	
+
 }
 
 /**
@@ -18,7 +18,7 @@ This function overloads the activateCardDeath function from the CCard class.
 */
 void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
-	cout <<  enemyTable->mFirstname << " " << enemyTable->mLastname << " is defeated" << endl;
+	cout << enemyTable->mFirstname << " " << enemyTable->mLastname << " is defeated" << endl;
 	tableAttacked.pop_back();
 }
 
@@ -104,5 +104,5 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 			}
 		}
 	}
-	plagiarism .clear();
+	plagiarism.clear();
 }

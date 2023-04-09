@@ -1,0 +1,9 @@
+﻿  UCANT.cpp
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(260,37): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(262,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(304,14): warning C4244: 'initializing': conversion from 'time_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(327,30): warning C4552: '+': result of expression not used
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(333,31): warning C4552: '+': result of expression not used
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(427,105): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\UCANT\UCANT.cpp(431,107): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\59% Version Complete - Copy\UCANT\x64\Debug\UCANT.exe

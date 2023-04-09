@@ -21,7 +21,7 @@
 class CSerialOffender :
 	public CCard
 {
-	public:
+public:
 	void useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers& professorAttacked, CPlayers& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget); // Method to use the card
 	void printCardUse() override; // Method to print the usage of the card
 	void activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked); // Method to activate the death effect of the card

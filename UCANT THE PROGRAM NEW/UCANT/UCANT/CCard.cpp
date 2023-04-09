@@ -15,13 +15,13 @@ void CCard::activateCardDeath()
 
 void CCard::useCard()
 {
-	
+
 }
 
 int CCard::useCardSpecialAbility() // Gets returned value such as damage to pass to professor or entities
 {
-		
-		return 0;
+
+	return 0;
 }
 
 void CCard::attackProfessor()

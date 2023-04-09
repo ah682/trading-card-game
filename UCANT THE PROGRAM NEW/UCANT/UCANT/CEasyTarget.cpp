@@ -35,7 +35,7 @@ int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarge
 		}
 		if (attackedResilience <= 0)
 		{
-			
+
 			cardType->activateCardDeath(randomIndex, attacked);
 		}
 	}
@@ -48,7 +48,7 @@ int CEasyTarget::useCardSpecialAbility(int damage, vector <shared_ptr<CEasyTarge
 
 void CEasyTarget::printCardUse()
 {
-	
+
 }
 
 /**
@@ -62,7 +62,7 @@ void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<
 	cout << attacked[additionalEasyTargetRandomIndex]->mFirstname << attacked[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
 	cout << "Easy Target Killed" << endl;
 	attacked.erase(attacked.begin() + additionalEasyTargetRandomIndex);
-	
+
 }
 
 /**

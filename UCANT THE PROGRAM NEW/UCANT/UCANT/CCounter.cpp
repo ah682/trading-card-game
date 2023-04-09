@@ -26,11 +26,11 @@ int CCounter::Random(int min, int max) // Returns random value within a range
 
 void CCounter::countCardsInFile(unique_ptr<CCounter>& pCounter) // Count number of cards in file
 {
-    // Count the number of cards in the file
-    while (getline(pCounter->mFile, pCounter->mLine))
-    {
-        pCounter->mCardCounter++ + G_DECK_SIZE;
-    }
+	// Count the number of cards in the file
+	while (getline(pCounter->mFile, pCounter->mLine))
+	{
+		pCounter->mCardCounter++ + G_DECK_SIZE;
+	}
 }
 
 void CCounter::createCardsInVector(unique_ptr<CCounter>& pCounter, vector<shared_ptr<CCard>>& pCards) // Create cards in vector using a for loop
@@ -45,7 +45,7 @@ void CCounter::createCardsInVector(unique_ptr<CCounter>& pCounter, vector<shared
 
 
 void CCounter::initializeCheckUsedCard(vector<shared_ptr<bool>>& pCheckUsedCardPlagiarist) // Initialize the vector of bools for checking used cards in Plagiarist's hand 
-{ 
+{
 	for (int i = 0; i < pCheckUsedCardPlagiarist.size(); i++) {
 		pCheckUsedCardPlagiarist[i] = make_shared<bool>(false);
 	}
@@ -60,12 +60,12 @@ void CCounter::initializeHand(vector<shared_ptr<CCard>>& pHand, int size) // Ini
 }
 
 time_t CCounter::getSeed() // Gets seed value to pass to setSeed
-{ 
+{
 	return mSeed;
 }
 
 void CCounter::setSeed(time_t seed) // Sets seed value to pass to srand
-{ 
+{
 	mSeed = seed;
 }
 

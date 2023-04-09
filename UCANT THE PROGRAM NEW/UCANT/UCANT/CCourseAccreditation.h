@@ -16,7 +16,7 @@ class CCourseAccreditation :
 	public CCard // This class inherits from CCard
 
 {
-	public:
+public:
 	void useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget); // Method to use the card and pass necessary data such as card vector, table vector, professor information, etc.
 	void printCardUse() override; // Method to print the usage of the card
 	void activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked); // Overloaded function method to activate the death effect of the card
