@@ -10,7 +10,7 @@ and potentially removing them from play. The function also handles the special a
 as the "easy target" card. The code includes several variables and conditions to control the flow of the game and
 ensure proper execution.
 */
-void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CIndustrialPlacement>>& industrialPlacement, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CIndustrialPlacement> printCardType = make_unique<CIndustrialPlacement>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>(); // ?
@@ -128,7 +128,7 @@ randomCard: index of the attacking card in the drawn cards vector
 cardsDrawn: vector containing all the cards drawn by the player
 Returns: void
 */
-void CIndustrialPlacement::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, int randomCard, vector<shared_ptr<CCard>> cardsDrawn)
+void CIndustrialPlacement::attackProfessor(CPlayers& professorAttacked, int cardPowerAttackerInt, int randomCard, vector<shared_ptr<CCard>> cardsDrawn)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;

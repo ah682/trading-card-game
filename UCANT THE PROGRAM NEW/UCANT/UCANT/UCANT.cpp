@@ -66,22 +66,20 @@ int main()
 	pCounterPerdition->setFile("perdition.txt");
 
 	// Create a shared pointer to new SProfessor objects and CPlayer objects
-	auto pPlagiarist = make_shared<CPlayers::SProfessor>();
-	auto pPlagiaristName = make_shared<CPlayers>();
-	pPlagiarist->mProfName = pPlagiaristName->setProfessorName("Plagiarist");
-	auto pPiffle = make_shared<CPlayers::SProfessor>();
+	auto pPlagiarist = make_shared<CPlayers>();
+	pPlagiarist->mProfNamer = pPlagiarist->setProfessorName("Plagiarist");
+	auto pPiffle = make_shared<CPlayers>();
 	auto pPiffleName = make_shared<CPlayers>();
-	pPiffle->mProfName = pPiffleName->setProfessorName("Piffle-Paper");
-	auto pPerdition = make_shared<CPlayers::SProfessor>();
-	auto pPerditionName = make_shared<CPlayers>();
-	pPerdition->mProfName = pPerditionName->setProfessorName("Perdition");
-	auto pPointless = make_shared<CPlayers::SProfessor>();
-	auto pPointlessName = make_shared<CPlayers>();
-	pPointless->mProfName = pPointlessName->setProfessorName("Pointless");
+	pPiffle->mProfNamer = pPiffle->setProfessorName("Piffle-Paper");
+	auto pPerdition = make_shared<CPlayers>();
+	pPerdition->mProfNamer = pPerdition->setProfessorName("Perdition");
+	auto pPointless = make_shared<CPlayers>();
+	pPointless->mProfNamer = pPointless->setProfessorName("Pointless");
 
-	// Create a shared pointer to new SStudent objects
+	// Create a shared pointer to new CPlayer objects
 	auto pStudent = make_shared<CPlayers>();
 
+	// Count the number of cards in each players file via countCardsInFile Function with CCounter class
 	pCounterPlagiarist->countCardsInFile(pCounterPlagiarist);
 	pCounterPiffle->countCardsInFile(pCounterPiffle);
 	pCounterPointless->countCardsInFile(pCounterPointless);
@@ -131,7 +129,7 @@ int main()
 	// Iterate over each element in the vector using a for loop
 	pCounterPerdition->initializeHand(pHandPerdition, pCounterPerdition->mCardCounter);
 
-	// Create a new variousStudents object
+	// Create a new vector of shared_ptr Student objects with variousStudents alias
 	typedef vector <shared_ptr<CStudent>> variousStudents;
 	// Create a new shared_ptr<CStudent> object that points to a null pointer
 	auto pStudents = shared_ptr<CStudent>();

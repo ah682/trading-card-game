@@ -17,7 +17,7 @@ class CResearchFunding :
 	public CCard
 {
 public:
-	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker); // Use the card
+	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker); // Use the card
 	void printCardUse() override; // Override the printCardUse function from the base class
 	void activateCardDeath(); // Activate the card's death effect
 };

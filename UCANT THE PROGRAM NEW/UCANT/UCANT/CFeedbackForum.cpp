@@ -35,7 +35,7 @@ The function then checks if the attacked professor's prestige has become negativ
 The function finally prints the updated prestige of the attacked professor.
 At the end, the feedbackforum vector is cleared.
 */
-void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CFeedbackForum>>& feedbackforum, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CTable>>& tableAttacker, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();

@@ -13,7 +13,7 @@ having a prestige of zero or less.
 @param pointless A reference to the SProfessor struct for the third professor.
 @param perdition A reference to the SProfessor struct for the fourth professor.
 */
-void CPlayers::ProfessorSacked(shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition) {
+void CPlayers::ProfessorSacked(shared_ptr<CPlayers> plagiarist, shared_ptr<CPlayers> piffle, shared_ptr<CPlayers> pointless, shared_ptr<CPlayers> perdition) {
     if (plagiarist->mProfPrestige <= 0) {
         cout << endl << "Prof " << plagiarist->mProfName << " has no prestige and is sacked!" << endl;
     }

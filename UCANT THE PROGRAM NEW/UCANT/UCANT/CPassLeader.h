@@ -16,7 +16,7 @@ class CPassLeader :
 	public CCard // Inherit from the CCard class
 {
 public:
-	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker); // Use the card
+	void useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker); // Use the card
 	void printCardUse() override; // Override the printCardUse function from the base class
 	void activateCardDeath(); // Activate the card's death effect
 };

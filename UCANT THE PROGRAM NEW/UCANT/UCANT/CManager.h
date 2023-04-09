@@ -58,12 +58,12 @@ public:
 		eChoiceBeta = 2,
 	};
 	void GameStart(); // Starts the game
-	void GameOver(shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition); // Ends the game
+	void GameOver(shared_ptr<CPlayers> piffle, shared_ptr<CPlayers> plagiarist, shared_ptr<CPlayers> pointless, shared_ptr<CPlayers> perdition); // Ends the game
 	void StartRound(int& round); // Starts a new round
 	void FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CStudent>>& cardsStudent); // Fills the deck with cards
-	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards); // Draws a card
-	void pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName); // Pushes cards to the player's hand
-	void PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard); // Prints the table
+	void DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers playerName, vector<shared_ptr<bool>>& usedCards); // Draws a card
+	void pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers playerName); // Pushes cards to the player's hand
+	void PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers playerName, string professor, int randomCard); // Prints the table
 	int getChoice() const;  // Returns mChoice
 	void setChoice(int choice);  //Sets mChoice either 1 or two from enum mSelectChoice
 	int getRoundCounter() const; // Returns round number

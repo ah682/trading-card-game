@@ -11,7 +11,7 @@ CPassLeader card and adds it to the passLeader vector if it is. Then, it counts 
 vector and increases the power of each CPassLeader card on the attacker's table by the number of CPassLeader cards in the passLeader 
 vector. Finally, it prints a message indicating the power increase for each affected CPassLeader card.
 */
-void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CPassLeader>>& passLeader, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CPassLeader> printCardType = make_unique<CPassLeader>();
 	printCardType->printCardUse();

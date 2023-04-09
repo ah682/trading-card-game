@@ -43,7 +43,7 @@ drawn card used for attack, and a reference to an integer representing the power
 the prestige of the professor attacked by the attacking card's power, and prints out a message indicating the attack and
 the updated prestige of the professor attacked.
 */
-void CStudent::attackProfessor(CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard, int& cardPowerAttackerInt)
+void CStudent::attackProfessor(CPlayers& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard, int& cardPowerAttackerInt)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
@@ -62,7 +62,7 @@ This function uses a student card to attack either a table or a professor. If a 
 @param easyTarget - a vector of shared_ptr<CEasyTarget> representing the cards that can be used on tables directly
 @return void
 */
-void CStudent::UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CStudent::UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers& professorAttacked, CPlayers& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CStudent>>& ordinaryStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();

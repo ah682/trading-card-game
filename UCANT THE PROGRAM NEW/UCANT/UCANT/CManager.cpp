@@ -26,7 +26,7 @@ the name of the player as a struct, the name of the professor as a string, and a
 if the drawn card is of a certain type and, if so, converts it to a shared pointer to a CTable object and adds it to the table vector. 
 It then prints out the cards on the table, along with their type, for the specified professor.
 */
-void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers::SProfessor playerName, string professor, int randomCard)
+void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<CCard>>& cardsDrawn, CPlayers playerName, string professor, int randomCard)
 {
 	playerName.mProfName = professor;
 	if (((((((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) || cardsDrawn[randomCard]->mType == G_EASY_TARGET) || cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM) || cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER) || cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT))
@@ -69,7 +69,7 @@ void CManager::GameStart()
  * @param pointless - Professor object representing Pointless
  * @param perdition - Professor object representing Perdition
  */
-void CManager::GameOver(shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition)
+void CManager::GameOver(shared_ptr<CPlayers> piffle, shared_ptr<CPlayers> plagiarist, shared_ptr<CPlayers> pointless, shared_ptr<CPlayers> perdition)
 {
 
 
@@ -171,7 +171,7 @@ Also updates the usedCards vector to mark the drawn card as used.
 @param playerName - The name of the player drawing the card.
 @param usedCards - A vector of bools representing whether a card has already been drawn.
 */
-void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers::SProfessor playerName, vector<shared_ptr<bool>>& usedCards)
+void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCard>>& drawnCards, int& deckCounter, int& i, CPlayers playerName, vector<shared_ptr<bool>>& usedCards)
 {
 	for (int j = i; j < deckCounter; j++)
 	{
@@ -207,7 +207,7 @@ If the 'hand' vector is not full, it adds the card at index 'j' to the 'hand' ve
 @param playerName A struct representing the current player's name
 @return void
 */
-void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers::SProfessor playerName)
+void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_ptr<CCard>>& hand, int& i, CPlayers playerName)
 {
 	for (int j = i; j < drawnCards.size(); j++)
 	{

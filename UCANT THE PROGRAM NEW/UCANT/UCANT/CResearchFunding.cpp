@@ -9,7 +9,7 @@ Then, it randomly selects a table object and adds 2 to its power if there are re
 not empty. If the table vector is empty, the professor's prestige is increased by 2.
 Finally, if the research funding vector is empty, the function does nothing, and the research funding vector is cleared at the end of the function.
 */
-void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CResearchFunding>> researchFunding, int randomCard, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CResearchFunding> printCardType = make_unique<CResearchFunding>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();

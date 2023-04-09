@@ -26,15 +26,12 @@ using namespace std;
 class CPlayers
 {
 public:
-	struct SProfessor // Stores the name and prestige of a professor
-	{
-		string mProfName; // Stores the name of the professor
-		int mProfPrestige = 30; // Stores the prestige of the professor
-	};
-	
+	int mProfPrestige = 30; // Stores the prestige of the professor
+	string mProfName; // Stores the name of the professor
 	string setProfessorName(string name); // Sets the name of the professor
-	void ProfessorSacked(shared_ptr<CPlayers::SProfessor> plagiarist, shared_ptr<CPlayers::SProfessor> piffle, shared_ptr<CPlayers::SProfessor> pointless, shared_ptr<CPlayers::SProfessor> perdition); // Determines if a professor has been sacked
+	void ProfessorSacked(shared_ptr<CPlayers> plagiarist, shared_ptr<CPlayers> piffle, shared_ptr<CPlayers> pointless, shared_ptr<CPlayers> perdition); // Determines if a professor has been sacked
+	string mProfNamer; // Gets Name of professor to set
+private:
 	
-
 };
 

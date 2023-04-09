@@ -14,7 +14,7 @@
  * @param randomCard the index of the card in the cardsDrawn vector that the player wants to use
  * @param easyTarget the vector of Easy Target cards that the player has
  */
-void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CSerialOffender::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers& professorAttacked, CPlayers& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CSerialOffender>>& serialOffender, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CSerialOffender> printCardTypeSerialOffender = make_unique<CSerialOffender>();
 	unique_ptr<CEasyTarget> printCardTypeEasyTarget = make_unique<CEasyTarget>();
@@ -168,7 +168,7 @@ professorAttacked: a reference to the professor object being attacked
 cardsDrawn: a vector of shared pointers to cards that have been drawn
 randomCard: an integer representing the index of the attacking card in the cardsDrawn vector
 */
-void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
+void CSerialOffender::attackProfessor(int cardPowerAttackerInt, CPlayers& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;

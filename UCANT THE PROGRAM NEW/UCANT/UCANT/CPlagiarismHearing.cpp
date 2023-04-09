@@ -29,7 +29,7 @@ The function takes in a reference to the struct containing information about the
 a vector containing shared pointers to the cards drawn by the player, and an integer representing the index of the attacking card in the vector.
 The function prints out the name of the attacking card and the name of the professor being attacked, along with the updated prestige of the professor after the attack.
 */
-void CPlagiarismHearing::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard)
+void CPlagiarismHearing::attackProfessor(CPlayers& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPower;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
@@ -52,7 +52,7 @@ based on the value of randomChoice. If the attacked entity's resilience becomes 
 @param randomChoice integer value indicating whether the attack should be on the professor or the table enemy
 @param easyTarget vector of shared pointers to easy target cards in the player's possession
 */
-void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CPlagiarismHearing>>& plagiarism, vector <shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, int randomChoice, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CPlagiarismHearing> printCardType = make_unique<CPlagiarismHearing>();
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();

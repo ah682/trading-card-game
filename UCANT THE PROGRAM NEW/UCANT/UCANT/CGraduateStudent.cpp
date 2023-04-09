@@ -4,7 +4,7 @@
 
 This function uses a card played by a graduate student player against another player. It takes in various parameters such as the tables being attacked, the professors being attacked and attacking, the cards drawn, the graduate students involved, and the easy targets available. It then performs various actions such as checking if the drawn card is a graduate student card, selecting a random target table to attack, and activating the easy target's special ability. It also updates the prestige of the attacking professor and checks if the attacked professor's prestige has dropped to zero.
 */
-void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CTable>>& tableAttacker, CPlayers& professorAttacked, CPlayers& professorAttacker, vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CGraduateStudent>>& graduateStudent, int randomCard, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CGraduateStudent> printCardType = make_unique<CGraduateStudent>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
@@ -125,7 +125,7 @@ This method is used to attack a professor with a card drawn from a player's deck
 @param cardsDrawn - a vector of shared pointers to the cards drawn by the player.
 @param randomCard - an integer representing the index of the randomly drawn card from the player's deck.
 */
-void CGraduateStudent::attackProfessor(CPlayers::SProfessor& professorAttacked, int cardPowerAttackerInt, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
+void CGraduateStudent::attackProfessor(CPlayers& professorAttacked, int cardPowerAttackerInt, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;

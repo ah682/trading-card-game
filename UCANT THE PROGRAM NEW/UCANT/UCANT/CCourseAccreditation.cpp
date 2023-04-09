@@ -16,7 +16,7 @@
  * @param attackerName The name of the professor attacking.
  * @param easyTarget The vector of easy target cards.
  */
-void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers::SProfessor& professorAttacked, CPlayers::SProfessor& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget)
+void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <shared_ptr<CCourseAccreditation>>& accreditation, vector<shared_ptr<CTable>>& tableAttacked, int randomCard, CPlayers& professorAttacked, CPlayers& professorAttacker, string attackedName, string attackerName, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	unique_ptr<CCourseAccreditation> printCardType = make_unique<CCourseAccreditation>();
 	shared_ptr<CEasyTarget> activateEasyTarget = make_shared<CEasyTarget>();
@@ -97,7 +97,7 @@ void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& 
 * @param professorAttacked a reference to a struct representing the professor who is being attacked
 * @param cardsDrawn a vector of shared pointers to CCard objects representing the cards in the current game
 */
-void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlayers::SProfessor& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn)
+void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlayers& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn)
 {
 	professorAttacked.mProfPrestige -= cardPower;
 	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;

@@ -81,7 +81,7 @@ This method is responsible for using Card Type 9 - Student. When students are ac
 
 @param tableAttacker A vector containing shared pointers to all tables in the attacking professor's cohort
 */
-void CEasyTarget::UseCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers::SProfessor& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
+void CEasyTarget::UseCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_ptr<CEasyTarget>> easyTarget, int randomCard, CPlayers& professorAttacker, string attackerName, vector<shared_ptr<CTable>>& tableAttacker)
 {
 	unique_ptr<CEasyTarget> printCardType = make_unique<CEasyTarget>();
 	unique_ptr<CCounter> randomNumber = make_unique<CCounter>();
