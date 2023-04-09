@@ -1,2 +1,14 @@
-﻿  UCANT.cpp
+﻿  CCourseAccreditation.cpp
+  CEasyTarget.cpp
+  CFeedbackForum.cpp
+  CGraduateStudent.cpp
+  CIndustrialPlacement.cpp
+  CManager.cpp
+  CMitigatingCircumstances.cpp
+  CPassLeader.cpp
+  CPlagiarismHearing.cpp
+  CResearchFunding.cpp
+  CSerialOffender.cpp
+  UCANT.cpp
+  Generating Code...
   UCANT.vcxproj -> F:\repos\UCANT-the-Widowing\UCANT THE PROGRAM NEW\UCANT\x64\Debug\UCANT.exe
