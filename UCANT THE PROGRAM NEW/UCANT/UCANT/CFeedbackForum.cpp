@@ -68,10 +68,10 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 
 			if (!tableAttacked.empty())
 			{
-				shared_ptr<CCard> elementneeded = tableAttacked[randomIndex];
-				if (!elementneeded->mResilience.empty())
+				shared_ptr<CCard> tableAttackedElements = tableAttacked[randomIndex];
+				if (!tableAttackedElements->mResilience.empty())
 				{
-					cardResilience = stoi(elementneeded->mResilience);
+					cardResilience = stoi(tableAttackedElements->mResilience);
 				}
 
 
@@ -80,11 +80,11 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[randomIndex]->mResilience = cardResilienceString;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << ". " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 				}
 				if (cardResilience <= 0)
 				{
-					printCardType->activateCardDeath(elementneeded, tableAttacked, randomIndex);
+					printCardType->activateCardDeath(tableAttackedElements, tableAttacked, randomIndex);
 				}
 				professorAttacked.mProfPrestige -= CARD_POWER;
 			}
@@ -95,18 +95,18 @@ void CFeedbackForum::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared
 				int randomIndex = randomNumber->Random(tableAttacker.size() - 1);
 				if (!tableAttacker.empty())
 				{
-					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
-					if (!elementneeded->mResilience.empty())
+					shared_ptr<CCard> tableAttackerElements = tableAttacker[randomIndex];
+					if (!tableAttackerElements->mResilience.empty())
 					{
-						cardResilience = stoi(elementneeded->mResilience);
+						cardResilience = stoi(tableAttackerElements->mResilience);
 					}
 				}
 				cardResilience += CARD_POWER;
 				string cardResilienceString = to_string(cardResilience);
 				tableAttacker[randomIndex]->mResilience = cardResilienceString;
 				professorAttacker.mProfPrestige += CARD_POWER;
-				cout << professorAttacker.mProfName << " " << " has recieved healing of " << CARD_POWER << " points" << endl;
-				cout << tableAttacker[tableAttacker.size() - 1]->mFirstname << " " << " has recieved healing of " << CARD_POWER << " points" << endl;
+				cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " boosts " << professorAttacker.mProfName << ". " << professorAttacker.mProfName << " resilience is now " << professorAttacker.mProfName << endl;
+				cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " boosts " << tableAttacker[tableAttacker.size() - 1]->mFirstName << " " << tableAttacker[tableAttacker.size() - 1]->mLastName << ". " << tableAttacker[tableAttacker.size() - 1]->mFirstName << tableAttacker[tableAttacker.size() - 1] << " resilience is now " << tableAttacker[tableAttacker.size() - 1]->mResilience << endl;
 			}
 
 
@@ -130,12 +130,12 @@ void CFeedbackForum::printCardUse()
 
 This function is called when a card's resilience reaches zero or below. It removes the defeated card from the table
 and prints a message indicating the card's type, name, power, resilience, and boost.
-@param elementneeded - A shared pointer to the card that has been defeated.
+@param defeatedCard - A shared pointer to the card that has been defeated.
 @param tableAttacked - A vector of shared pointers to the cards that have been attacked.
 @param randomIndex - An integer representing the index of the defeated card in the vector.
 */
-void CFeedbackForum::activateCardDeath(shared_ptr<CCard> elementneeded, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
+void CFeedbackForum::activateCardDeath(shared_ptr<CCard> defeatedCard, vector<shared_ptr<CTable>>& tableAttacked, int randomIndex)
 {
-	cout << elementneeded->mType << " " << elementneeded->mFirstname << " " << elementneeded->mLastname << " is defeated" << endl;
+	cout << defeatedCard->mType << " " << defeatedCard->mFirstName << " " << defeatedCard->mLastName << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }

@@ -17,7 +17,7 @@ This function activates a card's death effect on a table entity by printing out 
 */
 void CStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }
 
@@ -33,7 +33,7 @@ void CStudent::attackEntity(int& cardResilienceAttackedInt, int& cardPowerAttack
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	string cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 	tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << ". " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 }
 
 /**
@@ -46,7 +46,7 @@ the updated prestige of the professor attacked.
 void CStudent::attackProfessor(CPlayers& professorAttacked, vector<shared_ptr<CCard>> cardsDrawn, int randomCard, int& cardPowerAttackerInt)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 /**
@@ -78,10 +78,10 @@ void CStudent::UseCard(vector<shared_ptr<CTable>>& tableAttacked, vector<shared_
 	if (cardsDrawn[randomCard]->mType == G_STUDENT)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CStudent> pStudentElement = static_pointer_cast<CStudent>(cardsDrawn[randomCard]);
+		shared_ptr<CStudent> pStudentElements = static_pointer_cast<CStudent>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		ordinaryStudent.push_back(pStudentElement);
+		ordinaryStudent.push_back(pStudentElements);
 	}
 
 	professorAttacked.mProfName;

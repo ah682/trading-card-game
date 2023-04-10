@@ -59,7 +59,7 @@ It outputs a message indicating which Easy Target card was defeated and removes 
 */
 void CEasyTarget::activateCardDeath(int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& attacked) // overload
 {
-	cout << attacked[additionalEasyTargetRandomIndex]->mFirstname << attacked[additionalEasyTargetRandomIndex]->mLastname << " is defeated" << endl;
+	cout << attacked[additionalEasyTargetRandomIndex]->mFirstName << attacked[additionalEasyTargetRandomIndex]->mLastName << " is defeated" << endl;
 	cout << "Easy Target Killed" << endl;
 	attacked.erase(attacked.begin() + additionalEasyTargetRandomIndex);
 
@@ -91,9 +91,9 @@ void CEasyTarget::UseCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_pt
 		if (cardsDrawn[randomCard]->mType == G_EASY_TARGET)
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-			shared_ptr<CEasyTarget> pEasyTargetElement = static_pointer_cast<CEasyTarget>(cardsDrawn[randomCard]);
+			shared_ptr<CEasyTarget> pEasyTargetElements = static_pointer_cast<CEasyTarget>(cardsDrawn[randomCard]);
 			// Add the converted element to the accreditation vector
-			easyTarget.push_back(pEasyTargetElement);
+			easyTarget.push_back(pEasyTargetElements);
 		}
 	}
 	else
@@ -145,7 +145,7 @@ Attacks an easy target entity with additional left over damage.
 void CEasyTarget::attackEntity(int& additionalCardResilienceAttackedIntEasyTarget, int& leftOverDamage, int randomIndex, int additionalEasyTargetRandomIndex, vector<shared_ptr<CEasyTarget>>& easyTarget)
 {
 	additionalCardResilienceAttackedIntEasyTarget -= leftOverDamage;
-	cout << "Left over damage attacks" << easyTarget[additionalEasyTargetRandomIndex]->mFirstname << easyTarget[additionalEasyTargetRandomIndex]->mLastname;
+	cout << "Left over damage attacks" << easyTarget[additionalEasyTargetRandomIndex]->mFirstName << easyTarget[additionalEasyTargetRandomIndex]->mLastName;
 	string additionalCardResilienceAttackedStringEasyTarget = to_string(additionalCardResilienceAttackedIntEasyTarget);
 	easyTarget[randomIndex]->mResilience = additionalCardResilienceAttackedIntEasyTarget;
 }

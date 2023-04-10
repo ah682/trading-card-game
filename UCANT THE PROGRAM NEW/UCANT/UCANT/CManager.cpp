@@ -32,17 +32,17 @@ void CManager::PrintTable(vector<shared_ptr<CTable>>& table, vector<shared_ptr<C
 	if (((((((cardsDrawn[randomCard]->mType == G_STUDENT || cardsDrawn[randomCard]->mType == G_INDUSTRIAL_PLACEMENT) || cardsDrawn[randomCard]->mType == G_PASS_LEADER) || cardsDrawn[randomCard]->mType == G_EASY_TARGET) || cardsDrawn[randomCard]->mType == G_FEEDBACK_FORUM) || cardsDrawn[randomCard]->mType == G_SERIAL_OFFENDER) || cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT))
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CTable> tableElement = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
+		shared_ptr<CTable> tableElements = static_pointer_cast<CTable>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		table.push_back(tableElement);
+		table.push_back(tableElements);
 	}
 
 	// Shows cards placed on table
 	cout << playerName.mProfName << " cards on table: ";
 	for (int i = 0; i < table.size(); i++)
 	{
-		cout << table[i]->mFirstname << " " << table[i]->mLastname << " (" << table[i]->mType << ")" << " , ";
+		cout << table[i]->mFirstName << " " << table[i]->mLastName << " (" << table[i]->mType << ")" << " , ";
 		if (i > table.size() - table.size() + 1)
 		{
 			break;
@@ -150,10 +150,10 @@ void CManager::FillDeck(ifstream& inFile, vector<shared_ptr<CCard>>& cards, vect
 	{
 		if (getline(inFile, line)) {
 			stringstream ss(line);
-			ss >> cards[i]->mType >> cards[i]->mFirstname >> cards[i]->mLastname >> cards[i]->mPower >> cards[i]->mResilience >> cards[i]->mBoost;
+			ss >> cards[i]->mType >> cards[i]->mFirstName >> cards[i]->mLastName >> cards[i]->mPower >> cards[i]->mResilience >> cards[i]->mBoost;
 			if (cardsStudent[i]->mType == G_STUDENT)
 			{
-				ss >> cardsStudent[i]->mType >> cardsStudent[i]->mFirstname >> cardsStudent[i]->mLastname >> cardsStudent[i]->mPower >> cardsStudent[i]->mResilience >> cardsStudent[i]->mBoost;
+				ss >> cardsStudent[i]->mType >> cardsStudent[i]->mFirstName >> cardsStudent[i]->mLastName >> cardsStudent[i]->mPower >> cardsStudent[i]->mResilience >> cardsStudent[i]->mBoost;
 			}
 		}
 
@@ -183,8 +183,8 @@ void CManager::DrawCard(vector<shared_ptr<CCard>>& cards, vector<shared_ptr<CCar
 		{
 			drawnCards.push_back(cards[j]);
 			*usedCards[j] = true;
-			cout << playerName.mProfName << " draws " << drawnCards[j]->mType << " " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
-			cout << playerName.mProfName << " plays " << drawnCards[j]->mFirstname << " " << drawnCards[j]->mLastname << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
+			cout << playerName.mProfName << " draws " << drawnCards[j]->mType << " " << drawnCards[j]->mFirstName << " " << drawnCards[j]->mLastName << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
+			cout << playerName.mProfName << " plays " << drawnCards[j]->mFirstName << " " << drawnCards[j]->mLastName << " " << drawnCards[j]->mPower << " " << drawnCards[j]->mResilience << " " << drawnCards[j]->mBoost << endl;
 		}
 		else
 		{
@@ -218,7 +218,7 @@ void CManager::pushToHand(vector<shared_ptr<CCard>>& drawnCards, vector<shared_p
 		if (hand.size() < 2)
 		{
 			hand.push_back(drawnCards[j]);
-			cout << playerName.mProfName << " has pushed " << hand[j]->mType << " " << hand[j]->mFirstname << " " << hand[j]->mLastname << " " << hand[j]->mPower << " " << hand[j]->mResilience << " " << hand[j]->mBoost << " to hand" << endl;
+			cout << playerName.mProfName << " has pushed " << hand[j]->mType << " " << hand[j]->mFirstName << " " << hand[j]->mLastName << " " << hand[j]->mPower << " " << hand[j]->mResilience << " " << hand[j]->mBoost << " to hand" << endl;
 		}
 	}
 

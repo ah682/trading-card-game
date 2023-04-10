@@ -20,10 +20,10 @@ void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_p
 		if (cardsDrawn[randomCard]->mType == G_PASS_LEADER)
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-			shared_ptr<CPassLeader> pPassLeaderElement = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
+			shared_ptr<CPassLeader> pPassLeaderElements = static_pointer_cast<CPassLeader>(cardsDrawn[randomCard]);
 
 			// Add the converted element to the pass leader vector
-			passLeader.push_back(pPassLeaderElement);
+			passLeader.push_back(pPassLeaderElements);
 		}
 	}
 	else
@@ -56,7 +56,7 @@ void::CPassLeader::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shared_p
 	{
 		if (!tableAttacker.empty() && i < tableAttacker.size() && tableAttacker[i]->mType == G_PASS_LEADER)
 		{
-			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstname << " " << tableAttacker[i]->mLastname << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
+			cout << professorAttacker.mProfName << "'s " << tableAttacker[i]->mFirstName << " " << tableAttacker[i]->mLastName << "  " << tableAttacker[i]->mPower << " " << tableAttacker[i]->mResilience << " " << tableAttacker[i]->mBoost << " has recieved power increase of " << passLeaderCounter << " points" << endl;
 		}
 	}
 	if (passLeader.empty())

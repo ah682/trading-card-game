@@ -36,10 +36,10 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 		if (cardsDrawn[randomCard]->mType == G_MITIGATING_CIRCUMSTANCES)
 		{
 			// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-			shared_ptr<CMitigatingCircumstances> pMitigatingCircumstancesElement = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
+			shared_ptr<CMitigatingCircumstances> pMitigatingCircumstancesElements = static_pointer_cast<CMitigatingCircumstances>(cardsDrawn[randomCard]);
 
 			// Add the converted element to the accreditation vector
-			mitigatingCircumstances.push_back(pMitigatingCircumstancesElement);
+			mitigatingCircumstances.push_back(pMitigatingCircumstancesElements);
 		}
 	}
 	else
@@ -65,7 +65,7 @@ void CMitigatingCircumstances::useCard(vector<shared_ptr<CCard>> cardsDrawn, sha
 							int damageReductionGranted = damageReduction->useCardSpecialAbility(tableAttackerResillienceInt, damageReduction->mDamageReductionGetterInt);
 							string damageReductionString = to_string(damageReductionGranted);
 							tableAttacker[randomIndex]->mResilience = damageReductionString;
-							cout << "Damaged Reduced of card" << tableAttacker[randomIndex]->mType << tableAttacker[randomIndex]->mFirstname << tableAttacker[randomIndex]->mLastname << tableAttacker[randomIndex]->mPower << tableAttacker[randomIndex]->mResilience << tableAttacker[randomIndex]->mBoost << endl;
+							cout << "Damaged Reduced of card" << tableAttacker[randomIndex]->mType << tableAttacker[randomIndex]->mFirstName << tableAttacker[randomIndex]->mLastName << tableAttacker[randomIndex]->mPower << tableAttacker[randomIndex]->mResilience << tableAttacker[randomIndex]->mBoost << endl;
 						}
 						else {
 							// skip the function or handle the null pointer case

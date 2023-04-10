@@ -30,10 +30,10 @@ void CCourseAccreditation::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector
 	if (cardsDrawn[randomCard]->mType == G_COURSE_ACCREDITATION)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CCourseAccreditation> pAccreditationElement = static_pointer_cast<CCourseAccreditation>(cardsDrawn[randomCard]);
+		shared_ptr<CCourseAccreditation> pAccreditationElements = static_pointer_cast<CCourseAccreditation>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		accreditation.push_back(pAccreditationElement);
+		accreditation.push_back(pAccreditationElements);
 	}
 
 	professorAttacked.mProfName = attackedName;
@@ -85,7 +85,7 @@ void CCourseAccreditation::printCardUse()
  */
 void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& tableAttacked) // Overloaded function
 {
-	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << " is defeated" << endl;
+	cout << tableAttacked[j]->mType << " " << tableAttacked[j]->mFirstName << " " << tableAttacked[j]->mLastName << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + j);
 }
 
@@ -100,7 +100,7 @@ void CCourseAccreditation::activateCardDeath(int j, vector<shared_ptr<CTable>>& 
 void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlayers& professorAttacked, vector<shared_ptr<CCard>>& cardsDrawn)
 {
 	professorAttacked.mProfPrestige -= cardPower;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 /**
@@ -118,5 +118,5 @@ void CCourseAccreditation::attackProfessor(int cardPower, int randomCard, CPlaye
 void CCourseAccreditation::attackEntity(string& cardResilienceString, vector<shared_ptr<CTable>>& tableAttacked, vector<shared_ptr<CCard>>& cardsDrawn, int j, int randomCard)
 {
 	tableAttacked[j]->mResilience = cardResilienceString;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << ". " << tableAttacked[j]->mFirstname << " " << tableAttacked[j]->mLastname << "'s resilience is now " << tableAttacked[j]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[j]->mFirstName << " " << tableAttacked[j]->mLastName << ". " << tableAttacked[j]->mFirstName << " " << tableAttacked[j]->mLastName << "'s resilience is now " << tableAttacked[j]->mResilience << endl;
 }

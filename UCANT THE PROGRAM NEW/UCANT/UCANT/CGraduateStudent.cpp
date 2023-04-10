@@ -21,10 +21,10 @@ void CGraduateStudent::useCard(vector<shared_ptr<CTable>>& tableAttacked, vector
 	if (cardsDrawn[randomCard]->mType == G_GRADUATE_STUDENT)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CGraduateStudent> pStudentElement = static_pointer_cast<CGraduateStudent>(cardsDrawn[randomCard]);
+		shared_ptr<CGraduateStudent> pStudentElements = static_pointer_cast<CGraduateStudent>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		graduateStudent.push_back(pStudentElement);
+		graduateStudent.push_back(pStudentElements);
 	}
 
 	professorAttacked.mProfName;
@@ -95,7 +95,7 @@ This function activates the death of a card and removes it from the tableAttacke
 */
 void CGraduateStudent::activateCardDeath(int randomIndex, vector<shared_ptr<CTable>>& tableAttacked)
 {
-	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << " is defeated" << endl;
+	cout << tableAttacked[randomIndex]->mType << " " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << " is defeated" << endl;
 	tableAttacked.erase(tableAttacked.begin() + randomIndex);
 }
 
@@ -115,7 +115,7 @@ void CGraduateStudent::attackEntity(int& cardResilienceAttackedInt, int& cardPow
 	cardResilienceAttackedInt -= cardPowerAttackerInt;
 	cardResilienceStringDueled = to_string(cardResilienceAttackedInt);
 	tableAttacked[randomIndex]->mResilience = cardResilienceStringDueled;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << ". " << tableAttacked[randomIndex]->mFirstname << " " << tableAttacked[randomIndex]->mLastname << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << ". " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << endl;
 }
 
 /**
@@ -129,5 +129,5 @@ This method is used to attack a professor with a card drawn from a player's deck
 void CGraduateStudent::attackProfessor(CPlayers& professorAttacked, int cardPowerAttackerInt, vector<shared_ptr<CCard>> cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPowerAttackerInt;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }

@@ -19,10 +19,10 @@ void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shar
 	if (cardsDrawn[randomCard]->mType == G_RESEARCH_FUNDING)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CResearchFunding> pResearchFundingElement = static_pointer_cast<CResearchFunding>(cardsDrawn[randomCard]);
+		shared_ptr<CResearchFunding> pResearchFundingElements = static_pointer_cast<CResearchFunding>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		researchFunding.push_back(pResearchFundingElement);
+		researchFunding.push_back(pResearchFundingElements);
 
 	}
 
@@ -42,12 +42,12 @@ void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shar
 				if (!tableAttacker.empty())
 				{
 
-					shared_ptr<CCard> elementneeded = tableAttacker[randomIndex];
-					cardPower = stoi(elementneeded->mPower);
+					shared_ptr<CCard> tableAttackerElements = tableAttacker[randomIndex];
+					cardPower = stoi(tableAttackerElements->mPower);
 					cardPower += cardPowerAdditionInteger;
 					string cardPowerString = to_string(cardPower);
 					tableAttacker[randomIndex]->mPower = cardPowerString;
-					cout << tableAttacker[randomIndex]->mType << " " << tableAttacker[randomIndex]->mFirstname << " " << tableAttacker[randomIndex]->mLastname << " " << tableAttacker[randomIndex]->mPower << " " << tableAttacker[randomIndex]->mResilience << " " << tableAttacker[randomIndex]->mBoost << "has recieved a power increase of " << cardPowerAdditionInteger << endl;
+					cout << tableAttacker[randomIndex]->mType << " " << tableAttacker[randomIndex]->mFirstName << " " << tableAttacker[randomIndex]->mLastName << " " << tableAttacker[randomIndex]->mPower << " " << tableAttacker[randomIndex]->mResilience << " " << tableAttacker[randomIndex]->mBoost << "has recieved a power increase of " << cardPowerAdditionInteger << endl;
 
 				}
 
@@ -56,7 +56,7 @@ void CResearchFunding::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<shar
 			if (tableAttacker.empty())
 			{
 				professorAttacker.mProfPrestige += cardPowerAdditionInteger;
-				cout << cardsDrawn[randomCard]->mFirstname << cardsDrawn[randomCard]->mLastname << " gives " << professorAttacker.mProfName << " " << cardPowerAdditionInteger << " prestige points, prestige is now " << professorAttacker.mProfPrestige << endl;
+				cout << cardsDrawn[randomCard]->mFirstName << cardsDrawn[randomCard]->mLastName << " gives " << professorAttacker.mProfName << " " << cardPowerAdditionInteger << " prestige points, prestige is now " << professorAttacker.mProfPrestige << endl;
 
 			}
 		}

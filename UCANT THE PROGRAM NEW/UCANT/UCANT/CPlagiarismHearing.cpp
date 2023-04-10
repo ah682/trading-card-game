@@ -18,7 +18,7 @@ This function overloads the activateCardDeath function from the CCard class.
 */
 void CPlagiarismHearing::activateCardDeath(CCard* enemyTable, vector <shared_ptr<CTable>>& tableAttacked) //Function overloading
 {
-	cout << enemyTable->mFirstname << " " << enemyTable->mLastname << " is defeated" << endl;
+	cout << enemyTable->mFirstName << " " << enemyTable->mLastName << " is defeated" << endl;
 	tableAttacked.pop_back();
 }
 
@@ -32,7 +32,7 @@ The function prints out the name of the attacking card and the name of the profe
 void CPlagiarismHearing::attackProfessor(CPlayers& professorAttacked, int cardPower, vector<shared_ptr<CCard>>& cardsDrawn, int randomCard)
 {
 	professorAttacked.mProfPrestige -= cardPower;
-	cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
+	cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << professorAttacked.mProfName << ". " << professorAttacked.mProfName << " prestige is now " << professorAttacked.mProfPrestige << endl;
 }
 
 /**
@@ -61,10 +61,10 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 	if (cardsDrawn[randomCard]->mType == G_PLAGIARISM_HEARING)
 	{
 		// Convert the shared_ptr<CCard> to a shared_ptr<CDrawCourseAccreditationCard>
-		shared_ptr<CPlagiarismHearing> pPlagiarismElement = static_pointer_cast<CPlagiarismHearing>(cardsDrawn[randomCard]);
+		shared_ptr<CPlagiarismHearing> pPlagiarismElements = static_pointer_cast<CPlagiarismHearing>(cardsDrawn[randomCard]);
 
 		// Add the converted element to the accreditation vector
-		plagiarism.push_back(pPlagiarismElement);
+		plagiarism.push_back(pPlagiarismElements);
 	}
 
 	professorAttacked.mProfName = attackedName;
@@ -88,7 +88,7 @@ void CPlagiarismHearing::useCard(vector<shared_ptr<CCard>>& cardsDrawn, vector <
 					cardResilience -= CARD_POWER;
 					string cardResilienceString = to_string(cardResilience);
 					tableAttacked[tableAttacked.size() - 1]->mResilience = cardResilienceString;
-					cout << cardsDrawn[randomCard]->mFirstname << " " << cardsDrawn[randomCard]->mLastname << " attacks: " << enemyTable->mFirstname << " " << enemyTable->mLastname << ". " << " " << enemyTable->mFirstname << " " << enemyTable->mLastname << "'s resilience is now " << enemyTable->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks: " << enemyTable->mFirstName << " " << enemyTable->mLastName << ". " << " " << enemyTable->mFirstName << " " << enemyTable->mLastName << "'s resilience is now " << enemyTable->mResilience << endl;
 				}
 				if (cardResilience <= 0) {
 					printCardType->activateCardDeath(enemyTable, tableAttacked);

@@ -48,8 +48,8 @@ public:
 	void attackEntity(); // Function which attacks
 
 	string mType; // Stores card type for use in source files
-	string mFirstname; // Stores card's first name for use in source files
-	string mLastname; // Stores card's last name for use in source files
+	string mFirstName; // Stores card's first name for use in source files
+	string mLastName; // Stores card's last name for use in source files
 	string mPower; // Stores cards power for use in source files
 	string mResilience; // Store cards resilience for use in source files
 	string mBoost; // Stores cards boost for use in source files
