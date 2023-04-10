@@ -71,7 +71,7 @@ void CIndustrialPlacement::useCard(vector<shared_ptr<CCard>> cardsDrawn, vector<
 					cardResilienceAttackerInt += increaseResilience;
 					string cardResilienceStringAttacker = to_string(cardResilienceAttackerInt);
 					cardsDrawn[randomCard]->mResilience = cardResilienceStringAttacker;
-					cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << ". " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << "; " << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << "is now " << cardsDrawn[randomCard]->mResilience << endl;
+					cout << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << " attacks " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << ". " << tableAttacked[randomIndex]->mFirstName << " " << tableAttacked[randomIndex]->mLastName << "'s resilience is now " << tableAttacked[randomIndex]->mResilience << "; " << cardsDrawn[randomCard]->mFirstName << " " << cardsDrawn[randomCard]->mLastName << "'s resilience is now " << cardsDrawn[randomCard]->mResilience << endl;
 				}
 				if (cardResilienceAttackedInt <= 0) {
 					printCardType->activateCardDeath(randomIndex, tableAttacked);
